@@ -1,77 +1,51 @@
 import React, { useState } from 'react';
+import { Star, ShieldAlert, Award, Compass, HeartPulse, Zap } from 'lucide-react';
 
 const ingredientsData = [
   { 
     id: 1,
-    name: "Tongkat Ali Extract", 
-    dose: "800 mg", 
-    role: "The Driver",
-    image: "/ingredients/tongkat_ali.png",
-    summary: "Known scientifically as Eurycoma longifolia, this adaptogen has been shown to support healthy free testosterone levels by helping to unbind it from SHBG (Sex Hormone-Binding Globulin).",
-    benefits: ["Supports free testosterone", "Enhances libido and drive", "Reduces cortisol (stress hormone)"]
+    name: "Shilajit Extract", 
+    dose: "500 mg", 
+    role: "Foundational Vitality",
+    image: "/ingredients/shilajit.png",
+    summary: "A mineral-rich Himalayan resin traditionally valued for vitality, stamina, mineral support, and foundational masculine wellness. Rich in fulvic acid, it enhances cellular energy and daily performance.",
+    benefits: ["Supports cellular energy (ATP)", "Replenishes essential trace minerals", "Supports stamina and endurance"]
   },
   { 
     id: 2,
-    name: "Shilajit (Purified)", 
-    dose: "250 mg", 
-    role: "The Optimizer",
-    image: "/ingredients/shilajit.png",
-    summary: "A mineral-rich resin packed with fulvic acid. Shilajit acts at the cellular level to enhance mitochondrial function and ATP production, giving you clean, sustained energy.",
-    benefits: ["Enhances cellular energy (ATP)", "Replenishes essential trace minerals", "Supports stamina and endurance"]
+    name: "Tongkat Ali Extract", 
+    dose: "300 mg", 
+    role: "Masculine Drive",
+    image: "/ingredients/tongkat_ali.png",
+    summary: "A modern herbal performance ingredient selected to support masculine drive, vitality, and physical performance rhythm. Helps maintain optimal baseline hormones and physical momentum.",
+    benefits: ["Supports free testosterone rhythm", "Enhances masculine drive & libido", "Reduces physical and mental fatigue"]
   },
   { 
     id: 3,
-    name: "Fenugreek Seed Extract", 
-    dose: "250 mg", 
-    role: "The Balancer",
-    image: "/ingredients/fenugreek.png",
-    summary: "Fenugreek contains compounds called furostanolic saponins, which are believed to help block the enzymes that convert testosterone into estrogen, maintaining a healthy hormonal ratio.",
-    benefits: ["Maintains healthy T-levels", "Supports metabolic health", "Aids in fat metabolism"]
+    name: "Ashwagandha Extract", 
+    dose: "300 mg", 
+    role: "Stress Resilience",
+    image: "/ingredients/ashwagandha.png",
+    summary: "An adaptogenic extract used to support stress resilience, recovery, calmer energy, and daily consistency. Helps modulate cortisol to prevent performance burnout.",
+    benefits: ["Modulates cortisol (stress hormone)", "Supports stress resilience & energy", "Enhances muscle recovery and sleep"]
   },
   { 
     id: 4,
-    name: "Taurine", 
-    dose: "200 mg", 
-    role: "The Hydrator",
-    image: "/ingredients/taurine.png",
-    summary: "An amino acid crucial for cellular hydration and cardiovascular function. It protects cells against oxidative stress during intense physical exertion.",
-    benefits: ["Supports cellular hydration", "Reduces oxidative stress", "Enhances muscular endurance"]
+    name: "Fenugreek Extract", 
+    dose: "490 mg", 
+    role: "Male Vitality",
+    image: "/ingredients/fenugreek.png",
+    summary: "Included at a meaningful dose to support male vitality, confidence, and physical performance support. Promotes peak biological rhythm and sustained drive.",
+    benefits: ["Maintains healthy hormonal balance", "Supports masculine confidence", "Aids in daily strength and stamina"]
   },
   { 
     id: 5,
-    name: "Zinc Citrate", 
-    dose: "30 mg", 
-    role: "The Builder",
-    image: "/ingredients/zinc.png",
-    summary: "Zinc is a fundamental mineral required for testosterone production. We use Zinc Citrate for high bioavailability, ensuring your body gets the raw materials it needs.",
-    benefits: ["Essential for T-production", "Supports immune function", "Aids in protein synthesis"]
-  },
-  { 
-    id: 6,
-    name: "Boron Citrate", 
-    dose: "4 mg", 
-    role: "The Freer",
-    image: "/ingredients/boron.png",
-    summary: "A trace mineral that plays a crucial role in reducing SHBG levels, which in turn increases the amount of free, active testosterone available in your bloodstream.",
-    benefits: ["Decreases SHBG levels", "Increases free testosterone", "Supports bone health"]
-  },
-  { 
-    id: 7,
-    name: "Vitamin D3", 
-    dose: "600 IU", 
-    role: "The Foundation",
-    image: "/ingredients/vitamin_d.png",
-    summary: "Often considered a prohormone rather than a vitamin, adequate D3 levels are strongly correlated with healthy testosterone production and immune resilience.",
-    benefits: ["Acts as a hormonal precursor", "Supports immune system", "Enhances mood"]
-  },
-  { 
-    id: 8,
-    name: "Vitamin K1 + K2", 
-    dose: "100 IU", 
-    role: "The Director",
-    image: "/ingredients/vitamin_k.png",
-    summary: "Works synergistically with Vitamin D3 to ensure calcium is directed into the bones rather than accumulating in the arteries, supporting cardiovascular health.",
-    benefits: ["Synergistic with Vitamin D3", "Supports cardiovascular health", "Directs calcium to bones"]
+    name: "Black Pepper Extract", 
+    dose: "10 mg", 
+    role: "Formula Efficiency",
+    image: "/ingredients/black_pepper.png",
+    summary: "Supports nutrient absorption and improves formula efficiency. Ensures that all active herbal compounds are directed and absorbed completely by the body.",
+    benefits: ["Supercharges nutrient absorption", "Improves total formula efficiency", "Enhances bioavailability of herbs"]
   }
 ];
 
@@ -85,6 +59,9 @@ const IngredientSpotlight = () => {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block mb-4">
+            Spotlight
+          </span>
           <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase text-white">The Science of <br/><span className="text-emerald-500">The Stack</span></h2>
           <p className="text-gray-400 text-xl font-medium max-w-2xl mx-auto">Click an ingredient to explore its biological function and clinical dosage.</p>
         </div>
@@ -118,20 +95,20 @@ const IngredientSpotlight = () => {
           </div>
 
           {/* Spotlight Detail */}
-          <div className="lg:w-2/3 w-full bg-gradient-to-br from-white/5 to-transparent p-12 md:p-20 rounded-[3rem] border border-white/10 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
+          <div className="lg:w-2/3 w-full bg-gradient-to-br from-white/5 to-transparent p-12 md:p-20 rounded-[3rem] border border-white/10 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center min-h-[500px]">
             {/* Huge Number Background - Moved and Fixed Visibility */}
             <div className="absolute -left-10 -top-10 text-[25rem] font-black text-white/[0.03] pointer-events-none leading-none select-none z-0">
               {activeIngredient.id}
             </div>
             
             {/* Image Showcase */}
-            <div className="w-full md:w-1/2 aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl relative z-10">
+            <div className="w-full md:w-1/2 aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl relative z-10 bg-black/40 flex items-center justify-center p-6">
               <img 
                 src={activeIngredient.image} 
                 alt={activeIngredient.name} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                className="w-3/4 h-3/4 object-contain transition-transform duration-1000 group-hover:scale-110 opacity-80" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
 
             <div className="relative z-10 md:w-1/2">

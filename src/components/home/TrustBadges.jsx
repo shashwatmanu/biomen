@@ -1,59 +1,82 @@
 import React from 'react';
-import { ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 
 const TrustBadges = () => {
+  const pillars = [
+    "Transparent Ingredient Dosing",
+    "Premium Herbal Extracts",
+    "No Proprietary Blends",
+    "Vegetarian Capsules",
+    "Glass Bottle Packaging",
+    "Made in India",
+    "Batch-Tested Quality",
+    "Designed for Daily Use"
+  ];
+
   return (
-    <section className="py-24 px-6 md:px-20 bg-black/20 border-y border-white/5">
+    <section className="py-24 px-6 md:px-20 bg-[#060c09] border-y border-white/5" id="trust-architecture">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Built Clean. Built Transparent.</h2>
-          <p className="text-gray-400">Manufactured under strict quality controls for biological safety.</p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          
+          {/* Left Side: Body Copy & Emotive Positioning */}
+          <div className="lg:col-span-7">
+            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight uppercase text-white leading-tight">
+              Built for Men Who <br />
+              <span className="text-emerald-400">Expect More</span>
+            </h2>
+            
+            <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2 text-orange-500">
+                  <AlertTriangle size={14} /> The Problem with Supplements
+                </p>
+                <p className="font-semibold text-white mb-2">BIOMEN LABS was built for ambitious men who are tired of:</p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300 font-medium">
+                  <li className="flex items-center gap-2">❌ Underdosed formulas</li>
+                  <li className="flex items-center gap-2">❌ Fake hype</li>
+                  <li className="flex items-center gap-2">❌ Hidden blends</li>
+                  <li className="flex items-center gap-2">❌ Low-trust supplement brands</li>
+                </ul>
+              </div>
 
-        {/* Badges Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
-          {[
-            { title: "No Proprietary Blend" },
-            { title: "No Steroids" },
-            { title: "Vegetarian Capsules" },
-            { title: "cGMP Certified" },
-            { title: "FSSAI Compliant" },
-            { title: "Made in India" }
-          ].map((badge, i) => (
-            <div key={i} className="flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/5 text-center">
-              <CheckCircle2 size={32} className="text-biomen-accent mb-4" />
-              <span className="text-sm font-bold uppercase tracking-wider">{badge.title}</span>
+              <div className="border-l-4 border-emerald-500 pl-6 space-y-4">
+                <p className="font-bold text-white text-xl">T-Core is our answer:</p>
+                <p className="text-gray-300 font-medium">
+                  A premium daily male vitality system built around purposeful ingredients, transparent dosing, and a formulation philosophy designed for long-term consistency.
+                </p>
+              </div>
             </div>
-          ))}
-        </div>
 
-        {/* Lab Testing Proof Module */}
-        <div className="max-w-3xl mx-auto bg-[#0a100d] border border-biomen-accent/30 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl">
-          <div className="bg-biomen-accent/10 p-6 rounded-2xl shrink-0">
-            <FileText size={48} className="text-biomen-accent" />
-          </div>
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-xs font-black uppercase tracking-widest bg-biomen-accent text-biomen-green px-3 py-1 rounded-full">Verified</span>
-              <span className="text-gray-400 text-sm font-mono">ID: BL-4092-A</span>
+            {/* Optional Small Note */}
+            <div className="mt-10 bg-emerald-500/5 border border-emerald-500/10 p-4 rounded-xl flex items-center gap-3">
+              <Sparkles className="text-emerald-400 shrink-0" size={18} />
+              <p className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-wider leading-relaxed">
+                A premium product should feel: <span className="text-emerald-300">easy to understand, easy to trust, and worth staying consistent with.</span>
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-2">Third-Party Tested by Light Labs</h3>
-            <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-              Every batch of T-CORE is independently tested for heavy metals, microbial safety, and active compound potency to ensure you get exactly what is on the label.
-            </p>
-            <button className="text-biomen-accent text-sm font-bold uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2">
-              View Certificate of Analysis <ArrowRight size={14} />
-            </button>
           </div>
+
+          {/* Right Side: 8 Pillars Grid */}
+          <div className="lg:col-span-5 bg-white/5 border border-white/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 mb-8 pb-4 border-b border-white/10 flex items-center gap-2">
+              <ShieldCheck className="text-emerald-400" size={16} /> BIOMEN Labs Trust Pillars
+            </h3>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {pillars.map((pillar, i) => (
+                <div key={i} className="flex items-center gap-3 p-3 bg-black/40 rounded-xl border border-white/5 hover:border-emerald-500/30 transition-all duration-300">
+                  <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+                  <span className="text-[11px] md:text-xs font-black uppercase tracking-wider text-white leading-tight">{pillar}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 };
-
-// Reusable ArrowRight since I didn't import it above
-const ArrowRight = ({ size }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-);
 
 export default TrustBadges;

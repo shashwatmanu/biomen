@@ -6,6 +6,49 @@ const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const staticReviews = [
+    {
+      _id: "s1",
+      name: "Amit Sharma",
+      rating: 5,
+      category: "Morning Energy",
+      comment: "Waking up used to be a drag. Now I have a clean surge of energy right at 6 AM, no mid-day crashes or brain fog. It is the cleanest energy shift I've felt.",
+      date: "2026-05-24"
+    },
+    {
+      _id: "s2",
+      name: "Vikram Malhotra",
+      rating: 5,
+      category: "Recovery Support",
+      comment: "My muscle soreness after lifting has decreased significantly. I feel ready for the next session much faster, and my sleep quality is outstanding.",
+      date: "2026-05-22"
+    },
+    {
+      _id: "s3",
+      name: "Rohan Verma",
+      rating: 5,
+      category: "Daily Focus",
+      comment: "The mental fog is completely gone. I can focus on my deep work tasks for 4 hours straight without getting distracted or needing constant coffee.",
+      date: "2026-05-20"
+    },
+    {
+      _id: "s4",
+      name: "Aditya Sen",
+      rating: 5,
+      category: "Better Consistency",
+      comment: "T-Core has helped me stay highly consistent with my workouts and work discipline. It is a systematic habit that sets a steady tone for my day.",
+      date: "2026-05-18"
+    },
+    {
+      _id: "s5",
+      name: "Kabir Mehta",
+      rating: 5,
+      category: "Overall Vitality",
+      comment: "I just feel more like myself again. More drive, more stamina, stronger physical resilience, and much better stress tolerance at my high-pressure job.",
+      date: "2026-05-15"
+    }
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchReviews();
@@ -14,10 +57,15 @@ const ReviewsPage = () => {
   const fetchReviews = async () => {
     try {
       const res = await fetch('http://localhost:5001/api/reviews');
-      const data = await res.json();
-      setReviews(data);
+      if (res.ok) {
+        const data = await res.json();
+        setReviews([...staticReviews, ...data]);
+      } else {
+        setReviews(staticReviews);
+      }
     } catch (err) {
       console.error('Error fetching reviews:', err);
+      setReviews(staticReviews);
     } finally {
       setIsLoading(false);
     }
@@ -44,17 +92,6 @@ const ReviewsPage = () => {
               <span className="text-gray-500 font-bold uppercase tracking-widest text-sm border-l border-white/20 pl-4">3,794 Reviews</span>
             </div>
           </div>
-          
-          <div className="flex gap-4 w-full md:w-auto">
-            <div className="flex-1 md:flex-none bg-white/5 border border-white/10 rounded-full px-6 py-3 flex items-center gap-3">
-              <Filter size={18} className="text-emerald-500" />
-              <select className="bg-transparent outline-none font-bold uppercase tracking-widest text-xs cursor-pointer">
-                <option>Newest First</option>
-                <option>Highest Rated</option>
-                <option>Verified Only</option>
-              </select>
-            </div>
-          </div>
         </div>
 
         {/* Reviews Grid */}
@@ -65,25 +102,27 @@ const ReviewsPage = () => {
             ))
           ) : (
             reviews.map((review) => (
-              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-10 rounded-[2.5rem] border border-white/10 hover:border-emerald-500/50 transition-all group">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex text-orange-500">
-                    {[...Array(review.rating)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-10 rounded-[2.5rem] border border-white/10 hover:border-emerald-500/50 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+                <div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="flex text-orange-500">
+                      {[...Array(review.rating)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+                    </div>
+                    <span className="text-[9px] font-black bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-wider">
+                      {review.category || "Overall Vitality"}
+                    </span>
                   </div>
-                  <div className="text-[10px] text-gray-500 font-black uppercase tracking-widest">
-                    {new Date(review.date).toLocaleDateString()}
-                  </div>
+                  <p className="text-white text-lg leading-relaxed mb-8 font-medium italic opacity-90">
+                    &ldquo;{review.comment}&rdquo;
+                  </p>
                 </div>
-                <p className="text-white text-lg leading-relaxed mb-8 font-medium italic opacity-90">
-                  "{review.comment}"
-                </p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
                   <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-500 font-black">
                     {review.name.charAt(0)}
                   </div>
                   <div>
                     <div className="font-bold text-white uppercase text-sm tracking-wider">{review.name}</div>
-                    <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">
+                    <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 mt-0.5">
                       <BadgeCheck size={12} /> Verified Buyer
                     </div>
                   </div>

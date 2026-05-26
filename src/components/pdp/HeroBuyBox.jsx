@@ -25,43 +25,52 @@ const HeroBuyBox = () => {
             <div className="flex text-orange-500">
               {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
             </div>
-            <a href="#reviews" className="text-sm font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors">
-              3,794 REVIEWS
-            </a>
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              Founder Batch Release
+            </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black tracking-tighter mb-6 leading-[0.9] text-white uppercase">
-            THE MOST <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">POTENT & NATURAL</span> <br/>
-            TESTOSTERONE STACK ON EARTH
+          <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black tracking-tighter mb-6 leading-[0.95] text-white uppercase">
+            The Indian Man <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Was Built For More.</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-gray-300 mb-10 leading-relaxed font-medium max-w-2xl">
-            8 powerful ingredients packed into one daily male-vitality supplement.
+          <p className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-medium max-w-2xl">
+            T-Core is a premium herbal vitality system designed to support energy, recovery, resilience, masculine performance, and daily consistency for ambitious modern men.
           </p>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-wider text-emerald-300 mb-8 max-w-2xl border-l-2 border-emerald-500 pl-4">
+            <span>Transparent Formula</span>
+            <span>•</span>
+            <span>Premium Herbal Extracts</span>
+            <span>•</span>
+            <span>Vegetarian Capsules</span>
+            <span>•</span>
+            <span className="text-white font-black underline">Made in India</span>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-6 mb-8 max-w-2xl">
             <button 
               onClick={() => addToCart({
-                id: 'tcore-launch-kit',
-                title: 'T-CORE Launch Kit',
-                price: 1499,
+                id: 'tcore-3-bottles',
+                title: 'T-CORE Full Reset System (3 Bottles)',
+                price: 3999,
                 quantity: 1,
-                isSubscription: true,
+                isSubscription: false,
                 image: activeImage
               })}
               className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white py-5 px-10 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(234,88,12,0.3)] hover:shadow-[0_0_50px_rgba(234,88,12,0.5)] flex items-center justify-center gap-3 hover:scale-[1.02]"
             >
-              UNLOCK YOUR POWER TODAY <ArrowRight size={24} />
+              Start Your 90-Day System <ArrowRight size={24} />
             </button>
           </div>
 
-          <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-400">
+          <div className="flex items-center gap-3 text-xs font-black uppercase tracking-widest text-gray-500">
             <ShieldCheck size={20} className="text-emerald-500" />
-            TRY IT FOR 90 DAYS. HIGHER T OR YOUR MONEY BACK.
+            No proprietary blends. No cheap filler formulas. No loud promises.
           </div>
         </div>
-
+ 
         {/* Right: Product Image Gallery (Takes up 5 cols) */}
         <div className="flex flex-col gap-8 lg:col-span-5 order-1 lg:order-2">
           {/* Main Showcase */}
@@ -76,22 +85,16 @@ const HeroBuyBox = () => {
           </div>
           
           {/* Thumbnails */}
-          <div className="grid grid-cols-4 gap-4 px-4">
+          <div className="grid grid-cols-2 gap-4 px-4">
             {images.map((img) => (
               <div 
                 key={img.id}
                 onClick={() => setActiveImage(img.url)}
-                className={`aspect-square rounded-2xl border transition-all cursor-pointer overflow-hidden relative ${activeImage === img.url ? 'border-emerald-500 scale-105 shadow-lg' : 'border-white/10 hover:border-emerald-500/50'}`}
+                className={`aspect-square rounded-2xl border transition-all cursor-pointer overflow-hidden relative flex items-center justify-center p-4 bg-white/5 ${activeImage === img.url ? 'border-emerald-500 scale-105 shadow-lg' : 'border-white/10 hover:border-emerald-500/50'}`}
               >
-                <img src={img.url} className={`w-full h-full object-cover ${activeImage === img.url ? 'opacity-100' : 'opacity-50'}`} />
+                <img src={img.url} className={`w-3/4 h-3/4 object-contain ${activeImage === img.url ? 'opacity-100' : 'opacity-50'}`} />
               </div>
             ))}
-            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10 hover:border-emerald-500/50 cursor-pointer flex items-center justify-center transition-colors text-[10px] font-black text-gray-500 uppercase tracking-widest">
-              Label
-            </div>
-            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10 hover:border-emerald-500/50 cursor-pointer flex items-center justify-center transition-colors text-[10px] font-black text-gray-500 uppercase tracking-widest">
-              Results
-            </div>
           </div>
         </div>
 
@@ -111,8 +114,3 @@ const HeroBuyBox = () => {
 };
 
 export default HeroBuyBox;
-
-// Quick CheckCircle component
-const CheckCircle2 = ({ size, className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-);

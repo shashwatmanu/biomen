@@ -17,31 +17,27 @@ const SolutionGrid = () => {
     threshold: 0.1,
   });
 
-  const benefits = [
+  const mechanisms = [
     { 
-      icon: <Zap className="text-orange-600" size={24} strokeWidth={3} />, 
-      title: "SKYROCKET ENERGY & STAMINA", 
-      desc: "Increase energy & athletic performance" 
+      icon: <Zap className="text-emerald-400" size={28} strokeWidth={2} />, 
+      label: "Mechanism 1",
+      title: "IGNITE", 
+      desc: "Supports masculine drive, vitality, performance rhythm, and physical momentum.",
+      poweredBy: "Tongkat Ali + Fenugreek"
     },
     { 
-      icon: <Activity className="text-orange-600" size={24} strokeWidth={3} />, 
-      title: "SUPPORT MALE VITALITY", 
-      desc: "Amplify passionate energy" 
+      icon: <Activity className="text-emerald-400" size={28} strokeWidth={2} />, 
+      label: "Mechanism 2",
+      title: "RESTORE", 
+      desc: "Supports energy, recovery, stress resilience, and a steadier daily baseline.",
+      poweredBy: "Shilajit + Ashwagandha"
     },
     { 
-      icon: <Plus className="text-orange-600" size={24} strokeWidth={3} />, 
-      title: "ENHANCE PRODUCTIVITY & FOCUS", 
-      desc: "Stay sharp & focused all day" 
-    },
-    { 
-      icon: <Sun className="text-orange-600" size={24} strokeWidth={3} />, 
-      title: "SUPERCHARGE STRENGTH", 
-      desc: "Build & maintain lean muscle mass" 
-    },
-    { 
-      icon: <ArrowUpCircle className="text-orange-600" size={24} strokeWidth={3} />, 
-      title: "IMPROVE RECOVERY", 
-      desc: "Optimize sleep & muscle recovery" 
+      icon: <ArrowUpCircle className="text-emerald-400" size={28} strokeWidth={2} />, 
+      label: "Mechanism 3",
+      title: "AMPLIFY", 
+      desc: "Supports nutrient absorption and overall formula efficiency.",
+      poweredBy: "Black Pepper Extract"
     }
   ];
 
@@ -52,17 +48,20 @@ const SolutionGrid = () => {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 md:mb-24 relative z-10">
+        <div className="text-center mb-16 md:mb-20 relative z-10 max-w-4xl mx-auto">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-4 block">
+            Scientific Approach
+          </span>
           <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight uppercase">
-            THE SOLUTION? T-CORE <span className="text-orange-500">●</span>
+            A 3-Mechanism System <br className="hidden sm:block"/> for Daily Male Performance
           </h2>
-          <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto font-medium">
-            Maintaining balanced testosterone levels is pivotal for contributing to an overall sense of well-being. Encouraging our body's natural hormonal function can help us men:
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed font-medium">
+            T-Core is not built like a loud &ldquo;test booster.&rdquo; It is structured like a performance system. Every ingredient exists to support one of three essential functions tied to modern male vitality: <span className="text-emerald-400">drive</span>, <span className="text-emerald-400">recovery</span>, and <span className="text-emerald-400">absorption</span>.
           </p>
         </div>
         
         {/* Responsive Grid: Image on top for Mobile, 3D Model on right for Desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
           
           {/* Mobile Image (Shows only on <lg) */}
           <div className="lg:hidden flex justify-center mb-8 relative">
@@ -74,25 +73,38 @@ const SolutionGrid = () => {
             />
           </div>
 
-          {/* Left: Benefits List */}
-          <div className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8 md:p-12 rounded-[40px] shadow-2xl backdrop-blur-sm order-2 lg:order-1">
+          {/* Left: Mechanisms List */}
+          <div className="lg:col-span-7 bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8 md:p-12 rounded-[40px] shadow-2xl backdrop-blur-sm order-2 lg:order-1">
             <div className="flex flex-col gap-8">
-              {benefits.map((item, i) => (
-                <div key={i} className="flex items-start gap-6 group cursor-default">
-                  <div className="shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
+              {mechanisms.map((item, i) => (
+                <div key={i} className="flex items-start gap-6 group cursor-default border-b border-white/5 last:border-0 pb-6 last:pb-0">
+                  <div className="shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110 bg-emerald-500/10 p-3 rounded-full border border-emerald-500/20">
                     {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-black uppercase tracking-wider mb-1">{item.title}</h3>
-                    <p className="text-gray-400 font-medium">{item.desc}</p>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-1 block">
+                      {item.label}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-wider mb-2">{item.title}</h3>
+                    <p className="text-gray-300 font-medium mb-3 text-sm md:text-base leading-relaxed">{item.desc}</p>
+                    <div className="inline-block bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-300">
+                      Powered by: <span className="text-white font-black">{item.poweredBy}</span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Bottom Line Copy */}
+            <div className="mt-8 pt-8 border-t border-white/10 text-center lg:text-left">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-6 py-3 rounded-full inline-block">
+                Three functions. Five ingredients. One disciplined daily system.
+              </p>
+            </div>
           </div>
 
           {/* Right: Desktop 3D Model + Button (Shows on lg+) */}
-          <div className="hidden lg:flex flex-col items-center justify-center order-1 lg:order-2 relative h-[600px]">
+          <div className="hidden lg:flex lg:col-span-5 flex-col items-center justify-center order-1 lg:order-2 relative h-[600px]">
             <div className="relative w-full h-full flex items-center justify-center">
               <div className="absolute inset-0 bg-emerald-900/10 blur-[120px] rounded-full" />
               

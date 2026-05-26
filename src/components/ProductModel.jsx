@@ -331,11 +331,11 @@ export const ProductModel = forwardRef(({ container, ...props }, ref) => {
                 <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#00d671' }}>Active Ingredients</h3>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {[
-                    'Tongkat Ali Extract (800mg)',
-                    'Purified Shilajit (250mg)',
-                    'Fenugreek Seed Extract (250mg)',
-                    'Taurine & Zinc Citrate',
-                    'Vitamin D3, K1 & K2'
+                    'Shilajit Extract (500mg)',
+                    'Tongkat Ali Extract (300mg)',
+                    'Ashwagandha Extract (300mg)',
+                    'Fenugreek Extract (490mg)',
+                    'Black Pepper Extract (10mg)'
                   ].map(ing => (
                     <li key={ing} style={{ 
                       padding: '10px 0', 

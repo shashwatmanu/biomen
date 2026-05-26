@@ -1,85 +1,92 @@
 import React from 'react';
-import { Mail, ShieldCheck, MapPin, ArrowRight, Globe, Share2 } from 'lucide-react';
+import { ShieldCheck, MapPin, Globe, Share2, Mail, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-24 px-6 md:px-20 border-t border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-          {/* Brand Col */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="text-2xl font-black tracking-tighter uppercase mb-8 block">
+    <footer className="bg-black text-white py-24 px-6 md:px-20 border-t border-white/5 relative overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-950/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-6 space-y-6">
+            <Link to="/" className="text-2xl font-black tracking-tighter uppercase block text-white">
               BIOMEN <span className="text-emerald-500">LABS</span>
             </Link>
-            <p className="text-gray-400 font-medium leading-relaxed mb-8">
-              Revolutionizing male vitality through biological optimization and clinical-grade supplementation.
+            <p className="text-gray-400 font-bold uppercase tracking-wider text-xs max-w-sm leading-relaxed">
+              A focused masculine wellness systems for modern Indian men.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-black transition-all">
-                <Globe size={20} />
+                <Globe size={18} />
               </a>
               <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-black transition-all">
-                <Share2 size={20} />
+                <Share2 size={18} />
               </a>
               <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-emerald-500 hover:text-black transition-all">
-                <Mail size={20} />
+                <Mail size={18} />
               </a>
             </div>
           </div>
 
-          {/* Links Col 1 */}
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs mb-8 text-emerald-500">The Protocol</h4>
-            <ul className="space-y-4 font-bold text-sm text-gray-400">
-              <li><Link to="/products/t-core" className="hover:text-white transition-colors">T-CORE Launch Kit</Link></li>
-              <li><Link to="/science" className="hover:text-white transition-colors">Mechanism & Science</Link></li>
-              <li><Link to="/reviews" className="hover:text-white transition-colors">Clinical Feedback</Link></li>
-              <li><Link to="/about" className="hover:text-white transition-colors">Our Mission</Link></li>
-            </ul>
+          {/* Links Column - 9 exact items requested */}
+          <div className="md:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-400">Discover</h4>
+              <ul className="space-y-3 font-bold text-xs text-gray-400 uppercase tracking-widest">
+                <li><a href="#pricing" className="hover:text-white transition-colors">Shop T-Core</a></li>
+                <li><a href="#formula" className="hover:text-white transition-colors">Ingredients & Formula</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">About BIOMEN</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-400">Feedback</h4>
+              <ul className="space-y-3 font-bold text-xs text-gray-400 uppercase tracking-widest">
+                <li><a href="#testimonials" className="hover:text-white transition-colors">Reviews</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+
+            <div className="space-y-4 col-span-2 md:col-span-1">
+              <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-400">Policies</h4>
+              <ul className="space-y-3 font-bold text-xs text-gray-400 uppercase tracking-widest">
+                <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping & Returns</Link></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              </ul>
+            </div>
           </div>
 
-          {/* Links Col 2 */}
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs mb-8 text-emerald-500">Support</h4>
-            <ul className="space-y-4 font-bold text-sm text-gray-400">
-              <li><Link to="/faq" className="hover:text-white transition-colors">FAQ & Protocol</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Labs</Link></li>
-              <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping & Returns</Link></li>
-              <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-            </ul>
+        </div>
+
+        {/* Bottom Bar with Trust Footer Line & Local Markers */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-widest">
+          
+          {/* Trust Footer Line & Made in India */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-emerald-400">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} /> Transparent formulas
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} /> Premium packaging
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} /> Built for disciplined daily use
+            </span>
+            <span className="flex items-center gap-1.5 text-white underline decoration-emerald-500 decoration-2">
+              <MapPin size={14} className="text-emerald-500" /> Made in India
+            </span>
           </div>
 
-          {/* Newsletter Col */}
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs mb-8 text-emerald-500">Stay Updated</h4>
-            <p className="text-gray-400 text-sm font-medium mb-6 leading-relaxed">
-              Join the protocol for monthly research updates and early access.
-            </p>
-            <form className="relative">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm focus:outline-none focus:border-emerald-500 transition-colors"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-emerald-500 text-black rounded-full flex items-center justify-center hover:bg-emerald-400 transition-colors">
-                <ArrowRight size={18} />
-              </button>
-            </form>
+          <div className="text-gray-600 font-bold tracking-[0.25em]">
+            © {new Date().getFullYear()} BIOMEN LABS. ALL RIGHTS RESERVED.
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-widest text-gray-500">
-            <div className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500"/> FDA Registered Facility</div>
-            <div className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500"/> Non-GMO Formula</div>
-            <div className="flex items-center gap-2"><MapPin size={14} className="text-emerald-500"/> Made in USA</div>
-          </div>
-          <div className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-600">
-            © 2026 BIOMEN LABS. ALL RIGHTS RESERVED.
-          </div>
-        </div>
       </div>
     </footer>
   );

@@ -8,6 +8,9 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-20">
         {/* Hero Section */}
         <div className="text-center mb-32">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block mb-4">
+            About BIOMEN
+          </span>
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8">
             The Mission <br/> <span className="text-emerald-500">Behind the Labs</span>
           </h1>
@@ -30,13 +33,13 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-8">Our DNA</h2>
             <div className="space-y-8 font-medium text-lg text-gray-400">
               <p>
-                We spent 24 months researching the most potent, natural biological stack on Earth. No proprietary blends, no hidden fillers, and absolutely no synthetic hormones.
+                We spent 24 months researching the most potent, premium herbal vitality system for modern men. No proprietary blends, no hidden fillers, and absolutely no synthetic hormones.
               </p>
               <p>
-                Every milligram in T-CORE is backed by peer-reviewed clinical research. We don't believe in magic pills; we believe in biological optimization through precision nutrition.
+                Every milligram in T-CORE is backed by peer-reviewed clinical research and traditional Ayurvedic insights. We don't believe in magic pills; we believe in biological optimization through precision nutrition.
               </p>
               <p>
-                Our facility in the USA is FDA-registered and cGMP-certified, ensuring that what's on the label is exactly what's in the bottle—nothing more, nothing less.
+                Our production partners in India operate cGMP-certified and licensed facilities, ensuring that what is on the label is exactly what is in the bottle&mdash;nothing more, nothing less.
               </p>
             </div>
           </div>
@@ -58,7 +61,7 @@ const About = () => {
             {
               icon: <Target size={32} />,
               title: "Male Optimization",
-              desc: "We focus exclusively on the biological markers that define male health: T-levels, drive, and recovery."
+              desc: "We focus exclusively on the biological markers that define male health: energy, recovery, and resilience."
             }
           ].map((pillar, i) => (
             <div key={i} className="bg-white/5 border border-white/10 p-12 rounded-[2.5rem] hover:border-emerald-500/50 transition-all">
