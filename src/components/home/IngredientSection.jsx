@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ShieldCheck, Leaf, FlaskConical, Beaker, MapPin } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const ingredients = [
   { 
@@ -35,56 +37,78 @@ const ingredients = [
 ];
 
 const IngredientSection = () => {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    // Beautiful stagger fade-in scroll animation
+    gsap.from(".ingredient-fade-up", {
+      y: 35,
+      opacity: 0,
+      duration: 0.85,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+        toggleActions: "play none none none"
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section className="py-24 px-4 md:px-8 bg-black relative" id="formula">
+    <section 
+      ref={containerRef}
+      className="py-24 px-4 md:px-8 bg-biomen-dark relative border-t border-white/5" 
+      id="formula"
+    >
       {/* Background Glows */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-emerald-950/20 to-black pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-biomen-green/10 to-transparent pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-4 block">
-            The Formula
+        
+        {/* Header Block */}
+        <div className="text-center mb-16 max-w-3xl mx-auto ingredient-fade-up">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent mb-4 block">
+            Transparent Dosing
           </span>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase text-white">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight uppercase text-biomen-white">
             The Formula, <br className="hidden sm:block" /> Fully Transparent
           </h2>
-          <p className="text-gray-300 font-medium text-base md:text-lg leading-relaxed mb-6">
-            T-Core contains five purposeful herbal ingredients selected to support male vitality, resilience, recovery, daily performance, and long-term consistency.
+          <p className="text-biomen-muted font-medium text-base md:text-lg leading-relaxed mb-6">
+            Five purposeful herbal extracts. Clear daily dosages. No hidden blends, no filler-heavy complexity.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-xs font-black uppercase tracking-widest text-emerald-300">
-            <span>✓ No ingredient clutter</span>
-            <span className="text-white/20">•</span>
-            <span>✓ No hidden blends</span>
-            <span className="text-white/20">•</span>
-            <span>✓ No filler-heavy complexity</span>
+          
+          {/* Exact Trust Line */}
+          <div className="inline-block bg-biomen-green/40 border border-biomen-accent/15 px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest text-biomen-accent">
+            No hidden blends | Clear daily serving | Premium herbal extracts
           </div>
         </div>
 
-        {/* Grid Container - Premium Visual Cards using original assets */}
-        <div className="bg-gradient-to-b from-emerald-900/30 to-black/80 rounded-[40px] p-6 md:p-10 border border-emerald-900/30 shadow-2xl mb-12">
+        {/* Dynamic centered Grid Container displaying preexisting visual assets */}
+        <div className="bg-gradient-to-b from-biomen-green/30 to-black/80 rounded-[40px] p-6 md:p-10 border border-biomen-green/20 shadow-2xl mb-12 ingredient-fade-up">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 justify-center">
             {ingredients.map((item, i) => (
               <div 
                 key={i} 
-                className="group relative rounded-[2rem] overflow-hidden border border-white/10 hover:border-emerald-500/50 transition-all duration-300 bg-black/40 p-6 flex flex-col items-center text-center justify-between min-h-[360px]"
+                className="group relative rounded-[2rem] overflow-hidden border border-white/10 hover:border-biomen-accent/50 transition-all duration-300 bg-black/40 p-6 flex flex-col items-center text-center justify-between min-h-[360px]"
               >
                 {/* Visual circle image container using preexisting asset */}
-                <div className="relative w-28 h-28 shrink-0 rounded-full border border-white/10 overflow-hidden flex flex-col justify-center items-center bg-black/80 shadow-2xl p-4 group-hover:border-emerald-500/50 transition-colors">
+                <div className="relative w-28 h-28 shrink-0 rounded-full border border-white/10 overflow-hidden flex flex-col justify-center items-center bg-black/80 shadow-2xl p-4 group-hover:border-biomen-accent/50 transition-colors">
                   <img 
                     src={item.image} 
                     alt={item.name} 
-                    className="w-4/5 h-4/5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                    className="w-4/5 h-4/5 object-contain opacity-75 group-hover:opacity-100 transition-opacity duration-300" 
                   />
-                  <span className="absolute bottom-2 bg-emerald-500 text-black text-[9px] font-black px-2.5 py-0.5 rounded-full shadow-md uppercase tracking-wider">
+                  <span className="absolute bottom-2 bg-biomen-accent text-black text-[9px] font-black px-2.5 py-0.5 rounded-full shadow-md uppercase tracking-wider">
                     {item.dose}
                   </span>
                 </div>
 
                 <div className="mt-6 flex-1 flex flex-col justify-start">
-                  <h3 className="text-lg md:text-xl font-black text-white leading-tight mb-3 group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-lg md:text-xl font-black text-biomen-white leading-tight mb-3 group-hover:text-biomen-accent transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-gray-400 leading-relaxed font-semibold">
+                  <p className="text-xs text-biomen-muted leading-relaxed font-semibold">
                     {item.purpose}
                   </p>
                 </div>
@@ -94,24 +118,24 @@ const IngredientSection = () => {
           </div>
         </div>
 
-        {/* Serving Size and Total Active Ingredients Info */}
-        <div className="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-lg mb-16">
-          <div className="text-emerald-400 font-black uppercase tracking-[0.2em] text-sm mb-2">
-            Total Active Ingredients Per Daily Serving: 1,600mg
+        {/* Total Serving Box */}
+        <div className="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 text-center shadow-2xl mb-16 ingredient-fade-up">
+          <div className="text-biomen-accent font-black uppercase tracking-[0.2em] text-lg mb-2">
+            1,600mg Active Ingredients Per Daily Serving
           </div>
-          <div className="text-xs text-gray-400 font-bold uppercase tracking-widest">
+          <div className="text-xs text-biomen-muted font-bold uppercase tracking-widest leading-relaxed">
             2 vegetarian capsules daily | 60 capsules per bottle | 30-day supply
           </div>
         </div>
 
         {/* Footer Trust Strip */}
-        <div className="mt-16 border-t border-white/10 pt-8 flex flex-wrap justify-center gap-6 md:gap-12 text-xs md:text-sm font-bold tracking-widest text-white uppercase">
-          <div className="flex items-center gap-2"><MapPin size={18} className="text-emerald-500"/> Made in a cGMP Facility</div>
-          <div className="flex items-center gap-2"><Leaf size={18} className="text-emerald-500"/> Non-GMO</div>
-          <div className="flex items-center gap-2"><Beaker size={18} className="text-emerald-500"/> Third Party Tested</div>
-          <div className="flex items-center gap-2"><ShieldCheck size={18} className="text-emerald-500"/> Hormone-Free</div>
-          <div className="flex items-center gap-2"><MapPin size={18} className="text-emerald-500"/> Made in India</div>
-          <div className="flex items-center gap-2"><Leaf size={18} className="text-emerald-500"/> Vegetarian Capsules</div>
+        <div className="mt-16 border-t border-white/10 pt-8 flex flex-wrap justify-center gap-6 md:gap-12 text-xs md:text-sm font-bold tracking-widest text-biomen-white uppercase ingredient-fade-up">
+          <div className="flex items-center gap-2"><MapPin size={18} className="text-biomen-accent"/> Made in a cGMP Facility</div>
+          <div className="flex items-center gap-2"><Leaf size={18} className="text-biomen-accent"/> Non-GMO</div>
+          <div className="flex items-center gap-2"><Beaker size={18} className="text-biomen-accent"/> Third Party Tested</div>
+          <div className="flex items-center gap-2"><ShieldCheck size={18} className="text-biomen-accent"/> Hormone-Free</div>
+          <div className="flex items-center gap-2"><MapPin size={18} className="text-biomen-accent"/> Made in India</div>
+          <div className="flex items-center gap-2"><Leaf size={18} className="text-biomen-accent"/> Vegetarian Capsules</div>
         </div>
 
       </div>
