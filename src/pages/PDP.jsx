@@ -25,7 +25,7 @@ const PDP = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white font-manrope pt-24">
+    <div className="bg-black text-white font-manrope">
       {/* PromoBar and Navbar are handled in App.jsx */}
       <HeroBuyBox />
       <ValueAddStack />

@@ -72,7 +72,7 @@ const ReviewsPage = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white pt-32 pb-24 px-6 md:px-20">
+    <div className="bg-black min-h-screen text-white pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">

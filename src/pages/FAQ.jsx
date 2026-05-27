@@ -45,7 +45,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white pt-48">
+    <div className="bg-black min-h-screen text-white pt-[176px] md:pt-[144px]">
       <div className="max-w-4xl mx-auto px-6 md:px-20">
         <div className="text-center mb-24">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block mb-4">

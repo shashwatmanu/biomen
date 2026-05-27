@@ -51,7 +51,7 @@ const Doctor = () => {
   ];
 
   return (
-    <div className="bg-[#030705] text-[#F4F6F2] font-manrope pt-32 min-h-screen">
+    <div className="bg-[#030705] text-[#F4F6F2] font-manrope pt-[176px] md:pt-[144px] min-h-screen">
       {/* Background visual elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#052E22]/20 rounded-full blur-[150px] pointer-events-none z-0" />
       <div className="absolute top-[40%] left-0 w-[400px] h-[400px] bg-[#0FA36B]/5 rounded-full blur-[120px] pointer-events-none z-0" />

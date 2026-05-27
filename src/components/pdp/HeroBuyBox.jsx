@@ -12,7 +12,7 @@ const HeroBuyBox = () => {
   ];
 
   return (
-    <section className="pt-48 pb-24 px-6 md:px-20 bg-black min-h-screen flex items-center relative overflow-hidden">
+    <section className="pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20 bg-black min-h-screen flex items-center relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-emerald-900/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />

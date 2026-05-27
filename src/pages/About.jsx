@@ -4,7 +4,7 @@ import Footer from '../components/shared/Footer';
 
 const About = () => {
   return (
-    <div className="bg-black min-h-screen text-white pt-48">
+    <div className="bg-black min-h-screen text-white pt-[176px] md:pt-[144px]">
       <div className="max-w-7xl mx-auto px-6 md:px-20">
         {/* Hero Section */}
         <div className="text-center mb-32">

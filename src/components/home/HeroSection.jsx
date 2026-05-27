@@ -34,7 +34,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-section relative min-h-screen flex items-center px-6 md:px-20 overflow-hidden bg-biomen-dark pt-32 pb-20">
+    <section className="hero-section relative min-h-screen flex items-center px-6 md:px-20 overflow-hidden bg-biomen-dark pt-[176px] md:pt-[144px] pb-20">
       
       {/* Background Layer with contrast control and mild blur */}
       <div className="absolute inset-0 z-0 pointer-events-none">

@@ -4,7 +4,7 @@ import Footer from '../components/shared/Footer';
 
 const Contact = () => {
   return (
-    <div className="bg-[#030705] min-h-screen text-[#F4F6F2] pt-48">
+    <div className="bg-[#030705] min-h-screen text-[#F4F6F2] pt-[176px] md:pt-[144px]">
       <div className="max-w-7xl mx-auto px-6 md:px-20">
         <div className="text-center mb-24">
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8 leading-none">
