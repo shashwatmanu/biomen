@@ -12,20 +12,20 @@ const CartDrawer = () => {
       {/* Overlay */}
       {isCartOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
+          className="fixed inset-0 bg-black/75 backdrop-blur-sm z-[200] transition-opacity"
           onClick={closeCart}
         />
       )}
 
       {/* Drawer */}
       <div
-        className={`fixed inset-y-0 right-0 w-full md:w-[400px] bg-[#0a100d]/95 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-in-out border-l border-white/10 flex flex-col ${
+        className={`fixed inset-y-0 right-0 w-full md:w-[400px] bg-[#06110C]/95 backdrop-blur-xl z-[250] transform transition-transform duration-300 ease-in-out border-l border-white/10 flex flex-col ${
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/10">
-          <h2 className="text-2xl font-bold text-white tracking-wide">YOUR CART</h2>
+          <h2 className="text-2xl font-black text-[#F4F6F2] tracking-wider uppercase">YOUR CART</h2>
           <button
             onClick={closeCart}
             className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
@@ -37,27 +37,27 @@ const CartDrawer = () => {
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-gray-400">
-              <p className="text-lg">Your cart is empty.</p>
+            <div className="flex flex-col items-center justify-center h-full text-[#A8B3AA]">
+              <p className="text-lg font-bold uppercase tracking-wider">Your cart is empty</p>
             </div>
           ) : (
             items.map((item) => (
               <div key={`${item.id}-${item.isSubscription}`} className="flex gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
                 {/* Image placeholder or actual image */}
-                <div className="w-20 h-20 bg-[#1a231d] rounded-lg flex items-center justify-center overflow-hidden shrink-0 border border-white/5">
+                <div className="w-20 h-20 bg-[#030705] rounded-lg flex items-center justify-center overflow-hidden shrink-0 border border-white/5">
                   {item.image ? (
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-emerald-500/20" />
+                    <div className="w-8 h-8 rounded-full bg-[#16C784]/20" />
                   )}
                 </div>
 
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-white font-medium text-lg leading-tight">{item.title}</h3>
+                    <h3 className="text-[#F4F6F2] font-black text-sm uppercase tracking-wide leading-snug">{item.title}</h3>
                     {item.isSubscription && (
-                      <span className="text-emerald-400 text-xs font-medium px-2 py-0.5 bg-emerald-500/10 rounded-full mt-1 inline-block">
-                        Monthly Subscription
+                      <span className="text-[#16C784] text-[9px] font-black uppercase tracking-widest px-2 py-0.5 bg-[#052E22] border border-[#0FA36B]/20 rounded-full mt-1 inline-block">
+                        Auto-Pay Subscription
                       </span>
                     )}
                   </div>
@@ -76,7 +76,7 @@ const CartDrawer = () => {
                       >
                         {item.quantity > 1 ? <Minus size={14} /> : <Trash2 size={14} />}
                       </button>
-                      <span className="text-white text-sm font-medium w-4 text-center">
+                      <span className="text-[#F4F6F2] text-sm font-black w-4 text-center">
                         {item.quantity}
                       </span>
                       <button
@@ -86,7 +86,7 @@ const CartDrawer = () => {
                         <Plus size={14} />
                       </button>
                     </div>
-                    <span className="text-white font-bold">₹{item.price.toLocaleString()}</span>
+                    <span className="text-[#F4F6F2] font-black">₹{item.price.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -98,14 +98,14 @@ const CartDrawer = () => {
         {items.length > 0 && (
           <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md">
             <div className="flex items-center justify-between mb-6">
-              <span className="text-gray-400">Subtotal</span>
-              <span className="text-2xl font-bold text-white">₹{subtotal.toLocaleString()}</span>
+              <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-sm">Subtotal</span>
+              <span className="text-2xl font-black text-[#F4F6F2]">₹{subtotal.toLocaleString()}</span>
             </div>
             
-            <button className="w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]">
+            <button className="w-full py-4.5 px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)]">
               SECURE CHECKOUT
             </button>
-            <div className="mt-4 flex items-center justify-center gap-2 text-gray-500 text-xs">
+            <div className="mt-4 flex items-center justify-center gap-2 text-gray-500 text-[10px] font-black uppercase tracking-wider">
               <span>🔒 Guaranteed Safe & Secure Checkout</span>
             </div>
           </div>
