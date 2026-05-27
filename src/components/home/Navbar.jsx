@@ -15,6 +15,12 @@ const Navbar = () => {
       {/* Animated Logo Container */}
       <Link 
         to="/" 
+        onClick={(e) => {
+          if (window.location.pathname === '/') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
         className="flex items-center gap-3 font-black tracking-tighter text-biomen-white text-2xl md:text-3xl uppercase group"
       >
         <div className="relative w-10 h-10 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300">
@@ -29,6 +35,7 @@ const Navbar = () => {
       
       {/* Navigation Links with Increased Text Sizes */}
       <div className="flex items-center gap-6 md:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white">
+        <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
         <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
         <Link to="/reviews" className="hidden lg:block hover:text-biomen-accent transition-colors">Reviews</Link>
         <Link to="/about" className="hidden lg:block hover:text-biomen-accent transition-colors">About</Link>

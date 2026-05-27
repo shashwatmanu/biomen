@@ -119,13 +119,29 @@ const IngredientSection = () => {
         </div>
 
         {/* Total Serving Box */}
-        <div className="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 text-center shadow-2xl mb-16 ingredient-fade-up">
+        <div className="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 text-center shadow-2xl mb-8 ingredient-fade-up">
           <div className="text-biomen-accent font-black uppercase tracking-[0.2em] text-lg mb-2">
             1,600mg Active Ingredients Per Daily Serving
           </div>
           <div className="text-xs text-biomen-muted font-bold uppercase tracking-widest leading-relaxed">
             2 vegetarian capsules daily | 60 capsules per bottle | 30-day supply
           </div>
+        </div>
+
+        {/* High-conversion CTA Link to PDP */}
+        <div className="text-center mb-16 ingredient-fade-up">
+          <a 
+            href="/products/t-core" 
+            onClick={(e) => {
+              if (window.location.pathname.includes('/products/t-core')) {
+                e.preventDefault();
+                document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] hover:scale-[1.02] duration-300"
+          >
+            Start Your 90-Day System
+          </a>
         </div>
 
         {/* Footer Trust Strip */}

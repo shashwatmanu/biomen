@@ -43,15 +43,8 @@ const BundleSelector = () => {
   ];
 
   const handlePurchase = (bundle) => {
-    const finalPrice = isSubscription ? bundle.subPrice : bundle.price;
-    addToCart({
-      id: bundle.id,
-      title: `T-CORE ${bundle.title} (${bundle.name}) ${isSubscription ? '[Auto-Pay Subscription]' : ''}`,
-      price: finalPrice,
-      quantity: 1,
-      isSubscription: isSubscription,
-      image: '/tcore_canister.jpg'
-    });
+    // Route directly to the product page funnel
+    window.location.href = '/products/t-core';
   };
 
   return (

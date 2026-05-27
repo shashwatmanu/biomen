@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Calendar, ShieldCheck } from 'lucide-react';
+import { Leaf, Calendar, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const WhyTCore = () => {
   const blocks = [
@@ -68,9 +68,18 @@ const WhyTCore = () => {
                 </ul>
               </div>
 
-              <p className="text-[#F4F6F2] font-black text-xl tracking-tight border-t border-white/5 pt-6">
-                Not extremes. <span className="text-[#BFA46A]">Just a stronger daily foundation.</span>
-              </p>
+              <div className="border-t border-white/5 pt-6 space-y-6">
+                <p className="text-[#F4F6F2] font-black text-xl tracking-tight">
+                  Not extremes. <span className="text-[#BFA46A]">Just a stronger daily foundation.</span>
+                </p>
+                
+                <a 
+                  href="/products/t-core"
+                  className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] flex items-center justify-center gap-2 hover:scale-[1.02] w-fit"
+                >
+                  Explore T-CORE System <ArrowRight size={14} />
+                </a>
+              </div>
             </div>
           </div>
 

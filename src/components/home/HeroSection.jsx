@@ -90,16 +90,16 @@ const HeroSection = () => {
             </span>
           </div>
           
-          {/* CTAs with copper branding */}
+          {/* CTAs with copper branding routing to PDP */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <a 
-              href="#pricing" 
-              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.35)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300"
+              href="/products/t-core" 
+              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300"
             >
               Start Your 90-Day System <ArrowRight size={24} />
             </a>
             <a 
-              href="#formula" 
+              href="/products/t-core" 
               className="border border-white/20 text-white px-10 py-5 rounded-full font-bold hover:bg-white/5 hover:border-white/30 transition-all backdrop-blur-md flex items-center justify-center text-lg hover:scale-[1.02] duration-300"
             >
               Explore T-CORE

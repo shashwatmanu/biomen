@@ -12,8 +12,8 @@ const PromoBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
-  // rolling 15-minute high-conversion countdown timer
-  const [timeLeft, setTimeLeft] = useState(900); // 15 minutes in seconds
+  // rolling 15-minute high-conversion countdown timer using localStorage to prevent reload reset
+  const [timeLeft, setTimeLeft] = useState(900);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,13 +28,34 @@ const PromoBar = () => {
   }, [options.length]);
 
   useEffect(() => {
+    // Get or create expiry timestamp
+    let expiry = localStorage.getItem('promo_expiry');
+    const now = Date.now();
+
+    if (!expiry || parseInt(expiry, 10) < now) {
+      // If no expiry or it has already passed, set new 15 minutes from now
+      const newExpiry = now + 15 * 60 * 1000;
+      localStorage.setItem('promo_expiry', newExpiry.toString());
+      expiry = newExpiry.toString();
+    }
+
+    const targetTime = parseInt(expiry, 10);
+    setTimeLeft(Math.max(0, Math.floor((targetTime - Date.now()) / 1000)));
+
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          return 900; // Reset rolling timer to maintain continuous high conversion
-        }
-        return prev - 1;
-      });
+      const currentNow = Date.now();
+      const difference = Math.floor((targetTime - currentNow) / 1000);
+
+      if (difference <= 0) {
+        // Roll over to next 15 minutes when expired
+        const newExpiry = Date.now() + 15 * 60 * 1000;
+        localStorage.setItem('promo_expiry', newExpiry.toString());
+        setTimeLeft(900);
+        // Refresh page or trigger state update by changing target
+        window.location.reload();
+      } else {
+        setTimeLeft(difference);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -65,7 +86,7 @@ const PromoBar = () => {
         </span>
         <span className="text-white/20">|</span>
         <a 
-          href="#pricing" 
+          href="/products/t-core" 
           className="text-biomen-copper hover:text-biomen-mint underline underline-offset-2 flex items-center gap-1 font-black transition-colors"
         >
           Grab Discount Now <ArrowRight size={12} className="animate-bounce-horizontal" />

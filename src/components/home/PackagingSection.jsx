@@ -88,13 +88,26 @@ const PackagingSection = () => {
               <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#A8B3AA] mb-4">
                 PACKAGING HIGHLIGHTS
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 mb-8">
                 {highlights.map((highlight, i) => (
                   <span key={i} className="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-[#F4F6F2] hover:border-[#0FA36B]/40 hover:bg-[#052E22]/30 transition-all">
                     {highlight}
                   </span>
                 ))}
               </div>
+
+              <a 
+                href="/products/t-core"
+                onClick={(e) => {
+                  if (window.location.pathname.includes('/products/t-core')) {
+                    e.preventDefault();
+                    document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_25px_rgba(216,90,31,0.2)] hover:scale-[1.02] duration-300"
+              >
+                Start Your 90-Day System
+              </a>
             </div>
           </div>
 

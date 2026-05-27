@@ -51,6 +51,21 @@ const FounderStory = () => {
               <p>
                 T-CORE is our first step: a transparent herbal vitality formula built around discipline, clarity, and long-term consistency.
               </p>
+
+              <div className="pt-2">
+                <a 
+                  href="/products/t-core"
+                  onClick={(e) => {
+                    if (window.location.pathname.includes('/products/t-core')) {
+                      e.preventDefault();
+                      document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_25px_rgba(216,90,31,0.2)] hover:scale-[1.02] duration-300"
+                >
+                  Start Your 90-Day System
+                </a>
+              </div>
             </div>
 
             {/* Brand Belief Statement Box */}

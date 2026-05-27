@@ -45,9 +45,24 @@ const GuaranteeSection = () => {
           </div>
         </div>
 
-        <p className="text-xs text-[#A8B3AA] font-black uppercase tracking-[0.2em] mt-2 mb-6">
+        <p className="text-xs text-[#A8B3AA] font-black uppercase tracking-[0.2em] mt-2 mb-8">
           🛡️ Built to reduce purchase risk. Designed to reward consistency.
         </p>
+
+        <div className="mb-8">
+          <a 
+            href="/products/t-core" 
+            onClick={(e) => {
+              if (window.location.pathname.includes('/products/t-core')) {
+                e.preventDefault();
+                document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] hover:scale-[1.02] duration-300"
+          >
+            Start Your Risk-Free Trial
+          </a>
+        </div>
 
         <a 
           href="#terms" 

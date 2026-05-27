@@ -65,7 +65,7 @@ const TimelineSection = () => {
         </div>
 
         {/* Bottom Support Lines */}
-        <div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto items-stretch justify-center">
+        <div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto items-stretch justify-center mb-12">
           <div className="flex-1 bg-[#052E22]/30 border border-[#0FA36B]/20 p-6 rounded-3xl flex items-center justify-center text-center">
             <p className="text-sm text-[#F4F6F2] font-semibold leading-relaxed">
               Men who get the most from T-CORE treat it like a daily discipline, <span className="text-[#16C784] font-black">not a one-bottle experiment.</span>
@@ -80,6 +80,22 @@ const TimelineSection = () => {
               Best used for 90 days. 3 bottles recommended.
             </p>
           </div>
+        </div>
+
+        {/* High-conversion CTA Link to PDP */}
+        <div className="text-center">
+          <a 
+            href="/products/t-core" 
+            onClick={(e) => {
+              if (window.location.pathname.includes('/products/t-core')) {
+                e.preventDefault();
+                document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] hover:scale-[1.02] duration-300"
+          >
+            Start Your 90-Day System
+          </a>
         </div>
       </div>
     </section>

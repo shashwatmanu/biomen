@@ -14,6 +14,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/home/Navbar';
 import PromoBar from './components/home/PromoBar';
 import CartDrawer from './components/shared/CartDrawer';
+import EntryPopup from './components/shared/EntryPopup';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +43,7 @@ function App() {
       </main>
 
       <CartDrawer />
+      <EntryPopup />
     </div>
   );
 }

@@ -142,6 +142,22 @@ const ProblemSection = () => {
           ))}
         </div>
 
+        {/* High-conversion CTA Link to PDP */}
+        <div className="mt-16 text-center problem-fade-up">
+          <a 
+            href="/products/t-core" 
+            onClick={(e) => {
+              if (window.location.pathname.includes('/products/t-core')) {
+                e.preventDefault();
+                document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] hover:scale-[1.02] duration-300"
+          >
+            Start Your 90-Day System
+          </a>
+        </div>
+
       </div>
     </section>
   );

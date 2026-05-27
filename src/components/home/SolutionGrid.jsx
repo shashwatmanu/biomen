@@ -153,37 +153,23 @@ const SolutionGrid = () => {
               )}
             </div>
             
-            {/* CTA in copper */}
-            <button 
-              onClick={() => addToCart({
-                id: 'tcore-3-bottles',
-                title: 'T-CORE Full Reset System (3 Bottles)',
-                price: 3999,
-                quantity: 1,
-                isSubscription: false,
-                image: '/tcore_canister.jpg'
-              })}
+            {/* CTA in copper routing to PDP */}
+            <a 
+              href="/products/t-core"
               className="mt-8 bg-biomen-copper hover:bg-biomen-copper/90 text-white w-full max-w-sm py-5 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-3 hover:scale-105 relative z-20"
             >
               Start Your 90-Day System <ArrowRight size={24} />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Button (Shows only on <lg) */}
-          <div className="lg:hidden flex justify-center order-3 mt-4 solution-fade-up">
-            <button 
-              onClick={() => addToCart({
-                id: 'tcore-3-bottles',
-                title: 'T-CORE Full Reset System (3 Bottles)',
-                price: 3999,
-                quantity: 1,
-                isSubscription: false,
-                image: '/tcore_canister.jpg'
-              })}
+          <div className="lg:hidden flex justify-center order-3 mt-4 solution-fade-up w-full">
+            <a 
+              href="/products/t-core"
               className="bg-biomen-copper hover:bg-biomen-copper/90 text-white w-full py-5 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-3"
             >
               Start Your 90-Day System <ArrowRight size={24} />
-            </button>
+            </a>
           </div>
 
         </div>
