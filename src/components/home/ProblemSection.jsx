@@ -1,31 +1,21 @@
 import React, { useRef } from 'react';
-import { Battery, ShieldAlert, Sparkles, Brain, Flame, Activity, CheckCircle } from 'lucide-react';
+import { ShieldAlert, TrendingDown } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const ProblemSection = () => {
   const containerRef = useRef(null);
 
-  const problems = [
-    { icon: <Battery size={22} />, title: "Low Energy" },
-    { icon: <Flame size={22} />, title: "Poor Recovery" },
-    { icon: <ShieldAlert size={22} />, title: "High Stress" },
-    { icon: <Brain size={22} />, title: "Brain Fog" },
-    { icon: <Activity size={22} />, title: "Low Drive" },
-    { icon: <CheckCircle size={22} />, title: "Inconsistent Performance" }
-  ];
-
   useGSAP(() => {
-    // Scroll animation for card entrance
-    gsap.from(".problem-fade-up", {
-      y: 40,
+    gsap.from(".infographic-fade-up", {
+      y: 25,
       opacity: 0,
-      duration: 0.85,
-      stagger: 0.15,
+      duration: 0.8,
+      stagger: 0.1,
       ease: "power2.out",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 80%",
+        start: "top 75%",
         toggleActions: "play none none none"
       }
     });
@@ -34,130 +24,162 @@ const ProblemSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-20 bg-biomen-dark relative overflow-hidden border-t border-white/5" 
+      className="relative pt-[120px] pb-6 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:h-[calc(100vh-100px)] lg:min-h-[650px] flex flex-col justify-between" 
       id="depletion"
     >
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-biomen-copper/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Editorial seamless background image with high physical contrast */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="/vitality_decline_bg.png" 
+          alt="Decline of Vitality Silhouette" 
+          className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.1] scale-100"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 lg:via-black/50 to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
+      </div>
       
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16 problem-fade-up">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-biomen-copper mb-4 block">
-            The Modern Male Depletion Problem
-          </span>
-          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase text-biomen-white">
-            Modern Life Is Draining <br className="hidden sm:block"/> Men Below Baseline
-          </h2>
-        </div>
-
-        {/* Mismatched Cards aligned to equal heights using items-stretch */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
           
-          {/* Left Column: Depletion List (Cause + Feeling) */}
-          <div className="lg:col-span-6 bg-white/5 border border-white/10 p-8 rounded-[2rem] relative flex flex-col justify-between problem-fade-up h-full">
-            <div className="space-y-6">
-              <span className="text-[10px] font-black uppercase tracking-widest text-biomen-copper flex items-center gap-1.5">
-                <ShieldAlert size={12} /> The Enemy: Modern Lifestyle
-              </span>
-              <p className="text-biomen-white font-medium text-base md:text-lg leading-relaxed">
-                Long work hours. Poor sleep. Constant stress. Low sunlight. Digital overload.
+          {/* Left Column: High-Impact Infographic Editorial Copy (lg:col-span-6) */}
+          <div className="lg:col-span-6 space-y-5 text-left infographic-fade-up">
+            <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] text-biomen-copper bg-biomen-copper/10 px-4 py-2 rounded-full border border-biomen-copper/20">
+              <ShieldAlert size={14} /> The Modern Male Epidemic
+            </span>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-white">
+              The Decline of <span className="text-biomen-copper italic font-serif">Vitality</span>: <br/>
+              A Modern Epidemic
+            </h2>
+            
+            <div className="space-y-4 text-sm lg:text-base text-biomen-muted font-medium leading-relaxed max-w-xl">
+              <p>
+                <strong className="text-biomen-white font-bold">Biological baseline levels</strong> in men have been dropping steadily, declining by over 1% every single year since 1980. Low sleep, daily stress, toxic environments, and digital overload are slowly draining natural hormone output.
               </p>
-              <p className="text-biomen-white font-bold leading-relaxed">
-                Modern life slowly drains male performance. Not enough to stop you completely, but enough to make you feel:
+              <p>
+                <strong className="text-biomen-white font-bold">The Impact:</strong> This drop doesn't cause immediate collapse. Instead, it manifests as a gradual drain—manifesting as flatter energy, sluggish gym recovery, persistent brain fog, and a feeling of operating below your true potential.
               </p>
-              
-              {/* Minimal Check/Pulse Icons - No sprout gardening icons */}
-              <ul className="space-y-3.5 pl-2">
-                {[
-                  "Flatter",
-                  "Slower",
-                  "Less focused",
-                  "Less driven",
-                  "Less consistent"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm md:text-base font-bold uppercase tracking-wider text-biomen-muted">
-                    <span className="w-2 h-2 rounded-full bg-biomen-copper" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <p>
+                <strong className="text-biomen-accent font-black">The Solution:</strong> T-CORE addresses this drop adaptogenically. By regulating cortisol, encouraging cellular baseline energy, and delivering active clinical extracts daily, T-CORE helps you support natural production and reclaim your edge.
+              </p>
+            </div>
+            
+            {/* CTA Button */}
+            <div className="pt-2">
+              <a 
+                href="/products/t-core" 
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] inline-flex items-center gap-2 hover:scale-[1.02] duration-300"
+              >
+                UNLOCK YOUR SYSTEM <TrendingDown className="rotate-[270deg]" size={16} />
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Gradual Decline List (Symptoms + T-CORE link) */}
-          <div className="lg:col-span-6 bg-white/5 border border-white/10 p-8 rounded-[2rem] relative flex flex-col justify-between problem-fade-up h-full">
-            <div className="space-y-6">
-              <span className="text-[10px] font-black uppercase tracking-widest text-biomen-accent flex items-center gap-1.5">
-                <Activity size={12} /> The Result: Gradual Decline
-              </span>
-              <p className="text-biomen-white font-bold text-xl leading-relaxed">
-                For many men, the problem is not collapse.
-              </p>
-              <p className="text-biomen-muted text-base md:text-lg leading-relaxed">
-                It is gradual decline:
-              </p>
-              
-              {/* Pulse check items */}
-              <ul className="space-y-3 pl-2">
-                {[
-                  "Weaker recovery",
-                  "Lower morning energy",
-                  "Inconsistent workouts",
-                  "Reduced resilience",
-                  "Mental fatigue",
-                  "And the feeling of operating below their true baseline."
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm md:text-base font-semibold text-biomen-white">
-                    <CheckCircle size={14} className="text-biomen-accent shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Right Column: Stunning Custom SVG-based Infographic Chart (lg:col-span-6) */}
+          <div className="lg:col-span-6 w-full flex flex-col justify-center items-center bg-black/40 border border-white/5 rounded-3xl p-6 lg:p-5 shadow-2xl backdrop-blur-md infographic-fade-up relative overflow-hidden group max-w-[480px] lg:max-w-full mx-auto">
+            
+            {/* Soft inner physical glow */}
+            <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-[#D85A1F]/5 rounded-full blur-[80px] pointer-events-none" />
 
-            {/* Crucial Conversion Link to T-Core */}
-            <div className="mt-8 pt-6 border-t border-white/10 bg-biomen-green/20 p-4 rounded-xl border border-biomen-accent/15 text-center lg:text-left">
-              <p className="text-biomen-accent font-black text-sm uppercase tracking-wider">
-                🎯 That is the gap T-CORE is built to support.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        {/* 6 Bottom Cards: Precise titles and Copper Accents */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 problem-fade-up">
-          {problems.map((item, i) => (
-            <div 
-              key={i} 
-              className="flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl hover:border-biomen-copper/50 hover:from-white/10 transition-all duration-300 group"
-            >
-              <div className="text-biomen-copper mb-4 group-hover:scale-110 transition-transform duration-300 bg-biomen-copper/10 p-3 rounded-full border border-biomen-copper/15">
-                {item.icon}
+            <div className="w-full flex justify-between items-center mb-4">
+              <div>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#A8B3AA] mb-0.5">BIOMEN ANALYTICS</h3>
+                <h4 className="text-base font-black uppercase tracking-wider text-biomen-white">VITALITY PROFILE BY AGE</h4>
               </div>
-              <h3 className="text-xs font-black uppercase tracking-wider text-biomen-white">{item.title}</h3>
+              <span className="text-[9px] font-black text-biomen-copper bg-[#D85A1F]/10 border border-biomen-copper/20 px-3 py-1 rounded-full uppercase tracking-wider">
+                1980 vs Present
+              </span>
             </div>
-          ))}
-        </div>
 
-        {/* High-conversion CTA Link to PDP */}
-        <div className="mt-16 text-center problem-fade-up">
-          <a 
-            href="/products/t-core" 
-            onClick={(e) => {
-              if (window.location.pathname.includes('/products/t-core')) {
-                e.preventDefault();
-                document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] hover:scale-[1.02] duration-300"
-          >
-            Start Your 90-Day System
-          </a>
-        </div>
+            {/* Custom SVG Line Chart replicating mengotomars layout */}
+            <div className="relative w-full aspect-[4/3] bg-black/75 border border-white/5 rounded-2xl p-4 shadow-inner flex flex-col justify-between">
+              
+              <svg className="w-full h-full" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                
+                {/* Bounding box for Shaded Normal Range */}
+                <rect x="50" y="120" width="400" height="70" fill="#ffffff" fillOpacity="0.03" stroke="#ffffff" strokeOpacity="0.05" strokeWidth="1" />
+                <text x="440" y="180" fill="white" fillOpacity="0.15" fontSize="9" fontWeight="900" textAnchor="end" letterSpacing="0.15em">NORMAL RANGE</text>
 
+                {/* Grid Lines */}
+                <line x1="50" y1="50" x2="450" y2="50" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="50" y1="120" x2="450" y2="120" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="50" y1="190" x2="450" y2="190" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="50" y1="260" x2="450" y2="260" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="4 4" />
+                
+                {/* Axes */}
+                <line x1="50" y1="40" x2="50" y2="280" stroke="white" strokeOpacity="0.15" strokeWidth="1.5" />
+                <line x1="50" y1="280" x2="470" y2="280" stroke="white" strokeOpacity="0.15" strokeWidth="1.5" />
+
+                {/* Y-Axis labels (Vitality Profile / Total Testosterone Index) */}
+                <text x="25" y="54" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">800</text>
+                <text x="25" y="124" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">700</text>
+                <text x="25" y="194" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">600</text>
+                <text x="25" y="264" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">500</text>
+                
+                {/* Vertical Y-Axis Title */}
+                <text x="-160" y="12" fill="#D85A1F" fontSize="9" fontWeight="900" letterSpacing="0.25em" transform="rotate(-90)" textAnchor="middle" className="uppercase font-sans">
+                  TOTAL TESTOSTERONE
+                </text>
+
+                {/* X-Axis labels (Age) */}
+                <text x="50" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">10</text>
+                <text x="100" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">20</text>
+                <text x="150" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">30</text>
+                <text x="200" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">40</text>
+                <text x="250" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">50</text>
+                <text x="300" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">60</text>
+                <text x="350" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">70</text>
+                <text x="400" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">80</text>
+                <text x="450" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">90</text>
+                
+                {/* X-Axis Title */}
+                <text x="250" y="325" fill="#D85A1F" fontSize="9" fontWeight="900" letterSpacing="0.25em" textAnchor="middle" className="uppercase font-sans">
+                  AGE
+                </text>
+
+                {/* Normal Decline Line (White path) */}
+                {/* Starts at 10 (500y/260y), peaks at 20 (720y/110y), drops steadily to 90 (580y/206y) */}
+                <path d="M 50 260 L 100 110 Q 200 160 300 190 T 450 206" fill="none" stroke="white" strokeWidth="2.5" strokeOpacity="0.4" />
+                <circle cx="450" cy="206" r="5" fill="white" stroke="#000" strokeWidth="2" />
+                
+                {/* Labeled Line Callout */}
+                <text x="360" y="222" fill="white" fillOpacity="0.5" fontSize="8" fontWeight="900" letterSpacing="0.1em" textAnchor="middle">
+                  NORMAL DECLINE
+                </text>
+
+                {/* With T-CORE / MARS-style elevated path (Glowing Emerald Green path) */}
+                {/* Starts at 10 (500y/260y), peaks at 20 (720y/110y), stays highly elevated all the way to 90 (735y/100y) */}
+                <path d="M 50 260 L 100 110 C 180 100, 300 95, 450 90" fill="none" stroke="#16C784" strokeWidth="4.5" className="filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" />
+                <circle cx="450" cy="90" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" />
+                <circle cx="450" cy="90" r="4" fill="#030705" stroke="#16C784" strokeWidth="2.5" />
+                
+                {/* Labeled T-CORE Line Callout */}
+                <text x="360" y="76" fill="#16C784" fontSize="9" fontWeight="900" letterSpacing="0.15em" textAnchor="middle" className="font-sans">
+                  WITH T-CORE
+                </text>
+              </svg>
+
+              {/* Glowing canister badge inside the chart */}
+              <div className="absolute right-8 top-16 bg-[#052E22] border border-[#16C784]/30 rounded-xl p-2 flex items-center gap-2 shadow-2xl backdrop-blur-md max-w-[130px] animate-bounce-slow">
+                <img src="/logo/logo_white_symbol.png" alt="T-CORE badge" className="w-4 h-4 object-contain" />
+                <div>
+                  <div className="text-[7.5px] font-black text-[#16C784] uppercase tracking-wider">T-CORE ACTIVE</div>
+                  <div className="text-[6.5px] text-[#A8B3AA] font-black uppercase tracking-widest">Sustained Baseline</div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Micro Explainer below chart */}
+            <div className="w-full mt-4 bg-[#052E22]/30 border border-[#16C784]/20 p-3 rounded-xl text-center">
+              <p className="text-[11px] text-[#7FE7B3] font-black uppercase tracking-wider leading-relaxed">
+                🎯 Over 90 Days, T-CORE helps support steady natural output rather than a steep drop.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ScienceHero = () => {
   return (
-    <section className="pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20 bg-black/40 relative overflow-hidden text-center min-h-[50vh] flex items-center justify-center">
+    <section className="pt-[120px] lg:pt-[100px] pb-16 px-6 md:px-20 bg-black/40 relative overflow-hidden text-center min-h-[50vh] flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-biomen-green/90 to-[#0a100d] z-10"></div>
         {/* Abstract molecular pattern placeholder */}

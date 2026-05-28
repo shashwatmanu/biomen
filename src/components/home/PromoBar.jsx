@@ -68,7 +68,7 @@ const PromoBar = () => {
   };
 
   return (
-    <div className="bg-biomen-dark border-b border-biomen-green/30 text-biomen-white py-2.5 px-4 text-center font-bold text-[10px] md:text-xs uppercase tracking-[0.15em] flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 relative z-50">
+    <div className="bg-biomen-dark border-b border-biomen-green/30 text-biomen-white py-2.5 lg:py-1.5 px-4 text-center font-bold text-[10px] md:text-xs uppercase tracking-[0.15em] flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 relative z-50">
       
       {/* Dynamic Announcement Option */}
       <span className="flex items-center gap-2">

@@ -1,56 +1,38 @@
-import React, { Suspense, lazy, useRef } from 'react';
-import { Zap, Activity, ArrowRight, Compass } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
-import useCartStore from '../../store/useCartStore';
+import React, { useRef } from 'react';
+import { Zap, Activity, Compass, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-// Lazy load 3D components for performance
-const Canvas = lazy(() => import('@react-three/fiber').then(m => ({ default: m.Canvas })));
-const PerspectiveCamera = lazy(() => import('@react-three/drei').then(m => ({ default: m.PerspectiveCamera })));
-const Float = lazy(() => import('@react-three/drei').then(m => ({ default: m.Float })));
-const ProductModel = lazy(() => import('../ProductModel').then(m => ({ default: m.ProductModel })));
-const Scene = lazy(() => import('../Scene').then(m => ({ default: m.Scene })));
-
 const SolutionGrid = () => {
-  const addToCart = useCartStore((state) => state.addToCart);
   const containerRef = useRef(null);
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
 
   const mechanisms = [
     { 
-      icon: <Zap className="text-biomen-accent" size={28} strokeWidth={2} />, 
-      label: "Mechanism 1",
-      title: "IGNITE", 
-      desc: "Supports masculine drive, vitality, and daily performance rhythm.",
+      icon: <Zap className="text-[#D85A1F] shrink-0" size={24} />, 
+      title: "SKYROCKET ENERGY & STAMINA", 
+      desc: "Supports masculine drive, physical capacity, and high-intensity performance stamina.",
       poweredBy: "TONGKAT ALI + FENUGREEK"
     },
     { 
-      icon: <Activity className="text-biomen-accent" size={28} strokeWidth={2} />, 
-      label: "Mechanism 2",
-      title: "RESTORE", 
-      desc: "Supports energy, recovery, stress resilience, and a steadier daily baseline.",
+      icon: <Activity className="text-[#D85A1F] shrink-0" size={24} />, 
+      title: "SUPPORT MALE VITALITY", 
+      desc: "Encourages recovery, stress resilience, and keeps your daily baseline baseline optimized.",
       poweredBy: "SHILAJIT + ASHWAGANDHA"
     },
     { 
-      icon: <Compass className="text-biomen-accent" size={28} strokeWidth={2} />, 
-      label: "Mechanism 3",
-      title: "AMPLIFY", 
-      desc: "Supports nutrient absorption and ingredient bioavailability.",
+      icon: <Compass className="text-[#D85A1F] shrink-0" size={24} />, 
+      title: "AMPLIFY ABSORPTION & EFFICIENCY", 
+      desc: "Enhances nutrient absorption and maximizes ingredient biological bioavailability.",
       poweredBy: "BLACK PEPPER EXTRACT"
     }
   ];
 
   useGSAP(() => {
-    // Smooth fade up slide inside the formulation system
     gsap.from(".solution-fade-up", {
-      y: 40,
+      y: 25,
       opacity: 0,
-      duration: 0.9,
-      stagger: 0.2,
+      duration: 0.8,
+      stagger: 0.1,
       ease: "power2.out",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -63,113 +45,77 @@ const SolutionGrid = () => {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-12 bg-biomen-dark text-biomen-white relative overflow-hidden border-t border-white/5" 
+      className="relative pt-[120px] pb-6 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:h-[calc(100vh-100px)] lg:min-h-[650px] flex flex-col justify-between" 
       id="solution"
     >
-      {/* Visual background glow elements */}
-      <div className="absolute top-1/2 -left-1/4 w-[800px] h-[800px] bg-biomen-green/20 rounded-full blur-[150px] pointer-events-none mix-blend-screen -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-biomen-green/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
+      {/* Intense physical orange spotlight glow behind the hand-held bottle */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#D85A1F]/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute left-10 bottom-10 w-[300px] h-[300px] bg-biomen-green/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
-      <div className="max-w-7xl mx-auto" ref={ref}>
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20 relative z-10 max-w-4xl mx-auto solution-fade-up">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent bg-biomen-accent/10 px-4 py-1.5 rounded-full border border-biomen-accent/20 inline-block mb-4">
-            FORMULATION APPROACH
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight uppercase">
-            A 3-Part System <br className="hidden sm:block"/> for Daily Male Performance
-          </h2>
-          <p className="text-biomen-muted text-base md:text-lg leading-relaxed font-semibold">
-            T-CORE is built around three core functions of male vitality: drive, recovery, and absorption. Each ingredient has a clear role. Nothing is added without purpose.
-          </p>
-        </div>
-        
-        {/* Responsive Grid: Image on top for Mobile, 3D Model on right for Desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
           
-          {/* Mobile Image (Shows only on <lg) */}
-          <div className="lg:hidden flex justify-center mb-8 relative solution-fade-up">
-            <div className="absolute inset-0 bg-biomen-green/30 blur-[100px] rounded-full" />
-            <img 
-              src="/tcore_canister.jpg" 
-              alt="T-CORE Canister" 
-              className="w-3/4 max-w-[300px] h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative z-10"
-            />
-          </div>
+          {/* Left Column: Left-aligned Premium Editorial Copy (lg:col-span-7) */}
+          <div className="lg:col-span-7 space-y-5 text-left solution-fade-up">
+            
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#16C784] mb-1 block">
+                THE SYSTEM? T-CORE
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-white">
+                THE SOLUTION? <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">T-CORE</span>
+              </h2>
+            </div>
+            
+            <p className="text-biomen-muted text-sm lg:text-base leading-relaxed max-w-xl font-medium">
+              Maintaining a balanced vitality baseline is pivotal for contributing to an overall sense of well-being. Supporting our body's natural baseline function can help us men:
+            </p>
 
-          {/* Left: Mechanisms List */}
-          <div className="lg:col-span-7 bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8 md:p-12 rounded-[40px] shadow-2xl backdrop-blur-sm order-2 lg:order-1 solution-fade-up">
-            <div className="flex flex-col gap-8">
+            {/* Completely Clean, Borderless List (No generic card backgrounds or cold gradients) */}
+            <div className="flex flex-col gap-5 pt-2">
               {mechanisms.map((item, i) => (
-                <div key={i} className="flex items-start gap-6 group cursor-default border-b border-white/5 last:border-0 pb-6 last:pb-0">
-                  <div className="shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110 bg-biomen-accent/15 p-3 rounded-full border border-biomen-accent/20">
+                <div key={i} className="flex items-start gap-4 group">
+                  <div className="shrink-0 bg-[#D85A1F]/10 p-2 rounded-lg border border-[#D85A1F]/20 text-[#D85A1F] mt-1 transition-transform group-hover:scale-105">
                     {item.icon}
                   </div>
-                  <div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-1 block">
-                      {item.label}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-wider mb-2 text-biomen-white">{item.title}</h3>
-                    <p className="text-biomen-muted font-medium mb-3 text-sm md:text-base leading-relaxed">{item.desc}</p>
-                    <div className="inline-block bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-biomen-mint">
-                      KEY INGREDIENTS: <span className="text-biomen-white font-black">{item.poweredBy}</span>
-                    </div>
+                  <div className="space-y-1">
+                    <h3 className="text-base font-black tracking-wider text-white flex flex-wrap items-center gap-x-3">
+                      {item.title}
+                      <span className="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[9px] font-black tracking-wider text-biomen-accent uppercase font-sans">
+                        {item.poweredBy}
+                      </span>
+                    </h3>
+                    <p className="text-biomen-muted text-xs lg:text-sm leading-relaxed font-semibold max-w-lg">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Bottom Line Copy */}
-            <div className="mt-8 pt-8 border-t border-white/10 text-center lg:text-left">
-              <p className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-accent bg-biomen-accent/10 px-6 py-3.5 rounded-full inline-block border border-biomen-accent/15">
-                Three functions. Five ingredients. One disciplined daily system.
-              </p>
-            </div>
           </div>
 
-          {/* Right: Desktop 3D Model + Button (Shows on lg+) */}
-          <div className="hidden lg:flex lg:col-span-5 flex-col items-center justify-center order-1 lg:order-2 relative h-[600px] solution-fade-up">
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Product rim light overlays configured in hero will pop here too */}
-              <div className="absolute inset-0 bg-biomen-accent/5 blur-[120px] rounded-full" />
-              
-              {/* Only render 3D when in view and lazy loaded */}
-              {inView && (
-                <Suspense fallback={<div className="text-biomen-accent font-black animate-pulse uppercase tracking-widest text-xs">Optimizing View...</div>}>
-                  <Canvas shadows gl={{ antialias: true, alpha: true }} className="w-full h-full">
-                    <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={35} />
-                    <Scene>
-                      <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                        <ProductModel 
-                          position={[0, -1, 0]} 
-                          rotation={[0, -Math.PI * 0.15, 0]} 
-                          scale={[1.1, 1.1, 1.1]}
-                        />
-                      </Float>
-                    </Scene>
-                  </Canvas>
-                </Suspense>
-              )}
+          {/* Right Column: Physical Supplement Bottle & Button (lg:col-span-5) */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center solution-fade-up relative">
+            
+            {/* Real HD physical supplement mockup replacing 3D */}
+            <div className="relative w-full aspect-[4/3] lg:aspect-square max-w-[320px] lg:max-w-[350px] shrink-0 rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black/40 p-1 hover:border-[#D85A1F]/30 transition-colors duration-300">
+              <img 
+                src="/hand_holding_canister.png" 
+                alt="T-CORE Luxury physical bottle" 
+                className="w-full h-full object-cover rounded-[1.25rem] scale-102 hover:scale-105 transition-transform duration-700" 
+              />
             </div>
             
-            {/* CTA in copper routing to PDP */}
+            {/* Centered Massive CTA under image */}
             <a 
               href="/products/t-core"
-              className="mt-8 bg-biomen-copper hover:bg-biomen-copper/90 text-white w-full max-w-sm py-5 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-3 hover:scale-105 relative z-20"
+              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[320px] py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.35)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 relative z-20"
             >
-              Start Your 90-Day System <ArrowRight size={24} />
+              START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
             </a>
-          </div>
 
-          {/* Mobile Button (Shows only on <lg) */}
-          <div className="lg:hidden flex justify-center order-3 mt-4 solution-fade-up w-full">
-            <a 
-              href="/products/t-core"
-              className="bg-biomen-copper hover:bg-biomen-copper/90 text-white w-full py-5 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-3"
-            >
-              Start Your 90-Day System <ArrowRight size={24} />
-            </a>
           </div>
 
         </div>

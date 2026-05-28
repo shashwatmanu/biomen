@@ -19,6 +19,8 @@ export default {
       },
       fontFamily: {
         manrope: ['Manrope', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
+        sans: ['Manrope', 'sans-serif'],
       },
       backdropBlur: {
         xs: '2px',

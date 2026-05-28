@@ -10,7 +10,7 @@ const Navbar = () => {
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <nav className="w-full z-50 px-6 py-6 flex justify-between items-center bg-transparent max-w-7xl mx-auto">
+    <nav className="w-full z-50 px-6 py-4 flex justify-between items-center bg-transparent max-w-7xl mx-auto">
       
       {/* Animated Logo Container */}
       <Link 
@@ -37,9 +37,6 @@ const Navbar = () => {
       <div className="flex items-center gap-6 md:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white">
         <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
         <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
-        <Link to="/reviews" className="hidden lg:block hover:text-biomen-accent transition-colors">Reviews</Link>
-        <Link to="/about" className="hidden lg:block hover:text-biomen-accent transition-colors">About</Link>
-        <Link to="/faq" className="hidden lg:block hover:text-biomen-accent transition-colors">Protocol</Link>
         <Link to="/ayurvedic-doctor" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
         
         <div className="flex items-center gap-6 ml-4">
