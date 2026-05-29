@@ -196,7 +196,7 @@ const IngredientSection = () => {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5 block">
             Transparent Dosing
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal font-serif tracking-tight text-white mb-1">
+          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.5rem] font-normal font-serif tracking-tight text-white mb-1">
             The Formula, Fully Transparent
           </h2>
           <p className="text-[#A8B3AA] font-medium text-sm lg:text-base leading-relaxed">
