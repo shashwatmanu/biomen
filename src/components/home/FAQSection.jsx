@@ -60,42 +60,83 @@ const FAQSection = () => {
           </p>
         </div>
 
-        {/* Accordions in 2 columns on desktop with items-start alignment to prevent stretch bug */}
-        <div className="space-y-2.5 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 lg:items-start my-auto w-full max-w-5xl mx-auto">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div 
-                key={i} 
-                className={`bg-white/5 border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ${
-                  isOpen ? 'border-[#16C784]/60 bg-[#0a100d] shadow-lg shadow-black/40' : 'hover:border-white/20'
-                }`}
-              >
-                <button 
-                  className="w-full flex justify-between items-center text-left p-5 lg:p-4 outline-none group"
-                  onClick={() => toggleFAQ(i)}
-                >
-                  <span className="font-black text-sm lg:text-base text-white group-hover:text-emerald-400 transition-colors pr-4 uppercase tracking-wide">
-                    {i + 1}. {faq.q}
-                  </span>
-                  <span className="shrink-0 bg-white/5 p-1.5 rounded-full border border-white/10 text-emerald-400 group-hover:bg-[#16C784]/10 transition-colors">
-                    {isOpen ? <Minus size={12} /> : <Plus size={12} />}
-                  </span>
-                </button>
-                
-                {/* Answer drawer */}
+        {/* Accordions in 2 independent columns on desktop to prevent stretch bugs */}
+        <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-6 my-auto w-full max-w-5xl mx-auto items-start">
+          {/* Left Column (Even Indexes) */}
+          <div className="flex flex-col gap-4 lg:gap-5 w-full">
+            {faqs.map((faq, i) => {
+              if (i % 2 !== 0) return null;
+              const isOpen = openIndex === i;
+              return (
                 <div 
-                  className={`transition-all duration-300 overflow-hidden ${
-                    isOpen ? 'max-h-48 border-t border-white/5' : 'max-h-0'
+                  key={i} 
+                  className={`bg-white/5 border rounded-2xl overflow-hidden transition-all duration-300 ${
+                    isOpen ? 'border-[#16C784]/60 bg-[#0a100d] shadow-lg shadow-black/40' : 'border-white/10 hover:border-white/20'
                   }`}
                 >
-                  <div className="p-5 lg:p-4 bg-black/20 text-biomen-muted text-xs lg:text-[13px] leading-relaxed font-semibold">
-                    {faq.a}
+                  <button 
+                    className="w-full flex justify-between items-center text-left p-6 lg:p-7 outline-none group"
+                    onClick={() => toggleFAQ(i)}
+                  >
+                    <span className="font-black text-base md:text-lg text-white group-hover:text-[#16C784] transition-colors pr-4 uppercase tracking-wide">
+                      {i + 1}. {faq.q}
+                    </span>
+                    <span className="shrink-0 bg-white/5 p-2 rounded-full border border-white/10 text-[#16C784] group-hover:bg-[#16C784]/10 transition-colors">
+                      {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                    </span>
+                  </button>
+                  
+                  <div 
+                    className={`transition-all duration-300 overflow-hidden ${
+                      isOpen ? 'max-h-48 border-t border-white/5' : 'max-h-0'
+                    }`}
+                  >
+                    <div className="p-6 lg:p-7 bg-black/25 text-[#A8B3AA] text-sm lg:text-[15px] leading-relaxed font-semibold">
+                      {faq.a}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Right Column (Odd Indexes) */}
+          <div className="flex flex-col gap-4 lg:gap-5 w-full">
+            {faqs.map((faq, i) => {
+              if (i % 2 === 0) return null;
+              const isOpen = openIndex === i;
+              return (
+                <div 
+                  key={i} 
+                  className={`bg-white/5 border rounded-2xl overflow-hidden transition-all duration-300 ${
+                    isOpen ? 'border-[#16C784]/60 bg-[#0a100d] shadow-lg shadow-black/40' : 'border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <button 
+                    className="w-full flex justify-between items-center text-left p-6 lg:p-7 outline-none group"
+                    onClick={() => toggleFAQ(i)}
+                  >
+                    <span className="font-black text-base md:text-lg text-white group-hover:text-[#16C784] transition-colors pr-4 uppercase tracking-wide">
+                      {i + 1}. {faq.q}
+                    </span>
+                    <span className="shrink-0 bg-white/5 p-2 rounded-full border border-white/10 text-[#16C784] group-hover:bg-[#16C784]/10 transition-colors">
+                      {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                    </span>
+                  </button>
+                  
+                  <div 
+                    className={`transition-all duration-300 overflow-hidden ${
+                      isOpen ? 'max-h-48 border-t border-white/5' : 'max-h-0'
+                    }`}
+                  >
+                    <div className="p-6 lg:p-7 bg-black/25 text-[#A8B3AA] text-sm lg:text-[15px] leading-relaxed font-semibold">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

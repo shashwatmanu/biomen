@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, ShieldAlert, Award, Compass, HeartPulse, Zap, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 const ingredientsData = [
   { 
@@ -56,7 +56,7 @@ const IngredientSpotlight = () => {
   return (
     <section className="relative pt-[120px] pb-16 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" id="spotlight">
       {/* Background spotlights (ambient glows, not digital gradients) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-biomen-green/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#16C784]/5 rounded-full blur-[140px] pointer-events-none z-0" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -68,7 +68,7 @@ const IngredientSpotlight = () => {
           <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-white">
             The Science of <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">The Stack</span>
           </h2>
-          <p className="text-biomen-muted text-sm lg:text-base font-semibold max-w-2xl mx-auto pt-2 leading-relaxed">
+          <p className="text-[#A8B3AA] text-sm lg:text-base font-semibold max-w-2xl mx-auto pt-2 leading-relaxed">
             Click an ingredient to explore its biological function and clinical dosage.
           </p>
         </div>
@@ -136,7 +136,7 @@ const IngredientSpotlight = () => {
                 {activeIngredient.dose} CLINICAL DOSE
               </div>
               
-              <p className="text-biomen-muted text-sm leading-relaxed font-semibold">
+              <p className="text-[#A8B3AA] text-sm leading-relaxed font-semibold">
                 {activeIngredient.summary}
               </p>
               

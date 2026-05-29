@@ -26,7 +26,7 @@ const ComparisonTable = () => {
             THE BIOMEN DIFFERENCE
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-white">
-            US VS. <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">THEM</span>
+            T-CORE VS. <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">OTHERS</span>
           </h2>
         </div>
 

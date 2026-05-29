@@ -135,9 +135,9 @@ const BundleSelector = () => {
                   
                   <button 
                     onClick={() => handlePurchase(bundle)}
-                    className={`block w-full py-2.5 rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-300 hover:scale-[1.02] ${
+                    className={`block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
                       bundle.best 
-                        ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/10' 
+                        ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/20' 
                         : 'bg-white/10 text-[#F4F6F2] hover:bg-white/20'
                     }`}
                   >

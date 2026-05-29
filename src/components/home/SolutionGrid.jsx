@@ -102,7 +102,7 @@ const SolutionGrid = () => {
             {/* Real HD physical supplement mockup replacing 3D */}
             <div className="relative w-full aspect-[4/3] lg:aspect-square max-w-[320px] lg:max-w-[350px] shrink-0 rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black/40 p-1 hover:border-[#D85A1F]/30 transition-colors duration-300">
               <img 
-                src="/hand_holding_canister.png" 
+                src="/portrait_canister_jar.jpg" 
                 alt="T-CORE Luxury physical bottle" 
                 className="w-full h-full object-cover rounded-[1.25rem] scale-102 hover:scale-105 transition-transform duration-700" 
               />
@@ -111,7 +111,7 @@ const SolutionGrid = () => {
             {/* Centered Massive CTA under image */}
             <a 
               href="/products/t-core"
-              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[320px] py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.35)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 relative z-20"
+              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[320px] py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 relative z-20"
             >
               START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
             </a>

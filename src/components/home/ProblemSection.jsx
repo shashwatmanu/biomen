@@ -68,7 +68,7 @@ const ProblemSection = () => {
             <div className="pt-2">
               <a 
                 href="/products/t-core" 
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-10 py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] inline-flex items-center gap-2 hover:scale-[1.02] duration-300"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] inline-flex items-center gap-2 hover:scale-[1.03] duration-300"
               >
                 UNLOCK YOUR SYSTEM <TrendingDown className="rotate-[270deg]" size={16} />
               </a>
@@ -150,7 +150,7 @@ const ProblemSection = () => {
                 {/* With T-CORE / MARS-style elevated path (Glowing Emerald Green path) */}
                 {/* Starts at 10 (500y/260y), peaks at 20 (720y/110y), stays highly elevated all the way to 90 (735y/100y) */}
                 <path d="M 50 260 L 100 110 C 180 100, 300 95, 450 90" fill="none" stroke="#16C784" strokeWidth="4.5" className="filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" />
-                <circle cx="450" cy="90" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" />
+                <circle cx="450" cy="90" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" style={{ transformOrigin: '450px 90px' }} />
                 <circle cx="450" cy="90" r="4" fill="#030705" stroke="#16C784" strokeWidth="2.5" />
                 
                 {/* Labeled T-CORE Line Callout */}
