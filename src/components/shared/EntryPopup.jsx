@@ -34,13 +34,13 @@ const EntryPopup = () => {
     <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       {/* Container Card */}
       <div className="relative bg-[#06110C] border border-[#0FA36B]/30 rounded-[3rem] p-8 md:p-12 max-w-lg w-full text-center shadow-2xl overflow-hidden flex flex-col items-center">
-        
+
         {/* Decorative Background Glow */}
         <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#0FA36B]/15 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-[#D85A1F]/10 rounded-full blur-[80px] pointer-events-none" />
 
         {/* Close Button */}
-        <button 
+        <button
           onClick={handleClose}
           className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
         >
@@ -58,7 +58,7 @@ const EntryPopup = () => {
             <p className="text-sm text-[#A8B3AA] max-w-sm mx-auto leading-relaxed">
               Use code <strong className="text-[#16C784] bg-[#052E22] px-3 py-1 rounded-md border border-[#0FA36B]/20 font-mono text-base ml-1">FOUNDER10</strong> at checkout to claim your early access privilege.
             </p>
-            <button 
+            <button
               onClick={handleClose}
               className="w-full py-4 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all"
             >
@@ -76,7 +76,10 @@ const EntryPopup = () => {
                 LIMITED FOUNDER ACCESS
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-[#F4F6F2] uppercase tracking-tight leading-none mt-3">
-                Unlock Early Batch <br/> Privilege Discount
+                Unlock Early Batch <br /> Privilege Discount
+              </h2>
+              <h2 className="text-3xl md:text-4xl font-black text-[#F4F6F2] uppercase tracking-tight leading-none mt-3">
+                50% PLUS 10% OFF
               </h2>
             </div>
 
@@ -87,8 +90,8 @@ const EntryPopup = () => {
             <form onSubmit={handleSubmit} className="space-y-3 w-full">
               <div className="relative">
                 <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   placeholder="Enter your email address"
                   value={email}
@@ -97,7 +100,7 @@ const EntryPopup = () => {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="w-full py-4 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
               >
@@ -110,7 +113,7 @@ const EntryPopup = () => {
               <span>Zero Spam &bull; One-Click Unsubscribe</span>
             </div>
 
-            <button 
+            <button
               onClick={handleClose}
               className="text-[10px] font-black uppercase text-gray-500 hover:text-white tracking-widest underline underline-offset-4 transition-colors block mx-auto pt-2"
             >
