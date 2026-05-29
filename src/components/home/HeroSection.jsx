@@ -26,7 +26,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-section relative w-full min-h-[90vh] lg:min-h-[880px] xl:min-h-[920px] flex flex-col justify-between px-6 md:px-20 overflow-hidden bg-[#030705] pt-[140px] lg:pt-[160px] pb-10" id="hero">
+    <section className="hero-section relative w-full min-h-[70vh] lg:min-h-[560px] xl:min-h-[600px] flex flex-col justify-between px-6 md:px-20 overflow-hidden bg-[#030705] pt-[115px] lg:pt-[125px] pb-6" id="hero">
 
       {/* Full-Bleed Background Image with Premium Seamless Blending Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -35,7 +35,7 @@ const HeroSection = () => {
           alt="T-CORE Luxury Vitality"
           className="w-full h-full object-cover filter brightness-[1.1] contrast-[1.04]"
           style={{
-            objectPosition: 'center 1%',
+            objectPosition: 'center 42%',
             imageRendering: '-webkit-optimize-contrast',
             transform: 'translateZ(0)'
           }}
@@ -49,7 +49,7 @@ const HeroSection = () => {
       {/* Floating Luxury Stamp Sticker Badge */}
       <div
         ref={badgeRef}
-        className="hidden lg:flex absolute right-[13%] top-[37%] z-20 select-none animate-bounce-slow"
+        className="hidden lg:flex absolute right-[10%] top-[33%] z-20 select-none animate-bounce-slow"
       >
         <div className="relative w-32 h-32 rounded-full border border-dashed border-[#16C784]/40 bg-[#030705]/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center shadow-2xl rotate-12 hover:rotate-0 transition-transform duration-500 cursor-pointer">
           <div className="text-[#16C784] font-black text-[9px] uppercase tracking-widest mb-0.5">100% PURE</div>
