@@ -24,7 +24,7 @@ const ProblemSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-[120px] pb-6 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:h-[calc(100vh-100px)] lg:min-h-[650px] flex flex-col justify-between" 
+      className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
       id="depletion"
     >
       {/* Editorial seamless background image with high physical contrast */}
@@ -39,19 +39,22 @@ const ProblemSection = () => {
       </div>
       
       <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
+        
+        {/* Centered Section Header for both mobile & desktop */}
+        <div className="text-center max-w-3xl mx-auto mb-12 infographic-fade-up">
+          <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] text-biomen-copper bg-biomen-copper/10 px-4 py-2 rounded-full border border-biomen-copper/20 mb-4">
+            <ShieldAlert size={14} /> The Modern Male Epidemic
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-white uppercase">
+            The Decline of <span className="text-biomen-copper italic font-serif">Vitality</span>: <br className="hidden md:block"/>
+            A Modern Epidemic
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
           
-          {/* Left Column: High-Impact Infographic Editorial Copy (lg:col-span-6) */}
-          <div className="lg:col-span-6 space-y-5 text-left infographic-fade-up">
-            <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] text-biomen-copper bg-biomen-copper/10 px-4 py-2 rounded-full border border-biomen-copper/20">
-              <ShieldAlert size={14} /> The Modern Male Epidemic
-            </span>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-white">
-              The Decline of <span className="text-biomen-copper italic font-serif">Vitality</span>: <br/>
-              A Modern Epidemic
-            </h2>
-            
+          {/* Left Column: High-Impact Infographic Editorial Copy (lg:col-span-6) - Stacks second on mobile */}
+          <div className="lg:col-span-6 space-y-5 text-left infographic-fade-up order-2 lg:order-1">
             <div className="space-y-4 text-sm lg:text-base text-biomen-muted font-medium leading-relaxed max-w-xl">
               <p>
                 <strong className="text-biomen-white font-bold">Biological baseline levels</strong> in men have been dropping steadily, declining by over 1% every single year since 1980. Low sleep, daily stress, toxic environments, and digital overload are slowly draining natural hormone output.
@@ -68,15 +71,15 @@ const ProblemSection = () => {
             <div className="pt-2">
               <a 
                 href="/products/t-core" 
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] inline-flex items-center gap-2 hover:scale-[1.03] duration-300"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM <TrendingDown className="rotate-[270deg]" size={16} />
               </a>
             </div>
           </div>
 
-          {/* Right Column: Stunning Custom SVG-based Infographic Chart (lg:col-span-6) */}
-          <div className="lg:col-span-6 w-full flex flex-col justify-center items-center bg-black/40 border border-white/5 rounded-3xl p-6 lg:p-5 shadow-2xl backdrop-blur-md infographic-fade-up relative overflow-hidden group max-w-[480px] lg:max-w-full mx-auto">
+          {/* Right Column: Custom SVG-based Infographic Chart (lg:col-span-6) - Stacks first on mobile */}
+          <div className="lg:col-span-6 w-full flex flex-col justify-center items-center bg-black/40 border border-white/5 rounded-3xl p-4 sm:p-6 lg:p-5 shadow-2xl backdrop-blur-md infographic-fade-up relative overflow-hidden group max-w-[480px] lg:max-w-full mx-auto order-1 lg:order-2">
             
             {/* Soft inner physical glow */}
             <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-[#D85A1F]/5 rounded-full blur-[80px] pointer-events-none" />
@@ -91,7 +94,7 @@ const ProblemSection = () => {
               </span>
             </div>
 
-            {/* Custom SVG Line Chart replicating mengotomars layout */}
+            {/* Custom SVG Line Chart */}
             <div className="relative w-full aspect-[4/3] bg-black/75 border border-white/5 rounded-2xl p-4 shadow-inner flex flex-col justify-between">
               
               <svg className="w-full h-full" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +113,7 @@ const ProblemSection = () => {
                 <line x1="50" y1="40" x2="50" y2="280" stroke="white" strokeOpacity="0.15" strokeWidth="1.5" />
                 <line x1="50" y1="280" x2="470" y2="280" stroke="white" strokeOpacity="0.15" strokeWidth="1.5" />
 
-                {/* Y-Axis labels (Vitality Profile / Total Testosterone Index) */}
+                {/* Y-Axis labels */}
                 <text x="25" y="54" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">800</text>
                 <text x="25" y="124" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">700</text>
                 <text x="25" y="194" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">600</text>
@@ -121,7 +124,7 @@ const ProblemSection = () => {
                   TOTAL TESTOSTERONE
                 </text>
 
-                {/* X-Axis labels (Age) */}
+                {/* X-Axis labels */}
                 <text x="50" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">10</text>
                 <text x="100" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">20</text>
                 <text x="150" y="300" fill="#A8B3AA" fontSize="10" fontWeight="900" textAnchor="middle">30</text>
@@ -137,8 +140,7 @@ const ProblemSection = () => {
                   AGE
                 </text>
 
-                {/* Normal Decline Line (White path) */}
-                {/* Starts at 10 (500y/260y), peaks at 20 (720y/110y), drops steadily to 90 (580y/206y) */}
+                {/* Normal Decline Line */}
                 <path d="M 50 260 L 100 110 Q 200 160 300 190 T 450 206" fill="none" stroke="white" strokeWidth="2.5" strokeOpacity="0.4" />
                 <circle cx="450" cy="206" r="5" fill="white" stroke="#000" strokeWidth="2" />
                 
@@ -147,8 +149,7 @@ const ProblemSection = () => {
                   NORMAL DECLINE
                 </text>
 
-                {/* With T-CORE / MARS-style elevated path (Glowing Emerald Green path) */}
-                {/* Starts at 10 (500y/260y), peaks at 20 (720y/110y), stays highly elevated all the way to 90 (735y/100y) */}
+                {/* With T-CORE */}
                 <path d="M 50 260 L 100 110 C 180 100, 300 95, 450 90" fill="none" stroke="#16C784" strokeWidth="4.5" className="filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" />
                 <circle cx="450" cy="90" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" style={{ transformOrigin: '450px 90px' }} />
                 <circle cx="450" cy="90" r="4" fill="#030705" stroke="#16C784" strokeWidth="2.5" />

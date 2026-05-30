@@ -61,35 +61,43 @@ const PromoBar = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const mobileOptions = [
+    "First Batch Release Now Live",
+    "Built for Men Who Expect More",
+    "Early Access Pricing Live",
+    "Founder Batch Release Live"
+  ];
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}m ${secs.toString().padStart(2, '0')}s`;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div className="bg-biomen-dark border-b border-biomen-green/30 text-biomen-white py-2.5 lg:py-1.5 px-4 text-center font-bold text-[10px] md:text-xs uppercase tracking-[0.15em] flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 relative z-50">
+    <div className="bg-biomen-dark border-b border-biomen-green/30 text-biomen-white h-[38px] md:h-auto py-2 lg:py-1.5 px-3 md:px-4 text-center font-bold text-[9px] xs:text-[10px] md:text-xs uppercase tracking-[0.08em] md:tracking-[0.15em] flex flex-row items-center justify-between md:justify-center gap-x-2 md:gap-x-8 relative z-50 w-full overflow-hidden">
       
       {/* Dynamic Announcement Option */}
-      <span className="flex items-center gap-2">
-        <ShieldAlert size={14} className="text-biomen-accent animate-pulse shrink-0" />
-        <span className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-          {options[currentIndex]}
+      <span className="flex items-center gap-1 md:gap-2 text-left md:text-center overflow-hidden text-ellipsis whitespace-nowrap">
+        <ShieldAlert size={12} className="text-biomen-accent animate-pulse shrink-0" />
+        <span className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'} overflow-hidden text-ellipsis whitespace-nowrap`}>
+          <span className="hidden md:inline">{options[currentIndex]}</span>
+          <span className="inline md:hidden">{mobileOptions[currentIndex]}</span>
         </span>
       </span>
 
       {/* Ticking Countdown and CTA */}
-      <div className="flex items-center gap-3 bg-biomen-green/40 px-3 py-1 rounded-full border border-biomen-accent/15">
-        <span className="flex items-center gap-1.5 text-biomen-accent">
-          <Timer size={13} className="animate-spin-slow" />
-          <span>Expires In: <span className="font-mono font-black text-biomen-mint">{formatTime(timeLeft)}</span></span>
+      <div className="flex items-center gap-1.5 md:gap-3 bg-biomen-green/40 px-2 md:px-3 py-1 rounded-full border border-biomen-accent/15 shrink-0 text-[8px] xs:text-[9.5px] md:text-xs">
+        <span className="flex items-center gap-1 text-biomen-accent">
+          <Timer size={11} className="animate-spin-slow shrink-0" />
+          <span><span className="hidden xs:inline">Expires In:</span><span className="inline xs:hidden">Ends:</span> <span className="font-mono font-black text-biomen-mint">{formatTime(timeLeft)}</span></span>
         </span>
         <span className="text-white/20">|</span>
         <a 
           href="/products/t-core" 
-          className="text-biomen-copper hover:text-biomen-mint underline underline-offset-2 flex items-center gap-1 font-black transition-colors"
+          className="text-biomen-copper hover:text-biomen-mint underline underline-offset-2 flex items-center gap-0.5 font-black transition-colors shrink-0"
         >
-          Grab Discount Now <ArrowRight size={12} className="animate-bounce-horizontal" />
+          Grab Discount <span className="hidden xs:inline">Now</span> <ArrowRight size={10} className="animate-bounce-horizontal" />
         </a>
       </div>
     </div>

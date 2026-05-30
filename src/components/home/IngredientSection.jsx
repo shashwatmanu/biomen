@@ -124,27 +124,37 @@ const IngredientSection = () => {
   const nodeRotationTweenRef = useRef(null);
 
   useGSAP(() => {
-    // Clockwise rotation of the main orbit ring (contains logo and nodes)
-    rotationTweenRef.current = gsap.to(".logo-orbit-ring", {
+    const isMobile = window.innerWidth < 1024;
+
+    // Clockwise rotation of the main orbit ring (contains logo and nodes) - paused on mobile for flawless tap stability!
+    const rTween = gsap.to(".logo-orbit-ring", {
       rotation: 360,
       duration: 40,
       repeat: -1,
       ease: "none",
-      transformOrigin: "240px 260px"
+      transformOrigin: "240px 260px",
+      paused: isMobile
     });
 
     // Counter-clockwise rotation of the node buttons to keep them upright (Ferris wheel effect!)
-    nodeRotationTweenRef.current = gsap.to(".ingredient-node-btn", {
+    const nrTween = gsap.to(".ingredient-node-btn", {
       rotation: -360,
       duration: 40,
       repeat: -1,
       ease: "none",
-      transformOrigin: "center center"
+      transformOrigin: "center center",
+      paused: isMobile
     });
+
+    rotationTweenRef.current = rTween;
+    nodeRotationTweenRef.current = nrTween;
   }, { scope: containerRef });
 
   // Handle Logo scale-up pulse and slowdown when hovered
   useGSAP(() => {
+    if (window.innerWidth < 1024) return; // Skip hover speed-down interactions on mobile
+    if (!rotationTweenRef.current || !nodeRotationTweenRef.current) return; // safety check!
+
     if (isHovered) {
       gsap.to(".logo-rotating-backdrop", {
         scale: 1.03,
@@ -183,7 +193,7 @@ const IngredientSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative py-28 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:min-h-[920px] flex flex-col justify-between"
+      className="relative py-20 lg:py-28 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:min-h-[920px] flex flex-col justify-between"
       id="formula"
     >
       {/* Background spotlights (ambient glows, not digital gradients) */}
@@ -200,14 +210,14 @@ const IngredientSection = () => {
             The Formula, Fully Transparent
           </h2>
           <p className="text-[#A8B3AA] font-medium text-sm lg:text-base leading-relaxed">
-            Five purposeful herbal extracts. Clear daily dosages. Hover or tap an ingredient to explore its biological profile.
+            Five purposeful herbal extracts. Clear daily dosages. Tap or hover an ingredient to explore its biological profile.
           </p>
         </div>
 
         {/* Responsive Circular Layout for ALL screen sizes */}
-        <div className="flex items-center justify-center relative w-full h-[340px] xs:h-[390px] sm:h-[450px] lg:h-[520px] overflow-hidden my-auto ingredient-fade-up">
+        <div className="flex items-center justify-center relative w-full h-[360px] xs:h-[400px] sm:h-[460px] lg:h-[520px] overflow-hidden my-auto ingredient-fade-up">
 
-          <div className="scale-[0.58] xs:scale-[0.66] sm:scale-[0.80] lg:scale-100 origin-center absolute flex items-center justify-center w-[480px] h-[520px]">
+          <div className="scale-[0.62] xs:scale-[0.72] sm:scale-[0.85] lg:scale-100 origin-center absolute flex items-center justify-center w-[480px] h-[520px]">
             <div
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}

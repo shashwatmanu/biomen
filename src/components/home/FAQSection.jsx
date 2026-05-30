@@ -44,11 +44,11 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="relative pt-[120px] pb-8 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:h-[calc(100vh-100px)] lg:min-h-[580px] flex flex-col justify-between" id="faq">
+    <section className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="faq">
       <div className="max-w-6xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
         {/* Header */}
-        <div className="text-center mb-6 lg:mb-3">
+        <div className="text-center mb-10 lg:mb-3">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-0.5 block">
             Help Desk
           </span>

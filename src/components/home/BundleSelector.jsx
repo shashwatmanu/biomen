@@ -47,18 +47,18 @@ const BundleSelector = () => {
   };
 
   return (
-    <section className="relative pt-[120px] pb-6 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:h-[calc(100vh-100px)] lg:min-h-[650px] flex flex-col justify-between" id="pricing">
+    <section className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="pricing">
       {/* Background spotlights (ambient glows, not digital gradients) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-biomen-green/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-4 lg:mb-2.5">
+        <div className="text-center max-w-3xl mx-auto mb-6 lg:mb-2.5">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5 block">
             PRICING PROTOCOLS
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-[#F4F6F2]">
+          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-[#F4F6F2] mb-1">
             Choose Your System
           </h2>
           <p className="text-[#A8B3AA] text-xs lg:text-sm font-semibold">
@@ -67,19 +67,22 @@ const BundleSelector = () => {
         </div>
 
         {/* Subscription / One-time Toggle Selector */}
-        <div className="flex justify-center mb-4 lg:mb-3">
+        <div className="flex justify-center mb-6 lg:mb-3">
           <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
             <button 
               onClick={() => setIsSubscription(false)}
-              className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
             >
-              One-Time Purchase
+              <span className="hidden xs:inline">One-Time Purchase</span>
+              <span className="inline xs:hidden">One-Time</span>
             </button>
             <button 
               onClick={() => setIsSubscription(true)}
-              className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
             >
-              Auto-Pay Subscription <span className="bg-black/30 text-[8px] text-[#7FE7B3] px-2 py-0.5 rounded-full border border-white/5 font-black uppercase shrink-0">-15% Off</span>
+              <span className="hidden xs:inline">Auto-Pay Subscription</span>
+              <span className="inline xs:hidden">Subscribe & Save</span>
+              <span className="bg-black/30 text-[8px] text-[#7FE7B3] px-1.5 py-0.5 rounded border border-white/5 font-black uppercase shrink-0">-15%</span>
             </button>
           </div>
         </div>
