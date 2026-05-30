@@ -78,7 +78,7 @@ const Navbar = () => {
             >
               <ShoppingCart size={16} />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 lg:-top-2 lg:-right-2 bg-biomen-accent text-black text-[9px] w-4.5 h-4.5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
+                <span className="absolute -top-1.5 -right-1.5 bg-biomen-accent text-black text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
                   {cartCount}
                 </span>
               )}
@@ -134,7 +134,7 @@ const Navbar = () => {
             >
               <ShoppingCart size={16} />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-biomen-accent text-black text-[9px] w-4.5 h-4.5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
+                <span className="absolute -top-1.5 -right-1.5 bg-biomen-accent text-black text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
                   {cartCount}
                 </span>
               )}
@@ -196,7 +196,7 @@ const Navbar = () => {
               <Link
                 to="/products/t-core"
                 onClick={() => setIsMenuOpen(false)}
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5.5 rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white py-[20px] rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
               >
                 Unlock Your System Now
               </Link>

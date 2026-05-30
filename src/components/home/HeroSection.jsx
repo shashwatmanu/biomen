@@ -105,7 +105,7 @@ const HeroSection = () => {
           <div className="px-2">
             <Link
               to="/products/t-core"
-              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-5.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.4)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
+              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.4)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
             >
               UNLOCK YOUR SYSTEM <ArrowRight size={15} />
             </Link>
@@ -165,13 +165,13 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Link
                 to="/products/t-core"
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-6 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM <ArrowRight size={16} />
               </Link>
               <Link
                 to="/science"
-                className="border-2 border-white/20 text-white px-11 py-6 rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto"
+                className="border-2 border-white/20 text-white px-12 py-[22px] rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto"
               >
                 Explore T-CORE Science
               </Link>

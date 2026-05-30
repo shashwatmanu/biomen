@@ -104,22 +104,27 @@ section {
 .timeline-track {
   display: flex;
   transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
-  --card-width: 290px;
-  --card-gap: 16px;
-  transform: translateX(calc(50vw - (var(--card-width) / 2) - (var(--active-index) * (var(--card-width) + var(--card-gap)))));
+  --card-width: 82vw;
+  --card-gap: 12px;
+  /* Align to the left (with 20px padding) on mobile to eliminate huge empty start/end spaces */
+  transform: translateX(calc(20px - (var(--active-index) * (var(--card-width) + var(--card-gap)))));
   will-change: transform;
 }
 
 @media (min-width: 480px) {
   .timeline-track {
-    --card-width: 320px;
+    --card-width: 330px;
+    --card-gap: 16px;
+    transform: translateX(calc(32px - (var(--active-index) * (var(--card-width) + var(--card-gap)))));
   }
 }
 
 @media (min-width: 768px) {
   .timeline-track {
     --card-width: 360px;
-    --card-gap: 24px;
+    --card-gap: 20px;
+    /* Center layout for tablets and desktops */
+    transform: translateX(calc(50vw - (var(--card-width) / 2) - (var(--active-index) * (var(--card-width) + var(--card-gap)))));
   }
 }
 
@@ -127,5 +132,6 @@ section {
   .timeline-track {
     --card-width: 380px;
     --card-gap: 24px;
+    transform: translateX(calc(50vw - (var(--card-width) / 2) - (var(--active-index) * (var(--card-width) + var(--card-gap)))));
   }
 }

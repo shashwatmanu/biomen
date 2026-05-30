@@ -117,7 +117,7 @@ const SolutionGrid = () => {
             {/* Centered Massive CTA under space - Desktop only (Interactive, pointer events enabled) */}
             <a 
               href="/products/t-core"
-              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[300px] py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 pointer-events-auto relative z-20"
+              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[300px] py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 pointer-events-auto relative z-20"
             >
               START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
             </a>
@@ -130,7 +130,7 @@ const SolutionGrid = () => {
         <div className="block lg:hidden w-full pt-8 solution-fade-up px-2">
           <a 
             href="/products/t-core"
-            className="bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-4.5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 relative z-20"
+            className="bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-[22px] px-8 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 relative z-20"
           >
             START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
           </a>

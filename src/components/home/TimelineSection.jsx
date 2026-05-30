@@ -157,7 +157,7 @@ const TimelineSection = ({ title }) => {
                 <div
                   key={day}
                   onClick={() => setActiveDay(day)}
-                  className={`w-[290px] xs:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border p-6 lg:p-7 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
+                  className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border p-6 lg:p-7 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
                     isActive 
                       ? 'opacity-100 scale-100 shadow-2xl z-20 active-timeline-indicator' 
                       : 'opacity-45 scale-90 z-10 hover:opacity-65 border-white/5'
@@ -212,7 +212,7 @@ const TimelineSection = ({ title }) => {
             <div className="pt-1.5">
               <a 
                 href="/products/t-core" 
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM TODAY <ArrowRight size={14} />
               </a>

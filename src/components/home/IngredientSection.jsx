@@ -211,7 +211,7 @@ const IngredientSection = () => {
         </div>
 
         {/* Responsive Circular Layout for ALL screen sizes */}
-        <div className="flex items-center justify-center relative w-full h-[360px] xs:h-[400px] sm:h-[460px] lg:h-[520px] overflow-hidden my-auto ingredient-fade-up">
+        <div className="flex items-center justify-center relative w-full h-[420px] xs:h-[460px] sm:h-[520px] lg:h-[580px] overflow-hidden my-auto ingredient-fade-up">
 
           <div className="scale-[0.62] xs:scale-[0.72] sm:scale-[0.85] lg:scale-100 origin-center absolute flex items-center justify-center w-[480px] h-[520px]">
             <div
