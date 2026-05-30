@@ -90,24 +90,100 @@ const ScienceHero = () => {
       />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: High-end Editorial Copy with Staggered Entrance */}
-          <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-8 text-left">
+          {/* Mobile Headline (Only visible on mobile/tablet screens - order-1) */}
+          <div className="block lg:hidden space-y-4 text-left w-full order-1">
             <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
               <Sparkles size={12} className="text-[#16C784] animate-pulse" />
               FORMULATION &amp; MECHANISM
             </div>
+            <h1 className="text-4xl md:text-5xl font-normal font-serif tracking-tight leading-[1.05] text-[#F4F6F2] uppercase">
+              The Science Behind <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-semibold">T-CORE</span>
+            </h1>
+          </div>
 
-            <div className="space-y-4">
+          {/* Right Column: 3D Canvas Container (order-2 on mobile, order-2 on desktop) */}
+          <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full order-2 lg:order-2">
+            {/* Elegant glowing backdrop behind the cylinder */}
+            <div className="absolute inset-0 max-w-[420px] max-h-[420px] mx-auto my-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
+
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Suspense 
+                fallback={
+                  <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
+                    <div className="w-10 h-10 rounded-full border-2 border-[#16C784]/20 border-t-[#16C784] animate-spin"></div>
+                    <span className="text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase mt-3">
+                      LOADING 3D ENVIRONMENT
+                    </span>
+                  </div>
+                }
+              >
+                <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }} dpr={[1, 2]}>
+                  {/* Lower ambient light for deep shadows */}
+                  <ambientLight intensity={0.45} />
+                  
+                  {/* Master Key Light (Front-Right) to make golden text and label shine */}
+                  <directionalLight position={[8, 4, 6]} intensity={2.2} color="#ffffff" castShadow />
+                  
+                  {/* Cinematic Back-Left Rim Light to cast a gorgeous green edge sheen */}
+                  <directionalLight position={[-8, 6, -6]} intensity={3.8} color="#7FE7B3" />
+                  
+                  {/* Soft Fill Light to soften dark front sways */}
+                  <directionalLight position={[-6, -4, 2]} intensity={0.65} color="#ffffff" />
+                  
+                  {/* Direct spotlight focusing on visual center */}
+                  <spotLight position={[0, 10, 0]} intensity={2.5} angle={0.25} penumbra={1} castShadow />
+
+                  {/* Botanical Forest reflections */}
+                  <Environment preset="forest" />
+
+                  {/* Slowly drifting molecular particle cloud in the background */}
+                  <MolecularBackgroundParticles />
+
+                  {/* Stout and perfectly-proportioned 3D cylinder packaging */}
+                  <ScienceProductModel scale={[0.85, 0.85, 0.85]} position={[0, 0, 0]} />
+
+                  {/* Ground shadows anchoring the floating product */}
+                  <ContactShadows 
+                    position={[0, -2.0, 0]} 
+                    opacity={0.65} 
+                    scale={6.5} 
+                    blur={1.5} 
+                    far={3.0} 
+                    color="#052e22" 
+                  />
+
+                  {/* Post-processing compose line */}
+                  <EffectComposer disableNormalPass>
+                    <Bloom font-size="sm" luminanceThreshold={1.2} mipmapBlur intensity={0.3} radius={0.3} />
+                    <Vignette eskil={false} offset={0.1} darkness={1.15} />
+                    <SMAA />
+                  </EffectComposer>
+                </Canvas>
+              </Suspense>
+            </div>
+          </div>
+
+          {/* Left Column: High-end Editorial Copy with Staggered Entrance (order-3 on mobile, order-1 on desktop) */}
+          <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-8 text-left order-3 lg:order-1 w-full">
+            {/* Desktop Headline (Only visible on desktop view) */}
+            <div className="hidden lg:block space-y-4">
+              <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
+                <Sparkles size={12} className="text-[#16C784] animate-pulse" />
+                FORMULATION &amp; MECHANISM
+              </div>
+
               <h1 className="text-5xl md:text-6xl lg:text-[4.4rem] font-normal font-serif tracking-tight leading-[1.05] text-[#F4F6F2] uppercase">
                 The Science Behind <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-semibold">T-CORE</span>
               </h1>
-              <p className="text-lg text-[#A8B3AA] font-medium leading-relaxed max-w-xl">
-                T-CORE is not a magic solution. It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
-              </p>
             </div>
+
+            <p className="text-lg text-[#A8B3AA] font-medium leading-relaxed max-w-xl">
+              T-CORE is not a magic solution. It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
+            </p>
 
             {/* Premium Award-Style Editorial Metrics */}
             <div className="grid grid-cols-3 gap-4 pt-4">
@@ -176,68 +252,6 @@ const ScienceHero = () => {
                 DIVE INTO THE STACKS
                 <span className="transform group-hover:translate-y-0.5 transition-transform duration-300">↓</span>
               </button>
-            </div>
-          </div>
-
-          {/* Right Column: 3D Canvas Container */}
-          <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full">
-            {/* Elegant glowing backdrop behind the cylinder */}
-            <div className="absolute inset-0 max-w-[420px] max-h-[420px] mx-auto my-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Suspense 
-                fallback={
-                  <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
-                    <div className="w-10 h-10 rounded-full border-2 border-[#16C784]/20 border-t-[#16C784] animate-spin"></div>
-                    <span className="text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase mt-3">
-                      LOADING 3D ENVIRONMENT
-                    </span>
-                  </div>
-                }
-              >
-                <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }} dpr={[1, 2]}>
-                  {/* Lower ambient light for deep shadows */}
-                  <ambientLight intensity={0.45} />
-                  
-                  {/* Master Key Light (Front-Right) to make golden text and label shine */}
-                  <directionalLight position={[8, 4, 6]} intensity={2.2} color="#ffffff" castShadow />
-                  
-                  {/* Cinematic Back-Left Rim Light to cast a gorgeous green edge sheen */}
-                  <directionalLight position={[-8, 6, -6]} intensity={3.8} color="#7FE7B3" />
-                  
-                  {/* Soft Fill Light to soften dark front sways */}
-                  <directionalLight position={[-6, -4, 2]} intensity={0.65} color="#ffffff" />
-                  
-                  {/* Direct spotlight focusing on visual center */}
-                  <spotLight position={[0, 10, 0]} intensity={2.5} angle={0.25} penumbra={1} castShadow />
-
-                  {/* Botanical Forest reflections */}
-                  <Environment preset="forest" />
-
-                  {/* Slowly drifting molecular particle cloud in the background */}
-                  <MolecularBackgroundParticles />
-
-                  {/* Stout and perfectly-proportioned 3D cylinder packaging */}
-                  <ScienceProductModel scale={[0.85, 0.85, 0.85]} position={[0, 0, 0]} />
-
-                  {/* Ground shadows anchoring the floating product */}
-                  <ContactShadows 
-                    position={[0, -2.0, 0]} 
-                    opacity={0.65} 
-                    scale={6.5} 
-                    blur={1.5} 
-                    far={3.0} 
-                    color="#052e22" 
-                  />
-
-                  {/* Post-processing compose line */}
-                  <EffectComposer disableNormalPass>
-                    <Bloom luminanceThreshold={1.2} mipmapBlur intensity={0.3} radius={0.3} />
-                    <Vignette eskil={false} offset={0.1} darkness={1.15} />
-                    <SMAA />
-                  </EffectComposer>
-                </Canvas>
-              </Suspense>
             </div>
           </div>
 

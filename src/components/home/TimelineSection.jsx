@@ -212,7 +212,7 @@ const TimelineSection = ({ title }) => {
             <div className="pt-1.5">
               <a 
                 href="/products/t-core" 
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM TODAY <ArrowRight size={14} />
               </a>

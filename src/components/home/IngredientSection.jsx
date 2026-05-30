@@ -355,13 +355,13 @@ const IngredientSection = () => {
           </div>
         </div>
 
-        {/* High-conversion CTA Link to PDP */}
+        {/* High-conversion CTA Link to Science Page */}
         <div className="text-center mb-4 lg:mb-1.5 ingredient-fade-up">
           <a
-            href="/products/t-core"
+            href="/science"
             className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] hover:scale-[1.03] duration-300"
           >
-            Start Your 90-Day System
+            Explore T-CORE Science
           </a>
         </div>
 
