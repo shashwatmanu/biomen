@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Gift, ShieldCheck, Mail, ArrowRight } from 'lucide-react';
+import API_URL from '../../utils/api';
 
 const EntryPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +24,17 @@ const EntryPopup = () => {
     setIsOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await fetch(`${API_URL}/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+    } catch (err) {
+      console.error('Entry popup subscription error:', err);
+    }
     setSubmitted(true);
   };
 

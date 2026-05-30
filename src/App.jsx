@@ -8,6 +8,7 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Doctor from './pages/Doctor';
+import Checkout from './pages/Checkout';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ayurvedic-doctor" element={<Doctor />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
 

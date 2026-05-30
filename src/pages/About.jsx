@@ -12,7 +12,7 @@ const About = () => {
             About BIOMEN
           </span>
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8">
-            The Mission <br/> <span className="text-emerald-500">Behind the Labs</span>
+            The Mission <br /> <span className="text-emerald-500">Behind the Labs</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 font-medium max-w-3xl mx-auto leading-relaxed">
             Biomen Labs was founded on a single premise: Men's health is in crisis, and the solutions currently on the market are either ineffective, dangerous, or opaque.
@@ -22,8 +22,8 @@ const About = () => {
         {/* Story Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
           <div className="aspect-square bg-gradient-to-br from-emerald-900/20 to-black rounded-[3rem] border border-white/10 overflow-hidden relative group">
-            <img 
-              src="/hero_bg_final.png" 
+            <img
+              src="/hero_bg_final.png"
               className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000"
               alt="Research Lab"
             />

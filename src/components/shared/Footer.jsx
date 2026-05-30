@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Globe, Share2, Mail, Send, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API_URL from '../../utils/api';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const Footer = () => {
     e.preventDefault();
     setStatus('loading');
     try {
-      const res = await fetch('http://localhost:5001/api/subscribe', {
+      const res = await fetch(`${API_URL}/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })

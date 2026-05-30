@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Inbox } from 'lucide-react';
+import API_URL from '../../utils/api';
 
 const EmailCapture = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMessage('');
     try {
-      const res = await fetch('http://localhost:5001/api/subscribe', {
+      const res = await fetch(`${API_URL}/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       });
+      const data = await res.json();
+      
       if (res.ok) {
         setStatus('success');
         setEmail('');
       } else {
-        // Optimistic fallback for frontend presentation
-        setStatus('success');
-        setEmail('');
+        setErrorMessage(data.error || 'Failed to subscribe.');
+        setStatus('error');
       }
     } catch (err) {
-      // Optimistic fallback for frontend presentation
-      setStatus('success');
-      setEmail('');
+      console.error(err);
+      setErrorMessage('Network connection failure.');
+      setStatus('error');
     }
   };
 
@@ -100,6 +104,12 @@ const EmailCapture = () => {
                   {status === 'loading' ? 'Joining...' : <>Join Now <Send size={14} /></>}
                 </button>
               </div>
+
+              {status === 'error' && (
+                <p className="text-xs text-red-500 font-black text-center uppercase tracking-wider mt-2">
+                  {errorMessage}
+                </p>
+              )}
 
               <p className="text-[10px] text-gray-500 font-black text-center uppercase tracking-[0.2em] mt-4">
                 🔒 No spam. No noise. Just updates worth opening.

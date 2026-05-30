@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, BadgeCheck, MessageSquare, Filter, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API_URL from '../utils/api';
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -56,7 +57,7 @@ const ReviewsPage = () => {
 
   const fetchReviews = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/reviews');
+      const res = await fetch(`${API_URL}/reviews`);
       if (res.ok) {
         const data = await res.json();
         setReviews([...staticReviews, ...data]);

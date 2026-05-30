@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Star, BadgeCheck, Play, Send, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API_URL from '../../utils/api';
 
 const ReviewSection = () => {
   const [reviews, setReviews] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [showForm, setShowForm] = useState(false);
   const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '', category: 'Morning Energy' });
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const categories = [
     "All",
@@ -66,7 +68,7 @@ const ReviewSection = () => {
 
   const fetchReviews = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/reviews');
+      const res = await fetch(`${API_URL}/reviews`);
       if (res.ok) {
         const data = await res.json();
         setReviews([...staticReviews, ...data]);
@@ -82,7 +84,7 @@ const ReviewSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5001/api/reviews', {
+      const res = await fetch(`${API_URL}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newReview)
@@ -90,6 +92,8 @@ const ReviewSection = () => {
       if (res.ok) {
         setShowForm(false);
         setNewReview({ name: '', rating: 5, comment: '', category: 'Morning Energy' });
+        setSubmitSuccess(true);
+        setTimeout(() => setSubmitSuccess(false), 7000);
         fetchReviews();
       } else {
         // Optimistic fallback update for mock state if API is not fully set up
@@ -185,6 +189,13 @@ const ReviewSection = () => {
             </button>
           ))}
         </div>
+
+        {/* Success Banner */}
+        {submitSuccess && (
+          <div className="mb-12 bg-[#052E22]/30 border border-[#0FA36B]/20 p-6 rounded-[2rem] text-center text-xs font-black uppercase tracking-widest text-[#16C784] animate-in fade-in duration-500">
+            🎉 Thank you! Your experience has been recorded and is pending administrator validation before publishing.
+          </div>
+        )}
 
         {/* Review Form */}
         {showForm && (

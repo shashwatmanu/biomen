@@ -1,8 +1,10 @@
 import React from 'react';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
 
 const CartDrawer = () => {
+  const navigate = useNavigate();
   const { items, isCartOpen, toggleCart, updateQuantity, removeFromCart, closeCart } = useCartStore();
 
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -102,7 +104,13 @@ const CartDrawer = () => {
               <span className="text-2xl font-black text-[#F4F6F2]">₹{subtotal.toLocaleString()}</span>
             </div>
             
-            <button className="w-full py-[20px] px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)]">
+            <button 
+              onClick={() => {
+                closeCart();
+                navigate('/checkout');
+              }}
+              className="w-full py-[20px] px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)] cursor-pointer"
+            >
               SECURE CHECKOUT
             </button>
             <div className="mt-4 flex items-center justify-center gap-2 text-gray-500 text-[10px] font-black uppercase tracking-wider">

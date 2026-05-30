@@ -40,9 +40,9 @@ const HeroSection = () => {
             transform: 'translateY(40px) translateZ(0)'
           }}
         />
-        {/* Desktop Background: Mossy Ingredients (hero_mossy_ingredients.jpg) */}
+        {/* Desktop Background: High-resolution Vector SVG for crispness on laptop/retina screens */}
         <img
-          src="/hero_mossy_ingredients.jpg?v=2"
+          src="/Untitled design (3).svg"
           alt="T-CORE Luxury Vitality Desktop"
           className="hidden lg:block w-full h-full object-cover filter brightness-[1.05] contrast-[1.04] object-[center_42%]"
           style={{
