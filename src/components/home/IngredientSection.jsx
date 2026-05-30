@@ -124,16 +124,13 @@ const IngredientSection = () => {
   const nodeRotationTweenRef = useRef(null);
 
   useGSAP(() => {
-    const isMobile = window.innerWidth < 1024;
-
-    // Clockwise rotation of the main orbit ring (contains logo and nodes) - paused on mobile for flawless tap stability!
+    // Clockwise rotation of the main orbit ring (contains logo and nodes) - active on all devices!
     const rTween = gsap.to(".logo-orbit-ring", {
       rotation: 360,
       duration: 40,
       repeat: -1,
       ease: "none",
-      transformOrigin: "240px 260px",
-      paused: isMobile
+      transformOrigin: "240px 260px"
     });
 
     // Counter-clockwise rotation of the node buttons to keep them upright (Ferris wheel effect!)
@@ -142,8 +139,7 @@ const IngredientSection = () => {
       duration: 40,
       repeat: -1,
       ease: "none",
-      transformOrigin: "center center",
-      paused: isMobile
+      transformOrigin: "center center"
     });
 
     rotationTweenRef.current = rTween;
