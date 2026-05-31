@@ -45,7 +45,7 @@ const SolutionGrid = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
+      className="relative py-12 lg:py-16 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
       id="solution"
     >
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}

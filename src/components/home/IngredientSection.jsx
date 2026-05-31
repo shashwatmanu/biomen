@@ -189,7 +189,7 @@ const IngredientSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 lg:py-28 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:min-h-[920px] flex flex-col justify-between"
+      className="relative py-12 lg:py-16 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 lg:min-h-[780px] flex flex-col justify-between"
       id="formula"
     >
       {/* Background spotlights (ambient glows, not digital gradients) */}

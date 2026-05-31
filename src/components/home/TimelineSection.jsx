@@ -53,14 +53,19 @@ const TimelineSection = ({ title }) => {
   const activeIndex = days.indexOf(activeDay);
   const current = timelineData[activeDay];
 
-  // Automated Carousel Cycling logic
+  // Automated Carousel Cycling logic (Increased to 8s, stops at Day 90)
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveDay((prev) => {
-        const nextIndex = (days.indexOf(prev) + 1) % days.length;
-        return days[nextIndex];
+        const nextIndex = days.indexOf(prev) + 1;
+        if (nextIndex < days.length) {
+          return days[nextIndex];
+        } else {
+          clearInterval(interval);
+          return prev; // Stops at Day 90 without wrapping back to Day 7
+        }
       });
-    }, 4500); // Cycles stages every 4.5 seconds
+    }, 8000); // Cycles stages every 8.0 seconds for optimal readability
     return () => clearInterval(interval);
   }, []);
 
@@ -75,7 +80,7 @@ const TimelineSection = ({ title }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative py-24 lg:py-28 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-12 lg:gap-16" 
+      className="relative py-12 lg:py-16 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
       id="timeline"
     >
       {/* Seamless tactical background image with deep sunset warmth overlay */}
@@ -89,23 +94,25 @@ const TimelineSection = ({ title }) => {
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
-        
+      {/* Top Block: Padded and Centered Node Tracker */}
+      <div className="max-w-7xl mx-auto w-full relative z-10 px-6 md:px-20">
         {/* Interactive Progress Node Tracker */}
         <div className="w-full max-w-2xl mx-auto mb-3 lg:mb-1">
           <div className="relative flex justify-between items-center w-full">
-            {/* Symmetrical timeline connecting line */}
-            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white/10 -translate-y-1/2 z-0" />
-            <div 
-              className={`absolute top-1/2 left-0 h-[2px] -translate-y-1/2 z-0 transition-all duration-500 ${
-                activeDay === 7 
-                  ? "bg-[#EF4444]" 
-                  : activeDay === 30 
-                    ? "bg-gradient-to-r from-[#EF4444] to-[#FFC01E]" 
-                    : "bg-gradient-to-r from-[#EF4444] via-[#FFC01E] to-[#16C784]"
-              }`} 
-              style={{ width: activeDay === 7 ? "0%" : activeDay === 30 ? "50%" : "100%" }}
-            />
+            {/* Symmetrical timeline connecting line: Nested precisely inside absolute wrapper offset by 24px (node radius) to prevent bleeding outside the nodes */}
+            <div className="absolute top-1/2 left-[24px] right-[24px] h-[2px] bg-white/10 -translate-y-1/2 z-0" />
+            <div className="absolute top-1/2 left-[24px] right-[24px] h-[2px] -translate-y-1/2 z-0">
+              <div 
+                className={`h-full transition-all duration-500 ${
+                  activeDay === 7 
+                    ? "bg-[#EF4444]" 
+                    : activeDay === 30 
+                      ? "bg-gradient-to-r from-[#EF4444] to-[#FFC01E]" 
+                      : "bg-gradient-to-r from-[#EF4444] via-[#FFC01E] to-[#16C784]"
+                }`} 
+                style={{ width: activeDay === 7 ? "0%" : activeDay === 30 ? "50%" : "100%" }}
+              />
+            </div>
 
             {days.map((day) => {
               const isActive = activeDay === day;
@@ -143,61 +150,65 @@ const TimelineSection = ({ title }) => {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Sliding Cards Track Wrapper */}
-        <div className="w-full overflow-hidden py-3 lg:py-5 relative z-10 my-auto">
-          <div 
-            className="timeline-track" 
-            style={{ '--active-index': activeIndex }}
-          >
-            {days.map((day, idx) => {
-              const isActive = activeDay === day;
-              const card = timelineData[day];
-              return (
-                <div
-                  key={day}
-                  onClick={() => setActiveDay(day)}
-                  className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border p-6 lg:p-7 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
-                    isActive 
-                      ? 'opacity-100 scale-100 shadow-2xl z-20 active-timeline-indicator' 
-                      : 'opacity-45 scale-90 z-10 hover:opacity-65 border-white/5'
-                  }`}
-                  style={{ 
-                    borderColor: isActive ? card.color : 'rgba(255,255,255,0.05)',
-                    boxShadow: isActive ? `0 0 40px ${card.bgColor}` : 'none',
-                    marginRight: idx < 2 ? 'var(--card-gap)' : '0px'
-                  }}
-                >
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center pb-3 border-b border-white/10">
-                      <span 
-                        className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
-                        style={{ backgroundColor: card.bgColor, color: card.color }}
-                      >
-                        STAGE 0{idx + 1} &bull; DAY {day}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-white">
-                        {card.icon} {card.label}
-                      </span>
-                    </div>
-                    
-                    <ul className="space-y-3 text-left pl-1">
-                      {card.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
-                          <span className="text-gray-300">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
+      {/* Middle Block: Full-Bleed Slider Track (100% Viewport width for mathematically perfect centering) */}
+      <div className="w-full overflow-hidden py-3 lg:py-5 relative z-10 my-auto">
+        <div 
+          className="timeline-track" 
+          style={{ 
+            transform: `translateX(calc(50vw - (var(--card-width) / 2) - (${activeIndex} * (var(--card-width) + var(--card-gap)))))`
+          }}
+        >
+          {days.map((day, idx) => {
+            const isActive = activeDay === day;
+            const card = timelineData[day];
+            return (
+              <div
+                key={day}
+                onClick={() => setActiveDay(day)}
+                className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border p-6 lg:p-7 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
+                  isActive 
+                    ? 'opacity-100 scale-100 shadow-2xl z-20 active-timeline-indicator' 
+                    : 'opacity-45 scale-90 z-10 hover:opacity-65 border-white/5'
+                }`}
+                style={{ 
+                  borderColor: isActive ? card.color : 'rgba(255,255,255,0.05)',
+                  boxShadow: isActive ? `0 0 40px ${card.bgColor}` : 'none',
+                  marginRight: idx < 2 ? 'var(--card-gap)' : '0px'
+                }}
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center pb-3 border-b border-white/10">
+                    <span 
+                      className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
+                      style={{ backgroundColor: card.bgColor, color: card.color }}
+                    >
+                      STAGE 0{idx + 1} &bull; DAY {day}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-white">
+                      {card.icon} {card.label}
+                    </span>
                   </div>
+                  
+                  <ul className="space-y-3 text-left pl-1">
+                    {card.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
+                        <span className="text-gray-300">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
-        {/* Bottom: Optimized Guarantee Showcase with safe layout constraints */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#052E22]/10 border border-white/10 rounded-[1.5rem] lg:rounded-[2rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md max-w-5xl mx-auto shadow-2xl w-full mb-3">
+      {/* Bottom Block: Padded and Centered Guarantee Showcase */}
+      <div className="max-w-7xl mx-auto w-full relative z-10 px-6 md:px-20 mb-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#052E22]/10 border border-white/10 rounded-[1.5rem] lg:rounded-[2rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md max-w-5xl mx-auto shadow-2xl w-full">
           
           {/* Left: Headline & Description */}
           <div className="lg:col-span-8 space-y-3.5 text-left relative z-20">
@@ -232,7 +243,6 @@ const TimelineSection = ({ title }) => {
           </div>
 
         </div>
-
       </div>
     </section>
   );
