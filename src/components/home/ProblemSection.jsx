@@ -30,12 +30,18 @@ const ProblemSection = () => {
       {/* Editorial seamless background image with high physical contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="/vitality_decline_bg.png" 
-          alt="Decline of Vitality Silhouette" 
-          className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.1] scale-100"
+          src="/declineport.svg" 
+          alt="Decline of Vitality Silhouette Mobile" 
+          className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 lg:via-black/50 to-transparent z-10" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
+        <img 
+          src="/declineland.svg" 
+          alt="Decline of Vitality Silhouette Desktop" 
+          className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
+        />
+        {/* Soft, professional gradient overlays that keep text readable while letting the SVG art shine */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/25 to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent z-10" />
       </div>
       
       <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">

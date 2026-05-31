@@ -51,9 +51,14 @@ const SolutionGrid = () => {
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="/hand_holding_green_jar.jpg" 
-          alt="T-CORE daily vitality solution" 
-          className="w-full h-full object-cover object-[28%_center] lg:object-[78%_center] filter brightness-[0.98] contrast-[1.02] animate-fade-in"
+          src="/solutionport.svg" 
+          alt="T-CORE daily vitality solution Mobile" 
+          className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
+        />
+        <img 
+          src="/solutionland.svg" 
+          alt="T-CORE daily vitality solution Desktop" 
+          className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
         />
         {/* Sleek deep botanical gradients to guarantee high-contrast text readability without washing out the image */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030705]/50 via-transparent to-[#030705]/50 z-10" />

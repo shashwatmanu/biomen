@@ -32,12 +32,14 @@ const HeroSection = () => {
       {/* Full-Bleed Background Image with Premium Seamless Blending Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/portrait_ingredients.jpg"
+          src="/Heroport.svg"
           alt="T-CORE Luxury Vitality Mobile"
-          className="block lg:hidden w-full h-full object-cover filter brightness-[1.14] contrast-[1.04] object-[center_68%] animate-fade-in"
+          className="block lg:hidden w-full h-full object-cover filter brightness-[1.14] contrast-[1.04] animate-fade-in"
           style={{
             imageRendering: '-webkit-optimize-contrast',
-            transform: 'translateY(40px) translateZ(0)'
+            // Shifted vertically up to 32% and translated -10px to perfectly frame the product jar higher
+            objectPosition: '62% 32%',
+            transform: 'translateY(-10px) translateZ(0)'
           }}
         />
         {/* Desktop Background: High-resolution Vector SVG for crispness on laptop/retina screens */}
@@ -53,7 +55,7 @@ const HeroSection = () => {
         {/* Competitor-inspired ultra-smooth, wide horizontal gradient mask */}
         <div className="hidden lg:block absolute inset-y-0 left-0 w-[65%] bg-gradient-to-r from-[#030705] via-[#030705]/95 to-transparent z-10" />
         {/* Mobile vertical gradient overlay for maximum readability without making the jar dull */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-transparent to-black/90 lg:hidden z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 lg:hidden z-10" />
       </div>
 
       {/* Floating Luxury Stamp Sticker Badge (Desktop only) */}
@@ -72,47 +74,49 @@ const HeroSection = () => {
       </div>
 
       {/* MOBILE-ONLY HERO LAYOUT (Symmetrical D2C Flow: Headline pushed high up, CTA pushed low down, center open for background Jar) */}
-      <div className="flex lg:hidden flex-col justify-between h-[82vh] xs:h-[84vh] sm:h-[86vh] w-full max-w-xl mx-auto relative z-20 pt-4 pb-2 text-center">
+      <div className="flex lg:hidden flex-col justify-between h-[84vh] xs:h-[86vh] sm:h-[88vh] w-full max-w-xl mx-auto relative z-20 pt-3 pb-3 text-center">
         {/* Top Block: Ratings and Headline pushed high up */}
-        <div className="space-y-4 pt-1 shrink-0">
+        <div className="space-y-3 pt-1 shrink-0">
           {/* Ratings & Reviews */}
-          <div className="flex flex-col items-center gap-1.5">
+          <div className="flex flex-col items-center gap-1">
             <div className="flex text-[#D85A1F]">
-              {[...Array(5)].map((_, i) => <Star key={i} size={15} fill="currentColor" />)}
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
             </div>
-            <span className="text-[9.5px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
+            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
               4.9/5 RATING &bull; OVER 3,900 VERIFIED EXPERIENCES
             </span>
           </div>
 
-          {/* Headline - Restored to original elegant serif and Option 1 */}
-          <h1 className="text-[1.42rem] xs:text-[1.62rem] sm:text-[2rem] font-normal font-serif tracking-tight leading-normal text-white max-w-xl mx-auto">
-            The Indian Man <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium">Was Built For More.</span>
+          {/* Headline - Sexier, uppercase editorial style, slightly more compact */}
+          <h1 className="text-[1.55rem] xs:text-[1.75rem] sm:text-[2.1rem] font-normal font-serif tracking-tight leading-[1.1] text-white uppercase max-w-xl mx-auto">
+            Daily Vitality <br />
+            for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium">Modern</span> <br />
+            Indian Man
           </h1>
         </div>
 
         {/* Flexible Center Spacer: Leaves center open to perfectly frame the bright glass jar visual behind it! */}
         <div className="flex-1 min-h-[160px] xs:min-h-[220px] sm:min-h-[280px] pointer-events-none" />
 
-        {/* Bottom Block: Description, CTA Button, and Guarantee pushed all the way down */}
-        <div className="space-y-4.5 pb-2 shrink-0">
-          {/* Minimal punchy description */}
-          <p className="text-sm xs:text-base text-[#A8B3AA] font-semibold leading-relaxed max-w-sm mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+        {/* Bottom Block: Description, CTA Button, and Guarantee pushed all the way down with gorgeous margins */}
+        <div className="space-y-3.5 pb-1 shrink-0">
+          {/* Minimal punchy description, sized down to avoid overlapping the jar base */}
+          <p className="text-xs xs:text-sm text-[#A8B3AA] font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
             5 clinically-dosed Ayurvedic extracts built to support daily energy, drive, and post-workout recovery.
           </p>
 
-          {/* Full-width premium Orange CTA Button */}
-          <div className="px-2">
+          {/* Full-width premium Orange CTA Button with breathing space */}
+          <div className="px-2 my-3">
             <Link
               to="/products/t-core"
-              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.4)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
+              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
             >
               UNLOCK YOUR SYSTEM <ArrowRight size={15} />
             </Link>
           </div>
 
           {/* Micro-trust Line */}
-          <div className="flex items-center justify-center gap-1.5 text-[8.5px] text-[#A8B3AA] font-black uppercase tracking-wider">
+          <div className="flex items-center justify-center gap-1.5 text-[8.5px] text-[#A8B3AA] font-black uppercase tracking-wider pt-0.5">
             <Shield size={11} className="text-[#16C784] shrink-0" />
             <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
           </div>
