@@ -150,42 +150,42 @@ const Navbar = () => {
               <Link 
                 to="/products/t-core" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-white hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Shop T-CORE
               </Link>
               <Link 
                 to="/science" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-white hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Science & Research
               </Link>
               <Link 
                 to="/ayurvedic-doctor" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-biomen-gold hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-gold hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Dr. Advisory
               </Link>
               <Link 
                 to="/about" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-white hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Our Story
               </Link>
               <Link 
                 to="/faq" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-white hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Help Desk / FAQs
               </Link>
               <Link 
                 to="/contact" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2.5xl font-black uppercase text-white hover:text-biomen-accent tracking-wider font-serif italic py-1 transition-colors"
+                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Contact Support
               </Link>

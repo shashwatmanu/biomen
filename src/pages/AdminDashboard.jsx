@@ -119,9 +119,22 @@ const AdminDashboard = () => {
     }
   };
 
-  // Action: Push order data to Shiprocket (Mock action for verification)
-  const handlePushToShiprocket = (order) => {
-    showBanner(`🚀 Successfully pushed invoice ${order.invoiceNumber || order._id} to Shiprocket logistics desk!`);
+  // Action: Push order data to Shiprocket (mock-generates real tracking AWB)
+  const handlePushToShiprocket = async (order) => {
+    try {
+      const res = await fetch(`${API_URL}/orders/admin/${order._id}/shiprocket`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await res.json();
+      if (data.success) {
+        showBanner(`🚀 Pushed to Shiprocket! AWB: ${data.order.trackingNumber}`);
+        fetchData();
+      }
+    } catch (err) {
+      console.error(err);
+      showBanner("Failed to push to Shiprocket.", "error");
+    }
   };
 
   return (
@@ -333,6 +346,11 @@ const AdminDashboard = () => {
                         <td className="p-4">
                           <span className="font-mono text-white font-bold block">{order.invoiceNumber || 'INV-NONE'}</span>
                           <span className="text-[10px] text-gray-500 block mt-1">{formattedDate}</span>
+                          {order.trackingNumber && (
+                            <span className="text-[8px] text-[#16C784] bg-[#052E22] px-2 py-0.5 rounded border border-[#0FA36B]/20 block mt-1.5 w-fit font-bold font-mono uppercase tracking-widest">
+                              AWB: {order.trackingNumber}
+                            </span>
+                          )}
                         </td>
 
                         {/* Customer details */}
@@ -354,11 +372,15 @@ const AdminDashboard = () => {
                           ))}
                         </td>
 
-                        {/* Payment Status badge */}
+                        {/* Payment Status & Details */}
                         <td className="p-4 text-center">
                           <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider ${order.paymentStatus === 'paid' ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' : order.paymentStatus === 'failed' ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20' : 'bg-white/5 text-gray-400'}`}>
                             {order.paymentStatus}
                           </span>
+                          <span className="text-[9px] text-gray-500 block font-bold uppercase tracking-wider mt-1.5">{order.paymentMethod || 'Online (Razorpay)'}</span>
+                          {order.razorpayPaymentId && (
+                            <span className="text-[8px] text-gray-500 font-mono block mt-0.5">ID: {order.razorpayPaymentId}</span>
+                          )}
                         </td>
 
                         {/* Category toggle (Retail / Wholesale) */}
@@ -371,29 +393,59 @@ const AdminDashboard = () => {
                           </button>
                         </td>
 
-                        {/* Shipping status selector + Shiprocket trigger */}
+                        {/* Explicit Shipping Action Buttons */}
                         <td className="p-4 text-center">
-                          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                          <div className="flex items-center justify-center gap-1.5">
                             
-                            {/* Shipping dropdown selector */}
-                            <select
-                              value={order.shippingStatus || 'processing'}
-                              onChange={(e) => handleUpdateShippingStatus(order._id, e.target.value)}
-                              className="px-2.5 py-1.5 bg-[#06110C] border border-white/10 focus:border-[#0FA36B] rounded-lg text-[9px] font-black uppercase tracking-wider text-white outline-none cursor-pointer"
-                            >
-                              <option value="processing">Processing</option>
-                              <option value="shipped">Shipped</option>
-                              <option value="delivered">Delivered</option>
-                            </select>
+                            {/* Current Shipping Status Badge */}
+                            <span className={`px-2.5 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-wider ${
+                              order.shippingStatus === 'delivered' 
+                                ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' 
+                                : order.shippingStatus === 'shipped' 
+                                ? 'bg-blue-950 text-blue-400 border border-blue-800/30' 
+                                : order.shippingStatus === 'cancelled'
+                                ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20'
+                                : 'bg-[#06110C] text-yellow-500 border border-yellow-500/20'
+                            }`}>
+                              {order.shippingStatus || 'processing'}
+                            </span>
 
-                            {/* Push to Shiprocket Button */}
-                            <button
-                              onClick={() => handlePushToShiprocket(order)}
-                              title="Push Order to Shiprocket Logistics Desk"
-                              className="p-2 bg-[#0FA36B]/10 hover:bg-[#0FA36B]/20 border border-[#0FA36B]/20 hover:border-[#0FA36B]/40 text-[#16C784] rounded-lg transition-all cursor-pointer"
-                            >
-                              <Send size={10} />
-                            </button>
+                            {/* Divider */}
+                            <div className="h-5 w-px bg-white/10 mx-1" />
+
+                            {/* Action: Approve / Push to Shiprocket */}
+                            {order.shippingStatus === 'processing' && (
+                              <button
+                                onClick={() => handlePushToShiprocket(order)}
+                                title="Approve & Push Order to Shiprocket"
+                                className="p-2 bg-[#0FA36B]/15 hover:bg-[#0FA36B]/25 border border-[#0FA36B]/30 text-[#16C784] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                              >
+                                <Send size={10} />
+                              </button>
+                            )}
+
+                            {/* Action: Mark Delivered */}
+                            {order.shippingStatus === 'shipped' && (
+                              <button
+                                onClick={() => handleUpdateShippingStatus(order._id, 'delivered')}
+                                title="Mark Package as Delivered"
+                                className="p-2 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-800/30 text-emerald-400 rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                              >
+                                <CheckCircle2 size={10} />
+                              </button>
+                            )}
+
+                            {/* Action: Cancel / Reject (Only clickable if not already delivered or cancelled) */}
+                            {order.shippingStatus !== 'delivered' && order.shippingStatus !== 'cancelled' && (
+                              <button
+                                onClick={() => handleUpdateShippingStatus(order._id, 'cancelled')}
+                                title="Cancel / Reject Order"
+                                className="p-2 bg-[#D85A1F]/15 hover:bg-[#D85A1F]/25 border border-[#D85A1F]/30 text-[#D85A1F] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                              >
+                                <ShieldAlert size={10} />
+                              </button>
+                            )}
+
                           </div>
                         </td>
 

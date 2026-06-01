@@ -10,7 +10,8 @@ const AdminLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === 'biolabsAdmin' && password === '1nceinINDIA') {
+    const systemAdminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'biomen_deck_2026!';
+    if (username === 'biolabsAdmin' && password === systemAdminPassword) {
       localStorage.setItem('biolabs_admin_session', 'authenticated_token_99');
       navigate('/admin');
     } else {
