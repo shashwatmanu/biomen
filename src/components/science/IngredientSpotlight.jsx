@@ -310,35 +310,34 @@ const IngredientSpotlight = () => {
             </div>
           </div>
 
-          {/* Navigation Controls Overlayed underneath card */}
-          <div className="flex items-center justify-between mt-6 px-4">
-            <button
-              onClick={prevIngredient}
-              className="w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16C784] hover:border-[#16C784]/40 active:scale-95 transition-all duration-200 cursor-pointer"
-              aria-label="Previous ingredient"
-            >
-              <ChevronLeft size={18} />
-            </button>
+          {/* Left Arrow absolute overlay */}
+          <button
+            onClick={prevIngredient}
+            className="absolute left-2.5 xs:left-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 border border-[#16C784]/25 flex items-center justify-center text-white/80 hover:text-[#16C784] hover:border-[#16C784] active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            aria-label="Previous ingredient"
+          >
+            <ChevronLeft size={22} />
+          </button>
 
-            {/* Dynamic dots progress */}
-            <div className="flex items-center gap-2">
-              {ingredientsData.map((ing) => (
-                <button
-                  key={ing.id}
-                  onClick={() => selectIngredient(ing.id)}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeId === ing.id ? 'w-6 bg-[#16C784]' : 'w-1.5 bg-white/20'}`}
-                  aria-label={`Go to slide ${ing.id}`}
-                />
-              ))}
-            </div>
+          {/* Right Arrow absolute overlay */}
+          <button
+            onClick={nextIngredient}
+            className="absolute right-2.5 xs:right-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 border border-[#16C784]/25 flex items-center justify-center text-white/80 hover:text-[#16C784] hover:border-[#16C784] active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            aria-label="Next ingredient"
+          >
+            <ChevronRight size={22} />
+          </button>
 
-            <button
-              onClick={nextIngredient}
-              className="w-10 h-10 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16C784] hover:border-[#16C784]/40 active:scale-95 transition-all duration-200 cursor-pointer"
-              aria-label="Next ingredient"
-            >
-              <ChevronRight size={18} />
-            </button>
+          {/* Dynamic dots progress under the card */}
+          <div className="flex items-center justify-center gap-2 mt-5">
+            {ingredientsData.map((ing) => (
+              <button
+                key={ing.id}
+                onClick={() => selectIngredient(ing.id)}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeId === ing.id ? 'w-6 bg-[#16C784]' : 'w-1.5 bg-white/20'}`}
+                aria-label={`Go to slide ${ing.id}`}
+              />
+            ))}
           </div>
         </div>
 

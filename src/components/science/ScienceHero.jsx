@@ -105,11 +105,11 @@ const ScienceHero = () => {
           </div>
 
           {/* Right Column: 3D Canvas Container (order-2 on mobile, order-2 on desktop) */}
-          <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full order-2 lg:order-2">
+          <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full order-2 lg:order-2 touch-none select-none">
             {/* Elegant glowing backdrop behind the cylinder */}
             <div className="absolute inset-0 max-w-[420px] max-h-[420px] mx-auto my-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
 
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center touch-none select-none">
               <Suspense 
                 fallback={
                   <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
@@ -181,9 +181,14 @@ const ScienceHero = () => {
               </h1>
             </div>
 
-            <p className="text-lg text-[#A8B3AA] font-medium leading-relaxed max-w-xl">
-              T-CORE is not a magic solution. It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
-            </p>
+            <div className="relative overflow-hidden p-6 rounded-2xl border border-[#16C784]/30 bg-gradient-to-r from-[#052E22]/50 to-[#0C4A36]/30 shadow-[0_0_25px_rgba(22,199,132,0.12)] max-w-xl group hover:border-[#16C784]/50 transition-all duration-500">
+              {/* Pulsing glow background effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(22,199,132,0.06)_0%,transparent_70%)] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+              <p className="text-[15px] sm:text-base md:text-[17px] text-[#A8B3AA] font-semibold leading-relaxed relative z-10">
+                <span className="text-[#16C784] font-black tracking-widest block mb-2 text-xs uppercase">Integrity Notice</span>
+                <span className="font-bold text-white drop-shadow-[0_0_6px_rgba(22,199,132,0.35)]">T-CORE is not a magic solution.</span> It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
+              </p>
+            </div>
 
             {/* Premium Award-Style Editorial Metrics */}
             <div className="grid grid-cols-3 gap-4 pt-4">

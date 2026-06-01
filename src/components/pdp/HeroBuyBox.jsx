@@ -30,7 +30,7 @@ const HeroBuyBox = () => {
       title: "Full Reset System",
       mrp: 9000,
       price: 3999,
-      best: true,
+      best: false,
       desc: "Evaluate full recovery, stamina & drive baseline"
     },
     { 
@@ -48,12 +48,12 @@ const HeroBuyBox = () => {
       title: "Entry System",
       mrp: 3000,
       price: 1499,
-      best: false,
+      best: true,
       desc: "For first-time customers starting their routine"
     }
   ];
 
-  const [selectedBundle, setSelectedBundle] = useState(bundles[0]); // default to 3 bottles
+  const [selectedBundle, setSelectedBundle] = useState(bundles[2]); // default to 1 bottle
 
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);

@@ -74,26 +74,15 @@ const Doctor = () => {
         <div className="bg-[#06110C] border border-[#0FA36B]/20 rounded-[3rem] p-8 md:p-16 shadow-2xl mb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left side: Render or Icon Grid */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
-              <div className="aspect-square bg-gradient-to-br from-[#052E22] to-[#030705] rounded-[2rem] border border-[#0FA36B]/20 flex flex-col justify-center items-center p-8 text-center relative overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#0FA36B]/10 via-transparent to-transparent opacity-50" />
-                <Award size={64} className="text-[#16C784] mb-4" />
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">Ayurvedic Board</h3>
-                <p className="text-xs text-[#A8B3AA] mt-2 max-w-xs leading-relaxed">
-                  Led by certified doctors dedicated to standardizing ancient botanical extractions for modern male physiology.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2 justify-center">
-                  <span className="bg-black/40 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-                    BAMS Certified
-                  </span>
-                  <span className="bg-black/40 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-                    MD Ayurveda
-                  </span>
-                  <span className="bg-black/40 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-                    FSSAI Aligned
-                  </span>
-                </div>
+            {/* Left side: Doctor Image Showcase */}
+            <div className="lg:col-span-5 relative group">
+              <div className="aspect-[4/5] sm:aspect-square lg:aspect-[4/5] bg-gradient-to-br from-[#052E22] to-[#030705] rounded-[2rem] border border-[#0FA36B]/20 overflow-hidden relative shadow-2xl">
+                <img 
+                  src="/doc.svg" 
+                  alt="Dr. Keshav Dev" 
+                  className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.05] group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
               </div>
             </div>
 

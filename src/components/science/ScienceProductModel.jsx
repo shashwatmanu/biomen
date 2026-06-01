@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
@@ -16,18 +16,75 @@ export const ScienceProductModel = (props) => {
 
   const groupRef = useRef();
 
-  // Premium natural floating and swaying animation
+  const rotationY = useRef(-Math.PI * 0.35);
+  const targetRotationY = useRef(-Math.PI * 0.35);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startRotationY = useRef(0);
+
+  useEffect(() => {
+    const handleStart = (clientX) => {
+      isDragging.current = true;
+      startX.current = clientX;
+      startRotationY.current = rotationY.current;
+    };
+
+    const handleMove = (clientX) => {
+      if (!isDragging.current) return;
+      const deltaX = clientX - startX.current;
+      targetRotationY.current = startRotationY.current + deltaX * 0.01;
+    };
+
+    const handleEnd = () => {
+      isDragging.current = false;
+    };
+
+    const onMouseDown = (e) => handleStart(e.clientX);
+    const onMouseMove = (e) => handleMove(e.clientX);
+    const onMouseUp = () => handleEnd();
+
+    const onTouchStart = (e) => {
+      if (e.touches.length > 0) handleStart(e.touches[0].clientX);
+    };
+    const onTouchMove = (e) => {
+      if (e.touches.length > 0) handleMove(e.touches[0].clientX);
+    };
+    const onTouchEnd = () => handleEnd();
+
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd);
+
+    return () => {
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+  }, []);
+
+  // Premium natural floating, swaying, and user-interactive rotation
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (groupRef.current) {
       // 1. Slow, premium floating height sway (weightless feel)
       groupRef.current.position.y = Math.sin(t * 1.0) * 0.08;
 
-      // 2. Sway rotation centered around the front face (-Math.PI * 0.4)
-      // Keeps the gorgeous gold "T-CORE" text visible at all times
-      const baseRotationY = -Math.PI * 0.35;
-      const swayY = Math.sin(t * 0.4) * 0.35; // Sway by ~20 degrees left/right
-      groupRef.current.rotation.y = baseRotationY + swayY;
+      // 2. Interactive and sway rotation
+      if (isDragging.current) {
+        rotationY.current += (targetRotationY.current - rotationY.current) * 0.25;
+      } else {
+        rotationY.current += (targetRotationY.current - rotationY.current) * 0.08;
+      }
+
+      // Add gentle sway on top when not actively dragging
+      const swayY = isDragging.current ? 0 : Math.sin(t * 0.4) * 0.15;
+      groupRef.current.rotation.y = rotationY.current + swayY;
 
       // 3. Subtle floating pitch (X) and roll (Z) to mimic fluid suspension
       groupRef.current.rotation.x = Math.sin(t * 0.7) * 0.04 + 0.03;

@@ -15,7 +15,7 @@ const BundleSelector = () => {
       mrp: 3000,
       price: 1499,
       subPrice: 1274, // 15% extra off
-      best: false,
+      best: true,
       desc: "For first-time customers beginning their T-CORE routine."
     },
     { 
@@ -26,7 +26,7 @@ const BundleSelector = () => {
       mrp: 9000,
       price: 3999,
       subPrice: 3399,
-      best: true,
+      best: false,
       desc: "Recommended for men who want to properly evaluate long-term energy, recovery, and vitality support."
     },
     { 

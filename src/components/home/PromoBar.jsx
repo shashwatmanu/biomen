@@ -12,8 +12,8 @@ const PromoBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
-  // rolling 15-minute high-conversion countdown timer using localStorage to prevent reload reset
-  const [timeLeft, setTimeLeft] = useState(900);
+  // rolling 12-hour high-conversion countdown timer using localStorage to prevent reload reset
+  const [timeLeft, setTimeLeft] = useState(43200);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,8 +33,8 @@ const PromoBar = () => {
     const now = Date.now();
 
     if (!expiry || parseInt(expiry, 10) < now) {
-      // If no expiry or it has already passed, set new 15 minutes from now
-      const newExpiry = now + 15 * 60 * 1000;
+      // If no expiry or it has already passed, set new 12 hours from now
+      const newExpiry = now + 12 * 60 * 60 * 1000;
       localStorage.setItem('promo_expiry', newExpiry.toString());
       expiry = newExpiry.toString();
     }
@@ -47,10 +47,10 @@ const PromoBar = () => {
       const difference = Math.floor((targetTime - currentNow) / 1000);
 
       if (difference <= 0) {
-        // Roll over to next 15 minutes when expired
-        const newExpiry = Date.now() + 15 * 60 * 1000;
+        // Roll over to next 12 hours when expired
+        const newExpiry = Date.now() + 12 * 60 * 60 * 1000;
         localStorage.setItem('promo_expiry', newExpiry.toString());
-        setTimeLeft(900);
+        setTimeLeft(43200);
         // Refresh page or trigger state update by changing target
         window.location.reload();
       } else {
@@ -69,9 +69,10 @@ const PromoBar = () => {
   ];
 
   const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import PDP from './pages/PDP';
 import Science from './pages/Science';
@@ -9,6 +9,8 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Doctor from './pages/Doctor';
 import Checkout from './pages/Checkout';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/AdminLogin';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,13 +23,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const container = useRef();
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
 
   return (
     <div className="bg-black min-h-screen relative">
-      <div className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md">
-        <PromoBar />
-        <Navbar />
-      </div>
+      {!isAdminPage && (
+        <div className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md">
+          <PromoBar />
+          <Navbar />
+        </div>
+      )}
       
       {/* 3D Canvas removed from global scope to fix homepage overlap issue */}
       <main ref={container} className="relative w-full">
@@ -41,11 +47,13 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/ayurvedic-doctor" element={<Doctor />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
         </Routes>
       </main>
 
-      <CartDrawer />
-      <EntryPopup />
+      {!isAdminPage && <CartDrawer />}
+      {!isAdminPage && <EntryPopup />}
     </div>
   );
 }
