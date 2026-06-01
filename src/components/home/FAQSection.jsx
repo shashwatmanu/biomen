@@ -44,7 +44,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="faq">
+    <section className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="faq">
       <div className="max-w-6xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
         {/* Header */}

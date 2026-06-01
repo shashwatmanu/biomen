@@ -80,7 +80,7 @@ const TimelineSection = ({ title }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative py-12 lg:py-16 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
+      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
       id="timeline"
     >
       {/* Seamless tactical background image with deep sunset warmth overlay */}
@@ -167,7 +167,7 @@ const TimelineSection = ({ title }) => {
               <div
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border p-6 lg:p-7 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
+                className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border py-5 px-6 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
                   isActive 
                     ? 'opacity-100 scale-100 shadow-2xl z-20 active-timeline-indicator' 
                     : 'opacity-45 scale-90 z-10 hover:opacity-65 border-white/5'
@@ -178,8 +178,8 @@ const TimelineSection = ({ title }) => {
                   marginRight: idx < 2 ? 'var(--card-gap)' : '0px'
                 }}
               >
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-3 border-b border-white/10">
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center pb-2.5 border-b border-white/10">
                     <span 
                       className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: card.bgColor, color: card.color }}
@@ -191,7 +191,7 @@ const TimelineSection = ({ title }) => {
                     </span>
                   </div>
                   
-                  <ul className="space-y-3 text-left pl-1">
+                  <ul className="space-y-2 text-left pl-1">
                     {card.bullets.map((bullet, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
                         <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
@@ -230,14 +230,17 @@ const TimelineSection = ({ title }) => {
             </div>
           </div>
 
-          {/* Right: Guarantee Circular Badge */}
-          <div className="lg:col-span-4 flex items-center justify-center relative z-20">
-            <div className="relative w-28 h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-full bg-black/60 border-4 border-biomen-copper shadow-[0_0_40px_rgba(216,90,31,0.2)] p-2">
-              <div className="text-center flex flex-col items-center justify-center space-y-0.5">
-                <Award size={20} className="text-[#D85A1F] animate-pulse mb-0.5" />
-                <span className="text-[9px] font-black text-white uppercase tracking-wider block">100% VITALITY</span>
-                <span className="text-[7.5px] font-black text-[#16C784] uppercase tracking-widest block">GUARANTEE</span>
-                <span className="text-[6px] text-[#A8B3AA] font-black uppercase tracking-wider block">90 Days Support</span>
+          {/* Right: Massive Guarantee Circular Sticker-Like Badge (Zero Rotation) */}
+          <div className="lg:col-span-4 flex items-center justify-center relative z-20 mt-4 lg:mt-0">
+            <div className="relative w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center rounded-full bg-gradient-to-br from-[#052e22] to-[#020504] border-[6px] border-[#D85A1F] shadow-[10px_10px_35px_rgba(0,0,0,0.85)] p-5 transition-transform duration-300 hover:scale-105 select-none rotate-0">
+              {/* Inner dashed accent circle */}
+              <div className="absolute inset-2.5 rounded-full border border-dashed border-[#D85A1F]/30 pointer-events-none" />
+              
+              <div className="text-center flex flex-col items-center justify-center space-y-1.5">
+                <Award size={40} className="text-[#D85A1F] animate-pulse mb-1 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                <span className="text-[12px] lg:text-[15px] font-black text-white uppercase tracking-wider block leading-none">100% VITALITY</span>
+                <span className="text-[10px] lg:text-[12px] font-black text-[#16C784] uppercase tracking-widest block bg-[#16C784]/15 px-3 py-1 rounded border border-[#16C784]/25 mt-0.5">GUARANTEE</span>
+                <span className="text-[8px] lg:text-[9.5px] text-[#A8B3AA] font-black uppercase tracking-wider block mt-0.5">90 Days Support</span>
               </div>
             </div>
           </div>

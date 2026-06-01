@@ -106,7 +106,7 @@ const HeroSection = () => {
           </p>
 
           {/* Full-width premium Orange CTA Button with breathing space */}
-          <div className="px-2 my-3">
+          <div className="px-2">
             <Link
               to="/products/t-core"
               className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
