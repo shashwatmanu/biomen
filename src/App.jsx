@@ -11,6 +11,7 @@ import Doctor from './pages/Doctor';
 import Checkout from './pages/Checkout';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
+import ReelMaker from './pages/ReelMaker';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,7 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const container = useRef();
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin');
+  const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel';
 
   return (
     <div className="bg-black min-h-screen relative">
@@ -49,6 +50,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/temp-reel" element={<ReelMaker />} />
         </Routes>
       </main>
 
