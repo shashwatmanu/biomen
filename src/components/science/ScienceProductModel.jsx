@@ -7,12 +7,16 @@ export const ScienceProductModel = (props) => {
   // Load premium canister textures
   const textureTop = useTexture('/label_top.jpg');
   const textureBottom = useTexture('/label_bottom.jpg');
+  const capTop = useTexture('/cap_top.jpg');
+  const capBottom = useTexture('/cap_bottom.jpg');
 
   // Wrap setup and color space configuration
   textureTop.wrapS = textureTop.wrapT = THREE.RepeatWrapping;
   textureBottom.wrapS = textureBottom.wrapT = THREE.RepeatWrapping;
   textureTop.colorSpace = THREE.SRGBColorSpace;
   textureBottom.colorSpace = THREE.SRGBColorSpace;
+  capTop.colorSpace = THREE.SRGBColorSpace;
+  capBottom.colorSpace = THREE.SRGBColorSpace;
 
   const groupRef = useRef();
 
@@ -116,6 +120,24 @@ export const ScienceProductModel = (props) => {
   lidLabelMaterial.map.repeat.set(1, 1);
   lidLabelMaterial.map.offset.set(0, 0);
 
+  const capTopMaterial = new THREE.MeshPhysicalMaterial({
+    map: capTop,
+    roughness: 0.22,
+    metalness: 0.15,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.05,
+    envMapIntensity: 2.8
+  });
+
+  const capBottomMaterial = new THREE.MeshPhysicalMaterial({
+    map: capBottom,
+    roughness: 0.22,
+    metalness: 0.15,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.05,
+    envMapIntensity: 2.8
+  });
+
   return (
     <group ref={groupRef} {...props} dispose={null}>
       {/* 
@@ -134,12 +156,22 @@ export const ScienceProductModel = (props) => {
             <circleGeometry args={[1.73, 64]} />
             <meshStandardMaterial color="#111111" roughness={0.9} />
           </mesh>
+          {/* Bottom Cap */}
+          <mesh position={[0, -0.452, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+            <circleGeometry args={[1.745, 64]} />
+            <primitive object={capBottomMaterial} attach="material" />
+          </mesh>
         </group>
 
         {/* Lid / Top Tube: Radius 1.75, Height 3.8. Center at y = 0.4 */}
         <mesh position={[0, 0.4, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[1.75, 1.75, 3.8, 64]} />
           <primitive object={lidLabelMaterial} attach="material" />
+        </mesh>
+        {/* Top Cap */}
+        <mesh position={[0, 2.302, 0]} rotation={[-Math.PI * 0.5, 0, 0]} castShadow>
+          <circleGeometry args={[1.748, 64]} />
+          <primitive object={capTopMaterial} attach="material" />
         </mesh>
       </group>
     </group>

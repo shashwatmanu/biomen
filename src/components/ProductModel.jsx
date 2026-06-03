@@ -11,6 +11,8 @@ export const ProductModel = forwardRef(({ container, ...props }, ref) => {
   const textureTop = useTexture('/label_top.jpg');
   const textureBottom = useTexture('/label_bottom.jpg');
   const tagTexture = useTexture('/tag_texture.png');
+  const capTop = useTexture('/cap_top.jpg');
+  const capBottom = useTexture('/cap_bottom.jpg');
   const [interactionStage, setInteractionStage] = useState('idle'); // idle, pill_out, pill_open
   
   textureTop.wrapS = textureTop.wrapT = THREE.RepeatWrapping;
@@ -18,6 +20,8 @@ export const ProductModel = forwardRef(({ container, ...props }, ref) => {
   textureTop.colorSpace = THREE.SRGBColorSpace;
   textureBottom.colorSpace = THREE.SRGBColorSpace;
   tagTexture.colorSpace = THREE.SRGBColorSpace;
+  capTop.colorSpace = THREE.SRGBColorSpace;
+  capBottom.colorSpace = THREE.SRGBColorSpace;
 
   const wrapperRef = useRef();
   const lidRef = useRef();
@@ -55,6 +59,20 @@ export const ProductModel = forwardRef(({ container, ...props }, ref) => {
   });
   lidLabelMaterial.map.repeat.set(1, 1);
   lidLabelMaterial.map.offset.set(0, 0);
+
+  const capTopMaterial = new THREE.MeshStandardMaterial({
+    map: capTop,
+    roughness: 0.6,
+    metalness: 0.05,
+    envMapIntensity: 1.5
+  });
+
+  const capBottomMaterial = new THREE.MeshStandardMaterial({
+    map: capBottom,
+    roughness: 0.6,
+    metalness: 0.05,
+    envMapIntensity: 1.5
+  });
 
   const jarMaterial = new THREE.MeshPhysicalMaterial({
     transmission: 1.0,
@@ -280,11 +298,21 @@ export const ProductModel = forwardRef(({ container, ...props }, ref) => {
           <circleGeometry args={[1.48, 64]} />
           <meshStandardMaterial color="#111111" roughness={0.8} />
         </mesh>
+        {/* Bottom Cap */}
+        <mesh position={[0, -0.502, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+          <circleGeometry args={[1.49, 64]} />
+          <primitive object={capBottomMaterial} attach="material" />
+        </mesh>
       </group>
 
       <mesh ref={lidRef} position={[0, 0.3, 0]}>
         <cylinderGeometry args={[1.5, 1.5, 4.6, 64]} />
         <primitive object={lidLabelMaterial} attach="material" />
+        {/* Top Cap */}
+        <mesh position={[0, 2.302, 0]} rotation={[-Math.PI * 0.5, 0, 0]}>
+          <circleGeometry args={[1.498, 64]} />
+          <primitive object={capTopMaterial} attach="material" />
+        </mesh>
       </mesh>
 
       {/* THE GLASS JAR & PILLS */}

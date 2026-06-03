@@ -7,14 +7,18 @@ import gsap from 'gsap';
 import { Play, Pause, RotateCcw, Eye, EyeOff, Layers, Sliders, Sun, Shield, HelpCircle, Film, Minimize2, Maximize2 } from 'lucide-react';
 
 // --- Closed Canister Model (Science Page style) ---
-const ScienceProductModel = ({ rotationSpeed, isFloating, isSpinning, pitchFreq, rollFreq, ...props }) => {
+const ScienceProductModel = ({ rotationSpeed, isFloating, isDrifting, isSpinning, ...props }) => {
   const textureTop = useTexture('/label_top.jpg');
   const textureBottom = useTexture('/label_bottom.jpg');
+  const capTop = useTexture('/cap_top.jpg');
+  const capBottom = useTexture('/cap_bottom.jpg');
 
   textureTop.wrapS = textureTop.wrapT = THREE.RepeatWrapping;
   textureBottom.wrapS = textureBottom.wrapT = THREE.RepeatWrapping;
   textureTop.colorSpace = THREE.SRGBColorSpace;
   textureBottom.colorSpace = THREE.SRGBColorSpace;
+  capTop.colorSpace = THREE.SRGBColorSpace;
+  capBottom.colorSpace = THREE.SRGBColorSpace;
 
   const groupRef = useRef();
 
@@ -23,10 +27,14 @@ const ScienceProductModel = ({ rotationSpeed, isFloating, isSpinning, pitchFreq,
     if (groupRef.current) {
       if (isFloating) {
         groupRef.current.position.y = Math.sin(t * 1.0) * 0.15;
-        groupRef.current.rotation.x = Math.sin(t * pitchFreq) * 0.08 + 0.03;
-        groupRef.current.rotation.z = Math.cos(t * rollFreq) * 0.04;
       } else {
         groupRef.current.position.y = 0;
+      }
+
+      if (isDrifting) {
+        groupRef.current.rotation.x = Math.sin(t * 0.7) * 0.08 + 0.03;
+        groupRef.current.rotation.z = Math.cos(t * 0.7) * 0.04;
+      } else {
         groupRef.current.rotation.x = 0;
         groupRef.current.rotation.z = 0;
       }
@@ -55,6 +63,24 @@ const ScienceProductModel = ({ rotationSpeed, isFloating, isSpinning, pitchFreq,
     envMapIntensity: 2.8
   });
 
+  const capTopMaterial = new THREE.MeshPhysicalMaterial({
+    map: capTop,
+    roughness: 0.22,
+    metalness: 0.15,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.05,
+    envMapIntensity: 2.8
+  });
+
+  const capBottomMaterial = new THREE.MeshPhysicalMaterial({
+    map: capBottom,
+    roughness: 0.22,
+    metalness: 0.15,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.05,
+    envMapIntensity: 2.8
+  });
+
   return (
     <group ref={groupRef} {...props} dispose={null}>
       <group position={[0, 0.05, 0]}>
@@ -67,10 +93,20 @@ const ScienceProductModel = ({ rotationSpeed, isFloating, isSpinning, pitchFreq,
             <circleGeometry args={[1.73, 64]} />
             <meshStandardMaterial color="#111111" roughness={0.9} />
           </mesh>
+          {/* Bottom Cap */}
+          <mesh position={[0, -0.452, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+            <circleGeometry args={[1.745, 64]} />
+            <primitive object={capBottomMaterial} attach="material" />
+          </mesh>
         </group>
         <mesh position={[0, 0.4, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[1.75, 1.75, 3.8, 64]} />
           <primitive object={lidLabelMaterial} attach="material" />
+        </mesh>
+        {/* Top Cap */}
+        <mesh position={[0, 2.302, 0]} rotation={[-Math.PI * 0.5, 0, 0]} castShadow>
+          <circleGeometry args={[1.748, 64]} />
+          <primitive object={capTopMaterial} attach="material" />
         </mesh>
       </group>
     </group>
@@ -81,21 +117,24 @@ const ScienceProductModel = ({ rotationSpeed, isFloating, isSpinning, pitchFreq,
 const ExplodableProductModel = ({ 
   rotationSpeed, 
   isFloating, 
+  isDrifting,
   isSpinning, 
-  pitchFreq, 
-  rollFreq, 
   animationState, // 'closed', 'split', 'pillOut', 'pillOpen'
   ...props 
 }) => {
   const textureTop = useTexture('/label_top.jpg');
   const textureBottom = useTexture('/label_bottom.jpg');
   const tagTexture = useTexture('/tag_texture.png');
+  const capTop = useTexture('/cap_top.jpg');
+  const capBottom = useTexture('/cap_bottom.jpg');
 
   textureTop.wrapS = textureTop.wrapT = THREE.RepeatWrapping;
   textureBottom.wrapS = textureBottom.wrapT = THREE.RepeatWrapping;
   textureTop.colorSpace = THREE.SRGBColorSpace;
   textureBottom.colorSpace = THREE.SRGBColorSpace;
   tagTexture.colorSpace = THREE.SRGBColorSpace;
+  capTop.colorSpace = THREE.SRGBColorSpace;
+  capBottom.colorSpace = THREE.SRGBColorSpace;
 
   const groupRef = useRef();
   const lidRef = useRef();
@@ -225,10 +264,14 @@ const ExplodableProductModel = ({
     if (groupRef.current) {
       if (isFloating) {
         groupRef.current.position.y = Math.sin(t * 1.0) * 0.15;
-        groupRef.current.rotation.x = Math.sin(t * pitchFreq) * 0.08 + 0.03;
-        groupRef.current.rotation.z = Math.cos(t * rollFreq) * 0.04;
       } else {
         groupRef.current.position.y = 0;
+      }
+
+      if (isDrifting) {
+        groupRef.current.rotation.x = Math.sin(t * 0.7) * 0.08 + 0.03;
+        groupRef.current.rotation.z = Math.cos(t * 0.7) * 0.04;
+      } else {
         groupRef.current.rotation.x = 0;
         groupRef.current.rotation.z = 0;
       }
@@ -252,6 +295,20 @@ const ExplodableProductModel = ({
 
   const lidLabelMaterial = new THREE.MeshStandardMaterial({
     map: textureTop,
+    roughness: 0.6,
+    metalness: 0.05,
+    envMapIntensity: 1.5
+  });
+
+  const capTopMaterial = new THREE.MeshStandardMaterial({
+    map: capTop,
+    roughness: 0.6,
+    metalness: 0.05,
+    envMapIntensity: 1.5
+  });
+
+  const capBottomMaterial = new THREE.MeshStandardMaterial({
+    map: capBottom,
     roughness: 0.6,
     metalness: 0.05,
     envMapIntensity: 1.5
@@ -324,12 +381,22 @@ const ExplodableProductModel = ({
           <circleGeometry args={[1.48, 64]} />
           <meshStandardMaterial color="#111111" roughness={0.8} />
         </mesh>
+        {/* Bottom Cap */}
+        <mesh position={[0, -0.502, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+          <circleGeometry args={[1.49, 64]} />
+          <primitive object={capBottomMaterial} attach="material" />
+        </mesh>
       </group>
 
       {/* Outer Canister Lid */}
       <mesh ref={lidRef} position={[0, 0.3, 0]} castShadow>
         <cylinderGeometry args={[1.5, 1.5, 4.6, 64]} />
         <primitive object={lidLabelMaterial} attach="material" />
+        {/* Top Cap */}
+        <mesh position={[0, 2.302, 0]} rotation={[-Math.PI * 0.5, 0, 0]}>
+          <circleGeometry args={[1.498, 64]} />
+          <primitive object={capTopMaterial} attach="material" />
+        </mesh>
       </mesh>
 
       {/* Glass Jar and Pills */}
@@ -400,6 +467,7 @@ const ReelMaker = () => {
   const [animationState, setAnimationState] = useState('closed'); // 'closed', 'split', 'pillOut', 'pillOpen'
   const [bgType, setBgType] = useState('darkStudio'); // 'greenScreen', 'darkStudio', 'black', 'white', 'neonCyber'
   const [uiVisible, setUiVisible] = useState(true);
+  const [enableFloorShadows, setEnableFloorShadows] = useState(false); // Default floor shadow is off to prevent clipping!
   
   // Custom Lighting States
   const [ambientIntensity, setAmbientIntensity] = useState(0.6);
@@ -410,11 +478,32 @@ const ReelMaker = () => {
   const [rimColor, setRimColor] = useState('#7FE7B3');
 
   // Animation States
-  const [isSpinning, setIsSpinning] = useState(true);
+  const [isSpinning, setIsSpinning] = useState(false); // Default to stationary
   const [rotationSpeed, setRotationSpeed] = useState(0.8);
-  const [isFloating, setIsFloating] = useState(true);
-  const [pitchFreq, setPitchFreq] = useState(0.7);
-  const [rollFreq, setRollFreq] = useState(0.7);
+  const [isFloating, setIsFloating] = useState(false); // Default to stationary
+  const [isDrifting, setIsDrifting] = useState(false); // Default to stationary
+
+  const orbitRef = useRef();
+
+  // Reset function to revert all edits & clear camera angles
+  const handleReset = () => {
+    setAnimationState('closed');
+    setIsSpinning(false);
+    setIsFloating(false);
+    setIsDrifting(false);
+    setRotationSpeed(0.8);
+    setAmbientIntensity(0.6);
+    setKeyIntensity(2.2);
+    setBackIntensity(3.5);
+    setSpotIntensity(2.0);
+    setLightColor('#ffffff');
+    setRimColor('#7FE7B3');
+    setEnableFloorShadows(false);
+    
+    if (orbitRef.current) {
+      orbitRef.current.reset();
+    }
+  };
 
   // Keyboard shortcut listener to toggle UI with 'h'
   useEffect(() => {
@@ -502,8 +591,7 @@ const ReelMaker = () => {
                 isSpinning={isSpinning}
                 rotationSpeed={rotationSpeed}
                 isFloating={isFloating}
-                pitchFreq={pitchFreq}
-                rollFreq={rollFreq}
+                isDrifting={isDrifting}
               />
             ) : (
               <ExplodableProductModel 
@@ -512,14 +600,13 @@ const ReelMaker = () => {
                 isSpinning={isSpinning}
                 rotationSpeed={rotationSpeed}
                 isFloating={isFloating}
-                pitchFreq={pitchFreq}
-                rollFreq={rollFreq}
+                isDrifting={isDrifting}
                 animationState={animationState}
               />
             )}
 
-            {/* Contact Shadows to anchor the product */}
-            {bgType !== 'greenScreen' && (
+            {/* Contact Shadows to anchor the product (Floor) */}
+            {enableFloorShadows && bgType !== 'greenScreen' && (
               <ContactShadows 
                 position={[0, -2.2, 0]} 
                 opacity={0.75} 
@@ -539,7 +626,7 @@ const ReelMaker = () => {
               </EffectComposer>
             )}
 
-            <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
+            <OrbitControls ref={orbitRef} enableZoom={true} enablePan={true} enableRotate={true} />
           </Canvas>
         </Suspense>
       </div>
@@ -570,10 +657,19 @@ const ReelMaker = () => {
           <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-[#16C784]/25 shadow-2xl">
             <div className="flex items-center gap-2 text-[#16C784] mb-1">
               <Film size={20} className="animate-pulse" />
-              <span className="text-xs font-black tracking-[0.25em] uppercase">Biolabs Studio</span>
+              <span className="text-xs font-black tracking-[0.25em] uppercase">Biomen Labs Studio</span>
             </div>
             <h1 className="text-xl font-normal font-serif text-[#F4F6F2]">3D REEL GENERATOR</h1>
             <p className="text-[11px] text-white/50 font-medium mt-1">Record your screen to create cinematic package transitions.</p>
+            
+            {/* RESET BUTTON */}
+            <button 
+              onClick={handleReset}
+              className="mt-3.5 w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition-all tracking-wider uppercase shadow-[0_0_15px_rgba(220,38,38,0.2)]"
+            >
+              <RotateCcw size={14} />
+              Reset Camera &amp; Settings
+            </button>
           </div>
 
           {/* Model Selection & States */}
@@ -659,7 +755,7 @@ const ReelMaker = () => {
           <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4">
             <div className="flex items-center gap-2 border-b border-white/5 pb-2">
               <Shield size={15} className="text-[#16C784]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-white">Backdrop / Chroma Key</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-white">Backdrop &amp; Floor</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
@@ -704,9 +800,26 @@ const ReelMaker = () => {
                 Cyber Glow
               </button>
             </div>
+
+            {/* FLOOR SHADOW TOGGLE */}
+            <div className="flex items-center justify-between border-t border-white/5 pt-3">
+              <div className="flex flex-col">
+                <span className="text-xs text-white/80 font-semibold">Bottom Shadow Floor</span>
+                <span className="text-[9px] text-white/40">Disable this to prevent jar clipping.</span>
+              </div>
+              <button
+                onClick={() => setEnableFloorShadows(!enableFloorShadows)}
+                className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
+                  enableFloorShadows ? 'bg-[#16C784] text-black shadow-[0_0_10px_rgba(22,199,132,0.2)]' : 'bg-white/10 text-white/60'
+                }`}
+              >
+                {enableFloorShadows ? 'ENABLED' : 'DISABLED'}
+              </button>
+            </div>
+            
             {bgType === 'greenScreen' && (
               <p className="text-[10px] text-green-400 font-mono leading-tight bg-green-950/40 p-2.5 rounded border border-green-900/40">
-                Chroma Key active. Post-processing and ground shadows disabled for clean keying in Premiere / After Effects.
+                Chroma Key active. Post-processing and shadows are forced off for keying.
               </p>
             )}
           </div>
@@ -771,9 +884,12 @@ const ReelMaker = () => {
               </div>
             )}
 
-            {/* Floating / Sway toggler */}
+            {/* Floating toggler */}
             <div className="flex items-center justify-between border-t border-white/5 pt-3">
-              <span className="text-xs text-white/80 font-semibold">Weightless Float</span>
+              <div className="flex flex-col">
+                <span className="text-xs text-white/80 font-semibold">Hover Float (Up &amp; Down)</span>
+                <span className="text-[9px] text-white/40">Moves container up/down slowly</span>
+              </div>
               <button
                 onClick={() => setIsFloating(!isFloating)}
                 className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
@@ -784,40 +900,21 @@ const ReelMaker = () => {
               </button>
             </div>
 
-            {isFloating && (
-              <div className="flex flex-col gap-3 animate-fadeIn">
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
-                    <span>Pitch Frequency (X-Sway)</span>
-                    <span>{pitchFreq.toFixed(2)} Hz</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.1"
-                    max="2.0"
-                    step="0.05"
-                    value={pitchFreq}
-                    onChange={(e) => setPitchFreq(parseFloat(e.target.value))}
-                    className="w-full accent-[#16C784] bg-white/15 h-1.5 rounded-lg cursor-pointer"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
-                    <span>Roll Frequency (Z-Sway)</span>
-                    <span>{rollFreq.toFixed(2)} Hz</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.1"
-                    max="2.0"
-                    step="0.05"
-                    value={rollFreq}
-                    onChange={(e) => setRollFreq(parseFloat(e.target.value))}
-                    className="w-full accent-[#16C784] bg-white/15 h-1.5 rounded-lg cursor-pointer"
-                  />
-                </div>
+            {/* Drift / Sway toggler */}
+            <div className="flex items-center justify-between border-t border-white/5 pt-3">
+              <div className="flex flex-col">
+                <span className="text-xs text-white/80 font-semibold">Drift Sway (Rotate X/Z)</span>
+                <span className="text-[9px] text-white/40">Cinematic weightless sways</span>
               </div>
-            )}
+              <button
+                onClick={() => setIsDrifting(!isDrifting)}
+                className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
+                  isDrifting ? 'bg-[#16C784] text-black' : 'bg-white/10 text-white/60'
+                }`}
+              >
+                {isDrifting ? 'ACTIVE' : 'MUTED'}
+              </button>
+            </div>
           </div>
 
           {/* Lighting Controls */}
