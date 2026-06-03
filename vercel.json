@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/ayurvedic-doctor", "destination": "/consultation", "permanent": true },
+    { "source": "/consulatation", "destination": "/consultation", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

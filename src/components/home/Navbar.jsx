@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white z-10">
           <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
           <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
-          <Link to="/ayurvedic-doctor" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
+          <Link to="/consultation" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
           
           <div className="flex items-center gap-2 xs:gap-3 sm:gap-6 ml-auto">
             <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none"><User size={16} /></Link>
@@ -162,7 +162,7 @@ const Navbar = () => {
                 Science & Research
               </Link>
               <Link 
-                to="/ayurvedic-doctor" 
+                to="/consultation" 
                 onClick={() => setIsMenuOpen(false)}
                 className="text-2xl font-black uppercase text-biomen-gold hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
