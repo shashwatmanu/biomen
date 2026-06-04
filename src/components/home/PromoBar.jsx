@@ -95,7 +95,10 @@ const PromoBar = () => {
         </span>
         <span className="text-white/20">|</span>
         <a 
-          href="/products/t-core" 
+          href="/products/t-core?discount=FOUNDER10" 
+          onClick={() => {
+            localStorage.setItem('launch_discount_applied', 'true');
+          }}
           className="text-biomen-copper hover:text-biomen-mint underline underline-offset-2 flex items-center gap-0.5 font-black transition-colors shrink-0"
         >
           Grab Discount <span className="hidden xs:inline">Now</span> <ArrowRight size={10} className="animate-bounce-horizontal" />

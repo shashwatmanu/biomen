@@ -30,6 +30,7 @@ const HeroBuyBox = () => {
       title: "Full Reset System",
       mrp: 9000,
       price: 3999,
+      subPrice: 3399,
       best: false,
       desc: "Evaluate full recovery, stamina & drive baseline"
     },
@@ -39,6 +40,7 @@ const HeroBuyBox = () => {
       title: "Consistency System",
       mrp: 6000,
       price: 2799,
+      subPrice: 2379,
       best: false,
       desc: "Build serious masculine performance baseline"
     },
@@ -48,12 +50,30 @@ const HeroBuyBox = () => {
       title: "Entry System",
       mrp: 3000,
       price: 1499,
+      subPrice: 1274,
       best: true,
       desc: "For first-time customers starting their routine"
     }
   ];
 
-  const [selectedBundle, setSelectedBundle] = useState(bundles[2]); // default to 1 bottle
+  const [isSubscription, setIsSubscription] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('subscription') === 'true';
+  });
+
+  const [selectedBundle, setSelectedBundle] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const system = params.get('system');
+    const matched = bundles.find((b) => b.id === system);
+    return matched || bundles[2]; // default to 1 bottle
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('discount') === 'FOUNDER10') {
+      localStorage.setItem('launch_discount_applied', 'true');
+    }
+  }, []);
 
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -246,15 +266,34 @@ const HeroBuyBox = () => {
               T-CORE is a premium clinical-grade herbal stack built to support daily vitality, testosterone baseline rhythm, recovery, and daily performance through consistency. Five purposeful herbal extracts, zero fillers.
             </p>
 
+            {/* Subscription / One-time Toggle Selector */}
+            <div className="flex justify-start py-2">
+              <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
+                <button 
+                  onClick={() => setIsSubscription(false)}
+                  className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+                >
+                  One-Time Purchase
+                </button>
+                <button 
+                  onClick={() => setIsSubscription(true)}
+                  className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+                >
+                  Subscribe & Save
+                  <span className="bg-black/30 text-[8px] text-[#7FE7B3] px-1.5 py-0.5 rounded border border-white/5 font-black uppercase shrink-0">-15%</span>
+                </button>
+              </div>
+            </div>
+
             {/* Repositioned CTA checkout Button and Stats */}
             <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
               <button 
                 onClick={() => addToCart({
                   id: selectedBundle.id,
                   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                  price: selectedBundle.price,
+                  price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
                   quantity: 1,
-                  isSubscription: false,
+                  isSubscription: isSubscription,
                   image: images[0].url
                 })}
                 className="w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
@@ -264,7 +303,9 @@ const HeroBuyBox = () => {
               
               <div className="text-left w-full sm:w-auto">
                 <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
-                <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">{selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - selectedBundle.price).toLocaleString('en-IN')}</div>
+                <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">
+                  {selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - (isSubscription ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
+                </div>
               </div>
             </div>
 
@@ -305,7 +346,8 @@ const HeroBuyBox = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {bundles.map((bundle) => {
                   const isSelected = selectedBundle.id === bundle.id;
-                  const discountPercent = Math.round(((bundle.mrp - bundle.price) / bundle.mrp) * 100);
+                  const displayPrice = isSubscription ? bundle.subPrice : bundle.price;
+                  const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
                   
                   return (
                     <button
@@ -332,7 +374,7 @@ const HeroBuyBox = () => {
                       
                       <div className="mt-4 flex items-baseline justify-between w-full">
                         <div className="flex items-baseline gap-1.5">
-                          <span className="text-lg font-black text-white">₹{bundle.price.toLocaleString('en-IN')}</span>
+                          <span className="text-lg font-black text-white">₹{displayPrice.toLocaleString('en-IN')}</span>
                           <span className="text-[9px] text-gray-500 line-through">₹{bundle.mrp.toLocaleString('en-IN')}</span>
                         </div>
                         <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider bg-[#052E22] px-2 py-0.5 rounded border border-[#0FA36B]/20">
@@ -407,7 +449,7 @@ const HeroBuyBox = () => {
           </div>
           <div className="h-6 w-px bg-white/10 mx-2" />
           <div>
-            <span className="text-lg font-black text-white">₹{selectedBundle.price.toLocaleString('en-IN')}</span>
+            <span className="text-lg font-black text-white">₹{(isSubscription ? selectedBundle.subPrice : selectedBundle.price).toLocaleString('en-IN')}</span>
             <span className="text-[10px] text-gray-500 line-through ml-2">₹{selectedBundle.mrp.toLocaleString('en-IN')}</span>
           </div>
         </div>
@@ -416,16 +458,16 @@ const HeroBuyBox = () => {
           {/* Mobile-only price display left-aligned, buttons right-aligned */}
           <div className="md:hidden text-left flex-shrink-0 mr-3">
             <div className="text-[9px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-            <div className="text-sm font-black text-white">₹{selectedBundle.price.toLocaleString('en-IN')}</div>
+            <div className="text-sm font-black text-white">₹{(isSubscription ? selectedBundle.subPrice : selectedBundle.price).toLocaleString('en-IN')}</div>
           </div>
 
           <button
             onClick={() => addToCart({
               id: selectedBundle.id,
               title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-              price: selectedBundle.price,
+              price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
               quantity: 1,
-              isSubscription: false,
+              isSubscription: isSubscription,
               image: images[0].url
             })}
             className="flex-1 md:flex-none bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-3.5 px-6 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
@@ -438,9 +480,9 @@ const HeroBuyBox = () => {
               addToCart({
                 id: selectedBundle.id,
                 title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                price: selectedBundle.price,
+                price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
                 quantity: 1,
-                isSubscription: false,
+                isSubscription: isSubscription,
                 image: images[0].url
               });
               navigate('/checkout');

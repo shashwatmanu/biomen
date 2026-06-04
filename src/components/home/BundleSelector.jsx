@@ -42,8 +42,13 @@ const BundleSelector = () => {
     }
   ];
 
+  const [selectedId, setSelectedId] = useState(() => {
+    const bestBundle = bundles.find(b => b.best);
+    return bestBundle ? bestBundle.id : bundles[0].id;
+  });
+
   const handlePurchase = (bundle) => {
-    window.location.href = '/products/t-core';
+    window.location.href = `/products/t-core?system=${bundle.id}`;
   };
 
   return (
@@ -92,14 +97,16 @@ const BundleSelector = () => {
           {bundles.map((bundle, i) => {
             const currentPrice = isSubscription ? bundle.subPrice : bundle.price;
             const savingsPercent = Math.round(((bundle.mrp - currentPrice) / bundle.mrp) * 100);
+            const isSelected = selectedId === bundle.id;
 
             return (
               <div 
                 key={i} 
-                className={`relative bg-black/40 border rounded-[1.5rem] p-5 lg:p-4 flex flex-col justify-between text-center transition-all duration-300 ${
-                  bundle.best 
+                onClick={() => setSelectedId(bundle.id)}
+                className={`relative bg-black/40 border rounded-[1.5rem] p-5 lg:p-4 flex flex-col justify-between text-center transition-all duration-300 cursor-pointer ${
+                  isSelected 
                     ? 'border-[#0FA36B] ring-2 ring-[#0FA36B]/30 md:scale-102 z-10 bg-[#052E22]/10 shadow-2xl' 
-                    : 'border-white/10 hover:border-white/20'
+                    : 'border-white/10 hover:border-white/20 hover:scale-[1.01]'
                 }`}
               >
                 {bundle.best && (
@@ -137,9 +144,12 @@ const BundleSelector = () => {
                   </div>
                   
                   <button 
-                    onClick={() => handlePurchase(bundle)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePurchase(bundle);
+                    }}
                     className={`block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
-                      bundle.best 
+                      isSelected 
                         ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/20' 
                         : 'bg-white/10 text-[#F4F6F2] hover:bg-white/20'
                     }`}

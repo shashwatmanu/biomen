@@ -99,9 +99,23 @@ const CartDrawer = () => {
         {/* Footer */}
         {items.length > 0 && (
           <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md">
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-sm">Subtotal</span>
-              <span className="text-2xl font-black text-[#F4F6F2]">₹{subtotal.toLocaleString()}</span>
+            <div className="space-y-2 mb-6">
+              <div className="flex items-center justify-between">
+                <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-xs">Subtotal</span>
+                <span className="text-base font-black text-[#F4F6F2]">₹{subtotal.toLocaleString()}</span>
+              </div>
+              {localStorage.getItem('launch_discount_applied') === 'true' && (
+                <div className="flex items-center justify-between text-[#16C784]">
+                  <span className="font-bold uppercase tracking-wider text-xs">Launch Discount (FOUNDER10)</span>
+                  <span className="font-black">₹{Math.round(subtotal * 0.10).toLocaleString()} Off</span>
+                </div>
+              )}
+              <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                <span className="text-[#A8B3AA] font-black uppercase tracking-wider text-sm">Total Due</span>
+                <span className="text-2xl font-black text-[#F4F6F2]">
+                  ₹{Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.90) : subtotal).toLocaleString()}
+                </span>
+              </div>
             </div>
             
             <button 

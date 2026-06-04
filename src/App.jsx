@@ -31,7 +31,7 @@ function App() {
     <div className="bg-black min-h-screen relative">
       {!isAdminPage && (
         <div className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md">
-          <PromoBar />
+          {location.pathname === '/' && <PromoBar />}
           <Navbar />
         </div>
       )}
