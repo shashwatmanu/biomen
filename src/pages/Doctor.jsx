@@ -78,7 +78,7 @@ const Doctor = () => {
             <div className="lg:col-span-5 relative group">
               <div className="aspect-[4/5] sm:aspect-square lg:aspect-[4/5] bg-gradient-to-br from-[#052E22] to-[#030705] rounded-[2rem] border border-[#0FA36B]/20 overflow-hidden relative shadow-2xl">
                 <img 
-                  src="/doc.svg" 
+                  src="/doc.webp" 
                   alt="Dr. Keshav Dev" 
                   className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.05] group-hover:scale-105 transition-transform duration-700 ease-out"
                 />

@@ -7,7 +7,7 @@ const AdvisoryBoard = () => {
       title: "Chief Ayurvedic Formulary Director",
       credentials: "BAMS (Ayurveda), MD in Dravyaguna (Ayurvedic Pharmacology)",
       bio: "An alumnus of India's premier Ayurvedic institutions, Dr. Keshav Dev has spent over two decades researching botanical bio-availability. He oversees our extraction processes to ensure T-CORE's five active ingredients maintain clinical synergy.",
-      image: "/doc.svg"
+      image: "/doc.webp"
     }
   ];
 

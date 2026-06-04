@@ -51,12 +51,12 @@ const SolutionGrid = () => {
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="/solutionport.svg" 
+          src="/solutionport.webp" 
           alt="T-CORE daily vitality solution Mobile" 
           className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
         />
         <img 
-          src="/solutionland.svg" 
+          src="/solutionland.webp" 
           alt="T-CORE daily vitality solution Desktop" 
           className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
         />

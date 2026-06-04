@@ -32,7 +32,7 @@ const HeroSection = () => {
       {/* Full-Bleed Background Image with Premium Seamless Blending Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/Heroport.svg"
+          src="/Heroport.webp"
           alt="T-CORE Luxury Vitality Mobile"
           className="block lg:hidden w-full h-full object-cover filter brightness-[1.14] contrast-[1.04] animate-fade-in"
           style={{
@@ -44,7 +44,7 @@ const HeroSection = () => {
         />
         {/* Desktop Background: High-resolution Vector SVG for crispness on laptop/retina screens */}
         <img
-          src="/Untitled design (3).svg"
+          src="/herodesktop.webp"
           alt="T-CORE Luxury Vitality Desktop"
           className="hidden lg:block w-full h-full object-cover filter brightness-[1.05] contrast-[1.04] object-[center_42%]"
           style={{
@@ -182,7 +182,7 @@ const HeroSection = () => {
             </div>
 
             {/* Risk-Free Micro-trust Line */}
-            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5">
+            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5 pb-4">
               <Shield size={14} className="text-[#16C784] shrink-0" />
               <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
             </div>
@@ -191,15 +191,34 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Featured In Logos Trust Strip (Desktop only) */}
-      <div className="max-w-7xl mx-auto w-full relative z-20 border-t border-white/5 pt-5 mt-auto flex flex-wrap items-center gap-x-8 gap-y-3 text-[10px] font-black tracking-widest text-[#A8B3AA] lg:block hidden">
-        <div className="flex items-center gap-6">
-          <span className="text-[#A8B3AA]/40 font-black uppercase tracking-[0.2em]">FEATURED IN</span>
-          <div className="flex items-center gap-x-12 opacity-35 grayscale">
-            <span className="text-xs font-serif font-bold italic text-white">Men's Health</span>
-            <span className="text-base font-serif font-black tracking-tighter text-white">GQ</span>
-            <span className="text-xs font-serif font-bold uppercase tracking-widest text-white">Forbes</span>
-            <span className="text-xs font-sans font-black uppercase tracking-tighter text-white">Esquire</span>
+      {/* Featured In Logos Trust Strip (Infinite Marquee) */}
+      <div className="max-w-7xl mx-auto w-full relative z-20 border-t border-white/5 pt-4 mt-auto flex items-center overflow-hidden text-[10px] font-black tracking-widest text-[#A8B3AA]">
+        <div className="flex items-center gap-4 shrink-0 bg-[#030705] pr-6 relative z-30">
+          <span className="text-[#A8B3AA]/40 font-black uppercase tracking-[0.2em] whitespace-nowrap">FEATURED IN</span>
+        </div>
+        
+        <div className="relative w-full overflow-hidden flex items-center">
+          <div className="animate-marquee flex items-center gap-16">
+            {/* First Set of Logos */}
+            <img src="/logo_ani.png" alt="ANI" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.png" alt="The Tribune" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.png" alt="ThePrint" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.png" alt="indiaCSR" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+
+            {/* Second Set of Logos (Duplicate for seamless loop) */}
+            <img src="/logo_ani.png" alt="ANI" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.png" alt="The Tribune" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.png" alt="ThePrint" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.png" alt="indiaCSR" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+
+            {/* Third Set of Logos */}
+            <img src="/logo_ani.png" alt="ANI" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.png" alt="The Tribune" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.png" alt="ThePrint" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.png" alt="indiaCSR" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
           </div>
         </div>
       </div>

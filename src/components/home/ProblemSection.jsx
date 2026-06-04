@@ -30,12 +30,12 @@ const ProblemSection = () => {
       {/* Editorial seamless background image with high physical contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="/declineport.svg" 
+          src="/declineport.webp" 
           alt="Decline of Vitality Silhouette Mobile" 
           className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
         />
         <img 
-          src="/declineland.svg" 
+          src="/declineland.webp" 
           alt="Decline of Vitality Silhouette Desktop" 
           className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
         />
