@@ -18,7 +18,7 @@ const LongTestimonials = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-black/40">
+    <section className="pt-24 pb-8 px-6 md:px-20 bg-black/40">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">Clinical Outcomes, Real Stories</h2>

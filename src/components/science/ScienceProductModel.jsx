@@ -5,10 +5,13 @@ import { useFrame } from '@react-three/fiber';
 
 export const ScienceProductModel = (props) => {
   // Load premium canister textures
-  const textureTop = useTexture('/label_top.jpg');
-  const textureBottom = useTexture('/label_bottom.jpg');
+  const labelNew = useTexture('/label_new.jpg');
   const capTop = useTexture('/cap_top.jpg');
   const capBottom = useTexture('/cap_bottom.jpg');
+
+  // Clone textures to allow independent offsets for lid and base wrapping
+  const textureTop = labelNew.clone();
+  const textureBottom = labelNew.clone();
 
   // Wrap setup and color space configuration
   textureTop.wrapS = textureTop.wrapT = THREE.RepeatWrapping;
@@ -105,7 +108,7 @@ export const ScienceProductModel = (props) => {
     clearcoatRoughness: 0.05,
     envMapIntensity: 2.8
   });
-  baseLabelMaterial.map.repeat.set(1, 1);
+  baseLabelMaterial.map.repeat.set(1, 1.3 / 6.0);
   baseLabelMaterial.map.offset.set(0, 0);
 
   // Lid Label Material - Luxury lacquer finish
@@ -117,8 +120,8 @@ export const ScienceProductModel = (props) => {
     clearcoatRoughness: 0.05,
     envMapIntensity: 2.8
   });
-  lidLabelMaterial.map.repeat.set(1, 1);
-  lidLabelMaterial.map.offset.set(0, 0);
+  lidLabelMaterial.map.repeat.set(1, 4.7 / 6.0);
+  lidLabelMaterial.map.offset.set(0, 1.3 / 6.0);
 
   const capTopMaterial = new THREE.MeshPhysicalMaterial({
     map: capTop,
@@ -141,35 +144,38 @@ export const ScienceProductModel = (props) => {
   return (
     <group ref={groupRef} {...props} dispose={null}>
       {/* 
-        Canister aspect ratio tuned to match `tcore_canister.jpg` (diameter: 3.5, total height: 4.7)
-        Midpoint is y = -0.05. Offset by y = 0.05 centers the physical model visual pivot exactly at (0,0,0).
+        Canister real dimensions ratio: Height: 140.00 mm (110.00 mm top + 30.00 mm bottom), Circumference: 256.00 mm.
+        Diameter = 256.00 / PI = 81.49 mm.
+        Tuned to match radius 1.75 (diameter 3.5), total height = 3.5 * (140 / 81.49) = 6.0.
+        Lid height = 3.5 * (110 / 81.49) = 4.72. Base height = 3.5 * (30 / 81.49) = 1.29.
+        Visual pivot centers exactly at (0,0,0).
       */}
-      <group position={[0, 0.05, 0]}>
-        {/* Base / Bottom Tube: Radius 1.75, Height 0.9. Center at y = -1.95 */}
-        <group position={[0, -1.95, 0]}>
+      <group position={[0, 0, 0]}>
+        {/* Base / Bottom Tube: Radius 1.75, Height 1.3. Center at y = -2.35 */}
+        <group position={[0, -2.35, 0]}>
           <mesh castShadow receiveShadow>
-            <cylinderGeometry args={[1.75, 1.75, 0.9, 64]} />
+            <cylinderGeometry args={[1.75, 1.75, 1.3, 64]} />
             <primitive object={baseLabelMaterial} attach="material" />
           </mesh>
           {/* Internal black plastic lip/rim */}
-          <mesh position={[0, 0.44, 0]} rotation={[-Math.PI * 0.5, 0, 0]}>
+          <mesh position={[0, 0.64, 0]} rotation={[-Math.PI * 0.5, 0, 0]}>
             <circleGeometry args={[1.73, 64]} />
             <meshStandardMaterial color="#111111" roughness={0.9} />
           </mesh>
           {/* Bottom Cap */}
-          <mesh position={[0, -0.452, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
+          <mesh position={[0, -0.652, 0]} rotation={[Math.PI * 0.5, 0, 0]}>
             <circleGeometry args={[1.745, 64]} />
             <primitive object={capBottomMaterial} attach="material" />
           </mesh>
         </group>
 
-        {/* Lid / Top Tube: Radius 1.75, Height 3.8. Center at y = 0.4 */}
-        <mesh position={[0, 0.4, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[1.75, 1.75, 3.8, 64]} />
+        {/* Lid / Top Tube: Radius 1.75, Height 4.7. Center at y = 0.65 */}
+        <mesh position={[0, 0.65, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[1.75, 1.75, 4.7, 64]} />
           <primitive object={lidLabelMaterial} attach="material" />
         </mesh>
         {/* Top Cap */}
-        <mesh position={[0, 2.302, 0]} rotation={[-Math.PI * 0.5, 0, 0]} castShadow>
+        <mesh position={[0, 3.002, 0]} rotation={[-Math.PI * 0.5, 0, 0]} castShadow>
           <circleGeometry args={[1.748, 64]} />
           <primitive object={capTopMaterial} attach="material" />
         </mesh>

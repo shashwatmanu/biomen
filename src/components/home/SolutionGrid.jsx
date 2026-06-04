@@ -45,7 +45,7 @@ const SolutionGrid = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
+      className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
       id="solution"
     >
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}
@@ -122,7 +122,7 @@ const SolutionGrid = () => {
             {/* Centered Massive CTA under space - Desktop only (Interactive, pointer events enabled) */}
             <a 
               href="/products/t-core"
-              className="mt-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[300px] py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 pointer-events-auto relative z-20"
+              className="mt-6 lg:-mt-64 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[300px] py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 pointer-events-auto relative z-20"
             >
               START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
             </a>

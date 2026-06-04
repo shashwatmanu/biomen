@@ -9,7 +9,6 @@ import TransformationGallery from '../components/shared/TransformationGallery';
 import LongTestimonials from '../components/pdp/LongTestimonials';
 import VideoCarousel from '../components/shared/VideoCarousel';
 import ComparisonTable from '../components/shared/ComparisonTable';
-import MechanismSection from '../components/pdp/MechanismSection';
 import WeeklyExpectations from '../components/pdp/WeeklyExpectations';
 import AdvisoryBoard from '../components/shared/AdvisoryBoard';
 import GuaranteeSection from '../components/home/GuaranteeSection';
@@ -37,7 +36,6 @@ const PDP = () => {
       <LongTestimonials />
       <VideoCarousel />
       <ComparisonTable />
-      <MechanismSection />
       <WeeklyExpectations />
       <AdvisoryBoard />
       <GuaranteeSection />

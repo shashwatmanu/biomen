@@ -6,7 +6,7 @@ const VideoCarousel = () => {
   const tabs = ['Benefits', 'Ingredients', 'Value', 'Effects'];
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-black/40">
+    <section className="pt-8 pb-24 px-6 md:px-20 bg-black/40">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">What Men Are Saying</h2>

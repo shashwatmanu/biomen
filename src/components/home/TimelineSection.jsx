@@ -53,8 +53,30 @@ const TimelineSection = ({ title }) => {
   const activeIndex = days.indexOf(activeDay);
   const current = timelineData[activeDay];
 
+  const [hasIntersected, setHasIntersected] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasIntersected(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   // Automated Carousel Cycling logic (Increased to 8s, stops at Day 90)
   useEffect(() => {
+    if (!hasIntersected) return;
+
     const interval = setInterval(() => {
       setActiveDay((prev) => {
         const nextIndex = days.indexOf(prev) + 1;
@@ -67,7 +89,7 @@ const TimelineSection = ({ title }) => {
       });
     }, 8000); // Cycles stages every 8.0 seconds for optimal readability
     return () => clearInterval(interval);
-  }, []);
+  }, [hasIntersected]);
 
   useGSAP(() => {
     // Smooth transition for active elements

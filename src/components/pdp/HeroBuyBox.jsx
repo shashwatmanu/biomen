@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift, Eye } from 'lucide-react';
+import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 
 const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const navigate = useNavigate();
   const [activeIdx, setActiveIdx] = useState(0);
-  const [showLabelModal, setShowLabelModal] = useState(false);
+  const [isStickyVisible, setIsStickyVisible] = useState(false);
 
   // Touch Swipe state variables
   const [touchStart, setTouchStart] = useState(0);
@@ -74,10 +74,48 @@ const HeroBuyBox = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const buybox = document.getElementById('buybox');
+      const footer = document.querySelector('footer');
+      
+      let pastHero = false;
+      let beforeFooter = true;
+      
+      if (buybox) {
+        const rect = buybox.getBoundingClientRect();
+        // Show sticky bar once the bottom of the buybox section is above the top of the screen (or close to it)
+        pastHero = rect.bottom <= 120;
+      } else {
+        pastHero = window.scrollY > 600;
+      }
+      
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        // Hide if the footer top enters the viewport
+        beforeFooter = rect.top > window.innerHeight;
+      }
+      
+      setIsStickyVisible(pastHero && beforeFooter);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    handleScroll();
+    const timer = setTimeout(handleScroll, 250);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <section 
       id="buybox"
-      className="pt-[176px] md:pt-[144px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-screen flex items-center"
+      className={`pt-[176px] md:pt-[144px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-screen flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
     >
       {/* Background glow effects */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
@@ -159,13 +197,33 @@ const HeroBuyBox = () => {
             </div>
 
 
-            {/* Nutrition Label Trigger Button */}
-            <button 
-              onClick={() => setShowLabelModal(true)}
-              className="w-full py-4.5 bg-black/40 border border-white/10 hover:border-white/30 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 hover:scale-[1.01]"
-            >
-              <Eye size={14} /> View Nutrition & Serving Label
-            </button>
+            {/* Compact Nutrition Facts Panel */}
+            <div className="w-full bg-[#06110C]/40 border border-white/5 p-5 rounded-[2rem] font-mono text-[10px] sm:text-xs text-gray-400 space-y-2 mt-2">
+              <div className="border-b border-white/10 pb-1.5 flex justify-between font-sans text-xs font-black uppercase tracking-wider text-white">
+                <span>Active Stack (2 Caps Serving)</span>
+                <span className="text-[#16C784]">1,600mg</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span>Shilajit Extract</span>
+                <span className="font-bold text-[#16C784]">500 mg</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span>Tongkat Ali Extract</span>
+                <span className="font-bold text-[#16C784]">300 mg</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span>Ashwagandha Extract</span>
+                <span className="font-bold text-[#16C784]">300 mg</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span>Fenugreek Seed Extract</span>
+                <span className="font-bold text-[#16C784]">490 mg</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span>Black Pepper Extract</span>
+                <span className="font-bold text-[#16C784]">10 mg</span>
+              </div>
+            </div>
           </div>
 
           {/* Right: Product Purchase buybox details (Takes up 7 cols) */}
@@ -187,6 +245,28 @@ const HeroBuyBox = () => {
             <p className="text-base text-[#A8B3AA] leading-relaxed font-medium">
               T-CORE is a premium clinical-grade herbal stack built to support daily vitality, testosterone baseline rhythm, recovery, and daily performance through consistency. Five purposeful herbal extracts, zero fillers.
             </p>
+
+            {/* Repositioned CTA checkout Button and Stats */}
+            <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
+              <button 
+                onClick={() => addToCart({
+                  id: selectedBundle.id,
+                  title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
+                  price: selectedBundle.price,
+                  quantity: 1,
+                  isSubscription: false,
+                  image: images[0].url
+                })}
+                className="w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
+              >
+                TRY IT NOW <ArrowRight size={22} />
+              </button>
+              
+              <div className="text-left w-full sm:w-auto">
+                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
+                <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">{selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - selectedBundle.price).toLocaleString('en-IN')}</div>
+              </div>
+            </div>
 
             {/* Clean Editorial Bullet Checkmarks */}
             <ul className="space-y-3 pt-2 text-sm text-[#F4F6F2] font-semibold">
@@ -265,27 +345,7 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* CTA checkout Button and Stats */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
-              <button 
-                onClick={() => addToCart({
-                  id: selectedBundle.id,
-                  title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                  price: selectedBundle.price,
-                  quantity: 1,
-                  isSubscription: false,
-                  image: images[0].url
-                })}
-                className="w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
-              >
-                TRY IT NOW <ArrowRight size={22} />
-              </button>
-              
-              <div className="text-left w-full sm:w-auto">
-                <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
-                <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">{selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - selectedBundle.price).toLocaleString('en-IN')}</div>
-              </div>
-            </div>
+            <div className="pt-2"></div>
 
             {/* Trust Badges under CTA button */}
             <div className="grid grid-cols-3 gap-4 text-[10px] font-black uppercase tracking-widest text-[#A8B3AA] pt-4 border-t border-white/10">
@@ -335,50 +395,10 @@ const HeroBuyBox = () => {
         </div>
       </div>
 
-      {/* Nutrition Label Modal */}
-      {showLabelModal && (
-        <div className="fixed inset-0 z-[300] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#06110C] border border-[#0FA36B]/30 rounded-3xl p-8 max-w-md w-full relative max-h-[90vh] overflow-y-auto shadow-2xl">
-            <h3 className="text-2xl font-black text-white uppercase tracking-wider mb-6 text-center">NUTRITIONAL FACTS</h3>
-            
-            <div className="border border-white/10 p-6 rounded-2xl font-mono text-xs text-gray-300 space-y-4">
-              <div className="border-b border-white/20 pb-2 text-sm font-black text-white">Serving Size: 2 Vegetarian Capsules</div>
-              <div className="border-b border-white/20 pb-2 flex justify-between">
-                <span>Shilajit Extract (Standardised to Fulvic Acid)</span>
-                <span className="font-black text-[#16C784]">500 mg</span>
-              </div>
-              <div className="border-b border-white/20 pb-2 flex justify-between">
-                <span>Tongkat Ali Extract (Eurycoma Longifolia)</span>
-                <span className="font-black text-[#16C784]">300 mg</span>
-              </div>
-              <div className="border-b border-white/20 pb-2 flex justify-between">
-                <span>Ashwagandha Extract (Withania Somnifera)</span>
-                <span className="font-black text-[#16C784]">300 mg</span>
-              </div>
-              <div className="border-b border-white/20 pb-2 flex justify-between">
-                <span>Fenugreek Seed Extract (Trigonella foenum-graecum)</span>
-                <span className="font-black text-[#16C784]">490 mg</span>
-              </div>
-              <div className="border-b border-white/20 pb-2 flex justify-between">
-                <span>Black Pepper Extract (Bioavailability Booster)</span>
-                <span className="font-black text-[#16C784]">10 mg</span>
-              </div>
-              <div className="text-[10px] text-gray-500 pt-2 leading-relaxed">
-                * Daily Value not established. Compounded under cGMP guidelines. Certified vegetarian shell.
-              </div>
-            </div>
-
-            <button 
-              onClick={() => setShowLabelModal(false)}
-              className="mt-6 w-full py-3.5 bg-[#D85A1F] text-white font-black text-xs uppercase tracking-widest rounded-xl hover:bg-[#b94a17] transition-all"
-            >
-              Close serving window
-            </button>
-          </div>
-        </div>
-      )}
       {/* Sticky Bottom Bar for PDP */}
-      <div className="fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between transition-all duration-300">
+      <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between transition-all duration-300 ${
+        isStickyVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+      }`}>
         <div className="hidden md:flex items-center gap-4 text-left">
           <img src={images[0].url} alt="T-CORE" className="w-12 h-12 object-contain bg-white/5 border border-white/10 rounded-xl p-1" />
           <div>

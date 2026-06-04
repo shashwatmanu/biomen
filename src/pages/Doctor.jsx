@@ -39,8 +39,8 @@ const Doctor = () => {
       icon: <BookOpen size={24} />
     },
     {
-      title: "FSSAI & GMP Certified",
-      desc: "All formulations are compounded in state-of-the-art, ISO-certified facilities under strict FSSAI compliance to ensure complete purity, safety, and lack of heavy metal contaminants.",
+      title: "AYUSH Certified",
+      desc: "Compounded under the strict guidelines of the Ministry of AYUSH, ensuring classical Ayurvedic integrity, safety standards, and complete botanical purity.",
       icon: <ShieldCheck size={24} />
     },
     {

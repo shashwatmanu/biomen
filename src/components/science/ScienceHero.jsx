@@ -10,7 +10,7 @@ import { useGSAP } from '@gsap/react';
 // Floating bio-molecular green background particles for rich depth
 const MolecularBackgroundParticles = () => {
   const pointsRef = useRef();
-  
+
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (pointsRef.current) {
@@ -40,16 +40,16 @@ const MolecularBackgroundParticles = () => {
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute 
+        <bufferAttribute
           attach="attributes-position"
           args={[positions, 3]}
         />
       </bufferGeometry>
-      <pointsMaterial 
-        color="#16C784" 
-        size={0.07} 
-        sizeAttenuation={true} 
-        transparent={true} 
+      <pointsMaterial
+        color="#16C784"
+        size={0.07}
+        sizeAttenuation={true}
+        transparent={true}
         opacity={0.4}
         depthWrite={false}
       />
@@ -57,41 +57,72 @@ const MolecularBackgroundParticles = () => {
   );
 };
 
+// Premium Award-Style Editorial Metrics helper component
+const MetricsGrid = ({ className }) => (
+  <div className={`grid grid-cols-3 gap-4 w-full max-w-lg relative z-20 ${className}`}>
+    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
+      {/* Decorative neon indicator dot */}
+      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
+      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">8</span>
+      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
+        Active Botanicals
+      </span>
+    </div>
+
+    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
+      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
+      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">100%</span>
+      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
+        Transparent Dosing
+      </span>
+    </div>
+
+    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
+      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
+      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">0%</span>
+      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
+        Synthetic Fillers
+      </span>
+    </div>
+  </div>
+);
+
 const ScienceHero = () => {
   const textContainerRef = useRef(null);
 
   // Elegant load-in animations using GSAP
   useGSAP(() => {
     if (!textContainerRef.current) return;
-    
-    const children = textContainerRef.current.children;
-    gsap.from(children, {
-      y: 25,
+
+    const targets = textContainerRef.current.querySelectorAll(':scope > *:not(.hidden)');
+    gsap.from(targets, {
+      y: 20,
       opacity: 0,
-      duration: 1.1,
-      stagger: 0.12,
-      ease: "power4.out"
+      duration: 0.9,
+      stagger: 0.1,
+      ease: "power2.out",
+      clearProps: "all"
     });
   }, { scope: textContainerRef });
 
   return (
-    <section className="pt-[140px] lg:pt-[170px] pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[92vh] flex items-center">
+    <section className="pt-[140px] lg:pt-[170px] pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[92vh] flex items-start">
       {/* Background radial and gradient glows for a botanical feel */}
       <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-[#052E22]/30 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#0FA36B]/15 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Subtle digital coordinates background grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none" 
-        style={{ 
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(22,199,132,0.2) 1.5px, transparent 0)', 
-          backgroundSize: '48px 48px' 
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(22,199,132,0.2) 1.5px, transparent 0)',
+          backgroundSize: '48px 48px'
         }}
       />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
           {/* Mobile Headline (Only visible on mobile/tablet screens - order-1) */}
           <div className="block lg:hidden space-y-4 text-left w-full order-1">
             <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
@@ -105,12 +136,12 @@ const ScienceHero = () => {
           </div>
 
           {/* Right Column: 3D Canvas Container (order-2 on mobile, order-2 on desktop) */}
-          <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full order-2 lg:order-2 touch-none select-none">
+          <div className="lg:col-span-5 xl:col-span-6 flex flex-col items-center justify-start relative w-full order-2 lg:order-2 touch-none select-none lg:-mt-18">
             {/* Elegant glowing backdrop behind the cylinder */}
-            <div className="absolute inset-0 max-w-[420px] max-h-[420px] mx-auto my-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
+            <div className="absolute top-[60px] inset-x-0 max-w-[420px] max-h-[420px] mx-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
 
-            <div className="absolute inset-0 flex items-center justify-center touch-none select-none">
-              <Suspense 
+            <div className="w-full h-[360px] sm:h-[420px] lg:h-[520px] relative touch-none select-none">
+              <Suspense
                 fallback={
                   <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
                     <div className="w-10 h-10 rounded-full border-2 border-[#16C784]/20 border-t-[#16C784] animate-spin"></div>
@@ -123,16 +154,16 @@ const ScienceHero = () => {
                 <Canvas camera={{ position: [0, 0, 8.5], fov: 45 }} dpr={[1, 2]}>
                   {/* Lower ambient light for deep shadows */}
                   <ambientLight intensity={0.45} />
-                  
+
                   {/* Master Key Light (Front-Right) to make golden text and label shine */}
                   <directionalLight position={[8, 4, 6]} intensity={2.2} color="#ffffff" castShadow />
-                  
+
                   {/* Cinematic Back-Left Rim Light to cast a gorgeous green edge sheen */}
                   <directionalLight position={[-8, 6, -6]} intensity={3.8} color="#7FE7B3" />
-                  
+
                   {/* Soft Fill Light to soften dark front sways */}
                   <directionalLight position={[-6, -4, 2]} intensity={0.65} color="#ffffff" />
-                  
+
                   {/* Direct spotlight focusing on visual center */}
                   <spotLight position={[0, 10, 0]} intensity={2.5} angle={0.25} penumbra={1} castShadow />
 
@@ -146,13 +177,13 @@ const ScienceHero = () => {
                   <ScienceProductModel scale={[0.85, 0.85, 0.85]} position={[0, 0, 0]} />
 
                   {/* Ground shadows anchoring the floating product */}
-                  <ContactShadows 
-                    position={[0, -2.0, 0]} 
-                    opacity={0.65} 
-                    scale={6.5} 
-                    blur={1.5} 
-                    far={3.0} 
-                    color="#052e22" 
+                  <ContactShadows
+                    position={[0, -2.7, 0]}
+                    opacity={0.65}
+                    scale={6.5}
+                    blur={1.5}
+                    far={3.0}
+                    color="#052e22"
                   />
 
                   {/* Post-processing compose line */}
@@ -164,10 +195,13 @@ const ScienceHero = () => {
                 </Canvas>
               </Suspense>
             </div>
+
+            {/* Premium Award-Style Editorial Metrics (Desktop only) */}
+            <MetricsGrid className="hidden lg:grid mt-8" />
           </div>
 
           {/* Left Column: High-end Editorial Copy with Staggered Entrance (order-3 on mobile, order-1 on desktop) */}
-          <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-8 text-left order-3 lg:order-1 w-full">
+          <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-5 text-left order-3 lg:order-1 w-full">
             {/* Desktop Headline (Only visible on desktop view) */}
             <div className="hidden lg:block space-y-4">
               <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
@@ -190,33 +224,8 @@ const ScienceHero = () => {
               </p>
             </div>
 
-            {/* Premium Award-Style Editorial Metrics */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-                {/* Decorative neon indicator dot */}
-                <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-                <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">8</span>
-                <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-                  Active Botanicals
-                </span>
-              </div>
-              
-              <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-                <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-                <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">100%</span>
-                <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-                  Transparent Dosing
-                </span>
-              </div>
-              
-              <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-                <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-                <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">0%</span>
-                <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-                  Synthetic Fillers
-                </span>
-              </div>
-            </div>
+            {/* Premium Award-Style Editorial Metrics (Mobile only, placed below Integrity Notice) */}
+            <MetricsGrid className="lg:hidden mt-6" />
 
             {/* Premium Highlights List */}
             <div className="space-y-4.5 pt-5 border-t border-white/10">
@@ -248,7 +257,7 @@ const ScienceHero = () => {
 
             {/* Smooth Anchor CTA */}
             <div className="pt-2">
-              <button 
+              <button
                 onClick={() => {
                   document.getElementById('spotlight')?.scrollIntoView({ behavior: 'smooth' });
                 }}

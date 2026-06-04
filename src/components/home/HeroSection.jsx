@@ -116,8 +116,8 @@ const HeroSection = () => {
           </div>
 
           {/* Micro-trust Line */}
-          <div className="flex items-center justify-center gap-1.5 text-[8.5px] text-[#A8B3AA] font-black uppercase tracking-wider pt-0.5">
-            <Shield size={11} className="text-[#16C784] shrink-0" />
+          <div className="flex items-center justify-center gap-2 text-[10.5px] sm:text-xs text-[#A8B3AA] font-black uppercase tracking-wider pt-1">
+            <Shield size={13} className="text-[#16C784] shrink-0" />
             <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
           </div>
         </div>
@@ -182,8 +182,8 @@ const HeroSection = () => {
             </div>
 
             {/* Risk-Free Micro-trust Line */}
-            <div className="flex items-center gap-2 text-[9px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2">
-              <Shield size={12} className="text-[#16C784] shrink-0" />
+            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5">
+              <Shield size={14} className="text-[#16C784] shrink-0" />
               <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
             </div>
           </div>

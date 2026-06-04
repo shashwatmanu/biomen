@@ -106,8 +106,29 @@ const IngredientSpotlight = () => {
     touchEndXRef.current = 0;
   };
 
+  const [hasIntersected, setHasIntersected] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasIntersected(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   // Handle Autoplay for Mobile Carousel
   useEffect(() => {
+    if (!hasIntersected) return;
     if (isHovered) {
       if (autoPlayTimerRef.current) {
         clearInterval(autoPlayTimerRef.current);
@@ -124,7 +145,7 @@ const IngredientSpotlight = () => {
         clearInterval(autoPlayTimerRef.current);
       }
     };
-  }, [isHovered, activeId]);
+  }, [isHovered, activeId, hasIntersected]);
 
   // Dynamic sliding animations using GSAP
   useGSAP(() => {
