@@ -133,40 +133,6 @@ const HeroBuyBox = () => {
     
   }, []);
 
-  useEffect(() => {
-    const visualViewport = window.visualViewport;
-    if (!visualViewport) return;
-
-    const handleViewportChange = () => {
-      const bar = document.getElementById('pdp-sticky-bar');
-      if (bar) {
-        if (window.innerWidth < 768) {
-          const barHeight = bar.offsetHeight || 72;
-          bar.style.top = `${visualViewport.height - barHeight}px`;
-          bar.style.bottom = 'auto';
-        } else {
-          bar.style.top = 'auto';
-          bar.style.bottom = '0px';
-        }
-      }
-    };
-
-    visualViewport.addEventListener('resize', handleViewportChange);
-    visualViewport.addEventListener('scroll', handleViewportChange);
-    window.addEventListener('scroll', handleViewportChange, { passive: true });
-    window.addEventListener('resize', handleViewportChange);
-    
-    const timer = setTimeout(handleViewportChange, 100);
-
-    return () => {
-      visualViewport.removeEventListener('resize', handleViewportChange);
-      visualViewport.removeEventListener('scroll', handleViewportChange);
-      window.removeEventListener('scroll', handleViewportChange);
-      window.removeEventListener('resize', handleViewportChange);
-      clearTimeout(timer);
-    };
-  }, []);
-
   return (
     <>
       <section 

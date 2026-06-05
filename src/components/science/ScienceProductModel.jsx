@@ -25,6 +25,9 @@ export const ScienceProductModel = (props) => {
 
   const rotationY = useRef(-Math.PI * 0.35);
   const targetRotationY = useRef(-Math.PI * 0.35);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startRotationY = useRef(0);
   const startY = useRef(0);
   const isScrolling = useRef(false);
 
