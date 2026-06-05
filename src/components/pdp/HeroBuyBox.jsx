@@ -179,7 +179,7 @@ const HeroBuyBox = () => {
                       <img 
                         src={img.url} 
                         alt={img.label} 
-                        className="w-full h-full object-contain p-8 drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] transition-all duration-700 ease-out group-hover:scale-105" 
+                        className="w-full h-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-105" 
                       />
                     </div>
                   ))}
