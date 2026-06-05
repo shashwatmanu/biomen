@@ -28,7 +28,7 @@ function App() {
   const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel';
 
   return (
-    <div className="bg-black min-h-screen relative">
+    <div className="bg-black min-h-[100dvh] relative">
       {!isAdminPage && (
         <div className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md">
           {location.pathname === '/' && <PromoBar />}

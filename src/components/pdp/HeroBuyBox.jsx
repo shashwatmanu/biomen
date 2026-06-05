@@ -131,10 +131,28 @@ const HeroBuyBox = () => {
     handleScroll();
     const timer = setTimeout(handleScroll, 250);
     
+  }, []);
+
+  useEffect(() => {
+    const visualViewport = window.visualViewport;
+    if (!visualViewport) return;
+
+    const handleViewportChange = () => {
+      const bar = document.getElementById('pdp-sticky-bar');
+      if (bar) {
+        // Adjust the bottom position based on the layout viewport and visual viewport delta
+        const offset = window.innerHeight - visualViewport.height;
+        bar.style.bottom = `${Math.max(0, offset)}px`;
+      }
+    };
+
+    visualViewport.addEventListener('resize', handleViewportChange);
+    visualViewport.addEventListener('scroll', handleViewportChange);
+    handleViewportChange();
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      clearTimeout(timer);
+      visualViewport.removeEventListener('resize', handleViewportChange);
+      visualViewport.removeEventListener('scroll', handleViewportChange);
     };
   }, []);
 
@@ -142,7 +160,7 @@ const HeroBuyBox = () => {
     <>
       <section 
         id="buybox"
-        className={`pt-[176px] md:pt-[144px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-screen flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
+        className={`pt-[176px] md:pt-[144px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[100dvh] flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
       >
         {/* Background glow effects */}
         <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
@@ -169,25 +187,14 @@ const HeroBuyBox = () => {
                   className="w-full h-full overflow-x-auto flex snap-x snap-mandatory scrollbar-none scroll-smooth relative"
                 >
                   {images.map((img) => (
-                    <div key={img.id} className="min-w-full h-full relative flex-shrink-0 snap-start">
+                    <div key={img.id} className="w-full min-w-full h-full relative flex-shrink-0 snap-start">
                       <img 
                         src={img.url} 
                         alt={img.label} 
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                        draggable="false"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none" 
                       />
                     </div>
-                  ))}
-                </div>
-
-                {/* Dots indicator row */}
-                <div className="absolute inset-x-0 bottom-6 z-30 flex justify-center gap-2">
-                  {images.map((img, idx) => (
-                    <button
-                      key={img.id}
-                      onClick={() => scrollToIdx(idx)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${activeIdx === idx ? 'bg-[#16C784] w-6' : 'bg-white/30 hover:bg-white/50'}`}
-                      aria-label={`Slide to image ${idx + 1}`}
-                    />
                   ))}
                 </div>
 
@@ -204,6 +211,18 @@ const HeroBuyBox = () => {
                 >
                   &rarr;
                 </button>
+              </div>
+
+              {/* Dots indicator row (Moved below card) */}
+              <div className="flex justify-center gap-2 mt-4">
+                {images.map((img, idx) => (
+                  <button
+                    key={img.id}
+                    onClick={() => scrollToIdx(idx)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${activeIdx === idx ? 'bg-[#16C784] w-6' : 'bg-white/30 hover:bg-white/50'}`}
+                    aria-label={`Slide to image ${idx + 1}`}
+                  />
+                ))}
               </div>
             
             {/* Thumbnails Selector with enlarged and full bleed cards */}
@@ -451,7 +470,7 @@ const HeroBuyBox = () => {
     </section>
 
     {/* Sticky Bottom Bar for PDP */}
-    <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,0px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between md:transition-[transform,opacity] md:duration-300 ${
+    <div id="pdp-sticky-bar" className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,0px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between md:transition-[transform,opacity] md:duration-300 ${
       isStickyVisible 
         ? 'opacity-100 md:translate-y-0 md:opacity-100' 
         : 'pointer-events-none opacity-0 md:pointer-events-none md:translate-y-full md:opacity-0'
