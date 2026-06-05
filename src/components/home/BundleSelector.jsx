@@ -47,8 +47,8 @@ const BundleSelector = () => {
     return bestBundle ? bestBundle.id : bundles[0].id;
   });
 
-  const handlePurchase = (bundle) => {
-    window.location.href = `/products/t-core?system=${bundle.id}`;
+  const handlePurchase = (bundle, isSub) => {
+    window.location.href = `/products/t-core?system=${bundle.id}${isSub ? '&subscription=true' : ''}`;
   };
 
   return (
@@ -82,7 +82,10 @@ const BundleSelector = () => {
               <span className="inline xs:hidden">One-Time</span>
             </button>
             <button 
-              onClick={() => setIsSubscription(true)}
+              onClick={() => {
+                setIsSubscription(true);
+                setSelectedId('tcore-3-bottles');
+              }}
               className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
             >
               <span className="hidden xs:inline">Auto-Pay Subscription</span>
@@ -93,22 +96,29 @@ const BundleSelector = () => {
         </div>
 
         {/* Pricing Cards Grid (Solid bg, no digital gradients) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4 items-stretch mb-4 lg:mb-2.5">
-          {bundles.map((bundle, i) => {
-            const currentPrice = isSubscription ? bundle.subPrice : bundle.price;
-            const savingsPercent = Math.round(((bundle.mrp - currentPrice) / bundle.mrp) * 100);
-            const isSelected = selectedId === bundle.id;
+        <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm mx-auto' : 'md:grid-cols-3'} gap-6 lg:gap-4 items-stretch mb-4 lg:mb-2.5`}>
+          {bundles
+            .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
+            .map((bundle, i) => {
+              const isSelected = selectedId === bundle.id;
+              const currentPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
+              const savingsPercent = Math.round(((bundle.mrp - currentPrice) / bundle.mrp) * 100);
 
-            return (
-              <div 
-                key={i} 
-                onClick={() => setSelectedId(bundle.id)}
-                className={`relative bg-black/40 border rounded-[1.5rem] p-5 lg:p-4 flex flex-col justify-between text-center transition-all duration-300 cursor-pointer ${
-                  isSelected 
-                    ? 'border-[#0FA36B] ring-2 ring-[#0FA36B]/30 md:scale-102 z-10 bg-[#052E22]/10 shadow-2xl' 
-                    : 'border-white/10 hover:border-white/20 hover:scale-[1.01]'
-                }`}
-              >
+              return (
+                <div 
+                  key={i} 
+                  onClick={() => {
+                    setSelectedId(bundle.id);
+                    if (bundle.id !== 'tcore-3-bottles') {
+                      setIsSubscription(false);
+                    }
+                  }}
+                  className={`relative bg-black/40 border rounded-[1.5rem] p-5 lg:p-4 flex flex-col justify-between text-center transition-all duration-300 cursor-pointer ${
+                    isSelected 
+                      ? 'border-[#0FA36B] ring-2 ring-[#0FA36B]/30 md:scale-102 z-10 bg-[#052E22]/10 shadow-2xl' 
+                      : 'border-white/10 hover:border-white/20 hover:scale-[1.01]'
+                  }`}
+                >
                 {bundle.best && (
                   <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0FA36B] text-[#F4F6F2] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1">
                     <Star size={10} fill="currentColor" /> Recommended Protocol
@@ -146,7 +156,9 @@ const BundleSelector = () => {
                   <button 
                     onClick={(e) => {
                       e.stopPropagation();
-                      handlePurchase(bundle);
+                      // If user clicks button for a non-90 day package while in subscription mode, toggle to one-time
+                      const isSub = isSubscription && bundle.id === 'tcore-3-bottles';
+                      handlePurchase({ ...bundle, id: bundle.id }, isSub);
                     }}
                     className={`block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
                       isSelected 

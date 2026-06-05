@@ -276,7 +276,10 @@ const HeroBuyBox = () => {
                   One-Time Purchase
                 </button>
                 <button 
-                  onClick={() => setIsSubscription(true)}
+                  onClick={() => {
+                    setIsSubscription(true);
+                    setSelectedBundle(bundles[0]); // Auto-select Full Reset System (90 days)
+                  }}
                   className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
                 >
                   Subscribe & Save
@@ -291,9 +294,9 @@ const HeroBuyBox = () => {
                 onClick={() => addToCart({
                   id: selectedBundle.id,
                   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                  price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+                  price: (isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price,
                   quantity: 1,
-                  isSubscription: isSubscription,
+                  isSubscription: isSubscription && selectedBundle.id === 'tcore-3-bottles',
                   image: images[0].url
                 })}
                 className="w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
@@ -304,7 +307,7 @@ const HeroBuyBox = () => {
               <div className="text-left w-full sm:w-auto">
                 <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
                 <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">
-                  {selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - (isSubscription ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
+                  {selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
                 </div>
               </div>
             </div>
@@ -343,16 +346,23 @@ const HeroBuyBox = () => {
                 SELECT YOUR SYSTEM PROTOCOL
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {bundles.map((bundle) => {
-                  const isSelected = selectedBundle.id === bundle.id;
-                  const displayPrice = isSubscription ? bundle.subPrice : bundle.price;
-                  const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
-                  
-                  return (
-                    <button
-                      key={bundle.id}
-                      onClick={() => setSelectedBundle(bundle)}
+              <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm' : 'md:grid-cols-3'} gap-4`}>
+                {bundles
+                  .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
+                  .map((bundle) => {
+                    const isSelected = selectedBundle.id === bundle.id;
+                    const displayPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
+                    const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
+                    
+                    return (
+                      <button
+                        key={bundle.id}
+                        onClick={() => {
+                          setSelectedBundle(bundle);
+                          if (bundle.id !== 'tcore-3-bottles') {
+                            setIsSubscription(false);
+                          }
+                        }}
                       className={`relative flex flex-col justify-between text-left p-5 rounded-2xl border transition-all cursor-pointer bg-black/40 min-h-[140px] hover:border-[#0FA36B]/50 ${isSelected ? 'border-[#0FA36B] bg-[#052E22]/20 ring-1 ring-[#0FA36B]/30' : 'border-white/10'}`}
                     >
                       {bundle.best && (
