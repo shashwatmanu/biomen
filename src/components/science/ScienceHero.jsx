@@ -140,7 +140,7 @@ const ScienceHero = () => {
             {/* Elegant glowing backdrop behind the cylinder */}
             <div className="absolute top-[60px] inset-x-0 max-w-[420px] max-h-[420px] mx-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
 
-            <div className="w-full h-[360px] sm:h-[420px] lg:h-[520px] relative touch-none select-none">
+            <div className="w-full h-[360px] sm:h-[420px] lg:h-[520px] relative touch-pan-y select-none">
               <Suspense
                 fallback={
                   <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">

@@ -25,36 +25,47 @@ export const ScienceProductModel = (props) => {
 
   const rotationY = useRef(-Math.PI * 0.35);
   const targetRotationY = useRef(-Math.PI * 0.35);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const startRotationY = useRef(0);
+  const startY = useRef(0);
+  const isScrolling = useRef(false);
 
   useEffect(() => {
-    const handleStart = (clientX) => {
+    const handleStart = (clientX, clientY) => {
       isDragging.current = true;
+      isScrolling.current = false;
       startX.current = clientX;
+      startY.current = clientY;
       startRotationY.current = rotationY.current;
     };
 
-    const handleMove = (clientX) => {
-      if (!isDragging.current) return;
+    const handleMove = (clientX, clientY) => {
+      if (!isDragging.current || isScrolling.current) return;
       const deltaX = clientX - startX.current;
+      const deltaY = clientY - startY.current;
+
+      // If gesture is primarily vertical, treat as page scroll and disable rotation
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
+        isScrolling.current = true;
+        isDragging.current = false;
+        return;
+      }
+
       targetRotationY.current = startRotationY.current + deltaX * 0.01;
     };
 
     const handleEnd = () => {
       isDragging.current = false;
+      isScrolling.current = false;
     };
 
-    const onMouseDown = (e) => handleStart(e.clientX);
-    const onMouseMove = (e) => handleMove(e.clientX);
+    const onMouseDown = (e) => handleStart(e.clientX, e.clientY);
+    const onMouseMove = (e) => handleMove(e.clientX, e.clientY);
     const onMouseUp = () => handleEnd();
 
     const onTouchStart = (e) => {
-      if (e.touches.length > 0) handleStart(e.touches[0].clientX);
+      if (e.touches.length > 0) handleStart(e.touches[0].clientX, e.touches[0].clientY);
     };
     const onTouchMove = (e) => {
-      if (e.touches.length > 0) handleMove(e.touches[0].clientX);
+      if (e.touches.length > 0) handleMove(e.touches[0].clientX, e.touches[0].clientY);
     };
     const onTouchEnd = () => handleEnd();
 
