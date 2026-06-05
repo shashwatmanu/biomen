@@ -7,7 +7,9 @@ const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const navigate = useNavigate();
   const [activeIdx, setActiveIdx] = useState(0);
-  const [isStickyVisible, setIsStickyVisible] = useState(false);
+  const [isStickyVisible, setIsStickyVisible] = useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  });
 
   // Touch Swipe state variables
   const [touchStart, setTouchStart] = useState(0);
@@ -77,7 +79,9 @@ const HeroBuyBox = () => {
   }, []);
 
   const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
+    const x = e.targetTouches[0].clientX;
+    setTouchStart(x);
+    setTouchEnd(x);
   };
 
   const handleTouchMove = (e) => {
@@ -97,6 +101,11 @@ const HeroBuyBox = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (window.innerWidth < 768) {
+        setIsStickyVisible(true);
+        return;
+      }
+
       const buybox = document.getElementById('buybox');
       const footer = document.querySelector('footer');
       
@@ -170,7 +179,7 @@ const HeroBuyBox = () => {
                       <img 
                         src={img.url} 
                         alt={img.label} 
-                        className="w-full h-full object-cover drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] transition-all duration-700 ease-out group-hover:scale-105" 
+                        className="w-full h-full object-contain p-8 drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] transition-all duration-700 ease-out group-hover:scale-105" 
                       />
                     </div>
                   ))}
@@ -449,7 +458,7 @@ const HeroBuyBox = () => {
       </div>
 
       {/* Sticky Bottom Bar for PDP */}
-      <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between transition-all duration-300 ${
+      <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between transition-[transform,opacity] duration-300 ${
         isStickyVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
       }`}>
         <div className="hidden md:flex items-center gap-4 text-left">
