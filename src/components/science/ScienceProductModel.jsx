@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
 export const ScienceProductModel = (props) => {
   // Load premium canister textures
@@ -21,6 +21,9 @@ export const ScienceProductModel = (props) => {
   capTop.colorSpace = THREE.SRGBColorSpace;
   capBottom.colorSpace = THREE.SRGBColorSpace;
 
+  const { gl } = useThree();
+  const canvasEl = gl.domElement;
+
   const groupRef = useRef();
 
   const rotationY = useRef(-Math.PI * 0.35);
@@ -32,6 +35,8 @@ export const ScienceProductModel = (props) => {
   const isScrolling = useRef(false);
 
   useEffect(() => {
+    if (!canvasEl) return;
+
     const handleStart = (clientX, clientY) => {
       isDragging.current = true;
       isScrolling.current = false;
@@ -72,22 +77,24 @@ export const ScienceProductModel = (props) => {
     };
     const onTouchEnd = () => handleEnd();
 
-    window.addEventListener('mousedown', onMouseDown);
+    canvasEl.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    canvasEl.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
 
     return () => {
-      window.removeEventListener('mousedown', onMouseDown);
+      canvasEl.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
-      window.removeEventListener('touchstart', onTouchStart);
+      canvasEl.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('touchcancel', onTouchEnd);
     };
-  }, []);
+  }, [canvasEl]);
 
   // Premium natural floating, swaying, and user-interactive rotation
   useFrame((state) => {

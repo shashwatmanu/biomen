@@ -14,14 +14,14 @@ const CartDrawer = () => {
       {/* Overlay */}
       {isCartOpen && (
         <div
-          className="fixed inset-0 bg-black/75 backdrop-blur-sm z-[200] transition-opacity"
+          className="fixed top-0 left-0 w-full h-[100dvh] bg-black/75 backdrop-blur-sm z-[200] transition-opacity"
           onClick={closeCart}
         />
       )}
 
       {/* Drawer */}
       <div
-        className={`fixed inset-y-0 right-0 w-full md:w-[400px] bg-[#06110C]/95 backdrop-blur-xl z-[250] transform transition-transform duration-300 ease-in-out border-l border-white/10 flex flex-col ${
+        className={`fixed top-0 right-0 w-full h-[100dvh] md:w-[400px] bg-[#06110C]/95 backdrop-blur-xl z-[250] transform transition-transform duration-300 ease-in-out border-l border-white/10 flex flex-col ${
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -98,7 +98,7 @@ const CartDrawer = () => {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-md">
+          <div className="p-6 pb-[calc(24px+env(safe-area-inset-bottom,0px))] border-t border-white/10 bg-black/40 backdrop-blur-md">
             <div className="space-y-2 mb-6">
               <div className="flex items-center justify-between">
                 <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-xs">Subtotal</span>

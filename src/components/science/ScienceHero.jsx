@@ -136,7 +136,7 @@ const ScienceHero = () => {
           </div>
 
           {/* Right Column: 3D Canvas Container (order-2 on mobile, order-2 on desktop) */}
-          <div className="lg:col-span-5 xl:col-span-6 flex flex-col items-center justify-start relative w-full order-2 lg:order-2 touch-none select-none lg:-mt-18">
+          <div className="lg:col-span-5 xl:col-span-6 flex flex-col items-center justify-start relative w-full order-2 lg:order-2 touch-pan-y select-none lg:-mt-18">
             {/* Elegant glowing backdrop behind the cylinder */}
             <div className="absolute top-[60px] inset-x-0 max-w-[420px] max-h-[420px] mx-auto rounded-full bg-gradient-to-tr from-[#052E22]/30 to-[#0fa36b]/5 border border-white/[0.03] blur-[50px] pointer-events-none" />
 
