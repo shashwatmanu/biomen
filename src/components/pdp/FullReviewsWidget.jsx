@@ -25,7 +25,7 @@ const FullReviewsWidget = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 border-b border-white/10 pb-16">
           <div className="md:col-span-3 flex flex-col items-center md:items-start">
             <div className="text-7xl font-black text-white mb-2 leading-none">4.9</div>
-            <div className="text-sm text-gray-500 font-black uppercase tracking-widest">Based on 3,794 reviews</div>
+            <div className="text-sm text-gray-500 font-black uppercase tracking-widest">Based on 500 reviews</div>
           </div>
           
           <div className="md:col-span-4 space-y-3">

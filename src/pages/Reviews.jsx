@@ -90,7 +90,7 @@ const ReviewsPage = () => {
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
               </div>
               <span className="text-2xl font-black tracking-tight">4.9/5 RATING</span>
-              <span className="text-gray-500 font-bold uppercase tracking-widest text-sm border-l border-white/20 pl-4">3,794 Reviews</span>
+              <span className="text-gray-500 font-bold uppercase tracking-widest text-sm border-l border-white/20 pl-4">500 Reviews</span>
             </div>
           </div>
         </div>

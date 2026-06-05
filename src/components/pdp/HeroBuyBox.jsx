@@ -14,13 +14,14 @@ const HeroBuyBox = () => {
   const [touchEnd, setTouchEnd] = useState(0);
 
   const images = [
-    { id: 'canister', url: '/tcore_canister.jpg', label: 'Premium Canister' },
-    { id: 'jar', url: '/tcore_jar.jpg', label: 'Glass Bottle' },
-    { id: 'hand_canister', url: '/hand_holding_canister.png', label: 'T-CORE in Hand' },
-    { id: 'hand_jar', url: '/hand_holding_green_jar.jpg', label: 'Green Bottle Premium' },
-    { id: 'spilled', url: '/spilled_capsules.jpg', label: 'Spilled Capsules Detail' },
-    { id: 'portrait_canister', url: '/portrait_canister_jar.jpg', label: 'Canister & Jar' },
-    { id: 'portrait_ingredients', url: '/portrait_ingredients.jpg', label: 'Mossy Ingredients' },
+    { id: 'prod-1', url: '/Product/1.webp', label: 'T-CORE Front View' },
+    { id: 'prod-2', url: '/Product/2.webp', label: 'T-CORE Side View' },
+    { id: 'prod-3', url: '/Product/3.webp', label: 'T-CORE Supplement Facts' },
+    { id: 'prod-4', url: '/Product/4.webp', label: 'T-CORE Texture Detail' },
+    { id: 'prod-5', url: '/Product/5.webp', label: 'T-CORE Ingredients Close-up' },
+    { id: 'prod-6', url: '/Product/6.webp', label: 'T-CORE System Routine' },
+    { id: 'prod-7', url: '/Product/7.webp', label: 'T-CORE Lifestyle Shot' },
+    { id: 'prod-8', url: '/Product/8.webp', label: 'T-CORE Packaging Box' },
   ];
 
   const bundles = [
@@ -204,7 +205,7 @@ const HeroBuyBox = () => {
             </div>
             
             {/* Thumbnails Selector with enlarged and full bleed cards */}
-            <div className="grid grid-cols-7 gap-2">
+            <div className="grid grid-cols-8 gap-2">
               {images.map((img, idx) => (
                 <button 
                   key={img.id}

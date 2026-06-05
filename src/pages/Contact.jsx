@@ -35,7 +35,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-black uppercase tracking-widest text-[#A8B3AA] mb-2">Press & Partnerships</h3>
-                  <div className="text-2xl font-black text-white hover:text-[#16C784] transition-colors cursor-pointer">partners@biomenlabs.com</div>
+                  <div className="text-2xl font-black text-white hover:text-[#16C784] transition-colors cursor-pointer">support@biomenlabs.com</div>
                 </div>
               </div>
 
@@ -45,7 +45,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-black uppercase tracking-widest text-[#A8B3AA] mb-2">Headquarters</h3>
-                  <div className="text-2xl font-black text-white">Biomen Labs Research Facility<br/>Mumbai, India</div>
+                  <div className="text-2xl font-black text-white">Biomen Labs Research Facility<br/>Ghaziabad, India</div>
                 </div>
               </div>
             </div>
@@ -68,11 +68,11 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-[#A8B3AA] ml-4">Full Name</label>
-                  <input type="text" placeholder="John Doe" className="w-full bg-[#030705] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-[#0FA36B] transition-colors font-medium" />
+                  <input type="text" placeholder="Aarav Sharma" className="w-full bg-[#030705] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-[#0FA36B] transition-colors font-medium" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-[#A8B3AA] ml-4">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full bg-[#030705] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-[#0FA36B] transition-colors font-medium" />
+                  <input type="email" placeholder="aarav@example.com" className="w-full bg-[#030705] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-[#0FA36B] transition-colors font-medium" />
                 </div>
               </div>
 

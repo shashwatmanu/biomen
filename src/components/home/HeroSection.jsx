@@ -83,7 +83,7 @@ const HeroSection = () => {
               {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
             </div>
             <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
-              4.9/5 RATING &bull; OVER 3,900 VERIFIED EXPERIENCES
+              4.9/5 RATING &bull; OVER 500 VERIFIED EXPERIENCES
             </span>
           </div>
 
@@ -136,7 +136,7 @@ const HeroSection = () => {
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
               </div>
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
-                4.9/5 RATING &bull; OVER 3,900 VERIFIED EXPERIENCES
+                4.9/5 RATING &bull; OVER 500 VERIFIED EXPERIENCES
               </span>
             </div>
 
