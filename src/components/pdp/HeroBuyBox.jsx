@@ -175,11 +175,11 @@ const HeroBuyBox = () => {
                   style={{ transform: `translateX(-${activeIdx * 100}%)` }}
                 >
                   {images.map((img) => (
-                    <div key={img.id} className="min-w-full h-full flex items-center justify-center flex-shrink-0 p-0">
+                    <div key={img.id} className="min-w-full h-full relative flex-shrink-0">
                       <img 
                         src={img.url} 
                         alt={img.label} 
-                        className="w-full h-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-105" 
+                        className="absolute inset-0 w-full h-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-105" 
                       />
                     </div>
                   ))}
@@ -458,8 +458,10 @@ const HeroBuyBox = () => {
       </div>
 
       {/* Sticky Bottom Bar for PDP */}
-      <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between transition-[transform,opacity] duration-300 ${
-        isStickyVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+      <div className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between md:transition-[transform,opacity] md:duration-300 ${
+        isStickyVisible 
+          ? 'opacity-100 md:translate-y-0 md:opacity-100' 
+          : 'pointer-events-none opacity-0 md:pointer-events-none md:translate-y-full md:opacity-0'
       }`}>
         <div className="hidden md:flex items-center gap-4 text-left">
           <img src={images[0].url} alt="T-CORE" className="w-12 h-12 object-contain bg-white/5 border border-white/10 rounded-xl p-1" />
