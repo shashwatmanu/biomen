@@ -80,6 +80,25 @@ const Checkout = () => {
     setMode('guest');
   };
 
+  const handleEmailBlur = async (email, name) => {
+    if (!email || !email.includes('@')) return;
+    try {
+      await fetch(`${API_URL}/email-flows/trigger`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          firstName: name ? name.trim().split(' ')[0] : 'Customer',
+          flow: 'Cart Recovery',
+          testMode: false
+        })
+      });
+      console.log('Cart recovery event logged for email:', email);
+    } catch (err) {
+      console.error('Failed to trigger Cart Recovery flow:', err);
+    }
+  };
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -336,6 +355,7 @@ const Checkout = () => {
                     placeholder="EMAIL ADDRESS" 
                     value={regEmail}
                     onChange={(e) => setRegEmail(e.target.value)}
+                    onBlur={(e) => handleEmailBlur(e.target.value, regName)}
                     className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none text-xs font-mono font-bold uppercase tracking-widest"
                     required
                   />
@@ -408,6 +428,7 @@ const Checkout = () => {
                         placeholder="EMAIL ADDRESS" 
                         value={guestEmail}
                         onChange={(e) => setGuestEmail(e.target.value)}
+                        onBlur={(e) => handleEmailBlur(e.target.value, guestName)}
                         className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none text-xs font-mono font-bold uppercase tracking-widest"
                         required
                       />

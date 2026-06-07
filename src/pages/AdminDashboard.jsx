@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import API_URL from '../utils/api';
 import InvoiceModal from '../components/admin/InvoiceModal';
+import EmailDashboard from '../components/admin/EmailDashboard';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ const AdminDashboard = () => {
   
   // Notification banner
   const [notification, setNotification] = useState(null);
+  
+  // Tabs configuration
+  const [activeTab, setActiveTab] = useState('orders');
 
   // Authenticate session
   useEffect(() => {
@@ -180,294 +184,316 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        {/* 1. KPIs Metric cards Panel */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          {/* Card: Total Revenue */}
-          <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
-            <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
-              <TrendingUp size={18} />
-            </div>
-            <div>
-              <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">TOTAL REVENUE (PAID)</span>
-              <span className="text-2.5xl font-black text-white font-mono block mt-1">
-                ₹{stats ? stats.totalRevenue?.toLocaleString('en-IN') : '0'}
-              </span>
-            </div>
-          </div>
+        {/* Tab Selector Buttons */}
+        <div className="flex gap-4 border-b border-white/10 pb-4 mb-8">
+          <button 
+            onClick={() => setActiveTab('orders')}
+            className={`text-xs font-black uppercase tracking-widest pb-2 border-b-2 transition-all cursor-pointer ${activeTab === 'orders' ? 'border-[#16C784] text-[#16C784]' : 'border-transparent text-gray-500 hover:text-white'}`}
+          >
+            Orders Log
+          </button>
+          <button 
+            onClick={() => setActiveTab('emails')}
+            className={`text-xs font-black uppercase tracking-widest pb-2 border-b-2 transition-all cursor-pointer ${activeTab === 'emails' ? 'border-[#16C784] text-[#16C784]' : 'border-transparent text-gray-500 hover:text-white'}`}
+          >
+            Retention Emails
+          </button>
+        </div>
 
-          {/* Card: Total Orders */}
-          <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
-            <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
-              <ShoppingBag size={18} />
-            </div>
-            <div>
-              <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">TOTAL ORDERS FILED</span>
-              <span className="text-2.5xl font-black text-white font-mono block mt-1">
-                {stats ? stats.totalOrdersCount : '0'}
-              </span>
-            </div>
-          </div>
-
-          {/* Card: Active Subscribers */}
-          <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
-            <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
-              <Users size={18} />
-            </div>
-            <div>
-              <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">NEWSLETTER SUBSCRIBERS</span>
-              <span className="text-2.5xl font-black text-white font-mono block mt-1">
-                {stats ? stats.totalSubscribers : '0'}
-              </span>
-            </div>
-          </div>
-
-          {/* Card: Low Stock alerts count */}
-          <div className={`border p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px] ${stats?.lowStockAlertCount > 0 ? 'bg-[#D85A1F]/10 border-[#D85A1F]/20' : 'bg-black/40 border-white/5'}`}>
-            <div className={`absolute top-4 right-4 p-2.5 rounded-2xl border ${stats?.lowStockAlertCount > 0 ? 'text-[#D85A1F] bg-[#D85A1F]/10 border-[#D85A1F]/20' : 'text-[#16C784] bg-[#052E22] border-[#0FA36B]/20'}`}>
-              <AlertTriangle size={18} />
-            </div>
-            <div>
-              <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">INVENTORY STOCK ALERTS</span>
-              <span className={`text-2.5xl font-black font-mono block mt-1 ${stats?.lowStockAlertCount > 0 ? 'text-[#D85A1F]' : 'text-white'}`}>
-                {stats ? stats.lowStockAlertCount : '0'}
-              </span>
-            </div>
-          </div>
-
-        </section>
-
-        {/* 2. Operations Grid & Filter Section */}
-        <section className="bg-black/40 border border-white/5 p-6 rounded-[2rem] space-y-6 backdrop-blur-md">
-          
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-black uppercase tracking-wide text-white">SYSTEM ORDERS LOG</h2>
-              <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage and dispatch customer orders securely</p>
-            </div>
-
-            {/* Filter controls row */}
-            <div className="flex flex-wrap gap-2.5">
+        {activeTab === 'orders' && (
+          <>
+            {/* 1. KPIs Metric cards Panel */}
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               
-              {/* Filter Type Toggles */}
-              <div className="bg-black/60 border border-white/5 p-1 rounded-full flex gap-1">
-                <button 
-                  onClick={() => setFilterType('')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === '' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
-                >
-                  All Categories
-                </button>
-                <button 
-                  onClick={() => setFilterType('retail')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === 'retail' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
-                >
-                  Retail
-                </button>
-                <button 
-                  onClick={() => setFilterType('wholesale')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === 'wholesale' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
-                >
-                  Wholesale
-                </button>
+              {/* Card: Total Revenue */}
+              <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
+                <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
+                  <TrendingUp size={18} />
+                </div>
+                <div>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">TOTAL REVENUE (PAID)</span>
+                  <span className="text-2.5xl font-black text-white font-mono block mt-1">
+                    ₹{stats ? stats.totalRevenue?.toLocaleString('en-IN') : '0'}
+                  </span>
+                </div>
               </div>
 
-              {/* Status Toggles */}
-              <div className="bg-black/60 border border-white/5 p-1 rounded-full flex gap-1">
-                <button 
-                  onClick={() => setFilterStatus('')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === '' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
-                >
-                  All Statuses
-                </button>
-                <button 
-                  onClick={() => setFilterStatus('paid')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === 'paid' ? 'bg-[#0FA36B]/20 border border-[#0FA36B]/30 text-[#16C784]' : 'text-gray-400 hover:text-white'}`}
-                >
-                  Paid
-                </button>
-                <button 
-                  onClick={() => setFilterStatus('failed')}
-                  className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === 'failed' ? 'bg-[#D85A1F]/20 border border-[#D85A1F]/30 text-[#D85A1F]' : 'text-gray-400 hover:text-white'}`}
-                >
-                  Failed
-                </button>
+              {/* Card: Total Orders */}
+              <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
+                <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
+                  <ShoppingBag size={18} />
+                </div>
+                <div>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">TOTAL ORDERS FILED</span>
+                  <span className="text-2.5xl font-black text-white font-mono block mt-1">
+                    {stats ? stats.totalOrdersCount : '0'}
+                  </span>
+                </div>
               </div>
 
-            </div>
-          </div>
+              {/* Card: Active Subscribers */}
+              <div className="bg-black/40 border border-white/5 p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px]">
+                <div className="absolute top-4 right-4 text-[#16C784] bg-[#052E22] p-2.5 rounded-2xl border border-[#0FA36B]/20">
+                  <Users size={18} />
+                </div>
+                <div>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">NEWSLETTER SUBSCRIBERS</span>
+                  <span className="text-2.5xl font-black text-white font-mono block mt-1">
+                    {stats ? stats.totalSubscribers : '0'}
+                  </span>
+                </div>
+              </div>
 
-          {/* Search Input Bar */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-4 flex items-center text-gray-500 pointer-events-none">
-              <Search size={14} />
-            </div>
-            <input 
-              type="text" 
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by Customer Name, Email Address, or Serial Invoice ID..."
-              className="w-full pl-12 pr-6 py-4 bg-black/40 border border-white/5 hover:border-white/10 focus:border-[#0FA36B]/50 rounded-2xl text-white text-xs font-semibold placeholder-gray-600 outline-none transition-all"
-            />
-          </div>
+              {/* Card: Low Stock alerts count */}
+              <div className={`border p-6 rounded-3xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between min-h-[120px] ${stats?.lowStockAlertCount > 0 ? 'bg-[#D85A1F]/10 border-[#D85A1F]/20' : 'bg-black/40 border-white/5'}`}>
+                <div className={`absolute top-4 right-4 p-2.5 rounded-2xl border ${stats?.lowStockAlertCount > 0 ? 'text-[#D85A1F] bg-[#D85A1F]/10 border-[#D85A1F]/20' : 'text-[#16C784] bg-[#052E22] border-[#0FA36B]/20'}`}>
+                  <AlertTriangle size={18} />
+                </div>
+                <div>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-gray-500 block">INVENTORY STOCK ALERTS</span>
+                  <span className={`text-2.5xl font-black font-mono block mt-1 ${stats?.lowStockAlertCount > 0 ? 'text-[#D85A1F]' : 'text-white'}`}>
+                    {stats ? stats.lowStockAlertCount : '0'}
+                  </span>
+                </div>
+              </div>
 
-          {/* Core Logs Data Table */}
-          {loading ? (
-            <div className="py-20 text-center text-xs font-black uppercase tracking-widest text-[#16C784] animate-pulse flex items-center justify-center gap-2">
-              <RefreshCw className="animate-spin" size={16} /> Contacting biomen databanks...
-            </div>
-          ) : orders.length === 0 ? (
-            <div className="py-20 text-center text-xs font-black uppercase tracking-widest text-gray-500 border border-dashed border-white/10 rounded-2xl flex flex-col items-center gap-3">
-              <ShieldAlert size={24} className="text-[#D85A1F]" /> No orders match your selected queries.
-            </div>
-          ) : (
-            <div className="overflow-x-auto rounded-2xl border border-white/5">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="bg-white/5 border-b border-white/10 text-gray-400 font-black uppercase tracking-wider text-[10px]">
-                    <th className="p-4">Invoice / Date</th>
-                    <th className="p-4">Guest Customer details</th>
-                    <th className="p-4">System Package</th>
-                    <th className="p-4 text-center">Payment</th>
-                    <th className="p-4 text-center">Category</th>
-                    <th className="p-4 text-center">Shipping & Approvals</th>
-                    <th className="p-4 text-right">Invoice</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5 font-semibold text-gray-300">
-                  {orders.map((order) => {
-                    const formattedDate = new Date(order.createdAt).toLocaleDateString('en-IN', {
-                      dateStyle: 'medium'
-                    });
+            </section>
 
-                    return (
-                      <tr key={order._id} className="hover:bg-white/2">
-                        
-                        {/* Serial/Date */}
-                        <td className="p-4">
-                          <span className="font-mono text-white font-bold block">{order.invoiceNumber || 'INV-NONE'}</span>
-                          <span className="text-[10px] text-gray-500 block mt-1">{formattedDate}</span>
-                          {order.trackingNumber && (
-                            <span className="text-[8px] text-[#16C784] bg-[#052E22] px-2 py-0.5 rounded border border-[#0FA36B]/20 block mt-1.5 w-fit font-bold font-mono uppercase tracking-widest">
-                              AWB: {order.trackingNumber}
-                            </span>
-                          )}
-                        </td>
+            {/* 2. Operations Grid & Filter Section */}
+            <section className="bg-black/40 border border-white/5 p-6 rounded-[2rem] space-y-6 backdrop-blur-md">
+              
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-xl font-black uppercase tracking-wide text-white">SYSTEM ORDERS LOG</h2>
+                  <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-0.5">Manage and dispatch customer orders securely</p>
+                </div>
 
-                        {/* Customer details */}
-                        <td className="p-4">
-                          <span className="text-white block">{order.guestDetails?.name || order.user?.name || 'Guest User'}</span>
-                          <span className="text-[10px] text-gray-500 block mt-0.5">{order.guestDetails?.email || 'N/A'}</span>
-                          <span className="text-[10px] text-gray-500 block mt-0.5">Ph: {order.guestDetails?.phone || 'N/A'}</span>
-                        </td>
+                {/* Filter controls row */}
+                <div className="flex flex-wrap gap-2.5">
+                  
+                  {/* Filter Type Toggles */}
+                  <div className="bg-black/60 border border-white/5 p-1 rounded-full flex gap-1">
+                    <button 
+                      onClick={() => setFilterType('')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === '' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      All Categories
+                    </button>
+                    <button 
+                      onClick={() => setFilterType('retail')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === 'retail' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      Retail
+                    </button>
+                    <button 
+                      onClick={() => setFilterType('wholesale')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterType === 'wholesale' ? 'bg-[#0FA36B] text-white' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      Wholesale
+                    </button>
+                  </div>
 
-                        {/* Order Items */}
-                        <td className="p-4">
-                          {order.items?.map((item, idx) => (
-                            <div key={idx} className="leading-normal">
-                              <span className="text-white font-bold block">{item.title}</span>
-                              <span className="text-[10px] text-[#16C784] block mt-0.5">
-                                ₹{item.price?.toLocaleString('en-IN')} &bull; Qty: {item.quantity}
-                              </span>
-                            </div>
-                          ))}
-                        </td>
+                  {/* Status Toggles */}
+                  <div className="bg-black/60 border border-white/5 p-1 rounded-full flex gap-1">
+                    <button 
+                      onClick={() => setFilterStatus('')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === '' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      All Statuses
+                    </button>
+                    <button 
+                      onClick={() => setFilterStatus('paid')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === 'paid' ? 'bg-[#0FA36B]/20 border border-[#0FA36B]/30 text-[#16C784]' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      Paid
+                    </button>
+                    <button 
+                      onClick={() => setFilterStatus('failed')}
+                      className={`px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-all ${filterStatus === 'failed' ? 'bg-[#D85A1F]/20 border border-[#D85A1F]/30 text-[#D85A1F]' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      Failed
+                    </button>
+                  </div>
 
-                        {/* Payment Status & Details */}
-                        <td className="p-4 text-center">
-                          <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider ${order.paymentStatus === 'paid' ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' : order.paymentStatus === 'failed' ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20' : 'bg-white/5 text-gray-400'}`}>
-                            {order.paymentStatus}
-                          </span>
-                          <span className="text-[9px] text-gray-500 block font-bold uppercase tracking-wider mt-1.5">{order.paymentMethod || 'Online (Razorpay)'}</span>
-                          {order.razorpayPaymentId && (
-                            <span className="text-[8px] text-gray-500 font-mono block mt-0.5">ID: {order.razorpayPaymentId}</span>
-                          )}
-                        </td>
+                </div>
+              </div>
 
-                        {/* Category toggle (Retail / Wholesale) */}
-                        <td className="p-4 text-center">
-                          <button
-                            onClick={() => handleToggleOrderType(order._id, order.orderType)}
-                            className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border transition-all cursor-pointer inline-flex items-center gap-1.5 ${order.orderType === 'wholesale' ? 'bg-[#D85A1F]/10 border-[#D85A1F]/30 text-[#D85A1F]' : 'bg-white/5 border-white/10 text-gray-300'}`}
-                          >
-                            <ArrowRightLeft size={10} /> {order.orderType || 'retail'}
-                          </button>
-                        </td>
+              {/* Search Input Bar */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-4 flex items-center text-gray-500 pointer-events-none">
+                  <Search size={14} />
+                </div>
+                <input 
+                  type="text" 
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by Customer Name, Email Address, or Serial Invoice ID..."
+                  className="w-full pl-12 pr-6 py-4 bg-black/40 border border-white/5 hover:border-white/10 focus:border-[#0FA36B]/50 rounded-2xl text-white text-xs font-semibold placeholder-gray-600 outline-none transition-all"
+                />
+              </div>
 
-                        {/* Explicit Shipping Action Buttons */}
-                        <td className="p-4 text-center">
-                          <div className="flex items-center justify-center gap-1.5">
-                            
-                            {/* Current Shipping Status Badge */}
-                            <span className={`px-2.5 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-wider ${
-                              order.shippingStatus === 'delivered' 
-                                ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' 
-                                : order.shippingStatus === 'shipped' 
-                                ? 'bg-blue-950 text-blue-400 border border-blue-800/30' 
-                                : order.shippingStatus === 'cancelled'
-                                ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20'
-                                : 'bg-[#06110C] text-yellow-500 border border-yellow-500/20'
-                            }`}>
-                              {order.shippingStatus || 'processing'}
-                            </span>
-
-                            {/* Divider */}
-                            <div className="h-5 w-px bg-white/10 mx-1" />
-
-                            {/* Action: Approve / Push to Shiprocket */}
-                            {order.shippingStatus === 'processing' && (
-                              <button
-                                onClick={() => handlePushToShiprocket(order)}
-                                title="Approve & Push Order to Shiprocket"
-                                className="p-2 bg-[#0FA36B]/15 hover:bg-[#0FA36B]/25 border border-[#0FA36B]/30 text-[#16C784] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
-                              >
-                                <Send size={10} />
-                              </button>
-                            )}
-
-                            {/* Action: Mark Delivered */}
-                            {order.shippingStatus === 'shipped' && (
-                              <button
-                                onClick={() => handleUpdateShippingStatus(order._id, 'delivered')}
-                                title="Mark Package as Delivered"
-                                className="p-2 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-800/30 text-emerald-400 rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
-                              >
-                                <CheckCircle2 size={10} />
-                              </button>
-                            )}
-
-                            {/* Action: Cancel / Reject (Only clickable if not already delivered or cancelled) */}
-                            {order.shippingStatus !== 'delivered' && order.shippingStatus !== 'cancelled' && (
-                              <button
-                                onClick={() => handleUpdateShippingStatus(order._id, 'cancelled')}
-                                title="Cancel / Reject Order"
-                                className="p-2 bg-[#D85A1F]/15 hover:bg-[#D85A1F]/25 border border-[#D85A1F]/30 text-[#D85A1F] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
-                              >
-                                <ShieldAlert size={10} />
-                              </button>
-                            )}
-
-                          </div>
-                        </td>
-
-                        {/* Invoice print trigger */}
-                        <td className="p-4 text-right">
-                          <button
-                            onClick={() => setSelectedOrder(order)}
-                            className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white rounded-lg transition-all cursor-pointer inline-flex items-center gap-1.5"
-                          >
-                            <FileText size={12} />
-                          </button>
-                        </td>
-
+              {/* Core Logs Data Table */}
+              {loading ? (
+                <div className="py-20 text-center text-xs font-black uppercase tracking-widest text-[#16C784] animate-pulse flex items-center justify-center gap-2">
+                  <RefreshCw className="animate-spin" size={16} /> Contacting biomen databanks...
+                </div>
+              ) : orders.length === 0 ? (
+                <div className="py-20 text-center text-xs font-black uppercase tracking-widest text-gray-500 border border-dashed border-white/10 rounded-2xl flex flex-col items-center gap-3">
+                  <ShieldAlert size={24} className="text-[#D85A1F]" /> No orders match your selected queries.
+                </div>
+              ) : (
+                <div className="overflow-x-auto rounded-2xl border border-white/5">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-white/5 border-b border-white/10 text-gray-400 font-black uppercase tracking-wider text-[10px]">
+                        <th className="p-4">Invoice / Date</th>
+                        <th className="p-4">Guest Customer details</th>
+                        <th className="p-4">System Package</th>
+                        <th className="p-4 text-center">Payment</th>
+                        <th className="p-4 text-center">Category</th>
+                        <th className="p-4 text-center">Shipping & Approvals</th>
+                        <th className="p-4 text-right">Invoice</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
+                    </thead>
+                    <tbody className="divide-y divide-white/5 font-semibold text-gray-300">
+                      {orders.map((order) => {
+                        const formattedDate = new Date(order.createdAt).toLocaleDateString('en-IN', {
+                          dateStyle: 'medium'
+                        });
 
-        </section>
+                        return (
+                          <tr key={order._id} className="hover:bg-white/2">
+                            
+                            {/* Serial/Date */}
+                            <td className="p-4">
+                              <span className="font-mono text-white font-bold block">{order.invoiceNumber || 'INV-NONE'}</span>
+                              <span className="text-[10px] text-gray-500 block mt-1">{formattedDate}</span>
+                              {order.trackingNumber && (
+                                <span className="text-[8px] text-[#16C784] bg-[#052E22] px-2 py-0.5 rounded border border-[#0FA36B]/20 block mt-1.5 w-fit font-bold font-mono uppercase tracking-widest">
+                                  AWB: {order.trackingNumber}
+                                </span>
+                              )}
+                            </td>
+
+                            {/* Customer details */}
+                            <td className="p-4">
+                              <span className="text-white block">{order.guestDetails?.name || order.user?.name || 'Guest User'}</span>
+                              <span className="text-[10px] text-gray-500 block mt-0.5">{order.guestDetails?.email || 'N/A'}</span>
+                              <span className="text-[10px] text-gray-500 block mt-0.5">Ph: {order.guestDetails?.phone || 'N/A'}</span>
+                            </td>
+
+                            {/* Order Items */}
+                            <td className="p-4">
+                              {order.items?.map((item, idx) => (
+                                <div key={idx} className="leading-normal">
+                                  <span className="text-white font-bold block">{item.title}</span>
+                                  <span className="text-[10px] text-[#16C784] block mt-0.5">
+                                    ₹{item.price?.toLocaleString('en-IN')} &bull; Qty: {item.quantity}
+                                  </span>
+                                </div>
+                              ))}
+                            </td>
+
+                            {/* Payment Status & Details */}
+                            <td className="p-4 text-center">
+                              <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider ${order.paymentStatus === 'paid' ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' : order.paymentStatus === 'failed' ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20' : 'bg-white/5 text-gray-400'}`}>
+                                    {order.paymentStatus}
+                              </span>
+                              <span className="text-[9px] text-gray-500 block font-bold uppercase tracking-wider mt-1.5">{order.paymentMethod || 'Online (Razorpay)'}</span>
+                              {order.razorpayPaymentId && (
+                                <span className="text-[8px] text-gray-500 font-mono block mt-0.5">ID: {order.razorpayPaymentId}</span>
+                              )}
+                            </td>
+
+                            {/* Category toggle (Retail / Wholesale) */}
+                            <td className="p-4 text-center">
+                              <button
+                                onClick={() => handleToggleOrderType(order._id, order.orderType)}
+                                className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border transition-all cursor-pointer inline-flex items-center gap-1.5 ${order.orderType === 'wholesale' ? 'bg-[#D85A1F]/10 border-[#D85A1F]/30 text-[#D85A1F]' : 'bg-white/5 border-white/10 text-gray-300'}`}
+                              >
+                                <ArrowRightLeft size={10} /> {order.orderType || 'retail'}
+                              </button>
+                            </td>
+
+                            {/* Explicit Shipping Action Buttons */}
+                            <td className="p-4 text-center">
+                              <div className="flex items-center justify-center gap-1.5">
+                                
+                                {/* Current Shipping Status Badge */}
+                                <span className={`px-2.5 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-wider ${
+                                  order.shippingStatus === 'delivered' 
+                                    ? 'bg-[#052E22] text-[#16C784] border border-[#0FA36B]/20' 
+                                    : order.shippingStatus === 'shipped' 
+                                    ? 'bg-blue-950 text-blue-400 border border-blue-800/30' 
+                                    : order.shippingStatus === 'cancelled'
+                                    ? 'bg-[#D85A1F]/10 text-[#D85A1F] border border-[#D85A1F]/20'
+                                    : 'bg-[#06110C] text-yellow-500 border border-yellow-500/20'
+                                }`}>
+                                  {order.shippingStatus || 'processing'}
+                                </span>
+
+                                {/* Divider */}
+                                <div className="h-5 w-px bg-white/10 mx-1" />
+
+                                {/* Action: Approve / Push to Shiprocket */}
+                                {order.shippingStatus === 'processing' && (
+                                  <button
+                                    onClick={() => handlePushToShiprocket(order)}
+                                    title="Approve & Push Order to Shiprocket"
+                                    className="p-2 bg-[#0FA36B]/15 hover:bg-[#0FA36B]/25 border border-[#0FA36B]/30 text-[#16C784] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                                  >
+                                    <Send size={10} />
+                                  </button>
+                                )}
+
+                                {/* Action: Mark Delivered */}
+                                {order.shippingStatus === 'shipped' && (
+                                  <button
+                                    onClick={() => handleUpdateShippingStatus(order._id, 'delivered')}
+                                    title="Mark Package as Delivered"
+                                    className="p-2 bg-emerald-950/20 hover:bg-emerald-950/40 border border-emerald-800/30 text-emerald-400 rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                                  >
+                                    <CheckCircle2 size={10} />
+                                  </button>
+                                )}
+
+                                {/* Action: Cancel / Reject (Only clickable if not already delivered or cancelled) */}
+                                {order.shippingStatus !== 'delivered' && order.shippingStatus !== 'cancelled' && (
+                                  <button
+                                    onClick={() => handleUpdateShippingStatus(order._id, 'cancelled')}
+                                    title="Cancel / Reject Order"
+                                    className="p-2 bg-[#D85A1F]/15 hover:bg-[#D85A1F]/25 border border-[#D85A1F]/30 text-[#D85A1F] rounded-xl transition-all cursor-pointer flex items-center justify-center hover:scale-105"
+                                  >
+                                    <ShieldAlert size={10} />
+                                  </button>
+                                )}
+
+                              </div>
+                            </td>
+
+                            {/* Invoice print trigger */}
+                            <td className="p-4 text-right">
+                              <button
+                                onClick={() => setSelectedOrder(order)}
+                                className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white rounded-lg transition-all cursor-pointer inline-flex items-center gap-1.5"
+                              >
+                                <FileText size={12} />
+                              </button>
+                            </td>
+
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+            </section>
+          </>
+        )}
+
+        {activeTab === 'emails' && <EmailDashboard />}
 
       </main>
 
