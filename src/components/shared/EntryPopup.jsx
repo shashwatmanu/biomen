@@ -53,7 +53,7 @@ const EntryPopup = () => {
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
+          className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5 z-50"
         >
           <X size={20} />
         </button>
