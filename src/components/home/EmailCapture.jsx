@@ -99,7 +99,7 @@ const EmailCapture = () => {
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-4.5 rounded-full font-black uppercase tracking-widest text-xs transition-all shadow-[0_0_30px_rgba(16,185,129,0.1)] flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-[18px] rounded-full font-black uppercase tracking-widest text-xs transition-all shadow-[0_0_30px_rgba(16,185,129,0.1)] flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 disabled:opacity-50"
                 >
                   {status === 'loading' ? 'Joining...' : <>Join Now <Send size={14} /></>}
                 </button>

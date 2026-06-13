@@ -81,7 +81,7 @@ const AdminLogin = () => {
             {/* Submit Button */}
             <button 
               type="submit"
-              className="w-full py-4.5 bg-[#0FA36B] hover:bg-[#16C784] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_25px_rgba(22,199,132,0.15)] flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
+              className="w-full py-[18px] bg-[#0FA36B] hover:bg-[#16C784] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_25px_rgba(22,199,132,0.15)] flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer"
             >
               <KeyRound size={14} /> Open Executive Deck
             </button>

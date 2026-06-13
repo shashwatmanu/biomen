@@ -46,6 +46,17 @@ const Checkout = () => {
     }
   }, [token]);
 
+  // Load Razorpay script dynamically
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const fetchUserProfile = async () => {
     try {
       const res = await fetch(`${API_URL}/auth/profile`, {
@@ -167,6 +178,11 @@ const Checkout = () => {
       return;
     }
 
+    if (!window.Razorpay) {
+      setError('Payment gateway is still loading. Please wait a moment and try again.');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
@@ -194,25 +210,80 @@ const Checkout = () => {
       const data = await res.json();
 
       if (res.ok) {
-        // If order successful, clear cart and set success order
-        setSuccessOrder(data.order);
-        clearCart();
-        window.scrollTo(0, 0);
+        const options = {
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_T1DPpvbyCF8PbS',
+          amount: data.razorpayOrder.amount,
+          currency: data.razorpayOrder.currency,
+          name: 'Biomen Labs',
+          description: 'Protocol Purchase',
+          order_id: data.razorpayOrder.id,
+          handler: async function (response) {
+            setLoading(true);
+            try {
+              const verifyRes = await fetch(`${API_URL}/orders/verify-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature
+                })
+              });
+              const verifyData = await verifyRes.json();
 
-        // If user logged in and address was new, optionally update their address in background
-        if (token && user && (!user.shippingAddress || user.shippingAddress.street !== street)) {
-          fetch(`${API_URL}/auth/address`, {
-            method: 'PUT',
-            headers,
-            body: JSON.stringify(shippingAddress)
-          }).catch(console.error);
-        }
+              if (verifyRes.ok) {
+                setSuccessOrder(verifyData.order);
+                clearCart();
+                window.scrollTo(0, 0);
+
+                // If user logged in and address was new, optionally update their address in background
+                if (token && user && (!user.shippingAddress || user.shippingAddress.street !== street)) {
+                  fetch(`${API_URL}/auth/address`, {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(shippingAddress)
+                  }).catch(console.error);
+                }
+              } else {
+                setError(verifyData.error || 'Payment verification failed.');
+              }
+            } catch (verifyErr) {
+              setError('Server connection failed during verification.');
+            } finally {
+              setLoading(false);
+            }
+          },
+          prefill: {
+            name: user ? user.name : guestName,
+            email: user ? user.email : guestEmail,
+            contact: user ? user.phone : guestPhone
+          },
+          theme: {
+            color: '#16C784'
+          },
+          modal: {
+            ondismiss: function () {
+              setLoading(false);
+              setError('Payment cancelled by user.');
+            }
+          }
+        };
+
+        const rzp = new window.Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          setError(`Payment failed: ${response.error.description}`);
+          setLoading(false);
+        });
+        rzp.open();
       } else {
         setError(data.error || 'Failed to place order.');
+        setLoading(false);
       }
     } catch (err) {
       setError('Server connection failure. Please try again.');
-    } finally {
       setLoading(false);
     }
   };
@@ -245,7 +316,7 @@ const Checkout = () => {
 
           <button 
             onClick={() => navigate('/')}
-            className="w-full py-4.5 bg-[#D85A1F] hover:bg-[#b94a17] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all hover:scale-[1.02]"
+            className="w-full py-[18px] bg-[#D85A1F] hover:bg-[#b94a17] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all hover:scale-[1.02]"
           >
             Return to Home Protocol
           </button>
@@ -329,7 +400,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-4.5 bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
+                  className="w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
                 >
                   {loading ? <Loader2 className="animate-spin" size={14} /> : 'Authenticate'}
                 </button>
@@ -379,7 +450,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-4.5 bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
+                  className="w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
                 >
                   {loading ? <Loader2 className="animate-spin" size={14} /> : 'Register Profile'}
                 </button>
