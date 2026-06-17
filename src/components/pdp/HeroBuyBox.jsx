@@ -529,65 +529,108 @@ const HeroBuyBox = () => {
       </div>
     </section>
 
-    {/* Sticky Bottom Bar for PDP */}
-    <div id="pdp-sticky-bar" className={`fixed bottom-0 left-0 w-full bg-black border-t border-white/10 z-[150] px-4 md:px-12 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,0px))] shadow-[0_-15px_35px_rgba(0,0,0,0.95)] flex items-center justify-between md:transition-[transform,opacity] md:duration-300 ${
+    {/* Sticky Bottom Bar for PDP (Floating capsule design matching navbar) */}
+    <div id="pdp-sticky-bar" className={`fixed bottom-[calc(12px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 w-[92%] max-w-4xl bg-black/85 backdrop-blur-md border border-white/10 z-[150] px-4 py-3 md:px-6 md:py-3.5 rounded-2xl md:rounded-full shadow-[0_15px_45px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out ${
       isStickyVisible 
-        ? 'opacity-100 md:translate-y-0 md:opacity-100' 
-        : 'pointer-events-none opacity-0 md:pointer-events-none md:translate-y-full md:opacity-0'
+        ? 'opacity-100 translate-y-0' 
+        : 'pointer-events-none opacity-0 translate-y-12'
     }`}>
-      <div className="hidden md:flex items-center gap-4 text-left">
-        <img src={images[0].url} alt="T-CORE" className="w-12 h-12 object-cover bg-white/5 border border-white/10 rounded-xl p-1" />
-        <div>
-          <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-          <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
-        </div>
-        <div className="h-6 w-px bg-white/10 mx-2" />
-        <div className="flex items-baseline gap-2">
-          <span className="text-xs text-gray-400 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
-          <span className="text-lg font-black text-white">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-3 w-full md:w-auto">
-        {/* Mobile-only price display left-aligned, buttons right-aligned */}
-        <div className="md:hidden text-left flex-shrink-0 mr-3">
-          <div className="text-[9px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name} {quantity > 1 && `(x${quantity})`}</div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-[10px] text-gray-400 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
-            <span className="text-sm font-black text-white">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
+      {/* Desktop Layout (Saves horizontal space, side-by-side) */}
+      <div className="hidden md:flex items-center justify-between w-full">
+        <div className="flex items-center gap-4 text-left">
+          <img src={images[0].url} alt="T-CORE" className="w-12 h-12 object-cover bg-white/5 border border-white/10 rounded-xl p-1" />
+          <div>
+            <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
+            <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
+          </div>
+          <div className="h-6 w-px bg-white/10 mx-2" />
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs text-gray-400 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
+            <span className="text-lg font-black text-white">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
           </div>
         </div>
 
-        <button
-          onClick={() => addToCart({
-            id: selectedBundle.id,
-            title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-            price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
-            quantity: quantity,
-            isSubscription: isSubscription,
-            image: images[0].url
-          })}
-          className="btn-sweep flex-1 md:flex-none bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-3.5 px-6 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
-        >
-          Add To Cart
-        </button>
-
-        <button
-          onClick={() => {
-            addToCart({
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => addToCart({
               id: selectedBundle.id,
               title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
               price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
               quantity: quantity,
               isSubscription: isSubscription,
               image: images[0].url
-            });
-            navigate('/checkout');
-          }}
-          className="btn-sweep flex-1 md:flex-none bg-[#D85A1F] hover:bg-[#b94a17] text-white py-3.5 px-8 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
-        >
-          Buy Now
-        </button>
+            })}
+            className="btn-sweep bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-3.5 px-6 rounded-full font-black text-xs uppercase tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
+          >
+            Add To Cart
+          </button>
+
+          <button
+            onClick={() => {
+              addToCart({
+                id: selectedBundle.id,
+                title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
+                price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+                quantity: quantity,
+                isSubscription: isSubscription,
+                image: images[0].url
+              });
+              navigate('/checkout');
+            }}
+            className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white py-3.5 px-8 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
+          >
+            Buy Now
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Layout (Stacked layout for perfect spacing, zero text cutoff) */}
+      <div className="flex md:hidden flex-col gap-2.5 w-full">
+        {/* Top Row: System details on left, prices on right */}
+        <div className="flex justify-between items-center px-1">
+          <div className="text-left">
+            <div className="text-[10px] font-black uppercase text-white tracking-wide leading-none">{selectedBundle.title}</div>
+            <div className="text-[8px] text-[#A8B3AA] font-black uppercase tracking-wider mt-1">{selectedBundle.name} {quantity > 1 && `(x${quantity})`}</div>
+          </div>
+          <div className="flex items-baseline gap-1.5 font-mono">
+            <span className="text-[10px] text-gray-500 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
+            <span className="text-sm font-black text-[#16C784]">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+
+        {/* Bottom Row: Two full-width side-by-side action buttons */}
+        <div className="grid grid-cols-2 gap-2 w-full">
+          <button
+            onClick={() => addToCart({
+              id: selectedBundle.id,
+              title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
+              price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+              quantity: quantity,
+              isSubscription: isSubscription,
+              image: images[0].url
+            })}
+            className="btn-sweep w-full bg-transparent hover:bg-white/5 text-white border border-white/10 py-3 rounded-full font-black text-[9px] uppercase tracking-widest text-center whitespace-nowrap"
+          >
+            Add To Cart
+          </button>
+
+          <button
+            onClick={() => {
+              addToCart({
+                id: selectedBundle.id,
+                title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
+                price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+                quantity: quantity,
+                isSubscription: isSubscription,
+                image: images[0].url
+              });
+              navigate('/checkout');
+            }}
+            className="btn-sweep w-full bg-[#D85A1F] hover:bg-[#b94a17] text-white py-3 rounded-full font-black text-[9px] uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] text-center whitespace-nowrap"
+          >
+            Buy Now
+          </button>
+        </div>
       </div>
     </div>
   </>

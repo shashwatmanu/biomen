@@ -123,7 +123,7 @@ const CartDrawer = () => {
                 closeCart();
                 navigate('/checkout');
               }}
-              className="w-full py-[20px] px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)] cursor-pointer"
+              className="btn-sweep w-full py-[20px] px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)] cursor-pointer"
             >
               SECURE CHECKOUT
             </button>

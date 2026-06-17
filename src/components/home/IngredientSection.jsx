@@ -53,6 +53,31 @@ const IngredientSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const autoPlayTimerRef = useRef(null);
 
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 40; // minimum 40px swipe distance
+    if (diff > threshold) {
+      nextIngredient(); // swipe left -> next
+    } else if (diff < -threshold) {
+      prevIngredient(); // swipe right -> prev
+    }
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
+
   const radius = 210;
   const centerX = 240;
   const centerY = 260; // Shift center down to prevent bottom clipping
@@ -241,7 +266,12 @@ const IngredientSection = () => {
               />
 
               {/* Central circular display panel (STATIONARY - sibling to the rotating ring, so it doesn't spin!) */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/10 flex flex-col justify-center items-center bg-black shadow-2xl relative z-10 backdrop-blur-md overflow-hidden">
+              <div 
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/10 flex flex-col justify-center items-center bg-black shadow-2xl relative z-10 backdrop-blur-md overflow-hidden cursor-grab active:cursor-grabbing"
+              >
 
                 {/* Active ingredient background photo with smooth hardware-accelerated cross-fade */}
                 {ingredients.map((item, idx) => (
