@@ -29,10 +29,18 @@
   <meta name="twitter:description" content="Discover T-CORE&mdash;a focused 5-ingredient clinical formula supporting energy, recovery, and daily performance through disciplined consistency." />
   <meta name="twitter:image" content="https://biomenlabs.com/tcore_canister.jpg" />
 
-  <!-- Google Fonts Connection -->
+  <!-- Google Fonts: preconnect + non-render-blocking load -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Load fonts asynchronously to avoid render-blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Preload critical hero images for instant LCP -->
+  <link rel="preload" as="image" href="/Heroport.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/herodesktop.webp" type="image/webp" media="(min-width: 1024px)" fetchpriority="high">
+  <!-- Preload logo for the loading screen — 68 KB, arrives before skeleton renders -->
+  <link rel="preload" as="image" href="/logo/logo_white_symbol.png">
 
   <!-- Search Engine Rich Snippet Schema (JSON-LD) -->
   <script type="application/ld+json">
@@ -93,7 +101,39 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <!-- Premium loading screen — visible instantly before JS, dismissed smoothly after React mounts -->
+  <style>
+    @keyframes bl-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes bl-fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    #hero-skeleton {
+      position: fixed; inset: 0;
+      background: #030705;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 9998;
+      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+      animation: bl-fade-in 0.25s ease forwards;
+    }
+    #hero-skeleton img {
+      width: 140px; height: 140px;
+      object-fit: contain;
+      animation: bl-spin 6s linear infinite;
+      transform-origin: center center;
+      filter: drop-shadow(0 0 28px rgba(22,199,132,0.3));
+      opacity: 0.9;
+    }
+  </style>
+  <div id="root">
+    <div id="hero-skeleton">
+      <img src="/logo/logo_white_symbol.png" alt="BIOMEN LABS" />
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
