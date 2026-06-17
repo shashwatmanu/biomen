@@ -6,6 +6,13 @@ import { useGSAP } from '@gsap/react';
 const ProblemSection = () => {
   const containerRef = useRef(null);
 
+  const normalPathRef = useRef(null);
+  const tcorePathRef = useRef(null);
+  const normalDotGroupRef = useRef(null);
+  const normalDotRef = useRef(null);
+  const tcoreDotGroupRef = useRef(null);
+  const tcoreDotScaleRef = useRef(null);
+
   useGSAP(() => {
     gsap.from(".infographic-fade-up", {
       y: 25,
@@ -19,6 +26,104 @@ const ProblemSection = () => {
         toggleActions: "play none none none"
       }
     });
+
+    const normalPath = normalPathRef.current;
+    const tcorePath = tcorePathRef.current;
+    const normalDotGroup = normalDotGroupRef.current;
+    const normalDot = normalDotRef.current;
+    const tcoreDotGroup = tcoreDotGroupRef.current;
+    const tcoreDotScale = tcoreDotScaleRef.current;
+
+    if (normalPath && tcorePath && normalDotGroup && normalDot && tcoreDotGroup && tcoreDotScale) {
+      const normalLength = normalPath.getTotalLength();
+      const tcoreLength = tcorePath.getTotalLength();
+
+      // Set up initial dash offsets
+      gsap.set(normalPath, { strokeDasharray: normalLength });
+      gsap.set(tcorePath, { strokeDasharray: tcoreLength });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+          toggleActions: "play none none none"
+        },
+        repeat: -1,
+        repeatDelay: 5.0
+      });
+
+      // Animate Normal Decline drawing and dot tracing path
+      const normalData = { val: 0 };
+      tl.fromTo(normalPath,
+        { strokeDashoffset: normalLength },
+        { strokeDashoffset: 0, duration: 4.0, ease: "power1.inOut" },
+        0
+      );
+
+      tl.fromTo(normalDot,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
+        0
+      );
+
+      tl.fromTo(normalData,
+        { val: 0 },
+        {
+          val: normalLength,
+          duration: 4.0,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            const point = normalPath.getPointAtLength(normalData.val);
+            gsap.set(normalDotGroup, { x: point.x, y: point.y });
+          }
+        },
+        0
+      );
+
+      tl.to(normalDot, {
+        scale: 1.3,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power1.inOut"
+      }, 4.0);
+
+      // Animate T-CORE drawing and dot tracing path
+      const tcoreData = { val: 0 };
+      tl.fromTo(tcorePath,
+        { strokeDashoffset: tcoreLength },
+        { strokeDashoffset: 0, duration: 4.2, ease: "power1.inOut" },
+        0.3
+      );
+
+      tl.fromTo(tcoreDotScale,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
+        0.3
+      );
+
+      tl.fromTo(tcoreData,
+        { val: 0 },
+        {
+          val: tcoreLength,
+          duration: 4.2,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            const point = tcorePath.getPointAtLength(tcoreData.val);
+            gsap.set(tcoreDotGroup, { x: point.x, y: point.y });
+          }
+        },
+        0.3
+      );
+
+      tl.to(tcoreDotScale, {
+        scale: 1.4,
+        duration: 0.25,
+        yoyo: true,
+        repeat: 1,
+        ease: "back.out(2.0)"
+      }, 4.5);
+    }
   }, { scope: containerRef });
 
   return (
@@ -146,19 +251,57 @@ const ProblemSection = () => {
                   AGE
                 </text>
 
-                {/* Normal Decline Line */}
-                <path d="M 50 260 L 100 110 Q 200 160 300 190 T 450 206" fill="none" stroke="white" strokeWidth="2.5" strokeOpacity="0.4" />
-                <circle cx="450" cy="206" r="5" fill="white" stroke="#000" strokeWidth="2" />
+                {/* Common Segment (Age 10 to 20) */}
+                <path 
+                  d="M 50 260 L 100 110" 
+                  fill="none" 
+                  stroke="#16C784" 
+                  strokeWidth="4.5" 
+                  className="filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" 
+                />
+
+                {/* Normal Decline Line (Diverging from Age 20) */}
+                <path 
+                  ref={normalPathRef}
+                  className="normal-decline-path" 
+                  d="M 100 110 Q 200 160 300 190 T 450 206" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="2.5" 
+                  strokeOpacity="0.4" 
+                />
+                <g ref={normalDotGroupRef}>
+                  <circle 
+                    ref={normalDotRef}
+                    cx="0" 
+                    cy="0" 
+                    r="5" 
+                    fill="white" 
+                    stroke="#000" 
+                    strokeWidth="2" 
+                  />
+                </g>
                 
                 {/* Labeled Line Callout */}
                 <text x="360" y="222" fill="white" fillOpacity="0.5" fontSize="8" fontWeight="900" letterSpacing="0.1em" textAnchor="middle">
                   NORMAL DECLINE
                 </text>
 
-                {/* With T-CORE */}
-                <path d="M 50 260 L 100 110 C 180 100, 300 95, 450 90" fill="none" stroke="#16C784" strokeWidth="4.5" className="filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" />
-                <circle cx="450" cy="90" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" style={{ transformOrigin: '450px 90px' }} />
-                <circle cx="450" cy="90" r="4" fill="#030705" stroke="#16C784" strokeWidth="2.5" />
+                {/* With T-CORE (Diverging from Age 20) */}
+                <path 
+                  ref={tcorePathRef}
+                  className="tcore-path filter drop-shadow-[0_0_10px_rgba(22,199,132,0.6)]" 
+                  d="M 100 110 C 180 100, 300 95, 450 90" 
+                  fill="none" 
+                  stroke="#16C784" 
+                  strokeWidth="4.5" 
+                />
+                <g ref={tcoreDotGroupRef}>
+                  <g ref={tcoreDotScaleRef}>
+                    <circle cx="0" cy="0" r="6" fill="#16C784" stroke="#7FE7B3" strokeWidth="2" className="animate-ping" />
+                    <circle cx="0" cy="0" r="4" fill="#030705" stroke="#16C784" strokeWidth="2.5" />
+                  </g>
+                </g>
                 
                 {/* Labeled T-CORE Line Callout */}
                 <text x="360" y="76" fill="#16C784" fontSize="9" fontWeight="900" letterSpacing="0.15em" textAnchor="middle" className="font-sans">

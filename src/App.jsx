@@ -13,7 +13,12 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
 import ReelMaker from './pages/ReelMaker';
 import Unsubscribe from './pages/Unsubscribe';
-import { useRef } from 'react';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import Refunds from './pages/Refunds';
+import Shipping from './pages/Shipping';
+import Disclaimer from './pages/Disclaimer';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/home/Navbar';
@@ -27,6 +32,21 @@ function App() {
   const container = useRef();
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel' || location.pathname === '/unsubscribe';
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="bg-black min-h-[100dvh] relative">
@@ -53,6 +73,11 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/temp-reel" element={<ReelMaker />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/refunds" element={<Refunds />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
         </Routes>
       </main>
 

@@ -112,9 +112,9 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Shop</h4>
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
-                <li><a href="/products/t-core" className="hover:text-white transition-colors">Shop T-CORE</a></li>
-                <li><a href="#formula" className="hover:text-white transition-colors">Ingredients</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors">Try Once</a></li>
+                <li><Link to="/products/t-core" className="hover:text-white transition-colors">Shop T-CORE</Link></li>
+                <li><Link to="/#formula" className="hover:text-white transition-colors">Ingredients</Link></li>
+                <li><Link to="/#pricing" className="hover:text-white transition-colors">Try Once</Link></li>
               </ul>
             </div>
 
@@ -132,7 +132,7 @@ const Footer = () => {
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
                 <li><Link to="/faq" className="hover:text-white transition-colors">Help Desk</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Refunds</Link></li>
+                <li><Link to="/refunds" className="hover:text-white transition-colors">Refunds Policy</Link></li>
               </ul>
             </div>
 
@@ -141,7 +141,8 @@ const Footer = () => {
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Use</Link></li>
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="hover:text-white transition-colors">Rules</Link></li>
+                <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping Policy</Link></li>
+                <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer Policy</Link></li>
               </ul>
             </div>
           </div>

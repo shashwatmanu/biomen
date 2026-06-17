@@ -237,7 +237,7 @@ const IngredientSpotlight = () => {
             {/* Content Container (z-20) */}
             <div className="relative z-20 w-full text-left flex flex-col justify-between h-full spotlight-card-animate">
               <div className="space-y-4">
-                <div className="inline-block bg-[#052E22]/60 border border-[#0FA36B]/30 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.15em]">
+                <div className="inline-block bg-[#052E22]/60 border border-[#0FA36B]/30 text-[#16C784] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.15em]">
                   {activeIngredient.role}
                 </div>
                 

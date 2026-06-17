@@ -125,7 +125,7 @@ const ScienceHero = () => {
 
           {/* Mobile Headline (Only visible on mobile/tablet screens - order-1) */}
           <div className="block lg:hidden space-y-4 text-left w-full order-1">
-            <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
+            <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
               <Sparkles size={12} className="text-[#16C784] animate-pulse" />
               FORMULATION &amp; MECHANISM
             </div>
@@ -204,7 +204,7 @@ const ScienceHero = () => {
           <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-5 text-left order-3 lg:order-1 w-full">
             {/* Desktop Headline (Only visible on desktop view) */}
             <div className="hidden lg:block space-y-4">
-              <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-4.5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
+              <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
                 <Sparkles size={12} className="text-[#16C784] animate-pulse" />
                 FORMULATION &amp; MECHANISM
               </div>
