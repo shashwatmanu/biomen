@@ -11,6 +11,29 @@ const HeroBuyBox = () => {
   const [isStickyVisible, setIsStickyVisible] = useState(() => {
     return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
   });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    if (window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateXVal = ((centerY - y) / centerY) * 7;
+      const rotateYVal = ((x - centerX) / centerX) * 7;
+      e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+      e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
   const sliderRef = React.useRef(null);
 
   const images = [
@@ -303,72 +326,107 @@ const HeroBuyBox = () => {
                     const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
                     
                     return (
-                      <button
-                        key={bundle.id}
-                        onClick={() => {
-                          setSelectedBundle(bundle);
-                          setQuantity(1); // Reset quantity on bundle change
-                          if (bundle.id !== 'tcore-3-bottles') {
-                            setIsSubscription(false);
-                          }
-                        }}
-                        className={`relative flex flex-col justify-between text-left p-5 rounded-2xl border transition-all cursor-pointer bg-black/40 min-h-[140px] hover:border-[#0FA36B]/50 ${isSelected ? 'border-[#0FA36B] bg-[#052E22]/20 ring-1 ring-[#0FA36B]/30' : 'border-white/10'}`}
-                      >
+                      <div key={bundle.id} className="relative h-full flex flex-col">
                         {bundle.best && (
-                          <span className="absolute -top-2.5 right-4 bg-[#0FA36B] text-white text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-lg">
+                          <span className="absolute -top-2.5 right-4 bg-[#0FA36B] text-white text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-lg z-30">
                             BEST RESET VALUE
                           </span>
                         )}
-                        <div>
-                          <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
-                            {bundle.name}
-                          </div>
-                          <div className="text-base font-black text-white uppercase mt-1">
-                            {bundle.title}
-                          </div>
-                          <div className="text-[9px] text-[#A8B3AA] mt-1 font-semibold leading-tight">
-                            {bundle.desc}
-                          </div>
-                        </div>
                         
-                        <div className="mt-4 flex items-center justify-between w-full">
-                          <div className="flex flex-col">
-                            <div className="flex items-baseline gap-1.5">
-                              <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                              <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                            </div>
-                            <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
-                              SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
-                            </span>
-                          </div>
-                          
-                          {isSelected ? (
-                            <div className="flex items-center gap-2 bg-black/60 rounded-lg p-1 border border-white/10 shadow-inner" onClick={(e) => e.stopPropagation()}>
-                              <button
-                                onClick={() => {
-                                  if (quantity > 1) setQuantity(quantity - 1);
-                                }}
-                                className="p-1 text-gray-400 hover:text-white transition-colors"
-                              >
-                                <Minus size={12} />
-                              </button>
-                              <span className="text-[#F4F6F2] text-xs font-black w-4 text-center select-none">
-                                {quantity}
-                              </span>
-                              <button
-                                onClick={() => setQuantity(quantity + 1)}
-                                className="p-1 text-gray-400 hover:text-white transition-colors"
-                              >
-                                <Plus size={12} />
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-gray-400 transition-colors">
-                              <Plus size={10} />
-                            </div>
+                        <div
+                          onClick={() => {
+                            setSelectedBundle(bundle);
+                            setQuantity(1); // Reset quantity on bundle change
+                            if (bundle.id !== 'tcore-3-bottles') {
+                              setIsSubscription(false);
+                            }
+                          }}
+                          onMouseMove={handleMouseMove}
+                          onMouseLeave={handleMouseLeave}
+                          className={`relative p-[1.5px] rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer flex-1 flex flex-col ${
+                            isSelected 
+                              ? 'border-transparent bg-[#0FA36B] ring-2 ring-[#0FA36B]/25 scale-[1.02] z-10 shadow-2xl shadow-[#0FA36B]/15' 
+                              : 'bg-white/10 hover:scale-[1.01] border-transparent'
+                          } group/spotlight`}
+                          style={{
+                            transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+                            transition: 'transform 0.2s ease-out, background 0.3s ease'
+                          }}
+                        >
+                          {/* Spotlight border glow layer */}
+                          {!isSelected && (
+                            <div 
+                              className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none"
+                              style={{
+                                background: `radial-gradient(220px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 80%)`
+                              }}
+                            />
                           )}
+
+                          {/* Inner card content wrapper */}
+                          <div className={`w-full h-full rounded-[14px] p-5 flex flex-col justify-between text-left relative z-10 transition-colors duration-500 overflow-hidden flex-1 ${
+                            isSelected ? 'bg-gradient-to-br from-[#052E22]/90 to-[#030705]/95' : 'bg-black/40'
+                          }`}>
+                            {/* Background inner glow */}
+                            <div 
+                              className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+                              style={{
+                                background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.08), transparent 80%)`
+                              }}
+                            />
+
+                            <div className="relative z-10">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
+                                {bundle.name}
+                              </div>
+                              <div className="text-base font-black text-white uppercase mt-1">
+                                {bundle.title}
+                              </div>
+                              <div className="text-[9px] text-[#A8B3AA] mt-1 font-semibold leading-tight">
+                                {bundle.desc}
+                              </div>
+                            </div>
+                            
+                            <div className="mt-4 flex items-center justify-between w-full relative z-10">
+                              <div className="flex flex-col">
+                                <div className="flex items-baseline gap-1.5">
+                                  <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                                  <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                                </div>
+                                <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
+                                  SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
+                                </span>
+                              </div>
+                              
+                              {isSelected ? (
+                                <div className="flex items-center gap-2 bg-black/60 rounded-lg p-1 border border-white/10 shadow-inner" onClick={(e) => e.stopPropagation()}>
+                                  <button
+                                    onClick={() => {
+                                      if (quantity > 1) setQuantity(quantity - 1);
+                                    }}
+                                    className="p-1 text-gray-400 hover:text-white transition-colors"
+                                  >
+                                    <Minus size={12} />
+                                  </button>
+                                  <span className="text-[#F4F6F2] text-xs font-black w-4 text-center select-none">
+                                    {quantity}
+                                  </span>
+                                  <button
+                                    onClick={() => setQuantity(quantity + 1)}
+                                    className="p-1 text-gray-400 hover:text-white transition-colors"
+                                  >
+                                    <Plus size={12} />
+                                  </button>
+                                </div>
+                              ) : (
+                                <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-gray-400 transition-colors">
+                                  <Plus size={10} />
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </button>
+                      </div>
                     );
                   })}
               </div>
@@ -385,7 +443,7 @@ const HeroBuyBox = () => {
                   isSubscription: isSubscription && selectedBundle.id === 'tcore-3-bottles',
                   image: images[0].url
                 })}
-                className="w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
+                className="btn-sweep w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
               >
                 TRY IT NOW <ArrowRight size={22} />
               </button>
@@ -509,7 +567,7 @@ const HeroBuyBox = () => {
             isSubscription: isSubscription,
             image: images[0].url
           })}
-          className="flex-1 md:flex-none bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-3.5 px-6 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
+          className="btn-sweep flex-1 md:flex-none bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-3.5 px-6 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
         >
           Add To Cart
         </button>
@@ -526,7 +584,7 @@ const HeroBuyBox = () => {
             });
             navigate('/checkout');
           }}
-          className="flex-1 md:flex-none bg-[#D85A1F] hover:bg-[#b94a17] text-white py-3.5 px-8 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
+          className="btn-sweep flex-1 md:flex-none bg-[#D85A1F] hover:bg-[#b94a17] text-white py-3.5 px-8 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
         >
           Buy Now
         </button>

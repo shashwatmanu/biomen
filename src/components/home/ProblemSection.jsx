@@ -6,6 +6,29 @@ import { useGSAP } from '@gsap/react';
 const ProblemSection = () => {
   const containerRef = useRef(null);
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    if (window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateXVal = ((centerY - y) / centerY) * 3;
+      const rotateYVal = ((x - centerX) / centerX) * 3;
+      e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+      e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
+
   const normalPathRef = useRef(null);
   const tcorePathRef = useRef(null);
   const normalDotGroupRef = useRef(null);
@@ -23,6 +46,18 @@ const ProblemSection = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 75%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    gsap.from(".reveal-line-scroll", {
+      y: "115%",
+      duration: 1.2,
+      stagger: 0.12,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".reveal-parent-scroll",
+        start: "top 85%",
         toggleActions: "play none none none"
       }
     });
@@ -156,9 +191,13 @@ const ProblemSection = () => {
           <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] text-biomen-copper bg-biomen-copper/10 px-4 py-2 rounded-full border border-biomen-copper/20 mb-4">
             <ShieldAlert size={14} /> The Modern Male Epidemic
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-white uppercase">
-            The Decline of <span className="text-biomen-copper italic font-serif">Vitality</span>: <br className="hidden md:block"/>
-            A Modern Epidemic
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-white uppercase reveal-parent-scroll">
+            <span className="block overflow-hidden relative pr-4">
+              <span className="reveal-line-scroll block">The Decline of <span className="text-biomen-copper italic font-serif">Vitality</span>:</span>
+            </span>
+            <span className="block overflow-hidden relative pr-4">
+              <span className="reveal-line-scroll block">A Modern Epidemic</span>
+            </span>
           </h2>
         </div>
 
@@ -182,7 +221,7 @@ const ProblemSection = () => {
             <div className="pt-2">
               <a 
                 href="/products/t-core" 
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM <TrendingDown className="rotate-[270deg]" size={16} />
               </a>
@@ -190,10 +229,35 @@ const ProblemSection = () => {
           </div>
 
           {/* Right Column: Custom SVG-based Infographic Chart (lg:col-span-6) - Stacks first on mobile */}
-          <div className="lg:col-span-6 w-full flex flex-col justify-center items-center bg-black/40 border border-white/5 rounded-3xl p-4 sm:p-6 lg:p-5 shadow-2xl backdrop-blur-md infographic-fade-up relative overflow-hidden group max-w-[480px] lg:max-w-full mx-auto order-1 lg:order-2">
-            
-            {/* Soft inner physical glow */}
-            <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-[#D85A1F]/5 rounded-full blur-[80px] pointer-events-none" />
+          <div 
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="lg:col-span-6 w-full relative p-[1.5px] rounded-3xl overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl backdrop-blur-md infographic-fade-up max-w-[480px] lg:max-w-full mx-auto order-1 lg:order-2 group/chart"
+            style={{
+              transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+              transition: 'transform 0.2s ease-out, background 0.3s ease'
+            }}
+          >
+            {/* Spotlight border glow layer */}
+            <div 
+              className="absolute inset-0 opacity-0 group-hover/chart:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={{
+                background: `radial-gradient(320px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 85%)`
+              }}
+            />
+
+            {/* Inner card container */}
+            <div className="w-full h-full rounded-[23px] bg-black/80 p-4 sm:p-6 lg:p-5 flex flex-col justify-center items-center relative z-10 overflow-hidden">
+              {/* Background inner glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover/chart:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+                style={{
+                  background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.06), transparent 80%)`
+                }}
+              />
+              
+              {/* Soft inner physical glow */}
+              <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-[#D85A1F]/5 rounded-full blur-[80px] pointer-events-none z-0" />
 
             <div className="w-full flex justify-between items-center mb-4">
               <div>
@@ -327,6 +391,7 @@ const ProblemSection = () => {
               </p>
             </div>
 
+            </div>
           </div>
 
         </div>

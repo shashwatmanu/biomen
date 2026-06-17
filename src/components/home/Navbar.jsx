@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ShoppingCart, User, Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
 
 const Navbar = () => {
   const items = useCartStore((state) => state.items);
   const toggleCart = useCartStore((state) => state.toggleCart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
@@ -24,8 +40,16 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <>
-      <nav className="w-full z-50 px-4 md:px-6 py-4 flex justify-between items-center bg-transparent max-w-7xl mx-auto relative">
+    <div className={`w-full pointer-events-none flex justify-center transition-all duration-500 ease-in-out ${
+      isScrolled ? 'pt-3 px-4' : 'pt-0 px-0'
+    }`}>
+      <nav className={`w-full z-50 flex justify-between items-center transition-all duration-500 ease-in-out pointer-events-auto relative border ${
+        isScrolled
+          ? 'max-w-4xl bg-black/60 backdrop-blur-md border-white/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#16C784]/20'
+          : isHomePage
+            ? 'max-w-7xl mx-auto bg-transparent py-4 px-4 md:px-6 border-transparent'
+            : 'max-w-full bg-[#030705]/95 backdrop-blur-md border-transparent border-b-white/5 py-4 px-6 md:px-12'
+      }`}>
         
         {/* Left Side: Hamburger Menu Button (visible on mobile/tablet) */}
         <div className="flex lg:hidden items-center z-[250]">
@@ -196,7 +220,7 @@ const Navbar = () => {
               <Link
                 to="/products/t-core"
                 onClick={() => setIsMenuOpen(false)}
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white py-[20px] rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
+                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white py-[20px] rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
               >
                 Unlock Your System Now
               </Link>
@@ -208,7 +232,7 @@ const Navbar = () => {
         </div>,
         document.body
       )}
-    </>
+    </div>
   );
 };
 

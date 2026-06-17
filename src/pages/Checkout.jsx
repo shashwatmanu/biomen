@@ -316,7 +316,7 @@ const Checkout = () => {
 
           <button 
             onClick={() => navigate('/')}
-            className="w-full py-[18px] bg-[#D85A1F] hover:bg-[#b94a17] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all hover:scale-[1.02]"
+            className="btn-sweep w-full py-[18px] bg-[#D85A1F] hover:bg-[#b94a17] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all hover:scale-[1.02]"
           >
             Return to Home Protocol
           </button>
@@ -400,7 +400,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
+                  className="btn-sweep w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
                 >
                   {loading ? <Loader2 className="animate-spin" size={14} /> : 'Authenticate'}
                 </button>
@@ -450,7 +450,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
+                  className="btn-sweep w-full py-[18px] bg-emerald-600 hover:bg-emerald-500 text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2"
                 >
                   {loading ? <Loader2 className="animate-spin" size={14} /> : 'Register Profile'}
                 </button>
@@ -570,7 +570,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   disabled={loading || items.length === 0}
-                  className="w-full py-5 px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xl uppercase tracking-widest rounded-xl transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 disabled:opacity-50 cursor-pointer"
+                  className="btn-sweep w-full py-5 px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xl uppercase tracking-widest rounded-xl transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? <Loader2 className="animate-spin" size={24} /> : `COMPLETE TRANSACTION (₹${Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.90) : subtotal).toLocaleString('en-IN')})`}
                 </button>

@@ -170,7 +170,7 @@ const ReviewSection = () => {
             </div>
             <button 
               onClick={() => setShowForm(!showForm)}
-              className="bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
+              className="btn-sweep bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
             >
               {showForm ? 'Cancel Submission' : 'Write a Review'}
             </button>
@@ -233,7 +233,7 @@ const ReviewSection = () => {
                 onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
                 required
               />
-              <button className="w-full bg-emerald-600 hover:bg-emerald-500 text-black font-black py-4 rounded-xl uppercase tracking-widest transition-all flex items-center justify-center gap-2">
+              <button className="btn-sweep w-full bg-emerald-600 hover:bg-emerald-500 text-black font-black py-4 rounded-xl uppercase tracking-widest transition-all flex items-center justify-center gap-2">
                 Submit Experience <Send size={18} />
               </button>
             </form>

@@ -6,6 +6,29 @@ const BundleSelector = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isSubscription, setIsSubscription] = useState(false);
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    if (window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateXVal = ((centerY - y) / centerY) * 4;
+      const rotateYVal = ((x - centerX) / centerX) * 4;
+      e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+      e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
+
   const bundles = [
     { 
       id: 'tcore-1-bottle',
@@ -105,73 +128,103 @@ const BundleSelector = () => {
               const savingsPercent = Math.round(((bundle.mrp - currentPrice) / bundle.mrp) * 100);
 
               return (
-                <div 
-                  key={i} 
-                  onClick={() => {
-                    setSelectedId(bundle.id);
-                    if (bundle.id !== 'tcore-3-bottles') {
-                      setIsSubscription(false);
-                    }
-                  }}
-                  className={`relative bg-black/40 border rounded-[1.5rem] p-5 lg:p-4 flex flex-col justify-between text-center transition-all duration-300 cursor-pointer ${
-                    isSelected 
-                      ? 'border-[#0FA36B] ring-2 ring-[#0FA36B]/30 md:scale-102 z-10 bg-[#052E22]/10 shadow-2xl' 
-                      : 'border-white/10 hover:border-white/20 hover:scale-[1.01]'
-                  }`}
-                >
-                {bundle.best && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0FA36B] text-[#F4F6F2] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1">
-                    <Star size={10} fill="currentColor" /> Recommended Protocol
-                  </span>
-                )}
-                
-                <div>
-                  <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5">
-                    {bundle.name}
-                  </div>
-                  <h3 className="text-xl lg:text-lg font-black text-[#F4F6F2] uppercase mb-0.5">{bundle.title}</h3>
-                  <p className="text-[#A8B3AA] text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
-                    {bundle.desc}
-                  </p>
-                </div>
+                <div key={i} className="relative h-full flex flex-col">
+                  {bundle.best && (
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0FA36B] text-[#F4F6F2] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
+                      <Star size={10} fill="currentColor" /> Recommended Protocol
+                    </span>
+                  )}
 
-                <div>
-                  <div className="flex flex-col items-center justify-center mb-2">
-                    <div className="text-gray-500 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
-                      MRP ₹{bundle.mrp.toLocaleString('en-IN')}
-                    </div>
-                    <div className="flex items-baseline gap-1">
-                      <div className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
-                        ₹{currentPrice.toLocaleString('en-IN')}
+                  <div 
+                    onClick={() => {
+                      setSelectedId(bundle.id);
+                      if (bundle.id !== 'tcore-3-bottles') {
+                        setIsSubscription(false);
+                      }
+                    }}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    className={`relative p-[1.5px] rounded-[1.5rem] overflow-hidden transition-all duration-500 cursor-pointer flex-1 flex flex-col ${
+                      isSelected 
+                        ? 'bg-[#0FA36B] ring-2 ring-[#0FA36B]/25 scale-[1.02] z-10 shadow-2xl shadow-[#0FA36B]/15' 
+                        : 'bg-white/10 hover:scale-[1.01]'
+                    } group/spotlight`}
+                    style={{
+                      transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+                      transition: 'transform 0.2s ease-out, background 0.3s ease'
+                    }}
+                  >
+                    {/* Spotlight border glow layer */}
+                    {!isSelected && (
+                      <div 
+                        className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(220px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 80%)`
+                        }}
+                      />
+                    )}
+
+                    {/* Inner card content wrapper */}
+                    <div className={`w-full h-full rounded-[1.43rem] p-5 lg:p-4 flex flex-col justify-between text-center relative z-10 transition-colors duration-500 overflow-hidden flex-1 ${
+                      isSelected ? 'bg-gradient-to-br from-[#052E22]/90 to-[#030705]/95' : 'bg-[#030705]/95'
+                    }`}>
+                      {/* Background inner glow */}
+                      <div 
+                        className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+                        style={{
+                          background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.08), transparent 80%)`
+                        }}
+                      />
+
+                      <div className="relative z-10 mt-2">
+                        <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5">
+                          {bundle.name}
+                        </div>
+                        <h3 className="text-xl lg:text-lg font-black text-[#F4F6F2] uppercase mb-0.5">{bundle.title}</h3>
+                        <p className="text-[#A8B3AA] text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
+                          {bundle.desc}
+                        </p>
+                      </div>
+
+                      <div className="relative z-10">
+                        <div className="flex flex-col items-center justify-center mb-2">
+                          <div className="text-gray-500 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
+                            MRP ₹{bundle.mrp.toLocaleString('en-IN')}
+                          </div>
+                          <div className="flex items-baseline gap-1">
+                            <div className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
+                              ₹{currentPrice.toLocaleString('en-IN')}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="mb-3">
+                          <div className="text-[#16C784] text-[9px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block">
+                            Save {savingsPercent}% (₹{(bundle.mrp - currentPrice).toLocaleString('en-IN')} Off)
+                          </div>
+                        </div>
+                        
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // If user clicks button for a non-90 day package while in subscription mode, toggle to one-time
+                            const isSub = isSubscription && bundle.id === 'tcore-3-bottles';
+                            handlePurchase({ ...bundle, id: bundle.id }, isSub);
+                          }}
+                          className={`btn-sweep block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
+                            isSelected 
+                              ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/20' 
+                              : 'bg-white/10 text-[#F4F6F2] hover:bg-white/20'
+                          }`}
+                        >
+                          Select Protocol
+                        </button>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="mb-3">
-                    <div className="text-[#16C784] text-[9px] font-black uppercase tracking-widest bg-[#052E22] px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block">
-                      Save {savingsPercent}% (₹{(bundle.mrp - currentPrice).toLocaleString('en-IN')} Off)
-                    </div>
-                  </div>
-                  
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // If user clicks button for a non-90 day package while in subscription mode, toggle to one-time
-                      const isSub = isSubscription && bundle.id === 'tcore-3-bottles';
-                      handlePurchase({ ...bundle, id: bundle.id }, isSub);
-                    }}
-                    className={`block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
-                      isSelected 
-                        ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/20' 
-                        : 'bg-white/10 text-[#F4F6F2] hover:bg-white/20'
-                    }`}
-                  >
-                    Select Protocol
-                  </button>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
 
         {/* Subscription Microcopy & Explainer (Highly compact, solid bg) */}

@@ -91,7 +91,7 @@ const Contact = () => {
                 <textarea rows="5" placeholder="How can our science team help?" className="w-full bg-[#030705] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-[#0FA36B] transition-colors font-medium resize-none"></textarea>
               </div>
 
-              <button className="w-full bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.2)] flex items-center justify-center gap-3">
+              <button className="btn-sweep w-full bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 rounded-2xl font-black uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.2)] flex items-center justify-center gap-3">
                 Send Transmission <Send size={20} />
               </button>
             </form>

@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
+import gsap from 'gsap';
 
 export const ScienceProductModel = (props) => {
   // Load premium canister textures
@@ -26,13 +27,40 @@ export const ScienceProductModel = (props) => {
 
   const groupRef = useRef();
 
-  const rotationY = useRef(-Math.PI * 0.35);
-  const targetRotationY = useRef(-Math.PI * 0.35);
+  const entryScale = useRef(0);
+  const entryOffsetY = useRef(-4); // starts below the screen
+
+  const rotationY = useRef(-Math.PI * 2.35); // starts spun back by 360 degrees
+  const dragOffset = useRef(0);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const startRotationY = useRef(0);
   const startY = useRef(0);
   const isScrolling = useRef(false);
+
+  useEffect(() => {
+    // GSAP animated entrance sweep
+    gsap.to(entryScale, {
+      current: 1,
+      duration: 2.2,
+      ease: "power4.out",
+      delay: 0.15
+    });
+
+    gsap.to(entryOffsetY, {
+      current: 0,
+      duration: 2.0,
+      ease: "power3.out",
+      delay: 0.15
+    });
+
+    gsap.to(rotationY, {
+      current: -Math.PI * 0.35,
+      duration: 2.4,
+      ease: "power4.out",
+      delay: 0.15
+    });
+  }, []);
 
   useEffect(() => {
     if (!canvasEl) return;
@@ -42,7 +70,7 @@ export const ScienceProductModel = (props) => {
       isScrolling.current = false;
       startX.current = clientX;
       startY.current = clientY;
-      startRotationY.current = rotationY.current;
+      startRotationY.current = dragOffset.current;
     };
 
     const handleMove = (clientX, clientY) => {
@@ -57,7 +85,7 @@ export const ScienceProductModel = (props) => {
         return;
       }
 
-      targetRotationY.current = startRotationY.current + deltaX * 0.01;
+      dragOffset.current = startRotationY.current + deltaX * 0.01;
     };
 
     const handleEnd = () => {
@@ -100,14 +128,26 @@ export const ScienceProductModel = (props) => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (groupRef.current) {
-      // 1. Slow, premium floating height sway (weightless feel)
-      groupRef.current.position.y = Math.sin(t * 1.0) * 0.08;
+      // 1. Slow, premium floating height sway (weightless feel) + entrance offset
+      groupRef.current.position.y = Math.sin(t * 1.0) * 0.08 + entryOffsetY.current;
 
-      // 2. Interactive and sway rotation
+      // 2. Entrance scale calculation
+      const baseScale = props.scale ? props.scale[0] : 0.85;
+      const currentScale = baseScale * entryScale.current;
+      groupRef.current.scale.set(currentScale, currentScale, currentScale);
+
+      // 2. Calculate scroll rotation contribution
+      const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+      const docHeight = typeof document !== 'undefined' ? document.documentElement.scrollHeight - window.innerHeight : 1000;
+      const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+      
+      const baseScrollRotation = -Math.PI * 0.35 + scrollPercent * Math.PI * 1.2;
+      const target = baseScrollRotation + dragOffset.current;
+
       if (isDragging.current) {
-        rotationY.current += (targetRotationY.current - rotationY.current) * 0.25;
+        rotationY.current += (target - rotationY.current) * 0.25;
       } else {
-        rotationY.current += (targetRotationY.current - rotationY.current) * 0.08;
+        rotationY.current += (target - rotationY.current) * 0.08;
       }
 
       // Add gentle sway on top when not actively dragging

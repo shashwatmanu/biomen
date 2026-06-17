@@ -50,9 +50,14 @@ function App() {
 
   return (
     <div className="bg-black min-h-[100dvh] relative">
+      <div className="film-grain" />
       {!isAdminPage && (
-        <div className="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md">
-          {location.pathname === '/' && <PromoBar />}
+        <div className="fixed top-0 left-0 w-full z-[100] bg-transparent pointer-events-none">
+          {location.pathname === '/' && (
+            <div className="pointer-events-auto">
+              <PromoBar />
+            </div>
+          )}
           <Navbar />
         </div>
       )}

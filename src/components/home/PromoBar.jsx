@@ -75,8 +75,26 @@ const PromoBar = () => {
     return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="bg-biomen-dark border-b border-biomen-green/30 text-biomen-white h-[38px] md:h-auto py-2 lg:py-1.5 px-3 md:px-4 text-center font-bold text-[9px] xs:text-[10px] md:text-xs uppercase tracking-[0.08em] md:tracking-[0.15em] flex flex-row items-center justify-between md:justify-center gap-x-2 md:gap-x-8 relative z-50 w-full overflow-hidden">
+    <div className={`bg-biomen-dark border-biomen-green/30 text-biomen-white text-center font-bold text-[9px] xs:text-[10px] md:text-xs uppercase tracking-[0.08em] md:tracking-[0.15em] flex flex-row items-center justify-between md:justify-center gap-x-2 md:gap-x-8 relative z-50 w-full overflow-hidden transition-all duration-500 ease-in-out ${
+      isScrolled 
+        ? 'h-0 py-0 border-b-transparent opacity-0 pointer-events-none' 
+        : 'h-[38px] py-2 lg:py-1.5 px-3 md:px-4'
+    }`}>
       
       {/* Dynamic Announcement Option */}
       <span className="flex items-center gap-1 md:gap-2 text-left md:text-center overflow-hidden text-ellipsis whitespace-nowrap">

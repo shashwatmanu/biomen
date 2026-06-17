@@ -9,19 +9,29 @@ const HeroSection = () => {
   const badgeRef = React.useRef(null);
 
   useGSAP(() => {
-    // Elegant entrance animation
-    gsap.from(textRef.current?.children || [], {
-      y: 20,
+    // Elegant mask reveal animation for the headlines
+    gsap.from(".reveal-line", {
+      y: "115%",
+      duration: 1.2,
+      stagger: 0.12,
+      ease: "power4.out"
+    });
+
+    // Fade-in animation for other elements (staggered)
+    gsap.from(".hero-fade-in", {
       opacity: 0,
-      duration: 0.8,
+      y: 15,
+      duration: 1.0,
       stagger: 0.1,
+      delay: 0.3,
       ease: "power3.out"
     });
+
     gsap.from(badgeRef.current, {
       scale: 0.8,
       opacity: 0,
       duration: 1,
-      delay: 0.4,
+      delay: 0.7,
       ease: "back.out(1.7)"
     });
   }, []);
@@ -78,7 +88,7 @@ const HeroSection = () => {
         {/* Top Block: Ratings and Headline pushed high up */}
         <div className="space-y-3 pt-1 shrink-0">
           {/* Ratings & Reviews */}
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center gap-1 hero-fade-in">
             <div className="flex text-[#D85A1F]">
               {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
             </div>
@@ -89,9 +99,15 @@ const HeroSection = () => {
 
           {/* Headline - Sexier, uppercase editorial style, slightly more compact */}
           <h1 className="text-[1.55rem] xs:text-[1.75rem] sm:text-[2.1rem] font-normal font-serif tracking-tight leading-[1.1] text-white uppercase max-w-xl mx-auto">
-            Daily Vitality <br />
-            for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium">Modern</span> <br />
-            Indian Man
+            <span className="block overflow-hidden pb-1">
+              <span className="reveal-line inline-block">Daily Vitality</span>
+            </span>
+            <span className="block overflow-hidden pb-1">
+              <span className="reveal-line inline-block">for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium pr-2">Modern</span></span>
+            </span>
+            <span className="block overflow-hidden pb-1">
+              <span className="reveal-line inline-block">Indian Man</span>
+            </span>
           </h1>
         </div>
 
@@ -101,22 +117,22 @@ const HeroSection = () => {
         {/* Bottom Block: Description, CTA Button, and Guarantee pushed all the way down with gorgeous margins */}
         <div className="space-y-3.5 pb-1 shrink-0">
           {/* Minimal punchy description, sized down to avoid overlapping the jar base */}
-          <p className="text-xs xs:text-sm text-[#A8B3AA] font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+          <p className="text-xs xs:text-sm text-[#A8B3AA] font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] hero-fade-in">
             5 clinically-dosed Ayurvedic extracts built to support daily energy, drive, and post-workout recovery.
           </p>
 
           {/* Full-width premium Orange CTA Button with breathing space */}
-          <div className="px-2">
+          <div className="px-2 hero-fade-in">
             <Link
               to="/products/t-core"
-              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full"
+              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full btn-sweep"
             >
               UNLOCK YOUR SYSTEM <ArrowRight size={15} />
             </Link>
           </div>
 
           {/* Micro-trust Line */}
-          <div className="flex items-center justify-center gap-2 text-[10.5px] sm:text-xs text-[#A8B3AA] font-black uppercase tracking-wider pt-1">
+          <div className="flex items-center justify-center gap-2 text-[10.5px] sm:text-xs text-[#A8B3AA] font-black uppercase tracking-wider pt-1 hero-fade-in">
             <Shield size={13} className="text-[#16C784] shrink-0" />
             <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
           </div>
@@ -128,10 +144,10 @@ const HeroSection = () => {
         <div className="grid grid-cols-12 gap-12 items-center">
 
           {/* Left Column: Clean Solid Editorial Text Canvas */}
-          <div ref={textRef} className="col-span-8 xl:col-span-7 space-y-6 text-left relative max-w-2xl">
+          <div className="col-span-8 xl:col-span-7 space-y-6 text-left relative max-w-2xl">
 
             {/* Verified Rating Badge */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hero-fade-in">
               <div className="flex text-[#D85A1F]">
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
               </div>
@@ -142,18 +158,24 @@ const HeroSection = () => {
 
             {/* Headline - Restored to previous elegant serif weight */}
             <h1 className="text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-normal font-serif tracking-tight leading-[1.05] text-white uppercase">
-              Daily Vitality for the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium">Modern</span> <br />
-              Indian Man
+              <span className="block overflow-hidden pb-1">
+                <span className="reveal-line inline-block">Daily Vitality for the</span>
+              </span>
+              <span className="block overflow-hidden pb-1">
+                <span className="reveal-line inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium pr-4">Modern</span>
+              </span>
+              <span className="block overflow-hidden pb-1">
+                <span className="reveal-line inline-block">Indian Man</span>
+              </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg lg:text-xl text-[#A8B3AA] font-medium leading-relaxed max-w-xl">
+            <p className="text-lg lg:text-xl text-[#A8B3AA] font-medium leading-relaxed max-w-xl hero-fade-in">
               T-CORE is a premium, clinical-grade daily vitality system built to support energy, drive, and post-workout recovery. Packaged in a collectible glass jar.
             </p>
 
             {/* Luxury Support Strip */}
-            <div className="flex flex-wrap gap-2 pt-1 text-[9px] font-black uppercase tracking-widest text-[#7FE7B3]/90">
+            <div className="flex flex-wrap gap-2 pt-1 text-[9px] font-black uppercase tracking-widest text-[#7FE7B3]/90 hero-fade-in">
               <span className="flex items-center gap-1 bg-black/65 border border-white/10 px-3.5 py-2 rounded-lg backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#16C784]"></span> Transparent Dosing
               </span>
@@ -166,23 +188,23 @@ const HeroSection = () => {
             </div>
 
             {/* Premium Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 hero-fade-in">
               <Link
                 to="/products/t-core"
-                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto btn-sweep"
               >
                 UNLOCK YOUR SYSTEM <ArrowRight size={16} />
               </Link>
               <Link
                 to="/science"
-                className="border-2 border-white/20 text-white px-12 py-[22px] rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto"
+                className="border-2 border-white/20 text-white px-12 py-[22px] rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto btn-sweep"
               >
                 Explore T-CORE Science
               </Link>
             </div>
 
             {/* Risk-Free Micro-trust Line */}
-            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5 pb-4">
+            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5 pb-4 hero-fade-in">
               <Shield size={14} className="text-[#16C784] shrink-0" />
               <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
             </div>

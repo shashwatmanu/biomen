@@ -118,6 +118,18 @@ const IngredientSection = () => {
         toggleActions: "play none none none"
       }
     });
+
+    gsap.from(".reveal-line-scroll", {
+      y: "115%",
+      duration: 1.2,
+      stagger: 0.12,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".reveal-parent-scroll",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
   }, { scope: containerRef });
 
   const rotationTweenRef = useRef(null);
@@ -202,8 +214,10 @@ const IngredientSection = () => {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5 block">
             Transparent Dosing
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.5rem] font-normal font-serif tracking-tight text-white mb-1">
-            The Formula, Fully Transparent
+          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.5rem] font-normal font-serif tracking-tight text-white mb-1 reveal-parent-scroll">
+            <span className="block overflow-hidden relative">
+              <span className="reveal-line-scroll block">The Formula, Fully Transparent</span>
+            </span>
           </h2>
           <p className="text-[#A8B3AA] font-medium text-sm lg:text-base leading-relaxed">
             Five purposeful herbal extracts. Clear daily dosages. Tap or hover an ingredient to explore its biological profile.
@@ -219,6 +233,12 @@ const IngredientSection = () => {
               onMouseLeave={() => setIsHovered(false)}
               className="relative w-[480px] h-[520px]"
             >
+
+              {/* Botanical Aura Pulse Background behind the central panel */}
+              <div 
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full bg-[#16C784]/35 blur-3xl pointer-events-none transition-all duration-700 ease-out z-5
+                  ${isHovered ? 'scale-110 opacity-100' : 'scale-100 opacity-70 animate-pulse-slow-centered'}`}
+              />
 
               {/* Central circular display panel (STATIONARY - sibling to the rotating ring, so it doesn't spin!) */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/10 flex flex-col justify-center items-center bg-black shadow-2xl relative z-10 backdrop-blur-md overflow-hidden">
@@ -359,7 +379,7 @@ const IngredientSection = () => {
         <div className="text-center mb-4 lg:mb-1.5 ingredient-fade-up">
           <a
             href="/science"
-            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] hover:scale-[1.03] duration-300"
+            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] hover:scale-[1.03] duration-300 btn-sweep"
           >
             Explore T-CORE Science
           </a>

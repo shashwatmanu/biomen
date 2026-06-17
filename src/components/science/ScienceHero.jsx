@@ -6,6 +6,9 @@ import { ScienceProductModel } from './ScienceProductModel';
 import { CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Floating bio-molecular green background particles for rich depth
 const MolecularBackgroundParticles = () => {
@@ -57,33 +60,74 @@ const MolecularBackgroundParticles = () => {
   );
 };
 
+
+const MetricCard = ({ value, label }) => {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    if (window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateXVal = ((centerY - y) / centerY) * 6;
+      const rotateYVal = ((x - centerX) / centerX) * 6;
+      e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+      e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
+
+  return (
+    <div 
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative p-[1.5px] rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer bg-white/5 group/spotlight flex flex-col h-full"
+      style={{
+        transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+        transition: 'transform 0.2s ease-out, background 0.3s ease'
+      }}
+    >
+      {/* Spotlight border glow layer */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: `radial-gradient(180px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 85%)`
+        }}
+      />
+      
+      {/* Inner Card content wrapper */}
+      <div className="w-full h-full rounded-[14px] p-5 bg-[#030705]/95 flex flex-col justify-between text-left relative z-10 transition-colors duration-500 overflow-hidden flex-1 min-h-[110px]">
+        {/* Background inner glow */}
+        <div 
+          className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+          style={{
+            background: `radial-gradient(250px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.07), transparent 80%)`
+          }}
+        />
+        <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover/spotlight:bg-[#16C784] transition-all duration-300 z-10" />
+        <span className="text-3.5xl md:text-4xl font-normal font-serif text-[#16C784] group-hover/spotlight:text-white transition-colors relative z-10">{value}</span>
+        <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug relative z-10">
+          {label}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 // Premium Award-Style Editorial Metrics helper component
 const MetricsGrid = ({ className }) => (
   <div className={`grid grid-cols-3 gap-4 w-full max-w-lg relative z-20 ${className}`}>
-    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-      {/* Decorative neon indicator dot */}
-      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">8</span>
-      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-        Active Botanicals
-      </span>
-    </div>
-
-    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">100%</span>
-      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-        Transparent Dosing
-      </span>
-    </div>
-
-    <div className="group relative glass-panel p-5 rounded-2xl border border-[#16C784]/15 bg-gradient-to-br from-[#052E22]/20 via-[#030705]/45 to-transparent hover:border-[#16C784]/40 hover:scale-[1.03] transition-all duration-500 cursor-pointer">
-      <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover:bg-[#16C784] transition-all duration-300" />
-      <span className="text-3xl md:text-4xl font-normal font-serif text-[#16C784] group-hover:text-white transition-colors">0%</span>
-      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug">
-        Synthetic Fillers
-      </span>
-    </div>
+    <MetricCard value="8" label="Active Botanicals" />
+    <MetricCard value="100%" label="Transparent Dosing" />
+    <MetricCard value="0%" label="Synthetic Fillers" />
   </div>
 );
 
@@ -103,6 +147,21 @@ const ScienceHero = () => {
       ease: "power2.out",
       clearProps: "all"
     });
+
+    gsap.fromTo(".integrity-shine-sweep", 
+      { xPercent: -100 },
+      { 
+        xPercent: 100,
+        duration: 1.6,
+        ease: "power3.inOut",
+        delay: 0.6,
+        scrollTrigger: {
+          trigger: ".integrity-shine-sweep",
+          start: "top 95%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
   }, { scope: textContainerRef });
 
   return (
@@ -218,6 +277,10 @@ const ScienceHero = () => {
             <div className="relative overflow-hidden p-6 rounded-2xl border border-[#16C784]/30 bg-gradient-to-r from-[#052E22]/50 to-[#0C4A36]/30 shadow-[0_0_25px_rgba(22,199,132,0.12)] max-w-xl group hover:border-[#16C784]/50 transition-all duration-500">
               {/* Pulsing glow background effect */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(22,199,132,0.06)_0%,transparent_70%)] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Metallic shine sweep overlay */}
+              <div className="integrity-shine-sweep absolute inset-y-0 left-0 w-[150%] pointer-events-none z-10 bg-gradient-to-r from-transparent via-[#16C784]/20 to-transparent -translate-x-full -skew-x-12" />
+
               <p className="text-[15px] sm:text-base md:text-[17px] text-[#A8B3AA] font-semibold leading-relaxed relative z-10">
                 <span className="text-[#16C784] font-black tracking-widest block mb-2 text-xs uppercase">Integrity Notice</span>
                 <span className="font-bold text-white drop-shadow-[0_0_6px_rgba(22,199,132,0.35)]">T-CORE is not a magic solution.</span> It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.

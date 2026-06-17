@@ -1,6 +1,29 @@
 import React from 'react';
 
 const AdvisoryBoard = () => {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    if (window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateXVal = ((centerY - y) / centerY) * 5;
+      const rotateYVal = ((x - centerX) / centerX) * 5;
+      e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+      e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
+
   const advisors = [
     {
       name: "Dr. Keshav Dev, BAMS, MD (Ayurveda)",
@@ -23,7 +46,32 @@ const AdvisoryBoard = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="glass-panel rounded-[3rem] overflow-hidden border border-[#0FA36B]/20 bg-gradient-to-br from-[#06110C] to-black/40 shadow-2xl relative group flex flex-col md:flex-row items-center gap-8 md:gap-12 p-8 md:p-12">
+          <div 
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative p-[1.5px] rounded-[3.05rem] overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl group/spotlight"
+            style={{
+              transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+              transition: 'transform 0.2s ease-out, background 0.3s ease'
+            }}
+          >
+            {/* Spotlight border glow layer */}
+            <div 
+              className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={{
+                background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 85%)`
+              }}
+            />
+
+            {/* Inner Card container */}
+            <div className="w-full h-full rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#06110C] to-black/45 flex flex-col md:flex-row items-center gap-8 md:gap-12 p-8 md:p-12 relative z-10">
+              {/* Background inner glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+                style={{
+                  background: `radial-gradient(450px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.08), transparent 80%)`
+                }}
+              />
             {/* Left side: Doctor Image */}
             <div className="w-full md:w-2/5 shrink-0 relative">
               <div className="aspect-[4/5] bg-gradient-to-br from-[#052E22] to-[#030705] rounded-[2rem] border border-[#0FA36B]/20 overflow-hidden relative shadow-xl">
@@ -71,6 +119,7 @@ const AdvisoryBoard = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
