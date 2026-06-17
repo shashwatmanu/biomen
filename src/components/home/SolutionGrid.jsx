@@ -137,7 +137,7 @@ const SolutionGrid = () => {
             <div className="w-full aspect-square max-w-[350px] lg:max-w-[400px] shrink-0" />
             
             {/* Centered Massive CTA under space - Desktop only */}
-            <div className="w-full max-w-[300px] mt-6 lg:-mt-64 relative z-20 flex justify-center lg:inline-flex">
+            <div className="w-full max-w-[300px] mt-6 lg:-mt-64 relative z-20 flex justify-center lg:inline-flex pointer-events-auto">
               <a 
                 href="/products/t-core"
                 className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 relative"
