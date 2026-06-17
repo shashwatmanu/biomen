@@ -203,8 +203,13 @@ const ScienceHero = () => {
               <Suspense
                 fallback={
                   <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
-                    <div className="w-10 h-10 rounded-full border-2 border-[#16C784]/20 border-t-[#16C784] animate-spin"></div>
-                    <span className="text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase mt-3">
+                    <img 
+                      src="/logo/logo_white_symbol.png" 
+                      alt="BIOMEN Labs" 
+                      className="w-12 h-12 object-contain animate-spin brightness-[0.9] drop-shadow-[0_0_12px_rgba(22,199,132,0.3)]"
+                      style={{ animationDuration: '3s' }}
+                    />
+                    <span className="text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase mt-4">
                       LOADING 3D ENVIRONMENT
                     </span>
                   </div>
