@@ -272,6 +272,12 @@ const IngredientSection = () => {
                 onTouchEnd={handleTouchEnd}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/10 flex flex-col justify-center items-center bg-black shadow-2xl relative z-10 backdrop-blur-md overflow-hidden cursor-grab active:cursor-grabbing"
               >
+                {/* Dynamic Chemical Synergy Wave Ripples (Pulsing Concentric Rings) */}
+                <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden rounded-full">
+                  <div className="absolute inset-0 border border-[#16C784]/25 rounded-full animate-energy-ring" />
+                  <div className="absolute inset-0 border border-[#16C784]/15 rounded-full animate-energy-ring [animation-delay:1.2s]" />
+                  <div className="absolute inset-0 border border-[#16C784]/8 rounded-full animate-energy-ring [animation-delay:2.4s]" />
+                </div>
 
                 {/* Active ingredient background photo with smooth hardware-accelerated cross-fade */}
                 {ingredients.map((item, idx) => (

@@ -159,6 +159,21 @@ const ProblemSection = () => {
         ease: "back.out(2.0)"
       }, 4.5);
     }
+
+    // Parallax scrolling for the problem background images
+    gsap.fromTo(".problem-parallax-bg",
+      { yPercent: -8 },
+      {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
   }, { scope: containerRef });
 
   return (
@@ -168,16 +183,16 @@ const ProblemSection = () => {
       id="depletion"
     >
       {/* Editorial seamless background image with high physical contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
           src="/declineport.webp" 
           alt="Decline of Vitality Silhouette Mobile" 
-          className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
+          className="problem-parallax-bg absolute inset-0 block lg:hidden w-full h-[120%] object-cover object-center filter brightness-[0.95] contrast-[1.02]"
         />
         <img 
           src="/declineland.webp" 
           alt="Decline of Vitality Silhouette Desktop" 
-          className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02] scale-100"
+          className="problem-parallax-bg absolute inset-0 hidden lg:block w-full h-[120%] object-cover object-center filter brightness-[0.95] contrast-[1.02]"
         />
         {/* Soft, professional gradient overlays that keep text readable while letting the SVG art shine */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/25 to-transparent z-10" />

@@ -3,19 +3,68 @@ import { ArrowRight, Star, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
-  const textRef = React.useRef(null);
   const badgeRef = React.useRef(null);
+
+  const handleBadgeMouseMove = (e) => {
+    if (!badgeRef.current) return;
+    const card = badgeRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const normalizedX = (x / rect.width) - 0.5;
+    const normalizedY = (y / rect.height) - 0.5;
+    
+    const rotateX = -normalizedY * 28; 
+    const rotateY = normalizedX * 28;
+    
+    gsap.to(card, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      transformPerspective: 500,
+      ease: "power2.out",
+      duration: 0.3
+    });
+  };
+
+  const handleBadgeMouseLeave = () => {
+    if (!badgeRef.current) return;
+    gsap.to(badgeRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      ease: "power2.out",
+      duration: 0.6
+    });
+  };
 
   useGSAP(() => {
     // Elegant mask reveal animation for the headlines
-    gsap.from(".reveal-line", {
-      y: "115%",
-      duration: 1.2,
-      stagger: 0.12,
-      ease: "power4.out"
-    });
+    gsap.fromTo(".reveal-line", 
+      { y: "115%" },
+      {
+        y: "0%",
+        duration: 1.2,
+        stagger: 0.12,
+        ease: "power4.out"
+      }
+    );
+
+    // Liquid background position sweep
+    gsap.fromTo([".liquid-reveal", ".liquid-reveal-accent"],
+      { backgroundPosition: "200% center" },
+      {
+        backgroundPosition: "-200% center",
+        duration: 2.2,
+        ease: "power2.out",
+        delay: 0.1,
+        stagger: 0.15
+      }
+    );
 
     // Fade-in animation for other elements (staggered)
     gsap.from(".hero-fade-in", {
@@ -27,20 +76,73 @@ const HeroSection = () => {
       ease: "power3.out"
     });
 
-    gsap.from(badgeRef.current, {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      delay: 0.7,
-      ease: "back.out(1.7)"
-    });
+    gsap.fromTo(badgeRef.current,
+      {
+        scale: 0.8,
+        opacity: 0,
+        rotation: 12
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        rotation: 12,
+        duration: 1,
+        delay: 0.7,
+        ease: "back.out(1.7)"
+      }
+    );
+
+    // Parallax scrolling for the desktop hero background image
+    gsap.fromTo(".hero-parallax-bg-desktop",
+      { yPercent: 0 },
+      {
+        yPercent: 6,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+
+    // Parallax scrolling for the text column
+    gsap.fromTo(".hero-text-col",
+      { y: 0 },
+      {
+        y: -40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+
+    // Parallax scrolling for the stamp badge
+    gsap.fromTo(badgeRef.current,
+      { y: 0 },
+      {
+        y: -80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
   }, []);
 
   return (
     <section className="hero-section relative w-full min-h-[100dvh] lg:min-h-[580px] xl:min-h-[640px] flex flex-col justify-between px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] pt-[115px] lg:pt-[135px] pb-8 lg:pb-6" id="hero">
 
-      {/* Full-Bleed Background Image with Premium Seamless Blending Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Full-Bleed Background Image with Premium Seamless Parallax Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/Heroport.webp"
           alt="T-CORE Luxury Vitality Mobile"
@@ -58,13 +160,12 @@ const HeroSection = () => {
         <img
           src="/herodesktop.webp"
           alt="T-CORE Luxury Vitality Desktop"
-          className="hidden lg:block w-full h-full object-cover filter brightness-[1.05] contrast-[1.04] object-[center_42%]"
+          className="hero-parallax-bg-desktop absolute inset-0 w-full h-[104%] object-cover filter brightness-[1.05] contrast-[1.04] object-[center_42%] hidden lg:block"
           fetchpriority="high"
           loading="eager"
           decoding="sync"
           style={{
-            imageRendering: '-webkit-optimize-contrast',
-            transform: 'translateZ(0)'
+            imageRendering: '-webkit-optimize-contrast'
           }}
         />
         {/* Competitor-inspired ultra-smooth, wide horizontal gradient mask */}
@@ -73,16 +174,21 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 lg:hidden z-10" />
       </div>
 
-      {/* Floating Luxury Stamp Sticker Badge (Desktop only) */}
+      {/* Floating Luxury Stamp Sticker Badge (Desktop only) with 3D Tilt handlers */}
       <div
-        ref={badgeRef}
-        className="hidden lg:flex absolute right-[10%] top-[33%] z-20 select-none animate-bounce-slow"
+        className="hidden lg:flex absolute right-[10%] top-[33%] z-40 select-none animate-bounce-slow"
       >
-        <div className="relative w-32 h-32 rounded-full border border-dashed border-[#16C784]/40 bg-[#030705]/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center shadow-2xl rotate-12 hover:rotate-0 transition-transform duration-500 cursor-pointer">
-          <div className="text-[#16C784] font-black text-[9px] uppercase tracking-widest mb-0.5">100% PURE</div>
-          <div className="text-white font-serif italic text-sm font-medium">Ayurvedic</div>
-          <div className="text-[#A8B3AA] font-black text-[8px] uppercase tracking-wider mt-0.5">&bull; transparent &bull;</div>
-          <div className="absolute -top-1 -right-1 bg-[#D85A1F] text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider">
+        <div
+          ref={badgeRef}
+          onMouseMove={handleBadgeMouseMove}
+          onMouseLeave={handleBadgeMouseLeave}
+          className="relative w-32 h-32 rounded-full border border-dashed border-[#16C784]/40 bg-[#030705]/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center shadow-2xl cursor-pointer"
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          <div className="text-[#16C784] font-black text-[9px] uppercase tracking-widest mb-0.5" style={{ transform: 'translateZ(12px)' }}>100% PURE</div>
+          <div className="text-white font-serif italic text-sm font-medium" style={{ transform: 'translateZ(18px)' }}>Ayurvedic</div>
+          <div className="text-[#A8B3AA] font-black text-[8px] uppercase tracking-wider mt-0.5" style={{ transform: 'translateZ(12px)' }}>&bull; transparent &bull;</div>
+          <div className="absolute -top-1 -right-1 bg-[#D85A1F] text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider" style={{ transform: 'translateZ(24px)' }}>
             GLASS JAR
           </div>
         </div>
@@ -149,7 +255,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-12 gap-12 items-center">
 
           {/* Left Column: Clean Solid Editorial Text Canvas */}
-          <div className="col-span-8 xl:col-span-7 space-y-6 text-left relative max-w-2xl">
+          <div className="hero-text-col col-span-8 xl:col-span-7 space-y-6 text-left relative max-w-2xl">
 
             {/* Verified Rating Badge */}
             <div className="flex items-center gap-2 hero-fade-in">
@@ -161,16 +267,16 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* Headline - Restored to previous elegant serif weight */}
-            <h1 className="text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-normal font-serif tracking-tight leading-[1.05] text-white uppercase">
+            {/* Headline - Restored to previous elegant serif weight with Liquid Shimmer text reveal */}
+            <h1 className="text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-normal font-serif tracking-tight leading-[1.05] uppercase">
               <span className="block overflow-hidden pb-1">
-                <span className="reveal-line inline-block">Daily Vitality for the</span>
+                <span className="reveal-line inline-block liquid-reveal">Daily Vitality for the</span>
               </span>
               <span className="block overflow-hidden pb-1">
-                <span className="reveal-line inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium pr-4">Modern</span>
+                <span className="reveal-line inline-block liquid-reveal-accent italic font-medium pr-4">Modern</span>
               </span>
               <span className="block overflow-hidden pb-1">
-                <span className="reveal-line inline-block">Indian Man</span>
+                <span className="reveal-line inline-block liquid-reveal">Indian Man</span>
               </span>
             </h1>
 

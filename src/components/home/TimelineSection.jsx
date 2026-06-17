@@ -97,7 +97,46 @@ const TimelineSection = ({ title }) => {
       { scale: 0.95, opacity: 0.85 },
       { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }
     );
-  }, [activeDay]);
+
+    // Parallax scrolling for the workout background image
+    gsap.fromTo(".timeline-parallax-bg",
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+  }, { scope: containerRef, dependencies: [activeDay] });
+
+  const handleCardMouseMove = (e) => {
+    if (window.innerWidth < 768) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateXVal = ((centerY - y) / centerY) * 4;
+    const rotateYVal = ((x - centerX) / centerX) * 4;
+    e.currentTarget.style.setProperty('--rotate-x', `${rotateXVal}deg`);
+    e.currentTarget.style.setProperty('--rotate-y', `${rotateYVal}deg`);
+  };
+
+  const handleCardMouseLeave = (e) => {
+    e.currentTarget.style.setProperty('--rotate-x', '0deg');
+    e.currentTarget.style.setProperty('--rotate-y', '0deg');
+  };
+
+
 
   return (
     <section 
@@ -106,11 +145,11 @@ const TimelineSection = ({ title }) => {
       id="timeline"
     >
       {/* Seamless tactical background image with deep sunset warmth overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
           src="/workout_guarantee_bg.png" 
           alt="BIOMEN Discipline" 
-          className="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.05]"
+          className="timeline-parallax-bg absolute inset-0 w-full h-[130%] object-cover object-center filter brightness-[0.35] contrast-[1.05]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 lg:from-black/90 lg:via-black/70 to-transparent z-10" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
@@ -189,38 +228,52 @@ const TimelineSection = ({ title }) => {
               <div
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 bg-black/80 border py-5 px-6 rounded-[2rem] relative flex flex-col justify-between backdrop-blur-md transition-all duration-500 cursor-pointer ${
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
+                className={`w-[82vw] sm:w-[330px] md:w-[360px] lg:w-[380px] shrink-0 p-[1.5px] rounded-[2rem] relative flex flex-col backdrop-blur-md transition-all duration-500 cursor-pointer group/timeline-spotlight ${
                   isActive 
                     ? 'opacity-100 scale-100 shadow-2xl z-20 active-timeline-indicator' 
-                    : 'opacity-45 scale-90 z-10 hover:opacity-65 border-white/5'
+                    : 'opacity-45 scale-90 z-10 hover:opacity-65'
                 }`}
                 style={{ 
-                  borderColor: isActive ? card.color : 'rgba(255,255,255,0.05)',
+                  transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+                  transition: 'transform 0.2s ease-out, opacity 0.5s ease, scale 0.5s ease',
+                  background: isActive ? card.color : 'rgba(255,255,255,0.05)',
                   boxShadow: isActive ? `0 0 40px ${card.bgColor}` : 'none',
                   marginRight: idx < 2 ? 'var(--card-gap)' : '0px'
                 }}
               >
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center pb-2.5 border-b border-white/10">
-                    <span 
-                      className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
-                      style={{ backgroundColor: card.bgColor, color: card.color }}
-                    >
-                      STAGE 0{idx + 1} &bull; DAY {day}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-white">
-                      {card.icon} {card.label}
-                    </span>
+                {/* Spotlight border glow layer */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover/timeline-spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0 rounded-[2rem]"
+                  style={{
+                    background: `radial-gradient(150px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${card.color}, transparent 85%)`
+                  }}
+                />
+
+                <div className="relative w-full h-full rounded-[1.9rem] bg-black/90 py-5 px-6 flex flex-col justify-between z-10">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2.5 border-b border-white/10">
+                      <span 
+                        className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
+                        style={{ backgroundColor: card.bgColor, color: card.color }}
+                      >
+                        STAGE 0{idx + 1} &bull; DAY {day}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-white">
+                        {card.icon} {card.label}
+                      </span>
+                    </div>
+                    
+                    <ul className="space-y-2 text-left pl-1">
+                      {card.bullets.map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
+                          <span className="text-gray-300">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  
-                  <ul className="space-y-2 text-left pl-1">
-                    {card.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
-                        <span className="text-gray-300">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             );
@@ -230,43 +283,60 @@ const TimelineSection = ({ title }) => {
 
       {/* Bottom Block: Padded and Centered Guarantee Showcase */}
       <div className="max-w-7xl mx-auto w-full relative z-10 px-6 md:px-20 mb-3">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#052E22]/10 border border-white/10 rounded-[1.5rem] lg:rounded-[2rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md max-w-5xl mx-auto shadow-2xl w-full">
-          
-          {/* Left: Headline & Description */}
-          <div className="lg:col-span-8 space-y-3.5 text-left relative z-20">
-            <h2 className="text-2xl lg:text-[2.2rem] font-normal font-serif tracking-tight leading-none text-white uppercase">
-              Optimize Masculine <br/> Baseline in 90 Days
-            </h2>
-            <p className="text-xs md:text-sm lg:text-[14px] text-[#A8B3AA] leading-relaxed font-semibold max-w-2xl">
-              Try T-CORE completely risk-free for 90 days. If you do not experience a substantial upgrade in energy, daily baseline focus, and post-workout recovery, we will refund you in full. No questions asked.
-            </p>
-            
-            {/* Thicker and more prominent CTA Button */}
-            <div className="pt-1.5">
-              <a 
-                href="/products/t-core" 
-                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
-              >
-                UNLOCK YOUR SYSTEM TODAY <ArrowRight size={14} />
-              </a>
-            </div>
-          </div>
+        <div 
+          onMouseMove={handleCardMouseMove}
+          onMouseLeave={handleCardMouseLeave}
+          className="relative p-[1.5px] rounded-[1.5rem] lg:rounded-[2rem] max-w-5xl mx-auto shadow-2xl w-full group/guarantee-spotlight"
+          style={{
+            transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
+            transition: 'transform 0.2s ease-out, background 0.3s ease',
+            background: 'rgba(255,255,255,0.05)'
+          }}
+        >
+          {/* Spotlight border glow */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover/guarantee-spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0 rounded-[1.5rem] lg:rounded-[2rem]"
+            style={{
+              background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(216, 90, 31, 0.45), transparent 85%)`
+            }}
+          />
 
-          {/* Right: Massive Guarantee Circular Sticker-Like Badge (Zero Rotation) */}
-          <div className="lg:col-span-4 flex items-center justify-center relative z-20 mt-4 lg:mt-0">
-            <div className="relative w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center rounded-full bg-gradient-to-br from-[#052e22] to-[#020504] border-[6px] border-[#D85A1F] shadow-[10px_10px_35px_rgba(0,0,0,0.85)] p-5 transition-transform duration-300 hover:scale-105 select-none rotate-0">
-              {/* Inner dashed accent circle */}
-              <div className="absolute inset-2.5 rounded-full border border-dashed border-[#D85A1F]/30 pointer-events-none" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#052E22]/10 rounded-[1.4rem] lg:rounded-[1.9rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md z-10">
+            {/* Left: Headline & Description */}
+            <div className="lg:col-span-8 space-y-3.5 text-left relative z-20">
+              <h2 className="text-2xl lg:text-[2.2rem] font-normal font-serif tracking-tight leading-none text-white uppercase">
+                Optimize Masculine <br/> Baseline in 90 Days
+              </h2>
+              <p className="text-xs md:text-sm lg:text-[14px] text-[#A8B3AA] leading-relaxed font-semibold max-w-2xl">
+                Try T-CORE completely risk-free for 90 days. If you do not experience a substantial upgrade in energy, daily baseline focus, and post-workout recovery, we will refund you in full. No questions asked.
+              </p>
               
-              <div className="text-center flex flex-col items-center justify-center space-y-1.5">
-                <Award size={40} className="text-[#D85A1F] animate-pulse mb-1 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-                <span className="text-[12px] lg:text-[15px] font-black text-white uppercase tracking-wider block leading-none">100% VITALITY</span>
-                <span className="text-[10px] lg:text-[12px] font-black text-[#16C784] uppercase tracking-widest block bg-[#16C784]/15 px-3 py-1 rounded border border-[#16C784]/25 mt-0.5">GUARANTEE</span>
-                <span className="text-[8px] lg:text-[9.5px] text-[#A8B3AA] font-black uppercase tracking-wider block mt-0.5">90 Days Support</span>
+              {/* Thicker and more prominent CTA Button */}
+              <div className="pt-1.5 flex justify-center sm:justify-start">
+                <a 
+                  href="/products/t-core" 
+                  className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                >
+                  UNLOCK YOUR SYSTEM TODAY <ArrowRight size={14} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Massive Guarantee Circular Sticker-Like Badge (Zero Rotation) */}
+            <div className="lg:col-span-4 flex items-center justify-center relative z-20 mt-4 lg:mt-0">
+              <div className="relative w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center rounded-full bg-gradient-to-br from-[#052e22] to-[#020504] border-[6px] border-[#D85A1F] shadow-[10px_10px_35px_rgba(0,0,0,0.85)] p-5 transition-transform duration-300 hover:scale-105 select-none rotate-0">
+                {/* Inner dashed accent circle */}
+                <div className="absolute inset-2.5 rounded-full border border-dashed border-[#D85A1F]/30 pointer-events-none" />
+                
+                <div className="text-center flex flex-col items-center justify-center space-y-1.5">
+                  <Award size={40} className="text-[#D85A1F] animate-pulse mb-1 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                  <span className="text-[12px] lg:text-[15px] font-black text-white uppercase tracking-wider block leading-none">100% VITALITY</span>
+                  <span className="text-[10px] lg:text-[12px] font-black text-[#16C784] uppercase tracking-widest block bg-[#16C784]/15 px-3 py-1 rounded border border-[#16C784]/25 mt-0.5">GUARANTEE</span>
+                  <span className="text-[8px] lg:text-[9.5px] text-[#A8B3AA] font-black uppercase tracking-wider block mt-0.5">90 Days Support</span>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

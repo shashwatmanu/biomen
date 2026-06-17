@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift, Minus, Plus } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
+import gsap from 'gsap';
 
 const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -34,7 +35,10 @@ const HeroBuyBox = () => {
     e.currentTarget.style.setProperty('--rotate-x', '0deg');
     e.currentTarget.style.setProperty('--rotate-y', '0deg');
   };
-  const sliderRef = React.useRef(null);
+
+
+
+  const sliderRef = useRef(null);
 
   const images = [
     { id: 'prod-1', url: '/Product/1.webp', label: 'T-CORE Front View' },
@@ -176,6 +180,8 @@ const HeroBuyBox = () => {
               <div 
                 className="aspect-square bg-gradient-to-b from-white/5 to-transparent rounded-[3rem] overflow-hidden relative flex flex-col items-center justify-center border border-white/10 shadow-2xl p-0 group bg-[#06110C]/40 select-none w-full max-w-[480px] mx-auto"
               >
+                {/* Botanical green front-projected spotlight overlay (lights up the raster jar WebP on hover) */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(22,199,132,0.18)_0%,transparent_65%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-30 mix-blend-screen" />
                 {/* Product Badge */}
                 <span className="absolute top-6 left-6 bg-[#052E22] border border-[#0FA36B]/20 text-[#16C784] text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full z-30">
                   100% VEGETARIAN CAPSULES

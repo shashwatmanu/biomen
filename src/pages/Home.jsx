@@ -7,10 +7,13 @@ import TimelineSection from '../components/home/TimelineSection';
 import BundleSelector from '../components/home/BundleSelector';
 import FAQSection from '../components/home/FAQSection';
 import Footer from '../components/shared/Footer';
-
+import ScrollProgressIndicator from '../components/shared/ScrollProgressIndicator';
 const Home = () => {
   return (
-    <div className="bg-black text-white font-manrope">
+    <div className="bg-black text-white font-manrope relative">
+      {/* Vertical Navigation sidebar scroll indicator */}
+      <ScrollProgressIndicator />
+
       {/* 1. Hero Section */}
       <HeroSection />
       

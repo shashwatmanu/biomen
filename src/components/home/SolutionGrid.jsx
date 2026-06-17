@@ -27,6 +27,8 @@ const SolutionGrid = () => {
     }
   ];
 
+
+
   useGSAP(() => {
     gsap.from(".solution-fade-up", {
       y: 25,
@@ -40,6 +42,21 @@ const SolutionGrid = () => {
         toggleActions: "play none none none"
       }
     });
+
+    // Parallax scrolling for the solution background images
+    gsap.fromTo(".solution-parallax-bg",
+      { yPercent: -8 },
+      {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
   }, { scope: containerRef });
 
   return (
@@ -49,16 +66,16 @@ const SolutionGrid = () => {
       id="solution"
     >
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
           src="/solutionport.webp" 
           alt="T-CORE daily vitality solution Mobile" 
-          className="block lg:hidden w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
+          className="solution-parallax-bg absolute inset-0 block lg:hidden w-full h-[120%] object-cover object-center filter brightness-[0.98] contrast-[1.02]"
         />
         <img 
           src="/solutionland.webp" 
           alt="T-CORE daily vitality solution Desktop" 
-          className="hidden lg:block w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02] animate-fade-in"
+          className="solution-parallax-bg absolute inset-0 hidden lg:block w-full h-[120%] object-cover object-center filter brightness-[0.98] contrast-[1.02]"
         />
         {/* Sleek deep botanical gradients to guarantee high-contrast text readability without washing out the image */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030705]/50 via-transparent to-[#030705]/50 z-10" />
@@ -119,13 +136,15 @@ const SolutionGrid = () => {
             {/* Completely empty, invisible spacing block that mirrors the space of the canister box */}
             <div className="w-full aspect-square max-w-[350px] lg:max-w-[400px] shrink-0" />
             
-            {/* Centered Massive CTA under space - Desktop only (Interactive, pointer events enabled) */}
-            <a 
-              href="/products/t-core"
-              className="btn-sweep mt-6 lg:-mt-64 bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full max-w-[300px] py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 pointer-events-auto relative z-20"
-            >
-              START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
-            </a>
+            {/* Centered Massive CTA under space - Desktop only */}
+            <div className="w-full max-w-[300px] mt-6 lg:-mt-64 relative z-20 flex justify-center lg:inline-flex">
+              <a 
+                href="/products/t-core"
+                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 relative"
+              >
+                START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
+              </a>
+            </div>
 
           </div>
 

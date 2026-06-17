@@ -101,7 +101,7 @@ const TrustBadges = () => {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {pillars.map((pillar, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 bg-black/40 rounded-xl border border-white/5 hover:border-biomen-accent/30 transition-all duration-300">
+                  <div key={i} className="flex items-center gap-3 p-3 bg-black/40 rounded-xl border border-white/5 hover:border-biomen-accent/40 hover:bg-[#052E22]/30 hover:shadow-[0_0_15px_rgba(22,199,132,0.12)] hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                     <CheckCircle2 size={16} className="text-biomen-accent shrink-0" />
                     <span className="text-[11px] md:text-xs font-black uppercase tracking-wider text-biomen-white leading-tight">{pillar}</span>
                   </div>

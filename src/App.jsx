@@ -27,6 +27,7 @@ import Navbar from './components/home/Navbar';
 import PromoBar from './components/home/PromoBar';
 import CartDrawer from './components/shared/CartDrawer';
 import EntryPopup from './components/shared/EntryPopup';
+import BotanicalParticles from './components/shared/BotanicalParticles';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,8 @@ function App() {
       return () => clearTimeout(t);
     }
   }, []);
+
+
 
   // Centralized dynamic SEO metadata update protocol
   useEffect(() => {
@@ -150,7 +153,8 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-black min-h-[100dvh] relative">
+    <div className="bg-[#030705] min-h-[100dvh] relative overflow-x-hidden">
+      {!isAdminPage && <BotanicalParticles />}
       <div className="film-grain" />
       {!isAdminPage && (
         <div className="fixed top-0 left-0 w-full z-[100] bg-transparent pointer-events-none">
