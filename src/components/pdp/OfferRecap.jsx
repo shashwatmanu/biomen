@@ -12,41 +12,44 @@ const OfferRecap = () => {
             <div className="flex items-center gap-3 font-bold">
               <Check size={20} className="text-biomen-accent" /> T-CORE (90-Day System)
             </div>
-            <div className="text-gray-400">₹4,497</div>
+            <div className="text-gray-400">₹9,000</div>
           </div>
           <div className="flex justify-between items-center text-lg">
             <div className="flex items-center gap-3 font-medium text-gray-300">
-              <Check size={20} className="text-biomen-accent" /> Premium Travel Tin
+              <Check size={20} className="text-biomen-accent" /> 90-Day Protocol E-Book
             </div>
-            <div className="text-gray-400">₹499</div>
+            <div className="text-gray-400">₹2,500</div>
           </div>
           <div className="flex justify-between items-center text-lg">
             <div className="flex items-center gap-3 font-medium text-gray-300">
-              <Check size={20} className="text-biomen-accent" /> Biological Optimization E-Book
+              <Check size={20} className="text-biomen-accent" /> Lifetime App Access
             </div>
-            <div className="text-gray-400">₹999</div>
+            <div className="text-gray-400">₹5,000</div>
           </div>
           <div className="flex justify-between items-center text-lg">
             <div className="flex items-center gap-3 font-medium text-gray-300">
-              <Check size={20} className="text-biomen-accent" /> Premium Shipping
+              <Check size={20} className="text-biomen-accent" /> Chance to Win iPhone 17 Pro
             </div>
-            <div className="text-gray-400">₹250</div>
+            <div className="text-gray-400">Priceless</div>
           </div>
         </div>
 
         <div className="flex justify-between items-end mb-8">
           <div>
-            <div className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-1">Total Value: <span className="line-through">₹6,245</span></div>
+            <div className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-1">Total Value: <span className="line-through">₹16,500</span></div>
             <div className="text-4xl font-black text-white">Today: <span className="text-biomen-accent">₹3,999</span></div>
           </div>
           <div className="text-right">
             <div className="bg-white/10 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-              Save ₹2,246
+              Save ₹12,501
             </div>
           </div>
         </div>
 
-        <button className="w-full bg-biomen-accent text-biomen-green py-5 rounded-full font-black text-lg uppercase tracking-widest hover:brightness-110 transition-all shadow-[0_0_30px_rgba(194,240,194,0.2)] flex items-center justify-center gap-2">
+        <button 
+          onClick={() => document.getElementById('buybox')?.scrollIntoView({ behavior: 'smooth' })}
+          className="w-full bg-biomen-accent text-biomen-green py-5 rounded-full font-black text-lg uppercase tracking-widest hover:brightness-110 transition-all shadow-[0_0_30px_rgba(194,240,194,0.2)] flex items-center justify-center gap-2 cursor-pointer"
+        >
           Secure My Kit <ArrowRight size={20} />
         </button>
         <p className="text-center text-xs text-gray-500 mt-4 uppercase tracking-widest font-bold">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const TransformationGallery = () => {
   const shifts = [
@@ -8,28 +9,28 @@ const TransformationGallery = () => {
       label: "+28% Energy Index",
       focus: "Stamina & Drive",
       quote: "After 60 days of consistent morning T-CORE, the afternoon crash is completely gone. Gym recovery feels like it did in my 20s.",
-      image: "/portrait_ingredients.jpg"
+      image: "/amit.png"
     },
     {
       user: "Vikram S. (41)",
       label: "+34% Recovery Speed",
       focus: "Cortisol & Stress",
       quote: "Managing a startup was destroying my sleep and focus. T-CORE balanced my daily baseline. My focus is locked all day.",
-      image: "/spilled_capsules.jpg"
+      image: "/vikram.png"
     },
     {
       user: "Rohan M. (29)",
       label: "Optimized Baseline",
       focus: "Peak Stamina",
       quote: "The transparency is why I chose Biomen. Knowing exactly what goes into my body changed my athletic performance completely.",
-      image: "/portrait_canister_jar.jpg"
+      image: "/rohan.png"
     },
     {
       user: "Kabir D. (38)",
       label: "+22% Sleep Quality",
       focus: "Daily Resilience",
       quote: "Vegetarian capsules, clean Ayurvedic sourcing, and a real clinical formula. Highly recommend to any modern active man.",
-      image: "/biomen_texture.jpg"
+      image: "/kabir.png"
     }
   ];
 
@@ -44,9 +45,9 @@ const TransformationGallery = () => {
             <h2 className="text-3xl md:text-5xl font-normal font-serif tracking-tight text-white mb-2 uppercase">The Shift is Real</h2>
             <p className="text-gray-300 text-sm lg:text-base font-semibold">See the difference 90 days of consistent biological support can make.</p>
           </div>
-          <a href="#reviews" className="shrink-0 text-biomen-accent font-black uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2 text-xs">
+          <Link to="/reviews" className="shrink-0 text-biomen-accent font-black uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2 text-xs">
             See all stories <ArrowRight size={14} />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

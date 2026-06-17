@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift } from 'lucide-react';
+import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift, Minus, Plus } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 
 const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const navigate = useNavigate();
   const [activeIdx, setActiveIdx] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [isStickyVisible, setIsStickyVisible] = useState(() => {
     return typeof window !== 'undefined' ? window.innerWidth < 768 : false;
   });
@@ -287,6 +288,92 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
+            {/* Premium Selector Deck (options come first) */}
+            <div className="pt-4 border-t border-white/10 space-y-4">
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#BFA46A]">
+                SELECT YOUR SYSTEM PROTOCOL
+              </h3>
+              
+              <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm' : 'md:grid-cols-3'} gap-4`}>
+                {bundles
+                  .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
+                  .map((bundle) => {
+                    const isSelected = selectedBundle.id === bundle.id;
+                    const displayPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
+                    const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
+                    
+                    return (
+                      <button
+                        key={bundle.id}
+                        onClick={() => {
+                          setSelectedBundle(bundle);
+                          setQuantity(1); // Reset quantity on bundle change
+                          if (bundle.id !== 'tcore-3-bottles') {
+                            setIsSubscription(false);
+                          }
+                        }}
+                        className={`relative flex flex-col justify-between text-left p-5 rounded-2xl border transition-all cursor-pointer bg-black/40 min-h-[140px] hover:border-[#0FA36B]/50 ${isSelected ? 'border-[#0FA36B] bg-[#052E22]/20 ring-1 ring-[#0FA36B]/30' : 'border-white/10'}`}
+                      >
+                        {bundle.best && (
+                          <span className="absolute -top-2.5 right-4 bg-[#0FA36B] text-white text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-lg">
+                            BEST RESET VALUE
+                          </span>
+                        )}
+                        <div>
+                          <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
+                            {bundle.name}
+                          </div>
+                          <div className="text-base font-black text-white uppercase mt-1">
+                            {bundle.title}
+                          </div>
+                          <div className="text-[9px] text-[#A8B3AA] mt-1 font-semibold leading-tight">
+                            {bundle.desc}
+                          </div>
+                        </div>
+                        
+                        <div className="mt-4 flex items-center justify-between w-full">
+                          <div className="flex flex-col">
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                              <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                            </div>
+                            <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
+                              SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
+                            </span>
+                          </div>
+                          
+                          {isSelected ? (
+                            <div className="flex items-center gap-2 bg-black/60 rounded-lg p-1 border border-white/10 shadow-inner" onClick={(e) => e.stopPropagation()}>
+                              <button
+                                onClick={() => {
+                                  if (quantity > 1) setQuantity(quantity - 1);
+                                }}
+                                className="p-1 text-gray-400 hover:text-white transition-colors"
+                              >
+                                <Minus size={12} />
+                              </button>
+                              <span className="text-[#F4F6F2] text-xs font-black w-4 text-center select-none">
+                                {quantity}
+                              </span>
+                              <button
+                                onClick={() => setQuantity(quantity + 1)}
+                                className="p-1 text-gray-400 hover:text-white transition-colors"
+                              >
+                                <Plus size={12} />
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-gray-400 transition-colors">
+                              <Plus size={10} />
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+
             {/* Repositioned CTA checkout Button and Stats */}
             <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
               <button 
@@ -294,7 +381,7 @@ const HeroBuyBox = () => {
                   id: selectedBundle.id,
                   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
                   price: (isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price,
-                  quantity: 1,
+                  quantity: quantity,
                   isSubscription: isSubscription && selectedBundle.id === 'tcore-3-bottles',
                   image: images[0].url
                 })}
@@ -306,12 +393,12 @@ const HeroBuyBox = () => {
               <div className="text-left w-full sm:w-auto">
                 <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
                 <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">
-                  {selectedBundle.title} &bull; Save ₹{(selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
+                  {selectedBundle.title} {quantity > 1 && `(x${quantity})`} &bull; Save ₹{((selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price)) * quantity).toLocaleString('en-IN')}
                 </div>
               </div>
             </div>
 
-            {/* Clean Editorial Bullet Checkmarks */}
+            {/* Clean Editorial Bullet Checkmarks (follow after CTA button) */}
             <ul className="space-y-3 pt-2 text-sm text-[#F4F6F2] font-semibold">
               <li className="flex items-center gap-3">
                 <span className="w-5 h-5 rounded-full bg-[#052E22] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
@@ -339,74 +426,17 @@ const HeroBuyBox = () => {
               </li>
             </ul>
 
-            {/* Premium Selector Deck */}
-            <div className="pt-6 border-t border-white/10 space-y-4">
-              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#BFA46A]">
-                SELECT YOUR SYSTEM PROTOCOL
-              </h3>
-              
-              <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm' : 'md:grid-cols-3'} gap-4`}>
-                {bundles
-                  .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
-                  .map((bundle) => {
-                    const isSelected = selectedBundle.id === bundle.id;
-                    const displayPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
-                    const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
-                    
-                    return (
-                      <button
-                        key={bundle.id}
-                        onClick={() => {
-                          setSelectedBundle(bundle);
-                          if (bundle.id !== 'tcore-3-bottles') {
-                            setIsSubscription(false);
-                          }
-                        }}
-                      className={`relative flex flex-col justify-between text-left p-5 rounded-2xl border transition-all cursor-pointer bg-black/40 min-h-[140px] hover:border-[#0FA36B]/50 ${isSelected ? 'border-[#0FA36B] bg-[#052E22]/20 ring-1 ring-[#0FA36B]/30' : 'border-white/10'}`}
-                    >
-                      {bundle.best && (
-                        <span className="absolute -top-2.5 right-4 bg-[#0FA36B] text-white text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-lg">
-                          BEST RESET VALUE
-                        </span>
-                      )}
-                      <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
-                          {bundle.name}
-                        </div>
-                        <div className="text-base font-black text-white uppercase mt-1">
-                          {bundle.title}
-                        </div>
-                        <div className="text-[9px] text-[#A8B3AA] mt-1 font-semibold leading-tight">
-                          {bundle.desc}
-                        </div>
-                      </div>
-                      
-                      <div className="mt-4 flex items-baseline justify-between w-full">
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-lg font-black text-white">₹{displayPrice.toLocaleString('en-IN')}</span>
-                          <span className="text-[9px] text-gray-500 line-through">₹{bundle.mrp.toLocaleString('en-IN')}</span>
-                        </div>
-                        <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider bg-[#052E22] px-2 py-0.5 rounded border border-[#0FA36B]/20">
-                          -{discountPercent}% OFF
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
             <div className="pt-2"></div>
 
             {/* Trust Badges under CTA button */}
             <div className="grid grid-cols-3 gap-4 text-[10px] font-black uppercase tracking-widest text-[#A8B3AA] pt-4 border-t border-white/10">
-              <span className="flex items-center gap-1.5 justify-center">
+              <span className="flex items-center gap-1.5 justify-center text-center">
                 <Truck size={14} className="text-[#16C784]" /> Ships in 24 Hours
               </span>
-              <span className="flex items-center gap-1.5 justify-center">
+              <span className="flex items-center gap-1.5 justify-center text-center">
                 <ShieldCheck size={14} className="text-[#16C784]" /> Try Risk-Free for 90 Days
               </span>
-              <span className="flex items-center gap-1.5 justify-center">
+              <span className="flex items-center gap-1.5 justify-center text-center">
                 <RefreshCcw size={14} className="text-[#16C784]" /> Free Shipping Aligned
               </span>
             </div>
@@ -417,26 +447,21 @@ const HeroBuyBox = () => {
                 <Gift size={16} /> YOUR FREE GIFTS (INCLUDED TODAY)
               </h3>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[10px] font-black uppercase tracking-wider text-center text-[#F4F6F2]">
-                <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                  <span className="text-[#16C784] mb-1">TRAVEL TIN</span>
-                  <span>Free Metal Holder</span>
-                  <span className="text-gray-500 text-[8px] mt-1">₹299 Value</span>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[10px] font-black uppercase tracking-wider text-center text-[#F4F6F2]">
                 <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
                   <span className="text-[#16C784] mb-1">VITALITY E-BOOK</span>
                   <span>90-Day Protocol</span>
-                  <span className="text-gray-500 text-[8px] mt-1">₹499 Value</span>
+                  <span className="text-gray-500 text-[8px] mt-1">₹2,500 Value</span>
                 </div>
                 <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                  <span className="text-[#16C784] mb-1">APP ACCESS</span>
+                  <span className="text-[#16C784] mb-1">LIFETIME APP ACCESS</span>
                   <span>Workout Tracker</span>
-                <span className="text-gray-500 text-[8px] mt-1">Free Trial</span>
+                  <span className="text-gray-500 text-[8px] mt-1">₹5,000 Value</span>
                 </div>
                 <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                  <span className="text-[#16C784] mb-1">SHAKER CUP</span>
-                  <span>Premium Blender</span>
-                  <span className="text-gray-500 text-[8px] mt-1">₹399 Value</span>
+                  <span className="text-[#16C784] mb-1">IPHONE 17 PRO</span>
+                  <span>Chance to Win</span>
+                  <span className="text-gray-500 text-[8px] mt-1">Weekly Draw</span>
                 </div>
               </div>
             </div>
@@ -456,20 +481,23 @@ const HeroBuyBox = () => {
         <img src={images[0].url} alt="T-CORE" className="w-12 h-12 object-cover bg-white/5 border border-white/10 rounded-xl p-1" />
         <div>
           <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-          <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title}</div>
+          <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
         </div>
         <div className="h-6 w-px bg-white/10 mx-2" />
-        <div>
-          <span className="text-lg font-black text-white">₹{(isSubscription ? selectedBundle.subPrice : selectedBundle.price).toLocaleString('en-IN')}</span>
-          <span className="text-[10px] text-gray-500 line-through ml-2">₹{selectedBundle.mrp.toLocaleString('en-IN')}</span>
+        <div className="flex items-baseline gap-2">
+          <span className="text-xs text-gray-400 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
+          <span className="text-lg font-black text-white">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
         </div>
       </div>
 
       <div className="flex items-center gap-3 w-full md:w-auto">
         {/* Mobile-only price display left-aligned, buttons right-aligned */}
         <div className="md:hidden text-left flex-shrink-0 mr-3">
-          <div className="text-[9px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-          <div className="text-sm font-black text-white">₹{(isSubscription ? selectedBundle.subPrice : selectedBundle.price).toLocaleString('en-IN')}</div>
+          <div className="text-[9px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name} {quantity > 1 && `(x${quantity})`}</div>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-[10px] text-gray-400 line-through">₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}</span>
+            <span className="text-sm font-black text-white">₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}</span>
+          </div>
         </div>
 
         <button
@@ -477,7 +505,7 @@ const HeroBuyBox = () => {
             id: selectedBundle.id,
             title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
             price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
-            quantity: 1,
+            quantity: quantity,
             isSubscription: isSubscription,
             image: images[0].url
           })}
@@ -492,7 +520,7 @@ const HeroBuyBox = () => {
               id: selectedBundle.id,
               title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
               price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
-              quantity: 1,
+              quantity: quantity,
               isSubscription: isSubscription,
               image: images[0].url
             });

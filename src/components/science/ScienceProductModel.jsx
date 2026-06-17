@@ -5,7 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 
 export const ScienceProductModel = (props) => {
   // Load premium canister textures
-  const labelNew = useTexture('/label_new.jpg');
+  const labelNew = useTexture('/texture.webp');
   const capTop = useTexture('/cap_top.jpg');
   const capBottom = useTexture('/cap_bottom.jpg');
 

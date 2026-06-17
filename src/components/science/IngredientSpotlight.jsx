@@ -224,7 +224,7 @@ const IngredientSpotlight = () => {
               <img 
                 src={activeIngredient.image} 
                 alt={activeIngredient.name} 
-                className="w-full h-full object-cover opacity-[0.55] filter brightness-[0.6] contrast-[1.1] scale-110" 
+                className="w-full h-full object-cover opacity-[0.75] filter brightness-[0.95] contrast-[1.1] scale-110" 
               />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(3,7,5,0.25)_0%,rgba(3,7,5,0.98)_85%)]" />
             </div>
@@ -289,7 +289,7 @@ const IngredientSpotlight = () => {
               <img 
                 src={activeIngredient.image} 
                 alt={activeIngredient.name} 
-                className="w-full h-full object-cover opacity-[0.50] filter brightness-[0.55] contrast-[1.1] scale-110" 
+                className="w-full h-full object-cover opacity-[0.70] filter brightness-[0.90] contrast-[1.1] scale-110" 
               />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(3,7,5,0.25)_0%,rgba(3,7,5,0.98)_85%)]" />
             </div>
