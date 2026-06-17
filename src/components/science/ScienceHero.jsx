@@ -165,7 +165,7 @@ const ScienceHero = () => {
   }, { scope: textContainerRef });
 
   return (
-    <section className="pt-[140px] lg:pt-[170px] pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[92vh] flex items-start">
+    <section className="pt-[140px] lg:pt-[170px] pb-12 lg:pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[92vh] flex items-start">
       {/* Background radial and gradient glows for a botanical feel */}
       <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-[#052E22]/30 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#0FA36B]/15 rounded-full blur-[140px] pointer-events-none" />

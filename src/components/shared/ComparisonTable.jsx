@@ -14,7 +14,7 @@ const ComparisonTable = () => {
   ];
 
   return (
-    <section className="relative pt-[120px] pb-16 px-3 xs:px-4 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" id="comparison">
+    <section className="relative pt-14 lg:pt-[120px] pb-12 lg:pb-16 px-3 xs:px-4 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" id="comparison">
       {/* Background spotlights (ambient glows, not digital gradients) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-biomen-green/10 rounded-full blur-[140px] pointer-events-none z-0" />
 

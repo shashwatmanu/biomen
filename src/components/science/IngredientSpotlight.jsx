@@ -161,7 +161,7 @@ const IngredientSpotlight = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-[120px] pb-16 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" 
+      className="relative pt-14 lg:pt-[120px] pb-12 lg:pb-16 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" 
       id="spotlight"
     >
       {/* Background spotlights (ambient glows, not digital gradients) */}

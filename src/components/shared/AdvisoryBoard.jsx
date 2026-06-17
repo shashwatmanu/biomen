@@ -35,7 +35,7 @@ const AdvisoryBoard = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-24 px-4 sm:px-6 md:px-20 bg-black/20 border-y border-white/5" id="advisory">
+    <section className="py-12 lg:py-24 px-4 sm:px-6 md:px-20 bg-black/20 border-y border-white/5" id="advisory">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-1.5 block">
