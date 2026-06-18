@@ -99,7 +99,7 @@ const BundleSelector = () => {
           <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
             <button 
               onClick={() => setIsSubscription(false)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">One-Time Purchase</span>
               <span className="inline xs:hidden">One-Time</span>
@@ -109,7 +109,7 @@ const BundleSelector = () => {
                 setIsSubscription(true);
                 setSelectedId('tcore-3-bottles');
               }}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#A8B3AA] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">Auto-Pay Subscription</span>
               <span className="inline xs:hidden">Subscribe & Save</span>
@@ -130,7 +130,7 @@ const BundleSelector = () => {
               return (
                 <div key={i} className="relative h-full flex flex-col">
                   {bundle.best && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0FA36B] text-[#F4F6F2] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#16C784] text-[#030705] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
                       <Star size={10} fill="currentColor" /> Recommended Protocol
                     </span>
                   )}
@@ -176,19 +176,19 @@ const BundleSelector = () => {
                         }}
                       />
 
-                      <div className="relative z-10 mt-2">
+                      <div className="relative z-10">
                         <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5">
                           {bundle.name}
                         </div>
                         <h3 className="text-xl lg:text-lg font-black text-[#F4F6F2] uppercase mb-0.5">{bundle.title}</h3>
-                        <p className="text-[#A8B3AA] text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
+                        <p className="text-gray-300 text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
                           {bundle.desc}
                         </p>
                       </div>
 
                       <div className="relative z-10">
                         <div className="flex flex-col items-center justify-center mb-2">
-                          <div className="text-gray-500 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
+                          <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
                             MRP ₹{bundle.mrp.toLocaleString('en-IN')}
                           </div>
                           <div className="flex items-baseline gap-1">
@@ -236,7 +236,7 @@ const BundleSelector = () => {
             </h3>
           </div>
           
-          <p className="text-[11px] text-[#A8B3AA] leading-relaxed mb-3 font-semibold">
+          <p className="text-[11px] text-gray-300 leading-relaxed mb-3 font-semibold">
             Keep your momentum active. Set up recurring auto-pay with one-click cancellation. Subscriptions unlock an <strong>extra 15% discount</strong> and qualifying express shipping forever.
           </p>
 

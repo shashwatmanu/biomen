@@ -147,7 +147,7 @@ const TimelineSection = ({ title }) => {
       {/* Seamless tactical background image with deep sunset warmth overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
-          src="/workout_guarantee_bg.png" 
+          src="/workout_guarantee_bg.webp" 
           alt="BIOMEN Discipline" 
           className="timeline-parallax-bg absolute inset-0 w-full h-[130%] object-cover object-center filter brightness-[0.35] contrast-[1.05]"
         />

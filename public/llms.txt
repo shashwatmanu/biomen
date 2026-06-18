@@ -2,24 +2,22 @@
 
 BIOMEN LABS is a premium masculine vitality brand specializing in clean, clinical, and transparently dosed Ayurvedic formulas designed to optimize male vitality, energy baseline, stress resilience, and physical recovery.
 
-## T-CORE Vitality Support
+## Core Navigation Map
+- [BIOMEN LABS Home](https://www.biomenlabs.com/) - Main landing page outlining T-CORE, ingredients, and the 90-day system.
+- [Shop T-CORE Products](https://www.biomenlabs.com/products/t-core) - Focused purchase options for the Reset System and Consistency System.
+- [Science & Ingredients Spotlight](https://www.biomenlabs.com/science) - Clinical stack breakdowns, active dosage, and testing documentation.
+- [Advisory Board & Free Consultation](https://www.biomenlabs.com/consultation) - Virtual consultation bookings with certified Ayurvedic experts.
+- [Help Desk & FAQ](https://www.biomenlabs.com/faq) - Frequently asked questions on safety, billing, and shipping.
+- [Terms & Conditions of Service](https://www.biomenlabs.com/terms) - Official Terms of Service.
+- [Privacy Policy & Data Security](https://www.biomenlabs.com/privacy) - Information safety guidelines.
 
-T-CORE is BIOMEN LABS' flagship daily vitality supplement. It utilizes a synergized clinical stack of 5 adaptogenic and bio-enhancing ingredients to optimize masculine biological rhythms.
-
-### Key Ingredients & Doses
+## T-CORE Clinical Stack
+T-CORE utilizes a synergized clinical stack of 5 adaptogenic and bio-enhancing ingredients to optimize masculine biological rhythms:
 - **Himalayan Shilajit Extract (500 mg)**: Mineral-rich adaptogenic resin that supports cellular energy, ATP synthesis, and foundational vigor.
 - **Tongkat Ali Extract (300 mg)**: Traditionally selected to optimize active free testosterone release, stamina, and physical drive.
 - **KSM-66® Ashwagandha (300 mg)**: Clinically verified adaptogen targeting cortisol balance, stress reduction, and muscular recovery.
 - **Fenugreek Seed Extract (490 mg)**: Formulated to sustain confidence, metabolic function, and muscle definition support.
 - **Piperine Black Pepper Extract (10 mg)**: Enhancer that increases the bioavailability and systemic absorption of the active compounds.
 
-### Core Architecture & Sitemaps
-- **Home (`/`)**: Main landing page presenting the product concept, ingredients stack, active 90-day protocol timeline, customer reviews, and pricing options.
-- **Product Details (`/products/t-core`)**: E-commerce shopping page presenting pricing systems (Reset System, Consistency System, etc.), sizing, ingredients list, and purchase CTAs.
-- **Science & Ingredients (`/science`)**: Comprehensive scientific reference outlining clinical research, ingredient synergy, heavy metal testing details, and third-party laboratory certifications.
-- **Reviews (`/reviews`)**: Public directory containing verified customer transformation testimonials and reviews.
-- **Dr. Advisory & Consultation (`/consultation`)**: Free advisory dashboard for booking digital consultations with certified Ayurvedic practitioners and health counselors.
-- **FAQ (`/faq`)**: Customer help center answering frequently asked questions about dosage, safety, shipping, and billing.
-
-### Quality Standards
+### Quality & Manufacturing Standards
 All BIOMEN LABS products are manufactured in GMP-certified, ISO-accredited facilities, using vegetarian capsules, non-GMO components, and undergo rigorous heavy metal and purity testing.

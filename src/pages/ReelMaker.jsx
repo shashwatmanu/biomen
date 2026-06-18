@@ -124,7 +124,7 @@ const ExplodableProductModel = ({
 }) => {
   const textureTop = useTexture('/label_top.jpg');
   const textureBottom = useTexture('/label_bottom.jpg');
-  const tagTexture = useTexture('/tag_texture.png');
+  const tagTexture = useTexture('/tag_texture.webp');
   const capTop = useTexture('/cap_top.jpg');
   const capBottom = useTexture('/cap_bottom.jpg');
 

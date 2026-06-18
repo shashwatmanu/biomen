@@ -77,31 +77,32 @@ const Footer = () => {
                     type="submit" 
                     disabled={status === 'loading'}
                     className="absolute right-0 hover:text-biomen-copper text-white transition-colors duration-300 cursor-pointer outline-none p-2"
+                    aria-label="Subscribe to newsletter"
                   >
                     <Send size={16} />
                   </button>
                 </form>
               )}
-              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
                 By signing up you consent to receiving Biomen Labs emails.
               </p>
             </div>
 
             {/* Social Square Links */}
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Official Website" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Globe size={16} />
               </a>
-              <a href="#" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Share Website" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Share2 size={16} />
               </a>
-              <a href="#" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Send Support Email" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Mail size={16} />
               </a>
             </div>
 
             {/* PMID Science trust identifier */}
-            <div className="text-gray-600 font-mono font-bold tracking-widest text-xs pt-4">
+            <div className="text-gray-400 font-mono font-bold tracking-widest text-xs pt-4">
               † PMID: 32151259
             </div>
 
@@ -110,7 +111,7 @@ const Footer = () => {
           {/* Right Columns: Four beautiful columns (col-span-6) */}
           <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
             <div className="space-y-4">
-              <h4 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Shop</h4>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Shop</h3>
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/products/t-core" className="hover:text-white transition-colors">Shop T-CORE</Link></li>
                 <li><Link to="/#formula" className="hover:text-white transition-colors">Ingredients</Link></li>
@@ -119,7 +120,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">About</h4>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">About</h3>
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/about" className="hover:text-white transition-colors">Biography</Link></li>
                 <li><Link to="/science" className="hover:text-white transition-colors">Science</Link></li>
@@ -128,7 +129,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Support</h4>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Support</h3>
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
                 <li><Link to="/faq" className="hover:text-white transition-colors">Help Desk</Link></li>
@@ -137,7 +138,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Legal</h4>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Legal</h3>
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Use</Link></li>
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
@@ -150,13 +151,13 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Medical FDA Disclaimer */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-600">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
           
           <div className="text-left font-mono">
             © {new Date().getFullYear()} BIOMEN LABS, INC. ALL RIGHTS RESERVED.
           </div>
 
-          <div className="text-left md:text-right max-w-2xl font-mono text-[9px] leading-relaxed">
+          <div className="text-left md:text-right max-w-2xl font-mono text-[9px] leading-relaxed text-gray-400">
             * These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Proudly Made in India.
           </div>
         </div>

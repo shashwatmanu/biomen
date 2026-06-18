@@ -31,6 +31,7 @@ const CartDrawer = () => {
           <button
             onClick={closeCart}
             className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
+            aria-label="Close shopping cart"
           >
             <X size={24} />
           </button>

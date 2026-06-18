@@ -188,7 +188,7 @@ const HeroSection = () => {
           <div className="text-[#16C784] font-black text-[9px] uppercase tracking-widest mb-0.5" style={{ transform: 'translateZ(12px)' }}>100% PURE</div>
           <div className="text-white font-serif italic text-sm font-medium" style={{ transform: 'translateZ(18px)' }}>Ayurvedic</div>
           <div className="text-[#A8B3AA] font-black text-[8px] uppercase tracking-wider mt-0.5" style={{ transform: 'translateZ(12px)' }}>&bull; transparent &bull;</div>
-          <div className="absolute -top-1 -right-1 bg-[#D85A1F] text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider" style={{ transform: 'translateZ(24px)' }}>
+          <div className="absolute -top-1 -right-1 bg-[#B84714] text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider" style={{ transform: 'translateZ(24px)' }}>
             GLASS JAR
           </div>
         </div>
@@ -327,31 +327,31 @@ const HeroSection = () => {
       {/* Featured In Logos Trust Strip (Infinite Marquee) */}
       <div className="max-w-7xl mx-auto w-full relative z-20 border-t border-white/5 pt-4 mt-auto flex items-center overflow-hidden text-[10px] font-black tracking-widest text-[#A8B3AA]">
         <div className="flex items-center gap-4 shrink-0 bg-[#030705] pr-6 relative z-30">
-          <span className="text-[#A8B3AA]/40 font-black uppercase tracking-[0.2em] whitespace-nowrap">FEATURED IN</span>
+          <span className="text-[#A8B3AA]/85 font-black uppercase tracking-[0.2em] whitespace-nowrap">FEATURED IN</span>
         </div>
         
         <div className="relative w-full overflow-hidden flex items-center">
           <div className="animate-marquee flex items-center gap-16">
             {/* First Set of Logos */}
-            <img src="/logo_ani.png" alt="ANI" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_tribune.png" alt="The Tribune" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_theprint.png" alt="ThePrint" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_indiacsr.png" alt="indiaCSR" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_ani.webp" alt="ANI" width={86} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.webp" alt="The Tribune" width={100} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.webp" alt="ThePrint" width={130} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.webp" alt="indiaCSR" width={75} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.webp" alt="Bloomberg BusinessWeek" width={114} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
 
             {/* Second Set of Logos (Duplicate for seamless loop - lazy loaded) */}
-            <img src="/logo_ani.png" alt="ANI" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_tribune.png" alt="The Tribune" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_theprint.png" alt="ThePrint" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_indiacsr.png" alt="indiaCSR" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_ani.webp" alt="ANI" loading="lazy" width={86} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.webp" alt="The Tribune" loading="lazy" width={100} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.webp" alt="ThePrint" loading="lazy" width={130} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.webp" alt="indiaCSR" loading="lazy" width={75} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.webp" alt="Bloomberg BusinessWeek" loading="lazy" width={114} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
 
             {/* Third Set of Logos (lazy loaded) */}
-            <img src="/logo_ani.png" alt="ANI" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_tribune.png" alt="The Tribune" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_theprint.png" alt="ThePrint" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_indiacsr.png" alt="indiaCSR" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
-            <img src="/logo_businessweek.png" alt="Bloomberg BusinessWeek" loading="lazy" className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_ani.webp" alt="ANI" loading="lazy" width={86} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_tribune.webp" alt="The Tribune" loading="lazy" width={100} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_theprint.webp" alt="ThePrint" loading="lazy" width={130} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_indiacsr.webp" alt="indiaCSR" loading="lazy" width={75} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
+            <img src="/logo_businessweek.webp" alt="Bloomberg BusinessWeek" loading="lazy" width={114} height={24} className="h-5 md:h-6 object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-300" />
           </div>
         </div>
       </div>
