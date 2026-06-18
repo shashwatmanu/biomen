@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ShieldCheck, Leaf, Beaker, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { use3DTilt } from '../../utils/use3DTilt';
 
 const ingredients = [
   {
@@ -48,6 +49,7 @@ const ingredients = [
 
 const IngredientSection = () => {
   const containerRef = useRef(null);
+  const tiltRef = use3DTilt(12, 600, true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState('left'); // 'left' | 'right'
   const [isHovered, setIsHovered] = useState(false);
@@ -267,6 +269,7 @@ const IngredientSection = () => {
 
               {/* Central circular display panel (STATIONARY - sibling to the rotating ring, so it doesn't spin!) */}
               <div 
+                ref={tiltRef}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -350,7 +353,7 @@ const IngredientSection = () => {
                 {/* Rotating Logo symbol precisely aligning with the orbit ring path at 656px width/height */}
                 <div className="absolute top-[260px] left-[240px] -translate-x-1/2 -translate-y-1/2 w-[656px] h-[656px] pointer-events-none flex items-center justify-center">
                   <img
-                    src="/logo/logo_white_symbol.png"
+                    src="/logo/logo_white_symbol.webp"
                     alt="Rotating Logo Backdrop"
                     className="w-full h-full object-contain logo-rotating-backdrop origin-center opacity-[0.80] filter drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                   />

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useMagnetic } from '../../utils/useMagnetic';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -308,12 +309,14 @@ const HeroSection = () => {
             {/* Premium Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2 hero-fade-in">
               <Link
+                ref={useMagnetic(0.3, 75)}
                 to="/products/t-core"
                 className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto btn-sweep"
               >
                 UNLOCK YOUR SYSTEM <ArrowRight size={16} />
               </Link>
               <Link
+                ref={useMagnetic(0.25, 75)}
                 to="/science"
                 className="border-2 border-white/20 text-white px-12 py-[22px] rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto btn-sweep"
               >

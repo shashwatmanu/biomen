@@ -204,7 +204,7 @@ const ScienceHero = () => {
                 fallback={
                   <div className="flex flex-col items-center justify-center h-full w-full py-20 z-20">
                     <img 
-                      src="/logo/logo_white_symbol.png" 
+                      src="/logo/logo_white_symbol.webp" 
                       alt="BIOMEN Labs" 
                       className="w-12 h-12 object-contain animate-spin brightness-[0.9] drop-shadow-[0_0_12px_rgba(22,199,132,0.3)]"
                       style={{ animationDuration: '3s' }}

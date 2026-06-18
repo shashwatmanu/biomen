@@ -1,5 +1,6 @@
 import React from 'react';
 import { Leaf, Calendar, ShieldCheck, ArrowRight } from 'lucide-react';
+import { useMagnetic } from '../../utils/useMagnetic';
 
 const WhyTCore = () => {
   const blocks = [
@@ -74,6 +75,7 @@ const WhyTCore = () => {
                 </p>
                 
                 <a 
+                  ref={useMagnetic(0.3, 75)}
                   href="/products/t-core"
                   className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] flex items-center justify-center gap-2 hover:scale-[1.02] w-fit"
                 >

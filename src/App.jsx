@@ -21,15 +21,11 @@ const Refunds = lazy(() => import('./pages/Refunds'));
 const Shipping = lazy(() => import('./pages/Shipping'));
 const Disclaimer = lazy(() => import('./pages/Disclaimer'));
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/home/Navbar';
 import PromoBar from './components/home/PromoBar';
 import CartDrawer from './components/shared/CartDrawer';
 import EntryPopup from './components/shared/EntryPopup';
 import BotanicalParticles from './components/shared/BotanicalParticles';
-
-gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const container = useRef();

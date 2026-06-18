@@ -22,7 +22,7 @@ const CartDrawer = () => {
       {/* Drawer */}
       <div
         className={`fixed top-0 right-0 w-full h-[100dvh] md:w-[400px] bg-[#06110C]/95 backdrop-blur-xl z-[250] transform transition-transform duration-300 ease-in-out border-l border-white/10 flex flex-col ${
-          isCartOpen ? 'translate-x-0 cart-drawer-open' : 'translate-x-full'
+          isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
@@ -37,50 +37,15 @@ const CartDrawer = () => {
           </button>
         </div>
 
-        {/* Free Shipping Progress Tracker */}
-        {items.length > 0 && (
-          <div className="px-6 py-4 border-b border-white/5 bg-[#030705]/50 cart-stagger-item" style={{ transitionDelay: '80ms' }}>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-[11px] font-black uppercase tracking-wider text-[#A8B3AA]">
-                {subtotal >= 2000 ? (
-                  <span className="text-[#16C784]">🎉 Free Shipping Unlocked!</span>
-                ) : (
-                  <>
-                    Spend <span className="text-[#F4F6F2]">₹{(2000 - subtotal).toLocaleString()}</span> more for <span className="text-[#16C784]">FREE SHIPPING</span>
-                  </>
-                )}
-              </span>
-              <span className="text-[10px] font-black text-[#F4F6F2]">
-                {Math.min(100, Math.round((subtotal / 2000) * 100))}%
-              </span>
-            </div>
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-gradient-to-r from-[#16C784] to-[#0FA36B] rounded-full transition-all duration-500 ease-out progress-glow-bar"
-                style={{ width: `${Math.min(100, (subtotal / 2000) * 100)}%` }}
-              />
-            </div>
-          </div>
-        )}
-
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-[#A8B3AA] cart-stagger-item" style={{ transitionDelay: '100ms' }}>
-              <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 border border-white/10 animate-pulse-slow-centered !static transform-none">
-                <div className="w-8 h-8 rounded-full bg-[#16C784]/20 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-[#16C784]/40" />
-                </div>
-              </div>
+            <div className="flex flex-col items-center justify-center h-full text-[#A8B3AA]">
               <p className="text-lg font-bold uppercase tracking-wider">Your cart is empty</p>
             </div>
           ) : (
-            items.map((item, index) => (
-              <div 
-                key={`${item.id}-${item.isSubscription}`} 
-                className="flex gap-4 bg-white/5 p-4 rounded-xl border border-white/10 cart-item-card cart-stagger-item"
-                style={{ transitionDelay: `${(index + 2) * 60}ms` }}
-              >
+            items.map((item) => (
+              <div key={`${item.id}-${item.isSubscription}`} className="flex gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
                 {/* Image placeholder or actual image */}
                 <div className="w-20 h-20 bg-[#030705] rounded-lg flex items-center justify-center overflow-hidden shrink-0 border border-white/5">
                   {item.image ? (
@@ -134,10 +99,7 @@ const CartDrawer = () => {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div 
-            className="p-6 pb-[calc(24px+env(safe-area-inset-bottom,0px))] border-t border-white/10 bg-black/40 backdrop-blur-md cart-stagger-item"
-            style={{ transitionDelay: `${(items.length + 2) * 60}ms` }}
-          >
+          <div className="p-6 pb-[calc(24px+env(safe-area-inset-bottom,0px))] border-t border-white/10 bg-black/40 backdrop-blur-md">
             <div className="space-y-2 mb-6">
               <div className="flex items-center justify-between">
                 <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-xs">Subtotal</span>

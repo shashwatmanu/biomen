@@ -77,7 +77,7 @@ const Navbar = () => {
           >
             <div className="relative w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 sm:p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300">
               <img 
-                src="/logo/logo_white_symbol.png" 
+                src="/logo/logo_white_symbol.webp" 
                 alt="BIOMEN Labs Logo" 
                 className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
               />
@@ -138,7 +138,7 @@ const Navbar = () => {
               >
                 <div className="relative w-7 h-7 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40">
                   <img 
-                    src="/logo/logo_white_symbol.png" 
+                    src="/logo/logo_white_symbol.webp" 
                     alt="BIOMEN Labs Logo" 
                     className="w-full h-full object-contain"
                   />

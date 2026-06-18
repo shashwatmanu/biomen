@@ -408,7 +408,7 @@ const ProblemSection = () => {
 
               {/* Glowing canister badge inside the chart */}
               <div className="absolute right-8 top-16 bg-[#052E22] border border-[#16C784]/30 rounded-xl p-2 hidden md:flex items-center gap-2 shadow-2xl backdrop-blur-md max-w-[130px] animate-bounce-slow">
-                <img src="/logo/logo_white_symbol.png" alt="T-CORE badge" className="w-4 h-4 object-contain" />
+                <img src="/logo/logo_white_symbol.webp" alt="T-CORE badge" className="w-4 h-4 object-contain" />
                 <div>
                   <div className="text-[7.5px] font-black text-[#16C784] uppercase tracking-wider">T-CORE ACTIVE</div>
                   <div className="text-[6.5px] text-[#A8B3AA] font-black uppercase tracking-widest">Sustained Baseline</div>

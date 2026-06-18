@@ -84,7 +84,7 @@ const ComparisonTable = () => {
                   <div className="flex items-center justify-center gap-2">
                     <div className="relative w-6 h-6 md:w-8 md:h-8 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-0.5 shadow-md shrink-0">
                       <img 
-                        src="/logo/logo_white_symbol.png" 
+                        src="/logo/logo_white_symbol.webp" 
                         alt="BIOMEN Symbol" 
                         className="w-full h-full object-contain animate-[spin_12s_linear_infinite]"
                       />

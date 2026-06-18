@@ -305,7 +305,7 @@ const Checkout = () => {
           <div className="bg-[#052E22] p-6 rounded-full border border-[#16C784]/20 text-[#16C784] inline-block mb-8 relative">
             <div className="absolute inset-0 rounded-full border-2 border-t-[#16C784] border-r-transparent border-b-transparent border-l-transparent animate-spin" style={{ margin: '-2px' }} />
             <img 
-              src="/logo/logo_white_symbol.png" 
+              src="/logo/logo_white_symbol.webp" 
               alt="Biomen Labs Logo" 
               className="w-12 h-12 object-contain animate-[spin_4s_linear_infinite]"
             />

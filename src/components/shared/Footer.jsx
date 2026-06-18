@@ -44,7 +44,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3 font-black tracking-tighter text-white text-3xl uppercase group">
               <div className="relative w-9 h-9 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40 group-hover:bg-[#16C784]/20 group-hover:border-[#7FE7B3]/30 transition-all duration-300">
                 <img 
-                  src="/logo/logo_white_symbol.png" 
+                  src="/logo/logo_white_symbol.webp" 
                   alt="BIOMEN Labs Logo" 
                   className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
                 />
