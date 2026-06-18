@@ -166,22 +166,21 @@ section {
 }
 
 
-/* Custom extra-slow pulsing animation for centered organic aura */
+/* Custom extra-slow pulsing animation for centered organic aura (GPU-composited opacity & scale only) */
 @keyframes pulse-slow-centered {
   0%, 100% { 
-    opacity: 0.25; 
+    opacity: 0.35; 
     transform: translate(-50%, -50%) scale(0.92); 
-    filter: blur(28px);
   }
   50% { 
-    opacity: 0.90; 
-    transform: translate(-50%, -50%) scale(1.25); 
-    filter: blur(44px);
+    opacity: 0.85; 
+    transform: translate(-50%, -50%) scale(1.18); 
   }
 }
 
 .animate-pulse-slow-centered {
   animation: pulse-slow-centered 3.8s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* Cinematic Film Grain Overlay */
