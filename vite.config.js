@@ -10,7 +10,7 @@ export default defineConfig({
       output: {
         // Function form required by Vite 6+ (Rolldown)
         manualChunks(id) {
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router-dom')) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router-dom') || id.includes('node_modules/zustand')) {
             return 'vendor-react';
           }
           if (id.includes('node_modules/gsap') || id.includes('node_modules/@gsap')) {

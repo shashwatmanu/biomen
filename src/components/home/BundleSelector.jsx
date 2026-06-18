@@ -99,7 +99,7 @@ const BundleSelector = () => {
           <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
             <button 
               onClick={() => setIsSubscription(false)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#0FA36B] text-[#F4F6F2] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#16C784] text-[#030705] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">One-Time Purchase</span>
               <span className="inline xs:hidden">One-Time</span>
@@ -109,7 +109,7 @@ const BundleSelector = () => {
                 setIsSubscription(true);
                 setSelectedId('tcore-3-bottles');
               }}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#D85A1F] text-[#F4F6F2] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#ff7030] text-[#030705] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">Auto-Pay Subscription</span>
               <span className="inline xs:hidden">Subscribe & Save</span>

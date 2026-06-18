@@ -111,13 +111,13 @@ const PromoBar = () => {
           <Timer size={11} className="animate-spin-slow shrink-0" />
           <span><span className="hidden xs:inline">Expires In:</span><span className="inline xs:hidden">Ends:</span> <span className="font-mono font-black text-biomen-mint">{formatTime(timeLeft)}</span></span>
         </span>
-        <span className="text-white/20">|</span>
+        <span className="text-gray-400">|</span>
         <a 
           href="/products/t-core?discount=FOUNDER10" 
           onClick={() => {
             localStorage.setItem('launch_discount_applied', 'true');
           }}
-          className="text-biomen-copper hover:text-biomen-mint underline underline-offset-2 flex items-center gap-0.5 font-black transition-colors shrink-0"
+          className="text-[#ff7030] hover:text-biomen-mint underline underline-offset-2 flex items-center gap-0.5 font-black transition-colors shrink-0"
         >
           Grab Discount <span className="hidden xs:inline">Now</span> <ArrowRight size={10} className="animate-bounce-horizontal" />
         </a>
