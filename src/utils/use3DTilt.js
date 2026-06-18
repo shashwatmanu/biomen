@@ -8,11 +8,19 @@ export const use3DTilt = (maxRotation = 15, perspective = 1000, isCentered = fal
     const card = cardRef.current;
     if (!card || window.innerWidth < 1024) return; // Skip on mobile for optimization
 
-    // Ensure styling properties for 3D rendering are set
     card.style.transformStyle = 'preserve-3d';
+    let rect = null;
+
+    const handleMouseEnter = () => {
+      // Cache the rect when the element is flat (not yet transformed)
+      rect = card.getBoundingClientRect();
+    };
 
     const handleMouseMove = (e) => {
-      const rect = card.getBoundingClientRect();
+      if (!rect) {
+        rect = card.getBoundingClientRect();
+      }
+
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
@@ -40,6 +48,7 @@ export const use3DTilt = (maxRotation = 15, perspective = 1000, isCentered = fal
     };
 
     const handleMouseLeave = () => {
+      rect = null; // Clear cached rect
       const gsapParams = {
         rotateX: 0,
         rotateY: 0,
@@ -56,16 +65,18 @@ export const use3DTilt = (maxRotation = 15, perspective = 1000, isCentered = fal
       gsap.to(card, gsapParams);
     };
 
+    card.addEventListener('mouseenter', handleMouseEnter, { passive: true });
     card.addEventListener('mousemove', handleMouseMove, { passive: true });
     card.addEventListener('mouseleave', handleMouseLeave, { passive: true });
 
     return () => {
       if (card) {
+        card.removeEventListener('mouseenter', handleMouseEnter);
         card.removeEventListener('mousemove', handleMouseMove);
         card.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [maxRotation, perspective]);
+  }, [maxRotation, perspective, isCentered]);
 
   return cardRef;
 };
