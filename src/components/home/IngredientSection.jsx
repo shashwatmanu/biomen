@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ShieldCheck, Leaf, Beaker, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { use3DTilt } from '../../utils/use3DTilt';
 
 const ingredients = [
   {
@@ -49,7 +48,6 @@ const ingredients = [
 
 const IngredientSection = () => {
   const containerRef = useRef(null);
-  const tiltRef = use3DTilt(12, 600, true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState('left'); // 'left' | 'right'
   const [isHovered, setIsHovered] = useState(false);
@@ -269,7 +267,6 @@ const IngredientSection = () => {
 
               {/* Central circular display panel (STATIONARY - sibling to the rotating ring, so it doesn't spin!) */}
               <div 
-                ref={tiltRef}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
