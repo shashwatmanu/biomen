@@ -13,6 +13,7 @@ const Checkout = () => {
   // States
   const [mode, setMode] = useState('guest'); // guest, login, register
   const [loading, setLoading] = useState(false);
+  const [loadingState, setLoadingState] = useState('');
   const [error, setError] = useState('');
   const [successOrder, setSuccessOrder] = useState(null);
 
@@ -184,6 +185,7 @@ const Checkout = () => {
     }
 
     setLoading(true);
+    setLoadingState('initiating');
     setError('');
 
     const shippingAddress = { street, city, state, postalCode, country };
@@ -219,6 +221,7 @@ const Checkout = () => {
           order_id: data.razorpayOrder.id,
           handler: async function (response) {
             setLoading(true);
+            setLoadingState('verifying');
             try {
               const verifyRes = await fetch(`${API_URL}/orders/verify-payment`, {
                 method: 'POST',
@@ -254,6 +257,7 @@ const Checkout = () => {
               setError('Server connection failed during verification.');
             } finally {
               setLoading(false);
+              setLoadingState('');
             }
           },
           prefill: {
@@ -267,6 +271,7 @@ const Checkout = () => {
           modal: {
             ondismiss: function () {
               setLoading(false);
+              setLoadingState('');
               setError('Payment cancelled by user.');
             }
           }
@@ -276,17 +281,53 @@ const Checkout = () => {
         rzp.on('payment.failed', function (response) {
           setError(`Payment failed: ${response.error.description}`);
           setLoading(false);
+          setLoadingState('');
         });
         rzp.open();
       } else {
         setError(data.error || 'Failed to place order.');
         setLoading(false);
+        setLoadingState('');
       }
     } catch (err) {
       setError('Server connection failure. Please try again.');
       setLoading(false);
+      setLoadingState('');
     }
   };
+
+  if (loading && (loadingState === 'initiating' || loadingState === 'verifying')) {
+    return (
+      <div className="bg-[#030705] min-h-screen text-[#F4F6F2] pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20 flex items-center justify-center">
+        <div className="max-w-xl w-full bg-gradient-to-b from-white/5 to-transparent border border-[#0FA36B] p-10 rounded-[3rem] text-center shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#16C784]/10 rounded-full blur-[80px] pointer-events-none" />
+          
+          <div className="bg-[#052E22] p-6 rounded-full border border-[#16C784]/20 text-[#16C784] inline-block mb-8 relative">
+            <div className="absolute inset-0 rounded-full border-2 border-t-[#16C784] border-r-transparent border-b-transparent border-l-transparent animate-spin" style={{ margin: '-2px' }} />
+            <img 
+              src="/logo/logo_white_symbol.png" 
+              alt="Biomen Labs Logo" 
+              className="w-12 h-12 object-contain animate-[spin_4s_linear_infinite]"
+            />
+          </div>
+          
+          <h1 className="text-4xl font-black uppercase tracking-tight text-white mb-2">
+            {loadingState === 'verifying' ? 'Confirming Order...' : 'Securing Protocol...'}
+          </h1>
+          <p className="text-[#16C784] font-mono font-bold tracking-widest text-xs uppercase mb-8">
+            {loadingState === 'verifying' ? 'Verifying transaction with payment gateway' : 'Initializing secure checkout session'}
+          </p>
+
+          <div className="bg-black/40 border border-white/10 rounded-2xl p-6 text-left space-y-4">
+            <h3 className="text-[#BFA46A] font-black uppercase text-xs tracking-wider text-center">Do Not Close This Window</h3>
+            <p className="text-xs text-gray-300 leading-relaxed font-semibold text-center">
+              Please do not hit the back button, refresh the page, or close this window. Your vitality protocol is being secured.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (successOrder) {
     return (
