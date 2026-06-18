@@ -9,7 +9,7 @@ const ingredientsData = [
     name: "Shilajit Extract", 
     dose: "500 mg", 
     role: "Foundational Vitality",
-    image: "/ingredients/shilajit.png",
+    image: "/ingredients/shilajit.webp",
     summary: "A mineral-rich Himalayan resin traditionally valued for vitality, stamina, mineral support, and foundational masculine wellness. Rich in fulvic acid, it enhances cellular energy and daily performance.",
     benefits: ["Supports cellular energy (ATP)", "Replenishes essential trace minerals", "Supports stamina and endurance"]
   },
@@ -18,7 +18,7 @@ const ingredientsData = [
     name: "Tongkat Ali Extract", 
     dose: "300 mg", 
     role: "Masculine Drive",
-    image: "/ingredients/tongkat_ali.png",
+    image: "/ingredients/tongkat_ali.webp",
     summary: "A modern herbal performance ingredient selected to support masculine drive, vitality, and physical performance rhythm. Helps maintain optimal baseline hormones and physical momentum.",
     benefits: ["Supports free testosterone rhythm", "Enhances masculine drive & libido", "Reduces physical and mental fatigue"]
   },
@@ -27,7 +27,7 @@ const ingredientsData = [
     name: "Ashwagandha Extract", 
     dose: "300 mg", 
     role: "Stress Resilience",
-    image: "/ingredients/ashwagandha.png",
+    image: "/ingredients/ashwagandha.webp",
     summary: "An adaptogenic extract used to support stress resilience, recovery, calmer energy, and daily consistency. Helps modulate cortisol to prevent performance burnout.",
     benefits: ["Modulates cortisol (stress hormone)", "Supports stress resilience & energy", "Enhances muscle recovery and sleep"]
   },
@@ -36,7 +36,7 @@ const ingredientsData = [
     name: "Fenugreek Extract", 
     dose: "490 mg", 
     role: "Male Vitality",
-    image: "/ingredients/fenugreek.png",
+    image: "/ingredients/fenugreek.webp",
     summary: "Included at a meaningful dose to support male vitality, confidence, and physical performance support. Promotes peak biological rhythm and sustained drive.",
     benefits: ["Maintains healthy hormonal balance", "Supports masculine confidence", "Aids in daily strength and stamina"]
   },
@@ -45,7 +45,7 @@ const ingredientsData = [
     name: "Black Pepper Extract", 
     dose: "10 mg", 
     role: "Formula Efficiency",
-    image: "/ingredients/black_pepper.png",
+    image: "/ingredients/black_pepper.webp",
     summary: "Supports nutrient absorption and improves formula efficiency. Ensures that all active herbal compounds are directed and absorbed completely by the body.",
     benefits: ["Supercharges nutrient absorption", "Improves total formula efficiency", "Enhances bioavailability of herbs"]
   }

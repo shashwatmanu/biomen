@@ -1,0 +1,25 @@
+# BIOMEN LABS
+
+BIOMEN LABS is a premium masculine vitality brand specializing in clean, clinical, and transparently dosed Ayurvedic formulas designed to optimize male vitality, energy baseline, stress resilience, and physical recovery.
+
+## T-CORE Vitality Support
+
+T-CORE is BIOMEN LABS' flagship daily vitality supplement. It utilizes a synergized clinical stack of 5 adaptogenic and bio-enhancing ingredients to optimize masculine biological rhythms.
+
+### Key Ingredients & Doses
+- **Himalayan Shilajit Extract (500 mg)**: Mineral-rich adaptogenic resin that supports cellular energy, ATP synthesis, and foundational vigor.
+- **Tongkat Ali Extract (300 mg)**: Traditionally selected to optimize active free testosterone release, stamina, and physical drive.
+- **KSM-66® Ashwagandha (300 mg)**: Clinically verified adaptogen targeting cortisol balance, stress reduction, and muscular recovery.
+- **Fenugreek Seed Extract (490 mg)**: Formulated to sustain confidence, metabolic function, and muscle definition support.
+- **Piperine Black Pepper Extract (10 mg)**: Enhancer that increases the bioavailability and systemic absorption of the active compounds.
+
+### Core Architecture & Sitemaps
+- **Home (`/`)**: Main landing page presenting the product concept, ingredients stack, active 90-day protocol timeline, customer reviews, and pricing options.
+- **Product Details (`/products/t-core`)**: E-commerce shopping page presenting pricing systems (Reset System, Consistency System, etc.), sizing, ingredients list, and purchase CTAs.
+- **Science & Ingredients (`/science`)**: Comprehensive scientific reference outlining clinical research, ingredient synergy, heavy metal testing details, and third-party laboratory certifications.
+- **Reviews (`/reviews`)**: Public directory containing verified customer transformation testimonials and reviews.
+- **Dr. Advisory & Consultation (`/consultation`)**: Free advisory dashboard for booking digital consultations with certified Ayurvedic practitioners and health counselors.
+- **FAQ (`/faq`)**: Customer help center answering frequently asked questions about dosage, safety, shipping, and billing.
+
+### Quality Standards
+All BIOMEN LABS products are manufactured in GMP-certified, ISO-accredited facilities, using vegetarian capsules, non-GMO components, and undergo rigorous heavy metal and purity testing.

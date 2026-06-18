@@ -93,7 +93,7 @@ const Navbar = () => {
           <Link to="/consultation" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
           
           <div className="flex items-center gap-2 xs:gap-3 sm:gap-6 ml-auto">
-            <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none"><User size={16} /></Link>
+            <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none" aria-label="View user profile or contact support"><User size={16} /></Link>
             
             <button 
               onClick={toggleCart} 

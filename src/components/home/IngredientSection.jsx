@@ -10,7 +10,7 @@ const ingredients = [
     label: "SHILAJIT",
     dose: "500 mg",
     purpose: "A mineral-rich Himalayan resin traditionally valued for vitality, stamina, mineral support, and foundational masculine wellness.",
-    image: "/ingredients/shilajit.png"
+    image: "/ingredients/shilajit.webp"
   },
   {
     id: 1,
@@ -18,7 +18,7 @@ const ingredients = [
     label: "TONGKAT ALI",
     dose: "300 mg",
     purpose: "A modern herbal performance ingredient selected to support masculine drive, vitality, and physical performance rhythm.",
-    image: "/ingredients/tongkat_ali.png"
+    image: "/ingredients/tongkat_ali.webp"
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const ingredients = [
     label: "ASHWAGANDHA",
     dose: "300 mg",
     purpose: "An adaptogenic extract used to support stress resilience, recovery, calmer energy, and daily consistency.",
-    image: "/ingredients/ashwagandha.png"
+    image: "/ingredients/ashwagandha.webp"
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const ingredients = [
     label: "FENUGREEK",
     dose: "490 mg",
     purpose: "Included at a meaningful dose to support male vitality, confidence, and physical performance support.",
-    image: "/ingredients/fenugreek.png"
+    image: "/ingredients/fenugreek.webp"
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const ingredients = [
     label: "BLACK PEPPER",
     dose: "10 mg",
     purpose: "Supports nutrient absorption and improves formula efficiency.",
-    image: "/ingredients/black_pepper.png"
+    image: "/ingredients/black_pepper.webp"
   }
 ];
 
@@ -386,6 +386,7 @@ const IngredientSection = () => {
                         top: `${pos.y}px`,
                         transform: 'translate(-50%, -50%)',
                       }}
+                      aria-label={`Select ${item.name} ingredient details`}
                     >
                       <div className={`w-20 h-20 rounded-full border-2 bg-black flex items-center justify-center transition-all duration-300 ${isNodeActive ? 'border-[#16C784] scale-110 shadow-[0_0_25px_rgba(22,199,132,0.4)]' : 'border-white/10 hover:border-white/40 hover:scale-105'} overflow-hidden`}>
                         <img src={item.image} alt={item.name} className="w-full h-full object-cover animate-pulse-slow" />

@@ -8,7 +8,7 @@ const steps = [
     icon: <Zap size={24} />,
     desc: "Supports masculine drive, vitality, performance rhythm, and physical momentum. Encourages foundational cellular output.",
     poweredBy: "Tongkat Ali + Fenugreek",
-    image: "/ingredients/tongkat_ali.png"
+    image: "/ingredients/tongkat_ali.webp"
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const steps = [
     icon: <Activity size={24} />,
     desc: "Supports energy, recovery, stress resilience, and a steadier daily baseline. Keeps adaptogenic levels active and balanced.",
     poweredBy: "Shilajit + Ashwagandha",
-    image: "/ingredients/shilajit.png"
+    image: "/ingredients/shilajit.webp"
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const steps = [
     icon: <Compass size={24} />,
     desc: "Supports nutrient absorption and overall formula efficiency. Bioavailability booster designed for direct compound uptake.",
     poweredBy: "Black Pepper Extract",
-    image: "/ingredients/black_pepper.png"
+    image: "/ingredients/black_pepper.webp"
   }
 ];
 

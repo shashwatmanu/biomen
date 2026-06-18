@@ -9,28 +9,28 @@ const TransformationGallery = () => {
       label: "+28% Energy Index",
       focus: "Stamina & Drive",
       quote: "After 60 days of consistent morning T-CORE, the afternoon crash is completely gone. Gym recovery feels like it did in my 20s.",
-      image: "/amit.png"
+      image: "/amit.webp"
     },
     {
       user: "Vikram S. (41)",
       label: "+34% Recovery Speed",
       focus: "Cortisol & Stress",
       quote: "Managing a startup was destroying my sleep and focus. T-CORE balanced my daily baseline. My focus is locked all day.",
-      image: "/vikram.png"
+      image: "/vikram.webp"
     },
     {
       user: "Rohan M. (29)",
       label: "Optimized Baseline",
       focus: "Peak Stamina",
       quote: "The transparency is why I chose Biomen. Knowing exactly what goes into my body changed my athletic performance completely.",
-      image: "/rohan.png"
+      image: "/rohan.webp"
     },
     {
       user: "Kabir D. (38)",
       label: "+22% Sleep Quality",
       focus: "Daily Resilience",
       quote: "Vegetarian capsules, clean Ayurvedic sourcing, and a real clinical formula. Highly recommend to any modern active man.",
-      image: "/kabir.png"
+      image: "/kabir.webp"
     }
   ];
 
