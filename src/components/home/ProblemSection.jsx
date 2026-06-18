@@ -37,148 +37,143 @@ const ProblemSection = () => {
   const tcoreDotScaleRef = useRef(null);
 
   useGSAP(() => {
-    // Defer SVG path measurements and ScrollTrigger initialization to avoid forced reflows during page mount
-    setTimeout(() => {
-      if (!containerRef.current) return;
+    gsap.from(".infographic-fade-up", {
+      y: 25,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+        toggleActions: "play none none none"
+      }
+    });
 
-      gsap.from(".infographic-fade-up", {
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out",
+    gsap.from(".reveal-line-scroll", {
+      y: "115%",
+      duration: 1.2,
+      stagger: 0.12,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".reveal-parent-scroll",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    const normalPath = normalPathRef.current;
+    const tcorePath = tcorePathRef.current;
+    const normalDotGroup = normalDotGroupRef.current;
+    const normalDot = normalDotRef.current;
+    const tcoreDotGroup = tcoreDotGroupRef.current;
+    const tcoreDotScale = tcoreDotScaleRef.current;
+
+    if (normalPath && tcorePath && normalDotGroup && normalDot && tcoreDotGroup && tcoreDotScale) {
+      const normalLength = normalPath.getTotalLength();
+      const tcoreLength = tcorePath.getTotalLength();
+
+      // Set up initial dash offsets
+      gsap.set(normalPath, { strokeDasharray: normalLength });
+      gsap.set(tcorePath, { strokeDasharray: tcoreLength });
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 75%",
+          start: "top 70%",
           toggleActions: "play none none none"
-        }
+        },
+        repeat: -1,
+        repeatDelay: 5.0
       });
 
-      gsap.from(".reveal-line-scroll", {
-        y: "115%",
-        duration: 1.2,
-        stagger: 0.12,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".reveal-parent-scroll",
-          start: "top 85%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      const normalPath = normalPathRef.current;
-      const tcorePath = tcorePathRef.current;
-      const normalDotGroup = normalDotGroupRef.current;
-      const normalDot = normalDotRef.current;
-      const tcoreDotGroup = tcoreDotGroupRef.current;
-      const tcoreDotScale = tcoreDotScaleRef.current;
-
-      if (normalPath && tcorePath && normalDotGroup && normalDot && tcoreDotGroup && tcoreDotScale) {
-        const normalLength = normalPath.getTotalLength();
-        const tcoreLength = tcorePath.getTotalLength();
-
-        // Set up initial dash offsets
-        gsap.set(normalPath, { strokeDasharray: normalLength });
-        gsap.set(tcorePath, { strokeDasharray: tcoreLength });
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 70%",
-            toggleActions: "play none none none"
-          },
-          repeat: -1,
-          repeatDelay: 5.0
-        });
-
-        // Animate Normal Decline drawing and dot tracing path
-        const normalData = { val: 0 };
-        tl.fromTo(normalPath,
-          { strokeDashoffset: normalLength },
-          { strokeDashoffset: 0, duration: 4.0, ease: "power1.inOut" },
-          0
-        );
-
-        tl.fromTo(normalDot,
-          { scale: 0, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
-          0
-        );
-
-        tl.fromTo(normalData,
-          { val: 0 },
-          {
-            val: normalLength,
-            duration: 4.0,
-            ease: "power1.inOut",
-            onUpdate: () => {
-              const point = normalPath.getPointAtLength(normalData.val);
-              gsap.set(normalDotGroup, { x: point.x, y: point.y });
-            }
-          },
-          0
-        );
-
-        tl.to(normalDot, {
-          scale: 1.3,
-          duration: 0.2,
-          yoyo: true,
-          repeat: 1,
-          ease: "power1.inOut"
-        }, 4.0);
-
-        // Animate T-CORE drawing and dot tracing path
-        const tcoreData = { val: 0 };
-        tl.fromTo(tcorePath,
-          { strokeDashoffset: tcoreLength },
-          { strokeDashoffset: 0, duration: 4.2, ease: "power1.inOut" },
-          0.3
-        );
-
-        tl.fromTo(tcoreDotScale,
-          { scale: 0, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
-          0.3
-        );
-
-        tl.fromTo(tcoreData,
-          { val: 0 },
-          {
-            val: tcoreLength,
-            duration: 4.2,
-            ease: "power1.inOut",
-            onUpdate: () => {
-              const point = tcorePath.getPointAtLength(tcoreData.val);
-              gsap.set(tcoreDotGroup, { x: point.x, y: point.y });
-            }
-          },
-          0.3
-        );
-
-        tl.to(tcoreDotScale, {
-          scale: 1.4,
-          duration: 0.25,
-          yoyo: true,
-          repeat: 1,
-          ease: "back.out(2.0)"
-        }, 4.5);
-      }
-
-      // Parallax scrolling for the problem background images
-      gsap.fromTo(".problem-parallax-bg",
-        { yPercent: -8 },
-        {
-          yPercent: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        }
+      // Animate Normal Decline drawing and dot tracing path
+      const normalData = { val: 0 };
+      tl.fromTo(normalPath,
+        { strokeDashoffset: normalLength },
+        { strokeDashoffset: 0, duration: 4.0, ease: "power1.inOut" },
+        0
       );
-    }, 150);
+
+      tl.fromTo(normalDot,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
+        0
+      );
+
+      tl.fromTo(normalData,
+        { val: 0 },
+        {
+          val: normalLength,
+          duration: 4.0,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            const point = normalPath.getPointAtLength(normalData.val);
+            gsap.set(normalDotGroup, { x: point.x, y: point.y });
+          }
+        },
+        0
+      );
+
+      tl.to(normalDot, {
+        scale: 1.3,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power1.inOut"
+      }, 4.0);
+
+      // Animate T-CORE drawing and dot tracing path
+      const tcoreData = { val: 0 };
+      tl.fromTo(tcorePath,
+        { strokeDashoffset: tcoreLength },
+        { strokeDashoffset: 0, duration: 4.2, ease: "power1.inOut" },
+        0.3
+      );
+
+      tl.fromTo(tcoreDotScale,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power1.out" },
+        0.3
+      );
+
+      tl.fromTo(tcoreData,
+        { val: 0 },
+        {
+          val: tcoreLength,
+          duration: 4.2,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            const point = tcorePath.getPointAtLength(tcoreData.val);
+            gsap.set(tcoreDotGroup, { x: point.x, y: point.y });
+          }
+        },
+        0.3
+      );
+
+      tl.to(tcoreDotScale, {
+        scale: 1.4,
+        duration: 0.25,
+        yoyo: true,
+        repeat: 1,
+        ease: "back.out(2.0)"
+      }, 4.5);
+    }
+
+    // Parallax scrolling for the problem background images
+    gsap.fromTo(".problem-parallax-bg",
+      { yPercent: -8 },
+      {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
   }, { scope: containerRef });
 
   return (
