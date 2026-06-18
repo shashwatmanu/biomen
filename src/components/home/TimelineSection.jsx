@@ -100,25 +100,23 @@ const TimelineSection = ({ title }) => {
   }, { scope: containerRef, dependencies: [activeDay] });
 
   useGSAP(() => {
-    // Defer ScrollTrigger layout calculations to reduce TBT
-    setTimeout(() => {
-      if (containerRef.current) {
-        gsap.fromTo(".timeline-parallax-bg",
-          { yPercent: -10 },
-          {
-            yPercent: 10,
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true
-            }
+    if (!hasIntersected) return;
+    if (containerRef.current) {
+      gsap.fromTo(".timeline-parallax-bg",
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
           }
-        );
-      }
-    }, 150);
-  }, { scope: containerRef });
+        }
+      );
+    }
+  }, { scope: containerRef, dependencies: [hasIntersected] });
 
   const handleCardMouseMove = (e) => {
     if (window.innerWidth < 768) return;

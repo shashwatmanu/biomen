@@ -92,44 +92,14 @@ const HeroSection = () => {
       }
     );
 
-    // Defer ScrollTrigger layout calculations slightly to reduce TBT on initial load
-    setTimeout(() => {
-      // Parallax scrolling for the desktop hero background image
-      gsap.fromTo(".hero-parallax-bg-desktop",
-        { yPercent: 0 },
-        {
-          yPercent: 6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        }
-      );
-
-      // Parallax scrolling for the text column
-      gsap.fromTo(".hero-text-col",
-        { y: 0 },
-        {
-          y: -40,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        }
-      );
-
-      // Parallax scrolling for the stamp badge
-      if (badgeRef.current) {
-        gsap.fromTo(badgeRef.current,
-          { y: 0 },
+    // Defer ScrollTrigger layout calculations slightly to reduce TBT on initial load (desktop only)
+    if (window.innerWidth >= 1024) {
+      setTimeout(() => {
+        // Parallax scrolling for the desktop hero background image
+        gsap.fromTo(".hero-parallax-bg-desktop",
+          { yPercent: 0 },
           {
-            y: -80,
+            yPercent: 6,
             ease: "none",
             scrollTrigger: {
               trigger: ".hero-section",
@@ -139,8 +109,40 @@ const HeroSection = () => {
             }
           }
         );
-      }
-    }, 150);
+
+        // Parallax scrolling for the text column
+        gsap.fromTo(".hero-text-col",
+          { y: 0 },
+          {
+            y: -40,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero-section",
+              start: "top top",
+              end: "bottom top",
+              scrub: true
+            }
+          }
+        );
+
+        // Parallax scrolling for the stamp badge
+        if (badgeRef.current) {
+          gsap.fromTo(badgeRef.current,
+            { y: 0 },
+            {
+              y: -80,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
+        }
+      }, 150);
+    }
   }, []);
 
   return (
