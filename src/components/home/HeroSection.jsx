@@ -146,7 +146,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-section relative w-full min-h-[100dvh] lg:min-h-[580px] xl:min-h-[640px] flex flex-col justify-between px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] pt-[115px] lg:pt-[135px] pb-8 lg:pb-6" id="hero">
+    <section className="hero-section relative w-full min-h-[100dvh] lg:min-h-[580px] xl:min-h-[640px] flex flex-col justify-between px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] pt-[95px] lg:pt-[135px] pb-4 lg:pb-6" id="hero">
 
       {/* Full-Bleed Background Image with Premium Seamless Parallax Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -159,8 +159,8 @@ const HeroSection = () => {
           decoding="sync"
           style={{
             imageRendering: '-webkit-optimize-contrast',
-            objectPosition: '62% 32%',
-            transform: 'translateY(-10px) translateZ(0)'
+            objectPosition: '62% -5%',
+            transform: 'translateY(-55px) translateZ(0)'
           }}
         />
         {/* Desktop Background: High-resolution webp for crispness on laptop/retina screens */}
@@ -178,7 +178,8 @@ const HeroSection = () => {
         {/* Competitor-inspired ultra-smooth, wide horizontal gradient mask */}
         <div className="hidden lg:block absolute inset-y-0 left-0 w-[65%] bg-gradient-to-r from-[#030705] via-[#030705]/95 to-transparent z-10" />
         {/* Mobile vertical gradient overlay for maximum readability without making the jar dull */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 lg:hidden z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent lg:hidden z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[#030705] via-[#030705]/90 to-transparent lg:hidden z-10" />
       </div>
 
       {/* Floating Luxury Stamp Sticker Badge (Desktop only) with 3D Tilt handlers */}
@@ -202,7 +203,7 @@ const HeroSection = () => {
       </div>
 
       {/* MOBILE-ONLY HERO LAYOUT (Symmetrical D2C Flow: Headline pushed high up, CTA pushed low down, center open for background Jar) */}
-      <div className="flex lg:hidden flex-col justify-between h-[84vh] xs:h-[86vh] sm:h-[88vh] w-full max-w-xl mx-auto relative z-20 pt-3 pb-3 text-center">
+      <div className="flex lg:hidden flex-col justify-between flex-1 w-full max-w-xl mx-auto relative z-20 pt-1 pb-1 text-center">
         {/* Top Block: Ratings and Headline pushed high up */}
         <div className="space-y-3 pt-1 shrink-0">
           {/* Ratings & Reviews */}
@@ -221,10 +222,7 @@ const HeroSection = () => {
               <span className="reveal-line inline-block">Daily Vitality</span>
             </span>
             <span className="block overflow-hidden pb-1">
-              <span className="reveal-line inline-block">for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium pr-2">Modern</span></span>
-            </span>
-            <span className="block overflow-hidden pb-1">
-              <span className="reveal-line inline-block">Indian Man</span>
+              <span className="reveal-line inline-block">for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-medium pr-2">Modern Indian Man</span></span>
             </span>
           </h1>
         </div>
@@ -232,11 +230,11 @@ const HeroSection = () => {
         {/* Flexible Center Spacer: Leaves center open to perfectly frame the bright glass jar visual behind it! */}
         <div className="flex-1 min-h-[160px] xs:min-h-[220px] sm:min-h-[280px] pointer-events-none" />
 
-        {/* Bottom Block: Description, CTA Button, and Guarantee pushed all the way down with gorgeous margins */}
+        {/* Bottom Block: CTA Button and Guarantee pushed all the way down with gorgeous margins */}
         <div className="space-y-3.5 pb-1 shrink-0">
-          {/* Minimal punchy description, sized down to avoid overlapping the jar base */}
+          {/* Minimal punchy description restored and jar pushed higher so it doesn't overlap */}
           <p className="text-xs xs:text-sm text-[#A8B3AA] font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] hero-fade-in">
-            5 clinically-dosed Ayurvedic extracts built to support daily energy, drive, and post-workout recovery.
+            5 clinical-grade Ayurvedic extracts for daily energy, drive, and recovery.
           </p>
 
           {/* Full-width premium Orange CTA Button with breathing space */}

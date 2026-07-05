@@ -165,7 +165,7 @@ const HeroBuyBox = () => {
     <>
       <section 
         id="buybox"
-        className={`pt-[176px] md:pt-[144px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[100dvh] flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
+        className={`pt-[110px] md:pt-[120px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[100dvh] flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
       >
         {/* Background glow effects */}
         <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />

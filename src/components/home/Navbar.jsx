@@ -55,10 +55,10 @@ const Navbar = () => {
         <div className="flex lg:hidden items-center z-[250]">
           <button 
             onClick={() => setIsMenuOpen(true)} 
-            className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-2 bg-white/5 rounded-full border border-white/10 animate-fade-in"
+            className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-1.5 xs:p-2 bg-white/5 rounded-full border border-white/10 animate-fade-in"
             aria-label="Open navigation menu"
           >
-            <Menu size={18} />
+            <Menu size={16} />
           </button>
         </div>
 
