@@ -17,32 +17,33 @@ const ScrollProgressIndicator = () => {
     // Only run on desktop
     if (window.innerWidth < 1024) return;
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -45% 0px', // Trigger when section occupies the active middle band
-      threshold: 0.1
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
+    const handleScroll = () => {
+      let currentSection = 'hero';
+      // Iterate from bottom to top to find the first section that is sufficiently visible
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i].id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // If the top of the section is above 50% of the viewport height, consider it active
+          if (rect.top <= window.innerHeight * 0.5) {
+            currentSection = sections[i].id;
+            break;
+          }
         }
-      });
+      }
+      setActiveId(currentSection);
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Trigger immediately to set initial state
+    handleScroll();
 
-    sections.forEach((sec) => {
-      const el = document.getElementById(sec.id);
-      if (el) observer.observe(el);
-    });
+    // Also trigger after a short delay to account for lazy-loaded elements rendering on initial load
+    const timeoutId = setTimeout(handleScroll, 500);
 
     return () => {
-      sections.forEach((sec) => {
-        const el = document.getElementById(sec.id);
-        if (el) observer.unobserve(el);
-      });
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
     };
   }, []);
 

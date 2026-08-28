@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   X, MapPin, Package, CreditCard, Truck, CheckCircle2,
   XCircle, Send, Edit3, Save, Phone, Mail, User, Hash,
-  Calendar, ArrowRight, ShoppingBag
+  Calendar, ArrowRight, ShoppingBag, FileText
 } from 'lucide-react';
 import API_URL from '../../utils/api';
 
@@ -19,7 +19,7 @@ const PAYMENT_CONFIG = {
   failed:  { label: 'Failed',  color: 'text-red-400',   bg: 'bg-red-500/10',  border: 'border-red-500/20' },
 };
 
-const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner }) => {
+const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner, onGenerateInvoice }) => {
   const [trackingInput, setTrackingInput] = useState(order?.trackingNumber || '');
   const [editingTracking, setEditingTracking] = useState(false);
   const [loadingAction, setLoadingAction] = useState(null);
@@ -106,12 +106,20 @@ const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner }) => {
               <Calendar size={10} /> {formattedDate}
             </p>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all cursor-pointer"
-          >
-            <X size={16} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => onGenerateInvoice?.(order)}
+              className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 hover:border-[#0FA36B]/50 hover:bg-[#0FA36B]/10 text-gray-300 hover:text-[#16C784] rounded-xl text-[10px] font-black uppercase tracking-wider transition-all"
+            >
+              <FileText size={14} /> Invoice
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all cursor-pointer"
+            >
+              <X size={16} />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 p-6 space-y-6">

@@ -6,10 +6,11 @@ import {
   Truck, ArrowRightLeft, RefreshCw, Send, LayoutDashboard,
   Package, Mail, Settings, Menu, X, Activity,
   BarChart3, Clock, Zap, Download, Phone, Bell,
-  Wifi, WifiOff, DollarSign
+  Wifi, WifiOff, DollarSign, Plus
 } from 'lucide-react';
 import API_URL from '../utils/api';
 import InvoiceModal from '../components/admin/InvoiceModal';
+import AdminCreateOrderModal from '../components/admin/AdminCreateOrderModal';
 import EmailDashboard from '../components/admin/EmailDashboard';
 import OrderDetailPanel from '../components/admin/OrderDetailPanel';
 import InventoryPanel from '../components/admin/InventoryPanel';
@@ -200,7 +201,7 @@ const DashboardOverview = ({ stats, onRefresh }) => {
 };
 
 // ─── Orders Tab ───────────────────────────────────────────────────────────────
-const OrdersTab = ({ orders, loading, onRefresh, showBanner, onOpenOrder }) => {
+const OrdersTab = ({ orders, loading, onRefresh, showBanner, onOpenOrder, onCreateOrder }) => {
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
@@ -302,15 +303,23 @@ const OrdersTab = ({ orders, loading, onRefresh, showBanner, onOpenOrder }) => {
       </div>
 
       {/* Search */}
-      <div className="relative">
-        <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
-        <input
-          type="text"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Search by name, email, phone or invoice ID..."
-          className="w-full pl-11 pr-5 py-3.5 bg-black/40 border border-white/5 hover:border-white/10 focus:border-[#0FA36B]/50 rounded-2xl text-white text-sm font-semibold placeholder-gray-600 outline-none transition-all"
-        />
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="relative flex-1">
+          <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search by name, email, phone or invoice ID..."
+            className="w-full pl-11 pr-5 py-3.5 bg-black/40 border border-white/5 hover:border-white/10 focus:border-[#0FA36B]/50 rounded-2xl text-white text-sm font-semibold placeholder-gray-600 outline-none transition-all"
+          />
+        </div>
+        <button 
+          onClick={() => { console.log("BUTTON CLICKED"); onCreateOrder(); }}
+          className="px-6 py-3.5 bg-[#0FA36B] hover:bg-[#16C784] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2 flex-shrink-0 border border-[#0FA36B]"
+        >
+          <Plus size={14} /> Create Invoice
+        </button>
       </div>
 
       {/* Table */}
@@ -616,6 +625,7 @@ const AdminDashboard = () => {
   const [notification, setNotification] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     const session = localStorage.getItem('biolabs_admin_session');
@@ -820,6 +830,7 @@ const AdminDashboard = () => {
               onRefresh={fetchData}
               showBanner={showBanner}
               onOpenOrder={handleOpenOrder}
+              onCreateOrder={() => setShowCreateModal(true)}
             />
           )}
           {activeTab === 'inventory' && (
@@ -852,6 +863,10 @@ const AdminDashboard = () => {
           onClose={() => setSelectedOrder(null)}
           onRefresh={handleRefreshAfterAction}
           showBanner={showBanner}
+          onGenerateInvoice={(order) => {
+            setSelectedOrder(null); // Close the detail panel
+            setInvoiceOrder(order); // Open the invoice modal
+          }}
         />
       )}
 
@@ -860,6 +875,17 @@ const AdminDashboard = () => {
         <InvoiceModal
           order={invoiceOrder}
           onClose={() => setInvoiceOrder(null)}
+        />
+      )}
+
+      {/* ── Create Order Modal ── */}
+      {showCreateModal && (
+        <AdminCreateOrderModal
+          onClose={() => setShowCreateModal(false)}
+          onOrderCreated={(newOrder) => {
+            fetchData();
+            showBanner('Order generated and invoice created successfully!', 'success');
+          }}
         />
       )}
     </div>
