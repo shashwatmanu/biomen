@@ -41,11 +41,11 @@ const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner, onGenerateInv
     return res.json();
   };
 
-  const handleShipViaShiprocket = async () => {
-    setLoadingAction('shiprocket');
-    const data = await doAction(`${API_URL}/orders/admin/${order._id}/shiprocket`);
+  const handleShipViaDelhivery = async () => {
+    setLoadingAction('delhivery');
+    const data = await doAction(`${API_URL}/orders/admin/${order._id}/delhivery`);
     if (data.success) {
-      showBanner(`🚀 Pushed to Shiprocket! AWB: ${data.order.trackingNumber}`);
+      showBanner(`🚀 Pushed to Delhivery! AWB: ${data.order.trackingNumber}`);
       onRefresh();
     } else showBanner(data.error || 'Failed', 'error');
     setLoadingAction(null);
@@ -307,13 +307,13 @@ const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner, onGenerateInv
             <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mb-3">Fulfillment Actions</p>
 
             {order.shippingStatus === 'processing' && (
-              <button
-                onClick={handleShipViaShiprocket}
+              <button 
+                onClick={handleShipViaDelhivery}
                 disabled={!!loadingAction}
-                className="w-full py-3.5 bg-[#0FA36B] hover:bg-[#16C784] text-white rounded-full font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 hover:scale-[1.01]"
+                className="w-full py-4 bg-[#0FA36B] hover:bg-[#16C784] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-[#0FA36B]/20 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                <Send size={14} />
-                {loadingAction === 'shiprocket' ? 'Pushing to Shiprocket...' : 'Approve & Ship via Shiprocket'}
+                <Truck size={14} />
+                {loadingAction === 'delhivery' ? 'Pushing to Delhivery...' : 'Approve & Push to Delhivery'}
               </button>
             )}
 
