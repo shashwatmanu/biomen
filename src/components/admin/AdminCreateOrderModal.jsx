@@ -9,7 +9,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
   const [success, setSuccess] = useState(false);
 
   // Form State
-  const [guestDetails, setGuestDetails] = useState({ name: '', email: '', phone: '' });
+  const [guestDetails, setGuestDetails] = useState({ name: '', email: '', phone: '', gstNumber: '' });
   const [shippingAddress, setShippingAddress] = useState({ street: '', city: '', state: '', postalCode: '', country: 'India' });
   const [orderItems, setOrderItems] = useState([]); // { product: {}, quantity: 1, customPrice: null }
   const [paymentStatus, setPaymentStatus] = useState('pending'); // pending, paid
@@ -186,6 +186,10 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                       <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
                       <input type="tel" placeholder="Phone" required value={guestDetails.phone} onChange={e => setGuestDetails({...guestDetails, phone: e.target.value})} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                     </div>
+                  </div>
+                  <div className="relative">
+                    <Building2 size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
+                    <input type="text" placeholder="GST Number (Optional)" value={guestDetails.gstNumber} onChange={e => setGuestDetails({...guestDetails, gstNumber: e.target.value.toUpperCase()})} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none uppercase" />
                   </div>
                 </div>
               </div>

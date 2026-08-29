@@ -71,6 +71,9 @@ const InvoiceModal = ({ order, onClose }) => {
                 {order.shippingAddress?.city}, {order.shippingAddress?.state} - {order.shippingAddress?.postalCode}<br />
                 {order.shippingAddress?.country || 'India'}<br />
                 Phone: {order.guestDetails?.phone || 'N/A'}
+                {order.guestDetails?.gstNumber && (
+                  <><br /><span className="font-bold text-white print:text-black">GSTIN: {order.guestDetails.gstNumber}</span></>
+                )}
               </p>
             </div>
           </div>
