@@ -694,7 +694,7 @@ const AdminDashboard = () => {
         />
       )}
 
-      <aside className={`fixed top-0 left-0 h-full w-64 bg-[#060D09] border-r border-white/5 z-50 flex flex-col transition-transform duration-300 ${
+      <aside className={`fixed top-0 left-0 h-full w-64 bg-[#060D09] border-r border-white/5 z-50 flex flex-col transition-transform duration-300 print:hidden ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
         {/* Brand */}
@@ -762,7 +762,7 @@ const AdminDashboard = () => {
       </aside>
 
       {/* ── Main Content Area ── */}
-      <div className="flex-1 lg:ml-64 flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-64 flex flex-col min-h-screen print:hidden">
 
         {/* Top Bar */}
         <header className="sticky top-0 z-30 bg-[#030705]/90 backdrop-blur-md border-b border-white/5 px-5 py-4 flex items-center justify-between">
