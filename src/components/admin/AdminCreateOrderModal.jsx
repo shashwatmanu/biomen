@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, ShoppingBag, Truck, User, Plus, Trash2, ShieldCheck, Mail, Phone, MapPin, Tag, Building2, PackageCheck } from 'lucide-react';
 import API_URL from '../../utils/api';
 
-const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MODAL RENDERED");
+const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => {
+  console.log("MODAL RENDERED");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -37,7 +38,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
   const handleAddItem = (productId) => {
     const product = products.find(p => p._id === productId);
     if (!product) return;
-    
+
     // Check if already in list
     const exists = orderItems.find(i => i.product._id === productId);
     if (exists) {
@@ -97,7 +98,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
     try {
       const res = await fetch(`${API_URL}/orders/admin/create`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('biolabs_admin_session')}`
         },
@@ -138,7 +139,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-[#0A1410] border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-        
+
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/5 bg-white/[0.02]">
           <div className="flex items-center gap-3">
@@ -164,10 +165,10 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
+
             {/* Left Column: Customer & Shipping */}
             <div className="space-y-6">
-              
+
               {/* Customer Details */}
               <div className="space-y-4">
                 <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 flex items-center gap-2 border-b border-white/5 pb-2">
@@ -175,21 +176,21 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                 </h3>
                 <div className="space-y-3">
                   <div>
-                    <input type="text" placeholder="Full Name" required value={guestDetails.name} onChange={e => setGuestDetails({...guestDetails, name: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                    <input type="text" placeholder="Full Name" required value={guestDetails.name} onChange={e => setGuestDetails({ ...guestDetails, name: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="relative">
                       <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
-                      <input type="email" placeholder="Email" value={guestDetails.email} onChange={e => setGuestDetails({...guestDetails, email: e.target.value})} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                      <input type="email" placeholder="Email" value={guestDetails.email} onChange={e => setGuestDetails({ ...guestDetails, email: e.target.value })} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                     </div>
                     <div className="relative">
                       <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
-                      <input type="tel" placeholder="Phone" required value={guestDetails.phone} onChange={e => setGuestDetails({...guestDetails, phone: e.target.value})} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                      <input type="tel" placeholder="Phone" required value={guestDetails.phone} onChange={e => setGuestDetails({ ...guestDetails, phone: e.target.value })} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                     </div>
                   </div>
                   <div className="relative">
                     <Building2 size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
-                    <input type="text" placeholder="GST Number (Optional)" value={guestDetails.gstNumber} onChange={e => setGuestDetails({...guestDetails, gstNumber: e.target.value.toUpperCase()})} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none uppercase" />
+                    <input type="text" placeholder="GST Number" value={guestDetails.gstNumber} onChange={e => setGuestDetails({ ...guestDetails, gstNumber: e.target.value.toUpperCase() })} className="w-full pl-9 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none uppercase" />
                   </div>
                 </div>
               </div>
@@ -200,14 +201,14 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                   <MapPin size={12} /> Shipping Address
                 </h3>
                 <div className="space-y-3">
-                  <input type="text" placeholder="Street Address / Building" required value={shippingAddress.street} onChange={e => setShippingAddress({...shippingAddress, street: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                  <input type="text" placeholder="Street Address / Building" required value={shippingAddress.street} onChange={e => setShippingAddress({ ...shippingAddress, street: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                   <div className="grid grid-cols-2 gap-3">
-                    <input type="text" placeholder="City" required value={shippingAddress.city} onChange={e => setShippingAddress({...shippingAddress, city: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
-                    <input type="text" placeholder="State" required value={shippingAddress.state} onChange={e => setShippingAddress({...shippingAddress, state: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                    <input type="text" placeholder="City" required value={shippingAddress.city} onChange={e => setShippingAddress({ ...shippingAddress, city: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                    <input type="text" placeholder="State" required value={shippingAddress.state} onChange={e => setShippingAddress({ ...shippingAddress, state: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <input type="text" placeholder="Postal Code (PIN)" required value={shippingAddress.postalCode} onChange={e => setShippingAddress({...shippingAddress, postalCode: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
-                    <input type="text" placeholder="Country" value={shippingAddress.country} onChange={e => setShippingAddress({...shippingAddress, country: e.target.value})} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                    <input type="text" placeholder="Postal Code (PIN)" required value={shippingAddress.postalCode} onChange={e => setShippingAddress({ ...shippingAddress, postalCode: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
+                    <input type="text" placeholder="Country" value={shippingAddress.country} onChange={e => setShippingAddress({ ...shippingAddress, country: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:border-[#0FA36B] outline-none" />
                   </div>
                 </div>
               </div>
@@ -240,7 +241,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                       {pushToDelhivery && <CheckCircle2 size={12} className="text-white" />}
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-white flex items-center gap-1.5"><Truck size={12}/> Auto-Push to Delhivery</p>
+                      <p className="text-xs font-bold text-white flex items-center gap-1.5"><Truck size={12} /> Auto-Push to Delhivery</p>
                       <p className="text-[10px] text-gray-500">Automatically manifest this order for shipping.</p>
                     </div>
                   </div>
@@ -251,13 +252,13 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
 
             {/* Right Column: Order Items */}
             <div className="space-y-6 flex flex-col h-full">
-              
+
               <div className="space-y-4">
                 <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 flex items-center gap-2 border-b border-white/5 pb-2">
                   <ShoppingBag size={12} /> Add Products
                 </h3>
                 <div className="relative">
-                  <select 
+                  <select
                     className="w-full px-4 py-3 bg-white/5 border border-[#0FA36B]/30 rounded-xl text-sm text-white outline-none focus:border-[#0FA36B] appearance-none"
                     onChange={(e) => {
                       if (e.target.value) {
@@ -292,19 +293,19 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                         <div className="flex-1">
                           <p className="text-xs font-bold text-white line-clamp-1">{item.product.title}</p>
                           <div className="flex items-center gap-2 mt-2">
-                            <input 
-                              type="number" 
+                            <input
+                              type="number"
                               min="1"
-                              value={item.quantity} 
+                              value={item.quantity}
                               onChange={(e) => handleUpdateItem(item.product._id, 'quantity', e.target.value)}
                               className="w-16 bg-white/10 border border-white/10 rounded-md px-2 py-1 text-xs text-white outline-none"
                             />
                             <span className="text-gray-500 text-[10px]">x</span>
                             <div className="relative">
                               <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-xs">₹</span>
-                              <input 
-                                type="number" 
-                                value={item.customPrice} 
+                              <input
+                                type="number"
+                                value={item.customPrice}
                                 onChange={(e) => handleUpdateItem(item.product._id, 'customPrice', e.target.value)}
                                 className="w-24 bg-white/10 border border-white/10 rounded-md pl-5 pr-2 py-1 text-xs text-white outline-none"
                               />
@@ -318,7 +319,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                     ))}
                   </div>
                 )}
-                
+
                 {/* Summary */}
                 <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
                   <div className="flex justify-between text-xs text-gray-400">
@@ -329,9 +330,9 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
                     <span>Shipping</span>
                     <div className="flex items-center gap-1">
                       <span>₹</span>
-                      <input 
-                        type="number" 
-                        value={shippingCharges} 
+                      <input
+                        type="number"
+                        value={shippingCharges}
                         onChange={(e) => setShippingCharges(e.target.value)}
                         className="w-16 bg-white/5 border border-white/10 rounded-md px-2 py-1 text-xs text-white text-right outline-none"
                       />
@@ -353,14 +354,14 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => { console.log("MO
         {/* Footer Actions */}
         <div className="p-6 border-t border-white/5 bg-white/[0.02] flex items-center justify-between">
           <p className="text-[10px] text-gray-500 uppercase tracking-widest font-black flex items-center gap-1">
-            <Building2 size={10}/> Biomen Labs Internal
+            <Building2 size={10} /> Biomen Labs Internal
           </p>
           <div className="flex items-center gap-3">
             <button onClick={onClose} className="px-6 py-3 text-xs font-bold text-gray-400 hover:text-white transition-colors">
               Cancel
             </button>
-            <button 
-              onClick={handleSubmit} 
+            <button
+              onClick={handleSubmit}
               disabled={loading || orderItems.length === 0 || !guestDetails.name || !shippingAddress.street}
               className="px-8 py-3 bg-[#0FA36B] hover:bg-[#16C784] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-[#0FA36B]/20 flex items-center gap-2"
             >
