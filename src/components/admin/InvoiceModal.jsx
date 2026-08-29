@@ -9,9 +9,33 @@ const InvoiceModal = ({ order, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[400] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      {/* Modal Box */}
-      <div className="bg-[#06110C] border border-[#0FA36B]/20 rounded-[2rem] max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto flex flex-col justify-between print:bg-white print:text-black print:border-none print:shadow-none print:p-0 print:m-0 print:max-h-full print:rounded-none">
+    <>
+      <style type="text/css">
+        {`
+          @media print {
+            body * { visibility: hidden !important; }
+            #invoice-print-area, #invoice-print-area * { visibility: visible !important; }
+            #invoice-print-area { 
+              position: absolute !important; 
+              left: 0 !important; 
+              top: 0 !important; 
+              width: 100% !important;
+              background: white !important;
+              color: black !important;
+              box-shadow: none !important;
+              margin: 0 !important;
+              padding: 20px !important;
+              overflow: visible !important;
+              min-height: auto !important;
+              height: auto !important;
+            }
+            @page { margin: 0.5cm; }
+          }
+        `}
+      </style>
+      <div className="fixed inset-0 z-[400] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        {/* Modal Box */}
+        <div id="invoice-print-area" className="bg-[#06110C] border border-[#0FA36B]/20 rounded-[2rem] max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto flex flex-col justify-between">
         
         {/* Header Controls (Hidden in Print Mode) */}
         <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6 print:hidden">
@@ -136,6 +160,7 @@ const InvoiceModal = ({ order, onClose }) => {
 
       </div>
     </div>
+    </>
   );
 };
 
