@@ -87,7 +87,7 @@ const InvoiceModal = ({ order, onClose }) => {
                 Plot 4 Ramprastha Greens<br />
                 Vaishali, Ghaziabad<br />
                 Phone: 8595770970<br />
-                Contact: billing@biomenlabs.com
+                Contact: info@biomenlabs.com
               </p>
             </div>
             <div>
