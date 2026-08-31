@@ -113,7 +113,7 @@ const PromoBar = () => {
         </span>
         <span className="text-gray-400">|</span>
         <a 
-          href="/products/t-core?discount=FOUNDER10" 
+          href="/products/t-core?discount=FOUNDER90" 
           onClick={() => {
             localStorage.setItem('launch_discount_applied', 'true');
           }}

@@ -65,8 +65,11 @@ const InvoiceModal = ({ order, onClose }) => {
           {/* Top Brand Banner */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 print:border-black/20 pb-6 gap-4">
             <div>
-              <h2 className="text-2xl font-black tracking-tight text-white print:text-black uppercase">BIOMEN LABS</h2>
-              <p className="text-[10px] text-[#A8B3AA] print:text-black/60 font-bold uppercase tracking-wider mt-1">MASculine VITALITY SCIENTIFIC INC.</p>
+              <div className="flex items-center gap-3">
+                <img src="/blacklogo.png" alt="Biomen Labs Logo" className="h-8" />
+                <h2 className="text-2xl font-black tracking-tight text-white print:text-black uppercase">BIOMEN LABS</h2>
+              </div>
+              <p className="text-[10px] text-[#A8B3AA] print:text-black/60 font-bold uppercase tracking-wider mt-1">ANCIENT HERBS, MODERN SCIENCE</p>
             </div>
             <div className="text-left sm:text-right">
               <div className="text-xs font-black text-[#16C784] uppercase tracking-widest">INVOICE SERIAL</div>
@@ -81,9 +84,9 @@ const InvoiceModal = ({ order, onClose }) => {
               <h4 className="font-black text-[#BFA46A] print:text-black uppercase tracking-widest mb-2">SOLD BY</h4>
               <p className="font-bold text-white print:text-black">Biomen Labs India Ltd.</p>
               <p className="text-gray-400 print:text-black/70 mt-1 leading-relaxed">
-                4th Floor, Innovation Hub<br />
-                Bandra Kurla Complex, Mumbai<br />
-                Maharashtra - 400051<br />
+                Plot 4 Ramprastha Greens<br />
+                Vaishali, Ghaziabad<br />
+                Phone: 8595770970<br />
                 Contact: billing@biomenlabs.com
               </p>
             </div>
