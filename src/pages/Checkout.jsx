@@ -213,7 +213,7 @@ const Checkout = () => {
 
       if (res.ok) {
         const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_TUmKU1RlTIyJv5',
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_live_TWLQzUgvFPgN4h',
           amount: data.razorpayOrder.amount,
           currency: data.razorpayOrder.currency,
           name: 'Biomen Labs',
