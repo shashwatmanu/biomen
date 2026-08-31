@@ -66,7 +66,7 @@ const InvoiceModal = ({ order, onClose }) => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 print:border-black/20 pb-6 gap-4">
             <div>
               <div className="flex items-center gap-3">
-                <img src="/blacklogo.png" alt="Biomen Labs Logo" className="h-8" />
+                <img src="/blacklogo.png" alt="Biomen Labs Logo" className="h-14 w-auto object-contain" />
                 <h2 className="text-2xl font-black tracking-tight text-white print:text-black uppercase">BIOMEN LABS</h2>
               </div>
               <p className="text-[10px] text-[#A8B3AA] print:text-black/60 font-bold uppercase tracking-wider mt-1">ANCIENT HERBS, MODERN SCIENCE</p>
