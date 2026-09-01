@@ -134,9 +134,27 @@ const InvoiceModal = ({ order, onClose }) => {
             </div>
           </div>
 
-          {/* Pricing Totals */}
-          <div className="flex justify-end pt-2">
-            <div className="w-full sm:w-64 space-y-2 text-xs">
+          {/* Bottom Section: Bank Details & Totals */}
+          <div className="flex flex-col sm:flex-row justify-between pt-4 gap-6 border-t border-white/5 print:border-black/10">
+            
+            {/* Bank Details */}
+            <div className="w-full sm:w-1/2 space-y-1.5 text-[9px] text-gray-400 print:text-black/80 font-mono leading-relaxed bg-white/5 print:bg-gray-50 p-4 rounded-xl border border-white/10 print:border-black/10">
+              <p className="font-bold text-white print:text-black mb-2 text-xs font-sans uppercase tracking-widest">Bank Details</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                <p><span className="font-semibold text-gray-500 print:text-black/60">Company:</span><br/>DOUBLEV LABS PVT LTD</p>
+                <p><span className="font-semibold text-gray-500 print:text-black/60">Account:</span><br/>10277126671</p>
+                <p><span className="font-semibold text-gray-500 print:text-black/60">IFSC:</span><br/>IDFB0021414</p>
+                <p><span className="font-semibold text-gray-500 print:text-black/60">SWIFT:</span><br/>IDFBINBBMUM</p>
+                <p><span className="font-semibold text-gray-500 print:text-black/60">Bank:</span><br/>IDFC FIRST</p>
+                <p><span className="font-semibold text-gray-500 print:text-black/60">Branch:</span><br/>Vasundhara Ghaziabad</p>
+              </div>
+              <p className="pt-2 mt-2 border-t border-white/10 print:border-black/10 text-[#16C784] print:text-green-700 font-bold flex items-center gap-2">
+                <span className="text-gray-500 print:text-black/60 text-[8px] uppercase tracking-wider font-sans">UPI</span> 8595070970@idfcbank
+              </p>
+            </div>
+
+            {/* Pricing Totals */}
+            <div className="w-full sm:w-64 space-y-2 text-xs pt-2">
               <div className="flex justify-between text-gray-400 print:text-black/70">
                 <span>Subtotal:</span>
                 <span className="font-mono">₹{order.subtotal?.toLocaleString('en-IN')}</span>
