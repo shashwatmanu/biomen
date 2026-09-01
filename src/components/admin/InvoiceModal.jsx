@@ -145,9 +145,19 @@ const InvoiceModal = ({ order, onClose }) => {
                 <span>Shipping Charges:</span>
                 <span className="font-mono text-[#16C784]">FREE</span>
               </div>
+              {order.totalAmount < (order.subtotal + (order.shippingCharges || 0)) && (
+                <div className="flex justify-between text-[#16C784] print:text-green-700">
+                  <span>Discounts Applied:</span>
+                  <span className="font-mono">-₹{Math.round((order.subtotal + (order.shippingCharges || 0)) - order.totalAmount).toLocaleString('en-IN')}</span>
+                </div>
+              )}
               <div className="flex justify-between text-gray-400 print:text-black/70 border-b border-white/10 print:border-black/20 pb-2">
-                <span>Taxes & Duties (GST 18% Incl.):</span>
-                <span className="font-mono">₹{Math.round(order.subtotal * 0.18).toLocaleString('en-IN')}</span>
+                <span>Taxes & Duties (GST):</span>
+                <span className="font-mono">
+                  {order.totalAmount > (order.subtotal + (order.shippingCharges || 0))
+                    ? `₹${Math.round(order.totalAmount - order.subtotal - (order.shippingCharges || 0)).toLocaleString('en-IN')} (Added)`
+                    : 'Inclusive'}
+                </span>
               </div>
               <div className="flex justify-between text-base font-black text-white print:text-black pt-1">
                 <span>TOTAL AMOUNT:</span>
