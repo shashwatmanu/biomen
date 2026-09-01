@@ -556,16 +556,11 @@ const HeroBuyBox = () => {
                 <Gift size={16} /> YOUR FREE GIFTS (INCLUDED TODAY)
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-[10px] font-black uppercase tracking-wider text-center text-[#F4F6F2]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-wider text-center text-[#F4F6F2]">
                 <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
                   <span className="text-[#16C784] mb-1">VITALITY E-BOOK</span>
                   <span>90-Day Protocol</span>
                   <span className="text-gray-500 text-[8px] mt-1">₹2,500 Value</span>
-                </div>
-                <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                  <span className="text-[#16C784] mb-1">LIFETIME APP ACCESS</span>
-                  <span>Workout Tracker</span>
-                  <span className="text-gray-500 text-[8px] mt-1">₹5,000 Value</span>
                 </div>
                 <div className="bg-black/40 border border-white/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
                   <span className="text-[#16C784] mb-1">IPHONE 17 PRO</span>

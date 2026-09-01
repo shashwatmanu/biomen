@@ -20,12 +20,7 @@ const OfferRecap = () => {
             </div>
             <div className="text-gray-400">₹2,500</div>
           </div>
-          <div className="flex justify-between items-center text-lg">
-            <div className="flex items-center gap-3 font-medium text-gray-300">
-              <Check size={20} className="text-biomen-accent" /> Lifetime App Access
-            </div>
-            <div className="text-gray-400">₹5,000</div>
-          </div>
+
           <div className="flex justify-between items-center text-lg">
             <div className="flex items-center gap-3 font-medium text-gray-300">
               <Check size={20} className="text-biomen-accent" /> Chance to Win iPhone 17 Pro
@@ -36,12 +31,12 @@ const OfferRecap = () => {
 
         <div className="flex justify-between items-end mb-8">
           <div>
-            <div className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-1">Total Value: <span className="line-through">₹16,500</span></div>
+            <div className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-1">Total Value: <span className="line-through">₹11,500</span></div>
             <div className="text-4xl font-black text-white">Today: <span className="text-biomen-accent">₹3,999</span></div>
           </div>
           <div className="text-right">
             <div className="bg-white/10 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-              Save ₹12,501
+              Save ₹7,501
             </div>
           </div>
         </div>
