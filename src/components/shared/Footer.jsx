@@ -124,7 +124,6 @@ const Footer = () => {
               <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
                 <li><Link to="/about" className="hover:text-white transition-colors">Biography</Link></li>
                 <li><Link to="/science" className="hover:text-white transition-colors">Science</Link></li>
-                <li><Link to="/about" className="hover:text-white transition-colors">Careers</Link></li>
               </ul>
             </div>
 
