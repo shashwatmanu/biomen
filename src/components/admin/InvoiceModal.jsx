@@ -89,7 +89,8 @@ const InvoiceModal = ({ order, onClose }) => {
                 Plot 4 Ramprastha Greens<br />
                 Vaishali, Ghaziabad<br />
                 Phone: 8595770970<br />
-                Contact: info@biomenlabs.com
+                Contact: info@biomenlabs.com<br />
+                <span className="font-bold text-gray-300 print:text-black/80">GSTIN: 09AAMCD3080C1ZR</span>
               </p>
             </div>
             <div>
