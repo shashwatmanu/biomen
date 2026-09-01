@@ -206,7 +206,7 @@ const Checkout = () => {
           shippingAddress,
           guestDetails,
           paymentMethod: 'Razorpay',
-          couponCode: isLaunchDiscountApplied ? 'FOUNDER90' : undefined
+          couponCode: isLaunchDiscountApplied ? 'FOUNDER10' : undefined
         })
       });
       const data = await res.json();
@@ -613,7 +613,7 @@ const Checkout = () => {
                   disabled={loading || items.length === 0}
                   className="btn-sweep w-full py-5 px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xl uppercase tracking-widest rounded-xl transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 disabled:opacity-50 cursor-pointer"
                 >
-                  {loading ? <Loader2 className="animate-spin" size={24} /> : `COMPLETE TRANSACTION (₹${Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.10) : subtotal).toLocaleString('en-IN')})`}
+                  {loading ? <Loader2 className="animate-spin" size={24} /> : `COMPLETE TRANSACTION (₹${Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.90) : subtotal).toLocaleString('en-IN')})`}
                 </button>
               </form>
             )}
@@ -649,8 +649,8 @@ const Checkout = () => {
                 </div>
                 {localStorage.getItem('launch_discount_applied') === 'true' && (
                   <div className="flex justify-between text-[#16C784]">
-                    <span>Launch Discount (FOUNDER90)</span>
-                    <span>-₹{Math.round(subtotal * 0.90).toLocaleString()}</span>
+                    <span>Launch Discount (FOUNDER10)</span>
+                    <span>-₹{Math.round(subtotal * 0.10).toLocaleString()}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
@@ -660,7 +660,7 @@ const Checkout = () => {
                 <div className="flex justify-between pt-3 border-t border-white/10 font-sans text-lg font-black text-white">
                   <span>Total Due</span>
                   <span className="text-[#16C784]">
-                    ₹{Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.10) : subtotal).toLocaleString()}
+                    ₹{Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.90) : subtotal).toLocaleString()}
                   </span>
                 </div>
               </div>
