@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift, Minus, Plus } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 import gsap from 'gsap';
+import API_URL from '../../utils/api';
 
 const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -51,7 +52,7 @@ const HeroBuyBox = () => {
     { id: 'prod-8', url: '/Product/8.webp', label: 'T-CORE Packaging Box' },
   ];
 
-  const bundles = [
+  const [bundles, setBundles] = useState([
     { 
       id: 'tcore-3-bottles',
       name: "3 Bottles | 90 Days", 
@@ -82,7 +83,7 @@ const HeroBuyBox = () => {
       best: true,
       desc: "For first-time customers starting their routine"
     }
-  ];
+  ]);
 
   const [isSubscription, setIsSubscription] = useState(() => {
     const params = new URLSearchParams(window.location.search);
@@ -95,6 +96,50 @@ const HeroBuyBox = () => {
     const matched = bundles.find((b) => b.id === system);
     return matched || bundles[2]; // default to 1 bottle
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('subscription') === 'true') {
+      setIsSubscription(true);
+      const matched = bundles.find(b => b.id === 'tcore-3-bottles');
+      if (matched) setSelectedBundle(matched);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        if (res.ok) {
+          const liveProducts = await res.json();
+          setBundles(prevBundles => 
+            prevBundles.map(bundle => {
+              const liveData = liveProducts.find(p => p.id === bundle.id);
+              if (liveData) {
+                return {
+                  ...bundle,
+                  price: liveData.price,
+                  mrp: liveData.mrp,
+                  subPrice: Math.round(liveData.price * 0.85) // 15% discount for subscription
+                };
+              }
+              return bundle;
+            })
+          );
+        }
+      } catch (err) {
+        console.error('Error fetching live prices:', err);
+      }
+    };
+    fetchPrices();
+  }, []);
+
+  useEffect(() => {
+    const matched = bundles.find(b => b.id === selectedBundle.id);
+    if (matched && (matched.price !== selectedBundle.price || matched.mrp !== selectedBundle.mrp)) {
+      setSelectedBundle(matched);
+    }
+  }, [bundles, selectedBundle.id, selectedBundle.price, selectedBundle.mrp]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

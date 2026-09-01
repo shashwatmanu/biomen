@@ -73,6 +73,14 @@ const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner, onGenerateInv
     setLoadingAction(null);
   };
 
+  const handleUpdatePaymentStatus = async (status) => {
+    setLoadingAction('payment');
+    const data = await doAction(`${API_URL}/orders/admin/${order._id}/payment`, 'PUT', { paymentStatus: status });
+    if (data.success) { showBanner(`✅ Payment status updated to ${status}!`); onRefresh(); }
+    else showBanner(data.error || 'Failed', 'error');
+    setLoadingAction(null);
+  };
+
   const handleCancel = async () => {
     if (!window.confirm('Cancel this order? This action cannot be undone.')) return;
     setLoadingAction('cancel');
@@ -126,9 +134,16 @@ const OrderDetailPanel = ({ order, onClose, onRefresh, showBanner, onGenerateInv
 
           {/* Status Badges Row */}
           <div className="flex gap-3">
-            <span className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider border ${payment.bg} ${payment.color} ${payment.border}`}>
-              💳 {payment.label}
-            </span>
+            <select
+              value={order.paymentStatus}
+              onChange={(e) => handleUpdatePaymentStatus(e.target.value)}
+              disabled={loadingAction === 'payment'}
+              className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border ${payment.bg} ${payment.color} ${payment.border} cursor-pointer outline-none transition-all focus:ring-1 focus:ring-white/20`}
+            >
+              <option value="pending" className="bg-[#0A1410] text-yellow-400">💳 PENDING</option>
+              <option value="paid" className="bg-[#0A1410] text-[#16C784]">💳 PAID</option>
+              <option value="failed" className="bg-[#0A1410] text-red-400">💳 FAILED</option>
+            </select>
             <span className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider border ${shipping.bg} ${shipping.color} ${shipping.border}`}>
               📦 {shipping.label}
             </span>

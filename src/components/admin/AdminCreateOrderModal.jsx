@@ -17,6 +17,7 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => {
   const [orderType, setOrderType] = useState('retail'); // retail, wholesale
   const [pushToDelhivery, setPushToDelhivery] = useState(false);
   const [shippingCharges, setShippingCharges] = useState(0);
+  const [applyGst, setApplyGst] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -63,7 +64,8 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => {
 
   // Calculations
   const subtotal = orderItems.reduce((sum, item) => sum + (Number(item.customPrice) * Number(item.quantity)), 0);
-  const totalAmount = subtotal + Number(shippingCharges);
+  const taxAmount = applyGst ? Math.round(subtotal * 0.05) : 0;
+  const totalAmount = subtotal + Number(shippingCharges) + taxAmount;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -246,6 +248,16 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => {
                     </div>
                   </div>
                 )}
+                
+                <div className="p-4 bg-white/5 border border-white/10 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-white/10 transition-colors" onClick={() => setApplyGst(!applyGst)}>
+                  <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${applyGst ? 'bg-[#0FA36B] border-[#0FA36B]' : 'bg-transparent border-white/20'}`}>
+                    {applyGst && <CheckCircle2 size={12} className="text-white" />}
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white flex items-center gap-1.5"><ShieldCheck size={12} /> Apply 5% GST</p>
+                    <p className="text-[10px] text-gray-500">Adds 5% tax to the subtotal.</p>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -326,6 +338,12 @@ const AdminCreateOrderModal = ({ onClose, onOrderCreated }) => {
                     <span>Subtotal</span>
                     <span>₹{subtotal.toLocaleString('en-IN')}</span>
                   </div>
+                  {applyGst && (
+                    <div className="flex justify-between text-xs text-gray-400">
+                      <span>GST (5%)</span>
+                      <span className="text-[#16C784]">₹{taxAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-xs text-gray-400 items-center">
                     <span>Shipping</span>
                     <div className="flex items-center gap-1">

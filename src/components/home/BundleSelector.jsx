@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useCartStore from '../../store/useCartStore';
 import { Star, ShieldCheck, Check } from 'lucide-react';
+import API_URL from '../../utils/api';
 
 const BundleSelector = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -29,7 +30,7 @@ const BundleSelector = () => {
     e.currentTarget.style.setProperty('--rotate-y', '0deg');
   };
 
-  const bundles = [
+  const [bundles, setBundles] = useState([
     { 
       id: 'tcore-1-bottle',
       name: "1 Bottle | 30 Days", 
@@ -63,12 +64,40 @@ const BundleSelector = () => {
       best: false,
       desc: "Built for men developing a real performance routine."
     }
-  ];
+  ]);
 
   const [selectedId, setSelectedId] = useState(() => {
     const bestBundle = bundles.find(b => b.best);
     return bestBundle ? bestBundle.id : bundles[0].id;
   });
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        if (res.ok) {
+          const liveProducts = await res.json();
+          setBundles(prevBundles => 
+            prevBundles.map(bundle => {
+              const liveData = liveProducts.find(p => p.id === bundle.id);
+              if (liveData) {
+                return {
+                  ...bundle,
+                  price: liveData.price,
+                  mrp: liveData.mrp,
+                  subPrice: Math.round(liveData.price * 0.85) // 15% discount for subscription
+                };
+              }
+              return bundle;
+            })
+          );
+        }
+      } catch (err) {
+        console.error('Error fetching live prices:', err);
+      }
+    };
+    fetchPrices();
+  }, []);
 
   const handlePurchase = (bundle, isSub) => {
     window.location.href = `/products/t-core?system=${bundle.id}${isSub ? '&subscription=true' : ''}`;
