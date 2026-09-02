@@ -16,36 +16,45 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
   useEffect(() => {
     if (!mrp || !price) return;
 
-    // Increase delay between cards and give a longer initial pause (1.5s per index offset + 0.8s base)
     const tl = gsap.timeline({ delay: 0.8 + index * 1.5 });
     
     // Set initial states for entrance animation
     gsap.set(mrpRef.current, { opacity: 0, x: -10 });
     gsap.set(lineRef.current, { scaleX: 0, transformOrigin: "left center" });
     gsap.set(badgeRef.current, { opacity: 0, scale: 0.8, y: 10 });
-    gsap.set(stampRef.current, { opacity: 0, scale: 4, rotation: -30 });
+    gsap.set(stampRef.current, { opacity: 0, scale: 5, rotation: -30 });
 
-    const counterObj = { val: totalMrp }; // Start counter at MRP
+    const counterObj = { val: totalMrp }; 
 
-    // 1. Stamp slams down - harder and bigger
-    tl.to(stampRef.current, {
+    // Define "stamp_start" label
+    tl.add("stamp_start")
+      // 1. Stamp slams down
+      .to(stampRef.current, {
+        opacity: 1,
+        scale: 1, // Full size at impact
+        rotation: -15,
+        duration: 0.4,
+        ease: "power2.in"
+      }, "stamp_start");
+
+    // Define "stamp_impact" label right when the stamp hits
+    tl.add("stamp_impact", "stamp_start+=0.4");
+
+    // 2. Everything triggers simultaneously at impact
+    tl.to(mrpRef.current, {
       opacity: 1,
-      scale: 1.2,
-      rotation: -15,
-      duration: 0.5,
-      ease: "bounce.out" // makes it feel heavy
-    })
-    // Fade stamp OUT as the price starts scrubbing
-    .to(stampRef.current, {
-      opacity: 0.05,
-      scale: 1,
-      duration: 1.0,
-      ease: "power2.out"
-    }, "+=0.3")
-    // 2. Price scrubs down at the SAME time the stamp fades
+      x: 0,
+      duration: 0.3,
+      ease: "back.out(2)"
+    }, "stamp_impact")
+    .to(lineRef.current, {
+      scaleX: 1,
+      duration: 0.2,
+      ease: "power2.inOut"
+    }, "stamp_impact")
     .to(counterObj, {
       val: totalPrice,
-      duration: 1.5, // Slower countdown
+      duration: 1.5,
       ease: "power2.out",
       onUpdate: () => {
         if (priceRef.current) {
@@ -58,27 +67,20 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
           priceRef.current.style.color = `rgb(${r}, ${g}, ${b})`;
         }
       }
-    }, "<") // "<" means it starts exactly when the previous animation (stamp fade) starts
-    // 3. MRP strikes out
-    .to(mrpRef.current, {
-      opacity: 1,
-      x: 0,
-      duration: 0.4,
-      ease: "back.out(1.5)"
-    }, "-=1.0")
-    .to(lineRef.current, {
-      scaleX: 1,
-      duration: 0.3,
-      ease: "power2.inOut"
-    }, "-=0.6")
-    // 4. Badge pops in
+    }, "stamp_impact")
+    .to(stampRef.current, {
+      opacity: 0.08,
+      scale: 0.95,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "stamp_impact+=0.1")
     .to(badgeRef.current, {
       opacity: 1,
       scale: 1,
       y: 0,
       duration: 0.6,
       ease: "elastic.out(1, 0.5)"
-    }, "-=0.4");
+    }, "stamp_impact+=0.8");
 
     return () => tl.kill();
   }, [mrp, price, quantity, index]);
@@ -89,8 +91,8 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         {/* The Stamp */}
         <div 
           ref={stampRef} 
-          className="absolute top-[15px] right-[-30px] pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-base flex items-center justify-center text-center leading-tight rounded-full aspect-square w-[75px] h-[75px]"
-          style={{ textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 15px rgba(22,199,132,0.4) inset, 0 0 15px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
+          className="absolute top-[0px] right-[-45px] pointer-events-none z-20 border-[5px] border-[#16C784] text-[#16C784] font-black uppercase text-2xl flex items-center justify-center text-center leading-none rounded-full aspect-square w-[100px] h-[100px]"
+          style={{ textShadow: "0 0 15px rgba(22,199,132,0.6)", boxShadow: "0 0 20px rgba(22,199,132,0.4) inset, 0 0 20px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
         >
           {percent}%<br/>OFF
         </div>
@@ -122,8 +124,8 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       {/* The Stamp */}
       <div 
         ref={stampRef} 
-        className="absolute top-[-20px] right-[-100px] pointer-events-none z-20 border-[3px] border-[#16C784] text-[#16C784] font-black uppercase text-sm flex items-center justify-center text-center leading-tight rounded-full aspect-square w-[65px] h-[65px]"
-        style={{ textShadow: "0 0 8px rgba(22,199,132,0.6)", boxShadow: "0 0 10px rgba(22,199,132,0.4) inset, 0 0 10px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
+        className="absolute top-[-25px] right-[-110px] pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-xl flex items-center justify-center text-center leading-none rounded-full aspect-square w-[80px] h-[80px]"
+        style={{ textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 12px rgba(22,199,132,0.4) inset, 0 0 12px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
       >
         {percent}%<br/>OFF
       </div>
