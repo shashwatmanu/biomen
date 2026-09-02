@@ -159,10 +159,11 @@ const TimelineSection = ({ title }) => {
           80% { opacity: 1; }
           100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
         }
-        @keyframes spark-pop {
-          0% { transform: scale(0); opacity: 0; }
-          20% { transform: scale(1.5); opacity: 0.35; box-shadow: 0 0 4px #FFC01E, 0 0 8px #FFC01E; }
-          100% { transform: scale(0) translateY(10px); opacity: 0; }
+        @keyframes electric-arc {
+          0%, 100% { opacity: 0; }
+          1%, 3%, 5% { opacity: 0.6; filter: drop-shadow(0 0 4px #FFC01E); }
+          2%, 4% { opacity: 0.2; }
+          6% { opacity: 0; }
         }
         @keyframes thruster-flame {
           0%, 100% { opacity: 0.7; transform: translateY(0) scaleY(1); }
@@ -299,22 +300,19 @@ const TimelineSection = ({ title }) => {
                   
                   {isActive && day === 30 && (
                     <div className="absolute inset-0 z-0 pointer-events-none">
-                      {/* Random glowing sparks popping everywhere */}
-                      <div className="absolute top-[15%] left-[20%] w-1.5 h-1.5 bg-yellow-300 rounded-full" style={{ animation: 'spark-pop 1s infinite' }} />
-                      <div className="absolute top-[40%] right-[10%] w-2 h-2 bg-yellow-200 rounded-full" style={{ animation: 'spark-pop 1.5s infinite 0.2s' }} />
-                      <div className="absolute bottom-[25%] left-[15%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.2s infinite 0.5s' }} />
-                      <div className="absolute top-[70%] right-[30%] w-1.5 h-1.5 bg-yellow-100 rounded-full" style={{ animation: 'spark-pop 0.8s infinite 0.7s' }} />
-                      <div className="absolute top-[20%] right-[40%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.4s infinite 0.1s' }} />
-                      <div className="absolute bottom-[40%] left-[45%] w-2 h-2 bg-yellow-300 rounded-full" style={{ animation: 'spark-pop 1.1s infinite 0.8s' }} />
-                      <div className="absolute bottom-[10%] right-[15%] w-1.5 h-1.5 bg-yellow-200 rounded-full" style={{ animation: 'spark-pop 0.9s infinite 0.3s' }} />
-                      <div className="absolute top-[50%] left-[5%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.3s infinite 0.6s' }} />
+                      {/* SVG Static Electricity Arcs */}
+                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <polyline points="0,15 12,22 25,12 38,28 50,18" fill="none" stroke="#FFC01E" strokeWidth="0.3" className="opacity-0" style={{ animation: 'electric-arc 3s infinite' }} />
+                        <polyline points="100,55 88,48 75,58 62,42 50,52" fill="none" stroke="#FFC01E" strokeWidth="0.4" className="opacity-0" style={{ animation: 'electric-arc 2.5s infinite 0.7s' }} />
+                        <polyline points="25,100 32,88 22,75 38,62 25,50" fill="none" stroke="#FFC01E" strokeWidth="0.3" className="opacity-0" style={{ animation: 'electric-arc 4s infinite 1.2s' }} />
+                        <polyline points="80,0 72,12 82,25 68,38 80,50" fill="none" stroke="#FFC01E" strokeWidth="0.4" className="opacity-0" style={{ animation: 'electric-arc 2.1s infinite 0.3s' }} />
+                        <polyline points="40,20 48,32 38,45 52,58 40,70" fill="none" stroke="#FFC01E" strokeWidth="0.5" className="opacity-0" style={{ animation: 'electric-arc 3.5s infinite 1.8s' }} />
+                      </svg>
                     </div>
                   )}
 
                   {isActive && day === 90 && (
                     <div className="absolute inset-x-0 -bottom-8 h-32 z-0 pointer-events-none flex flex-col items-center justify-end overflow-visible">
-                      {/* Main Thrust Glow */}
-                      <div className="w-full h-16 bg-gradient-to-t from-orange-500/80 via-yellow-400/40 to-transparent blur-md translate-y-2 rounded-b-[1.9rem]" style={{ animation: 'thruster-flame 0.1s infinite' }} />
                       {/* Downward Exhaust Trails */}
                       <div className="absolute bottom-4 flex justify-center gap-2 w-full">
                         <div className="w-[3px] h-10 bg-gradient-to-b from-white via-yellow-300 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.5s linear infinite' }} />
