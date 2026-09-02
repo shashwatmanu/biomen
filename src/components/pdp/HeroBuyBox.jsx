@@ -90,6 +90,8 @@ const HeroBuyBox = () => {
     return params.get('subscription') === 'true';
   });
 
+  const [isLoadingPrices, setIsLoadingPrices] = useState(true);
+
   const [selectedBundle, setSelectedBundle] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const system = params.get('system');
@@ -129,6 +131,8 @@ const HeroBuyBox = () => {
         }
       } catch (err) {
         console.error('Error fetching live prices:', err);
+      } finally {
+        setIsLoadingPrices(false);
       }
     };
     fetchPrices();
@@ -439,14 +443,23 @@ const HeroBuyBox = () => {
                             </div>
                             
                             <div className="mt-4 flex items-center justify-between w-full relative z-10">
-                              <div className="flex flex-col">
-                                <div className="flex items-baseline gap-1.5">
-                                  <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                                  <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                                </div>
-                                <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
-                                  SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
-                                </span>
+                              <div className="flex flex-col min-h-[44px]">
+                                {isLoadingPrices ? (
+                                  <div className="animate-pulse space-y-1.5 pt-1">
+                                    <div className="h-3 w-16 bg-white/20 rounded"></div>
+                                    <div className="h-5 w-20 bg-white/30 rounded"></div>
+                                  </div>
+                                ) : (
+                                  <>
+                                    <div className="flex items-baseline gap-1.5">
+                                      <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                                      <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
+                                    </div>
+                                    <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
+                                      SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
+                                    </span>
+                                  </>
+                                )}
                               </div>
                               
                               {isSelected ? (

@@ -6,6 +6,7 @@ import API_URL from '../../utils/api';
 const BundleSelector = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [isSubscription, setIsSubscription] = useState(false);
+  const [isLoadingPrices, setIsLoadingPrices] = useState(true);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -94,6 +95,8 @@ const BundleSelector = () => {
         }
       } catch (err) {
         console.error('Error fetching live prices:', err);
+      } finally {
+        setIsLoadingPrices(false);
       }
     };
     fetchPrices();
@@ -215,23 +218,33 @@ const BundleSelector = () => {
                         </p>
                       </div>
 
-                      <div className="relative z-10">
-                        <div className="flex flex-col items-center justify-center mb-2">
-                          <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
-                            MRP ₹{bundle.mrp.toLocaleString('en-IN')}
+                      <div className="relative z-10 min-h-[70px]">
+                        {isLoadingPrices ? (
+                          <div className="flex flex-col items-center justify-center mb-5 animate-pulse space-y-2 mt-4">
+                            <div className="h-3 w-16 bg-white/20 rounded"></div>
+                            <div className="h-6 w-24 bg-white/30 rounded"></div>
+                            <div className="h-4 w-32 bg-white/20 rounded mt-1"></div>
                           </div>
-                          <div className="flex items-baseline gap-1">
-                            <div className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
-                              ₹{currentPrice.toLocaleString('en-IN')}
+                        ) : (
+                          <>
+                            <div className="flex flex-col items-center justify-center mb-2">
+                              <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
+                                MRP ₹{bundle.mrp.toLocaleString('en-IN')}
+                              </div>
+                              <div className="flex items-baseline gap-1">
+                                <div className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
+                                  ₹{currentPrice.toLocaleString('en-IN')}
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                        
-                        <div className="mb-3">
-                          <div className="text-[#16C784] text-[9px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block">
-                            Save {savingsPercent}% (₹{(bundle.mrp - currentPrice).toLocaleString('en-IN')} Off)
-                          </div>
-                        </div>
+                            
+                            <div className="mb-3">
+                              <div className="text-[#16C784] text-[9px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block">
+                                Save {savingsPercent}% (₹{(bundle.mrp - currentPrice).toLocaleString('en-IN')} Off)
+                              </div>
+                            </div>
+                          </>
+                        )}
                         
                         <button 
                           onClick={(e) => {
