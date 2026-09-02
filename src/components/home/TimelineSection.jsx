@@ -159,19 +159,19 @@ const TimelineSection = ({ title }) => {
           80% { opacity: 1; }
           100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
         }
-        @keyframes spark-flash {
-          0%, 100% { opacity: 0.3; }
-          2%, 8%, 14% { opacity: 1; box-shadow: inset 0 0 15px #FFC01E; border-color: rgba(255,192,30,0.8); }
-          5%, 11% { opacity: 0.5; box-shadow: inset 0 0 5px #FFC01E; }
-        }
-        @keyframes spark-zap {
-          0%, 100% { opacity: 0; transform: scale(0); }
-          5% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px #FFC01E; }
-          10% { opacity: 0; transform: scale(0); }
+        @keyframes spark-pop {
+          0% { transform: scale(0); opacity: 0; }
+          20% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 8px #FFC01E, 0 0 15px #FFC01E; }
+          100% { transform: scale(0) translateY(10px); opacity: 0; }
         }
         @keyframes thruster-flame {
           0%, 100% { opacity: 0.7; transform: translateY(0) scaleY(1); }
           50% { opacity: 1; transform: translateY(5px) scaleY(1.3); filter: brightness(1.2); }
+        }
+        @keyframes thrust-trail {
+          0% { transform: translateY(-10px) scaleY(0.5); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(40px) scaleY(1.5); opacity: 0; }
         }
       `}</style>
 
@@ -299,22 +299,32 @@ const TimelineSection = ({ title }) => {
                   
                   {isActive && day === 30 && (
                     <div className="absolute inset-0 z-0 pointer-events-none">
-                      {/* Electric border flashing */}
-                      <div className="absolute inset-0 border-[1.5px] border-yellow-400/20 rounded-[1.9rem]" style={{ animation: 'spark-flash 2.5s infinite' }} />
-                      {/* Random sparks across the card */}
-                      <div className="absolute top-[20%] left-[10%] w-[1px] h-[15px] bg-yellow-200 rotate-45 blur-[0.5px]" style={{ animation: 'spark-zap 1s infinite' }} />
-                      <div className="absolute top-[60%] right-[15%] w-[1.5px] h-[12px] bg-yellow-300 -rotate-12 blur-[0.5px]" style={{ animation: 'spark-zap 1.5s infinite 0.5s' }} />
-                      <div className="absolute bottom-[25%] left-[40%] w-[1px] h-[20px] bg-yellow-100 rotate-90 blur-[0.5px]" style={{ animation: 'spark-zap 1.2s infinite 0.2s' }} />
-                      <div className="absolute top-[40%] right-[40%] w-[2px] h-[8px] bg-yellow-400 rotate-[60deg] blur-[0.5px]" style={{ animation: 'spark-zap 2s infinite 1s' }} />
+                      {/* Random glowing sparks popping everywhere */}
+                      <div className="absolute top-[15%] left-[20%] w-1.5 h-1.5 bg-yellow-300 rounded-full" style={{ animation: 'spark-pop 1s infinite' }} />
+                      <div className="absolute top-[40%] right-[10%] w-2 h-2 bg-yellow-200 rounded-full" style={{ animation: 'spark-pop 1.5s infinite 0.2s' }} />
+                      <div className="absolute bottom-[25%] left-[15%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.2s infinite 0.5s' }} />
+                      <div className="absolute top-[70%] right-[30%] w-1.5 h-1.5 bg-yellow-100 rounded-full" style={{ animation: 'spark-pop 0.8s infinite 0.7s' }} />
+                      <div className="absolute top-[20%] right-[40%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.4s infinite 0.1s' }} />
+                      <div className="absolute bottom-[40%] left-[45%] w-2 h-2 bg-yellow-300 rounded-full" style={{ animation: 'spark-pop 1.1s infinite 0.8s' }} />
+                      <div className="absolute bottom-[10%] right-[15%] w-1.5 h-1.5 bg-yellow-200 rounded-full" style={{ animation: 'spark-pop 0.9s infinite 0.3s' }} />
+                      <div className="absolute top-[50%] left-[5%] w-1 h-1 bg-yellow-400 rounded-full" style={{ animation: 'spark-pop 1.3s infinite 0.6s' }} />
                     </div>
                   )}
 
                   {isActive && day === 90 && (
-                    <div className="absolute inset-x-0 bottom-0 h-32 z-0 pointer-events-none flex flex-col justify-end overflow-visible">
-                      {/* Fire thrusting from below, fading up into the card */}
+                    <div className="absolute inset-x-0 -bottom-8 h-32 z-0 pointer-events-none flex flex-col items-center justify-end overflow-visible">
+                      {/* Main Thrust Glow */}
                       <div className="w-full h-16 bg-gradient-to-t from-orange-500/80 via-yellow-400/40 to-transparent blur-md translate-y-2 rounded-b-[1.9rem]" style={{ animation: 'thruster-flame 0.1s infinite' }} />
+                      {/* Downward Exhaust Trails */}
+                      <div className="absolute bottom-4 flex justify-center gap-2 w-full">
+                        <div className="w-[3px] h-10 bg-gradient-to-b from-white via-yellow-300 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.5s linear infinite' }} />
+                        <div className="w-[4px] h-12 bg-gradient-to-b from-white via-orange-400 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.4s linear infinite 0.2s' }} />
+                        <div className="w-[2px] h-8 bg-gradient-to-b from-white via-yellow-400 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.6s linear infinite 0.1s' }} />
+                        <div className="w-[3px] h-10 bg-gradient-to-b from-white via-orange-300 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.45s linear infinite 0.3s' }} />
+                        <div className="w-[4px] h-14 bg-gradient-to-b from-white via-yellow-200 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.55s linear infinite 0.15s' }} />
+                      </div>
                       {/* Core intense flame at the very bottom edge */}
-                      <div className="absolute bottom-0 inset-x-8 h-4 bg-white/60 blur-[4px]" style={{ animation: 'thruster-flame 0.1s infinite reverse' }} />
+                      <div className="absolute bottom-10 inset-x-8 h-4 bg-white/60 blur-[4px] rounded-full" style={{ animation: 'thruster-flame 0.1s infinite reverse' }} />
                     </div>
                   )}
                   {/* ------------------------------------------- */}
