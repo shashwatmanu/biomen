@@ -377,7 +377,7 @@ const HeroBuyBox = () => {
               <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm' : 'md:grid-cols-3'} gap-4`}>
                 {bundles
                   .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
-                  .map((bundle) => {
+                  .map((bundle, index) => {
                     const isSelected = selectedBundle.id === bundle.id;
                     const displayPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
                     const discountPercent = Math.round(((bundle.mrp - displayPrice) / bundle.mrp) * 100);
@@ -457,6 +457,7 @@ const HeroBuyBox = () => {
                                     price={displayPrice} 
                                     quantity={isSelected ? quantity : 1}
                                     layout="left"
+                                    index={index}
                                   />
                                 )}
                               </div>

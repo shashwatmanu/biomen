@@ -156,13 +156,13 @@ const BundleSelector = () => {
         <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm mx-auto' : 'md:grid-cols-3'} gap-6 lg:gap-4 items-stretch mb-4 lg:mb-2.5`}>
           {bundles
             .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
-            .map((bundle, i) => {
+            .map((bundle, index) => {
               const isSelected = selectedId === bundle.id;
               const currentPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
               const savingsPercent = Math.round(((bundle.mrp - currentPrice) / bundle.mrp) * 100);
 
               return (
-                <div key={i} className="relative h-full flex flex-col">
+                <div key={index} className="relative h-full flex flex-col">
                   {bundle.best && (
                     <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#16C784] text-[#030705] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
                       <Star size={10} fill="currentColor" /> Recommended Protocol
@@ -233,6 +233,7 @@ const BundleSelector = () => {
                             price={currentPrice} 
                             quantity={1}
                             layout="center"
+                            index={index}
                           />
                         )}
                         
