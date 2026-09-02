@@ -46,17 +46,6 @@ const BundleSelector = () => {
       desc: "For first-time customers beginning their T-CORE routine."
     },
     { 
-      id: 'tcore-3-bottles',
-      name: "3 Bottles | 90 Days", 
-      title: "Full Reset System",
-      supply: "90 Day Supply", 
-      mrp: 9000,
-      price: 3999,
-      subPrice: 3399,
-      best: false,
-      desc: "Recommended for men who want to properly evaluate long-term energy, recovery, and vitality support."
-    },
-    { 
       id: 'tcore-2-bottles',
       name: "2 Bottles | 60 Days", 
       title: "Consistency System",
@@ -66,6 +55,17 @@ const BundleSelector = () => {
       subPrice: 2379,
       best: false,
       desc: "Built for men developing a real performance routine."
+    },
+    { 
+      id: 'tcore-3-bottles',
+      name: "3 Bottles | 90 Days", 
+      title: "Full Reset System",
+      supply: "90 Day Supply", 
+      mrp: 9000,
+      price: 3999,
+      subPrice: 3399,
+      best: false,
+      desc: "Recommended for men who want to properly evaluate long-term energy, recovery, and vitality support."
     }
   ]);
 

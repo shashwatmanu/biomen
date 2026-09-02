@@ -16,29 +16,30 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
   useEffect(() => {
     if (!mrp || !price) return;
 
-    const tl = gsap.timeline({ delay: index * 1.0 });
+    // Increase delay between cards and give a longer initial pause (1.5s per index offset + 0.8s base)
+    const tl = gsap.timeline({ delay: 0.8 + index * 1.5 });
     
     // Set initial states for entrance animation
     gsap.set(mrpRef.current, { opacity: 0, x: -10 });
     gsap.set(lineRef.current, { scaleX: 0, transformOrigin: "left center" });
     gsap.set(badgeRef.current, { opacity: 0, scale: 0.8, y: 10 });
-    gsap.set(stampRef.current, { opacity: 0, scale: 3, rotation: -20 });
+    gsap.set(stampRef.current, { opacity: 0, scale: 4, rotation: -30 });
 
     const counterObj = { val: totalMrp }; // Start counter at MRP
 
-    // 1. Stamp slams down
+    // 1. Stamp slams down - harder and bigger
     tl.to(stampRef.current, {
-      opacity: 0.9,
-      scale: 1,
-      rotation: -10,
-      duration: 0.4,
-      ease: "expo.in"
+      opacity: 1,
+      scale: 1.1,
+      rotation: -15,
+      duration: 0.5,
+      ease: "bounce.out" // makes it feel heavy
     })
-    // 2. Slight hold, then price scrubs down
+    // 2. Slight hold, then price scrubs down (slower)
     .to(counterObj, {
       val: totalPrice,
-      duration: 1.2,
-      ease: "power3.out",
+      duration: 1.8, // Slower countdown
+      ease: "power2.out",
       onUpdate: () => {
         if (priceRef.current) {
           priceRef.current.innerHTML = `₹${Math.round(counterObj.val).toLocaleString('en-IN')}`;
@@ -50,19 +51,19 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
           priceRef.current.style.color = `rgb(${r}, ${g}, ${b})`;
         }
       }
-    }, "+=0.1")
+    }, "+=0.3")
     // 3. MRP strikes out
     .to(mrpRef.current, {
       opacity: 1,
       x: 0,
       duration: 0.4,
       ease: "back.out(1.5)"
-    }, "-=1.0")
+    }, "-=1.2")
     .to(lineRef.current, {
       scaleX: 1,
       duration: 0.3,
       ease: "power2.inOut"
-    }, "-=0.7")
+    }, "-=0.8")
     // 4. Badge pops in, stamp fades slightly to become a background element
     .to(badgeRef.current, {
       opacity: 1,
@@ -72,8 +73,8 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       ease: "elastic.out(1, 0.5)"
     }, "-=0.6")
     .to(stampRef.current, {
-      opacity: 0.1, // fade it out so it doesn't obstruct text
-      scale: 0.9,
+      opacity: 0.08, // fade it out so it doesn't obstruct text
+      scale: 0.95,
       duration: 0.5
     }, "-=0.6");
 
@@ -86,8 +87,8 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         {/* The Stamp */}
         <div 
           ref={stampRef} 
-          className="absolute top-[-20px] right-[-20px] pointer-events-none z-20 border-4 border-[#16C784] text-[#16C784] font-black uppercase text-xl px-2 py-1 rounded-lg"
-          style={{ textShadow: "0 0 10px rgba(22,199,132,0.5)", boxShadow: "0 0 15px rgba(22,199,132,0.3) inset, 0 0 15px rgba(22,199,132,0.3)" }}
+          className="absolute top-[-30px] right-[-30px] pointer-events-none z-20 border-[5px] border-[#16C784] text-[#16C784] font-black uppercase text-3xl px-3 py-1.5 rounded-xl"
+          style={{ textShadow: "0 0 15px rgba(22,199,132,0.6)", boxShadow: "0 0 20px rgba(22,199,132,0.4) inset, 0 0 20px rgba(22,199,132,0.4)" }}
         >
           {percent}% OFF
         </div>
@@ -119,8 +120,8 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       {/* The Stamp */}
       <div 
         ref={stampRef} 
-        className="absolute top-[-10px] right-[0px] pointer-events-none z-20 border-[3px] border-[#16C784] text-[#16C784] font-black uppercase text-sm px-1.5 py-0.5 rounded-md"
-        style={{ textShadow: "0 0 10px rgba(22,199,132,0.5)", boxShadow: "0 0 10px rgba(22,199,132,0.3) inset, 0 0 10px rgba(22,199,132,0.3)" }}
+        className="absolute top-[-25px] right-[-10px] pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-2xl px-2 py-1 rounded-lg"
+        style={{ textShadow: "0 0 12px rgba(22,199,132,0.6)", boxShadow: "0 0 15px rgba(22,199,132,0.4) inset, 0 0 15px rgba(22,199,132,0.4)" }}
       >
         {percent}% OFF
       </div>

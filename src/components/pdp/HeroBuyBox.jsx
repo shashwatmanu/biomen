@@ -56,14 +56,14 @@ const HeroBuyBox = () => {
 
   const [bundles, setBundles] = useState([
     { 
-      id: 'tcore-3-bottles',
-      name: "3 Bottles | 90 Days", 
-      title: "Full Reset System",
-      mrp: 9000,
-      price: 3999,
-      subPrice: 3399,
-      best: false,
-      desc: "Evaluate full recovery, stamina & drive baseline"
+      id: 'tcore-1-bottle',
+      name: "1 Bottle | 30 Days", 
+      title: "Entry System",
+      mrp: 3000,
+      price: 1499,
+      subPrice: 1274,
+      best: true,
+      desc: "For first-time customers starting their routine"
     },
     { 
       id: 'tcore-2-bottles',
@@ -76,14 +76,14 @@ const HeroBuyBox = () => {
       desc: "Build serious masculine performance baseline"
     },
     { 
-      id: 'tcore-1-bottle',
-      name: "1 Bottle | 30 Days", 
-      title: "Entry System",
-      mrp: 3000,
-      price: 1499,
-      subPrice: 1274,
-      best: true,
-      desc: "For first-time customers starting their routine"
+      id: 'tcore-3-bottles',
+      name: "3 Bottles | 90 Days", 
+      title: "Full Reset System",
+      mrp: 9000,
+      price: 3999,
+      subPrice: 3399,
+      best: false,
+      desc: "Evaluate full recovery, stamina & drive baseline"
     }
   ]);
 
