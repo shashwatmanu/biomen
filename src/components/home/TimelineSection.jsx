@@ -148,6 +148,39 @@ const TimelineSection = ({ title }) => {
       className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
       id="timeline"
     >
+      <style>{`
+        @keyframes spark-flash {
+          0%, 100% { box-shadow: 0 0 0px transparent, inset 0 0 0px transparent; border: 1px solid transparent; }
+          2%, 6%, 10% { box-shadow: 0 0 20px #FFC01E, inset 0 0 10px #FFC01E; border: 1px solid rgba(255,192,30,0.8); }
+          4%, 8% { box-shadow: 0 0 5px #FFC01E; border: 1px solid rgba(255,192,30,0.3); }
+          12%, 98% { box-shadow: 0 0 0px transparent, inset 0 0 0px transparent; border: 1px solid transparent; }
+        }
+        @keyframes rocket-fly {
+          0% { transform: translateY(40px) scale(0.8); opacity: 0; }
+          15% { transform: translateY(10px) scale(1); opacity: 1; }
+          20%, 30%, 40%, 50%, 60%, 70% { transform: translateY(calc(10px + random(2)*1px - 1px)) translateX(calc(random(2)*1px - 1px)); opacity: 1; }
+          80% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+          100% { transform: translateY(-80px) scale(0.8); opacity: 0; }
+        }
+        @keyframes rocket-idle {
+          0% { transform: translateY(10px); opacity: 0; }
+          15% { transform: translateY(0); opacity: 1; }
+          30% { transform: translateY(-2px); opacity: 1; }
+          45% { transform: translateY(0px); opacity: 1; }
+          60% { transform: translateY(-2px); opacity: 1; }
+          80% { transform: translateY(-30px); opacity: 1; }
+          100% { transform: translateY(-80px); opacity: 0; }
+        }
+        @keyframes thruster {
+          0%, 100% { opacity: 0.8; transform: scaleY(1); }
+          50% { opacity: 0.4; transform: scaleY(1.5) translateY(2px); }
+        }
+        @keyframes fire-flicker {
+          0%, 100% { opacity: 0.5; filter: blur(20px); transform: scaleY(1); }
+          50% { opacity: 0.8; filter: blur(15px); transform: scaleY(1.1); }
+        }
+      `}</style>
+
       {/* Seamless tactical background image with deep sunset warmth overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img 
@@ -254,6 +287,23 @@ const TimelineSection = ({ title }) => {
                     background: `radial-gradient(150px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${card.color}, transparent 85%)`
                   }}
                 />
+
+                {/* --- CUSTOM CARD ANIMATIONS --- */}
+                {isActive && day === 7 && (
+                  <div className="absolute -bottom-6 -inset-x-6 h-40 bg-gradient-to-t from-red-600/60 via-orange-500/30 to-transparent z-0 pointer-events-none rounded-b-[2rem]" style={{ animation: 'fire-flicker 2s ease-in-out infinite' }} />
+                )}
+                
+                {isActive && day === 30 && (
+                  <div className="absolute inset-0 rounded-[2rem] z-20 pointer-events-none" style={{ animation: 'spark-flash 4s infinite' }} />
+                )}
+
+                {isActive && day === 90 && (
+                  <div className="absolute bottom-6 right-6 z-20 pointer-events-none flex flex-col items-center justify-end w-12 h-20" style={{ animation: 'rocket-idle 4s ease-in-out infinite' }}>
+                    <Rocket className="text-white relative z-10" size={28} />
+                    <div className="w-3 h-6 bg-gradient-to-t from-transparent via-orange-500 to-yellow-300 blur-sm rounded-full -mt-2 z-0" style={{ animation: 'thruster 0.2s infinite' }} />
+                  </div>
+                )}
+                {/* ------------------------------ */}
 
                 <div className="relative w-full h-full rounded-[1.9rem] bg-black/90 py-5 px-6 flex flex-col justify-between z-10">
                   <div className="space-y-3">
