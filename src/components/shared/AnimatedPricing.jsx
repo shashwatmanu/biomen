@@ -91,10 +91,11 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         {/* The Stamp */}
         <div 
           ref={stampRef} 
-          className="absolute top-[0px] right-[-45px] pointer-events-none z-20 border-[5px] border-[#16C784] text-[#16C784] font-black uppercase text-2xl flex items-center justify-center text-center leading-none rounded-full aspect-square w-[100px] h-[100px]"
+          className="absolute top-[0px] right-[-45px] pointer-events-none z-20 border-[6px] border-double border-[#16C784] text-[#16C784] font-black uppercase flex flex-col items-center justify-center text-center leading-none rounded-full aspect-square w-[100px] h-[100px]"
           style={{ textShadow: "0 0 15px rgba(22,199,132,0.6)", boxShadow: "0 0 20px rgba(22,199,132,0.4) inset, 0 0 20px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
         >
-          {percent}%<br/>OFF
+          <span className="text-3xl leading-none -mb-1">{percent}%</span>
+          <span className="text-[11px] tracking-widest font-bold">OFF</span>
         </div>
 
         <div className="flex flex-col items-center justify-center mb-2">
@@ -124,10 +125,11 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       {/* The Stamp */}
       <div 
         ref={stampRef} 
-        className="absolute top-[-25px] right-[-110px] pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-xl flex items-center justify-center text-center leading-none rounded-full aspect-square w-[80px] h-[80px]"
+        className="absolute top-[-25px] right-[-110px] pointer-events-none z-20 border-[6px] border-double border-[#16C784] text-[#16C784] font-black uppercase flex flex-col items-center justify-center text-center leading-none rounded-full aspect-square w-[80px] h-[80px]"
         style={{ textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 12px rgba(22,199,132,0.4) inset, 0 0 12px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
       >
-        {percent}%<br/>OFF
+        <span className="text-2xl leading-none -mb-1">{percent}%</span>
+        <span className="text-[10px] tracking-widest font-bold">OFF</span>
       </div>
 
       <div className="flex items-baseline gap-1.5">
