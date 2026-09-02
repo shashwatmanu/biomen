@@ -13,10 +13,30 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
   const savings = totalMrp - totalPrice;
   const percent = totalMrp > 0 ? Math.round((savings / totalMrp) * 100) : 0;
 
-  useEffect(() => {
-    if (!mrp || !price) return;
+  const [isVisible, setIsVisible] = React.useState(false);
 
-    const tl = gsap.timeline({ delay: 0.8 + index * 1.5 });
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (stampRef.current) {
+      observer.observe(stampRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!mrp || !price || !isVisible) return;
+
+    const tl = gsap.timeline({ delay: 0.2 + index * 0.4 });
     
     // Set initial states for entrance animation
     gsap.set(mrpRef.current, { opacity: 0, x: -10 });
@@ -83,7 +103,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
     }, "stamp_impact+=0.8");
 
     return () => tl.kill();
-  }, [mrp, price, quantity, index]);
+  }, [mrp, price, quantity, index, isVisible]);
 
   if (layout === 'center') {
     return (
