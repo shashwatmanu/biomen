@@ -161,7 +161,7 @@ const TimelineSection = ({ title }) => {
         }
         @keyframes spark-pop {
           0% { transform: scale(0); opacity: 0; }
-          20% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 8px #FFC01E, 0 0 15px #FFC01E; }
+          20% { transform: scale(1.5); opacity: 0.35; box-shadow: 0 0 4px #FFC01E, 0 0 8px #FFC01E; }
           100% { transform: scale(0) translateY(10px); opacity: 0; }
         }
         @keyframes thruster-flame {
@@ -323,8 +323,6 @@ const TimelineSection = ({ title }) => {
                         <div className="w-[3px] h-10 bg-gradient-to-b from-white via-orange-300 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.45s linear infinite 0.3s' }} />
                         <div className="w-[4px] h-14 bg-gradient-to-b from-white via-yellow-200 to-transparent blur-[1px] rounded-full" style={{ animation: 'thrust-trail 0.55s linear infinite 0.15s' }} />
                       </div>
-                      {/* Core intense flame at the very bottom edge */}
-                      <div className="absolute bottom-10 inset-x-8 h-4 bg-white/60 blur-[4px] rounded-full" style={{ animation: 'thruster-flame 0.1s infinite reverse' }} />
                     </div>
                   )}
                   {/* ------------------------------------------- */}
