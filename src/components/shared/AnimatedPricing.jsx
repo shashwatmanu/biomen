@@ -89,10 +89,10 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         {/* The Stamp */}
         <div 
           ref={stampRef} 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 border-[6px] border-[#16C784] text-[#16C784] font-black uppercase text-4xl px-4 py-2 rounded-xl"
-          style={{ textShadow: "0 0 20px rgba(22,199,132,0.8)", boxShadow: "0 0 30px rgba(22,199,132,0.5) inset, 0 0 30px rgba(22,199,132,0.5)", backdropFilter: "blur(2px)" }}
+          className="absolute top-[15px] right-[-30px] pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-base flex items-center justify-center text-center leading-tight rounded-full aspect-square w-[75px] h-[75px]"
+          style={{ textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 15px rgba(22,199,132,0.4) inset, 0 0 15px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
         >
-          {percent}% OFF
+          {percent}%<br/>OFF
         </div>
 
         <div className="flex flex-col items-center justify-center mb-2">
@@ -122,10 +122,10 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       {/* The Stamp */}
       <div 
         ref={stampRef} 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 border-[4px] border-[#16C784] text-[#16C784] font-black uppercase text-3xl px-3 py-1.5 rounded-lg"
-        style={{ textShadow: "0 0 15px rgba(22,199,132,0.8)", boxShadow: "0 0 20px rgba(22,199,132,0.5) inset, 0 0 20px rgba(22,199,132,0.5)", backdropFilter: "blur(1px)" }}
+        className="absolute top-[-20px] right-[-100px] pointer-events-none z-20 border-[3px] border-[#16C784] text-[#16C784] font-black uppercase text-sm flex items-center justify-center text-center leading-tight rounded-full aspect-square w-[65px] h-[65px]"
+        style={{ textShadow: "0 0 8px rgba(22,199,132,0.6)", boxShadow: "0 0 10px rgba(22,199,132,0.4) inset, 0 0 10px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
       >
-        {percent}% OFF
+        {percent}%<br/>OFF
       </div>
 
       <div className="flex items-baseline gap-1.5">
