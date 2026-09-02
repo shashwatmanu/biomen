@@ -62,7 +62,7 @@ const HeroBuyBox = () => {
       mrp: 3000,
       price: 1499,
       subPrice: 1274,
-      best: true,
+      best: false,
       desc: "For first-time customers starting their routine"
     },
     { 
@@ -82,7 +82,7 @@ const HeroBuyBox = () => {
       mrp: 9000,
       price: 3999,
       subPrice: 3399,
-      best: false,
+      best: true,
       desc: "Evaluate full recovery, stamina & drive baseline"
     }
   ]);
@@ -98,7 +98,7 @@ const HeroBuyBox = () => {
     const params = new URLSearchParams(window.location.search);
     const system = params.get('system');
     const matched = bundles.find((b) => b.id === system);
-    return matched || bundles[2]; // default to 1 bottle
+    return matched || bundles[0]; // defaults to 1 Bottle (which is bundles[0])
   });
 
   useEffect(() => {

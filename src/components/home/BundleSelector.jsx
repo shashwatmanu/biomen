@@ -42,7 +42,7 @@ const BundleSelector = () => {
       mrp: 3000,
       price: 1499,
       subPrice: 1274, // 15% extra off
-      best: true,
+      best: false,
       desc: "For first-time customers beginning their T-CORE routine."
     },
     { 
@@ -64,14 +64,13 @@ const BundleSelector = () => {
       mrp: 9000,
       price: 3999,
       subPrice: 3399,
-      best: false,
+      best: true,
       desc: "Recommended for men who want to properly evaluate long-term energy, recovery, and vitality support."
     }
   ]);
 
   const [selectedId, setSelectedId] = useState(() => {
-    const bestBundle = bundles.find(b => b.best);
-    return bestBundle ? bestBundle.id : bundles[0].id;
+    return bundles[0].id; // Default to 1 bottle
   });
 
   useEffect(() => {
