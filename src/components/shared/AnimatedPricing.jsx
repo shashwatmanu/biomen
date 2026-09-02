@@ -111,7 +111,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         </div>
         
         <div className="mb-3 overflow-hidden h-[24px] flex items-center">
-          <div ref={badgeRef} className="text-[#16C784] text-[8.5px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block origin-center whitespace-normal text-center leading-tight">
+          <div ref={badgeRef} className="text-[#16C784] text-[8px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block origin-center whitespace-nowrap">
             Save {percent}% (₹{savings.toLocaleString('en-IN')} Off)
           </div>
         </div>
@@ -142,7 +142,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         </span>
       </div>
       <div className="overflow-hidden h-[20px] mt-0.5 flex items-center">
-        <span ref={badgeRef} className="text-[8.5px] text-[#16C784] font-black uppercase tracking-wider origin-left whitespace-normal leading-tight">
+        <span ref={badgeRef} className="text-[8px] text-[#16C784] font-black uppercase tracking-wider origin-left whitespace-nowrap">
           SAVE ₹{savings.toLocaleString('en-IN')} (-{percent}% OFF)
         </span>
       </div>
