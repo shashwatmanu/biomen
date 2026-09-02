@@ -1,3 +1,5 @@
+import AnimatedPricing from "../shared/AnimatedPricing";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift, Minus, Plus } from 'lucide-react';
@@ -450,15 +452,12 @@ const HeroBuyBox = () => {
                                     <div className="h-5 w-20 bg-white/30 rounded"></div>
                                   </div>
                                 ) : (
-                                  <>
-                                    <div className="flex items-baseline gap-1.5">
-                                      <span className="text-xs text-gray-400 line-through">₹{(bundle.mrp * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                                      <span className="text-lg font-black text-white">₹{(displayPrice * (isSelected ? quantity : 1)).toLocaleString('en-IN')}</span>
-                                    </div>
-                                    <span className="text-[9px] text-[#16C784] font-black uppercase tracking-wider mt-0.5">
-                                      SAVE ₹{(((bundle.mrp - displayPrice) * (isSelected ? quantity : 1))).toLocaleString('en-IN')} (-{discountPercent}% OFF)
-                                    </span>
-                                  </>
+                                  <AnimatedPricing 
+                                    mrp={bundle.mrp} 
+                                    price={displayPrice} 
+                                    quantity={isSelected ? quantity : 1}
+                                    layout="left"
+                                  />
                                 )}
                               </div>
                               

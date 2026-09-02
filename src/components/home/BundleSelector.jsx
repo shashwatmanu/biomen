@@ -1,3 +1,5 @@
+import AnimatedPricing from "../shared/AnimatedPricing";
+
 import React, { useState, useEffect } from 'react';
 import useCartStore from '../../store/useCartStore';
 import { Star, ShieldCheck, Check } from 'lucide-react';
@@ -226,24 +228,12 @@ const BundleSelector = () => {
                             <div className="h-4 w-32 bg-white/20 rounded mt-1"></div>
                           </div>
                         ) : (
-                          <>
-                            <div className="flex flex-col items-center justify-center mb-2">
-                              <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider line-through mb-0.5">
-                                MRP ₹{bundle.mrp.toLocaleString('en-IN')}
-                              </div>
-                              <div className="flex items-baseline gap-1">
-                                <div className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
-                                  ₹{currentPrice.toLocaleString('en-IN')}
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div className="mb-3">
-                              <div className="text-[#16C784] text-[9px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block">
-                                Save {savingsPercent}% (₹{(bundle.mrp - currentPrice).toLocaleString('en-IN')} Off)
-                              </div>
-                            </div>
-                          </>
+                          <AnimatedPricing 
+                            mrp={bundle.mrp} 
+                            price={currentPrice} 
+                            quantity={1}
+                            layout="center"
+                          />
                         )}
                         
                         <button 
