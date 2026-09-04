@@ -1,54 +1,135 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { createCart, addToCart, updateCartLine, removeCartLine, getCart } from '../utils/shopifyClient.js';
+
+const mapShopifyLinesToItems = (lines) => {
+  if (!lines || !lines.edges) return [];
+  return lines.edges.map(({ node }) => {
+    // If merchandise.title is Default Title, we can just use the product title.
+    const title = node.merchandise.title === 'Default Title' 
+      ? (node.merchandise.product?.title || '') 
+      : `${node.merchandise.product?.title ? node.merchandise.product.title + ' - ' : ''}${node.merchandise.title}`;
+      
+    return {
+      id: node.id, // This is the Shopify Line Item ID
+      variantId: node.merchandise.id,
+      title: title,
+      price: parseFloat(node.merchandise.price.amount),
+      quantity: node.quantity,
+      image: '/Product/1.webp', // We fallback to default image for now
+      isSubscription: false
+    };
+  });
+};
 
 const useCartStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: [],
+      cartId: null,
+      checkoutUrl: null,
       isCartOpen: false,
+      isLoading: false,
 
-      addToCart: (product) =>
-        set((state) => {
-          const existingItemIndex = state.items.findIndex(
-            (item) => item.id === product.id && item.isSubscription === product.isSubscription
-          );
+      setCartData: (cart) => {
+        if (!cart) return;
+        set({
+          cartId: cart.id,
+          checkoutUrl: cart.checkoutUrl,
+          items: mapShopifyLinesToItems(cart.lines),
+        });
+      },
 
-          if (existingItemIndex !== -1) {
-            const updatedItems = [...state.items];
-            updatedItems[existingItemIndex].quantity += product.quantity || 1;
-            return { items: updatedItems, isCartOpen: true };
+      initCart: async () => {
+        const { cartId, setCartData } = get();
+        if (cartId) {
+          try {
+            const cart = await getCart(cartId);
+            if (cart) {
+              setCartData(cart);
+            } else {
+              set({ cartId: null, items: [], checkoutUrl: null });
+            }
+          } catch (e) {
+            console.error('Failed to init cart:', e);
           }
+        }
+      },
 
-          return {
-            items: [...state.items, { ...product, quantity: product.quantity || 1 }],
-            isCartOpen: true,
-          };
-        }),
+      addToCart: async (product) => {
+        set({ isLoading: true });
+        const { cartId, setCartData, items } = get();
+        
+        // Find if this variant is already in cart
+        const existingItem = items.find(item => item.variantId === product.id);
 
-      removeFromCart: (id, isSubscription) =>
-        set((state) => ({
-          items: state.items.filter(
-            (item) => !(item.id === id && item.isSubscription === isSubscription)
-          ),
-        })),
+        try {
+          if (!cartId) {
+            const cart = await createCart(product.id, product.quantity || 1);
+            setCartData(cart);
+          } else {
+            if (existingItem) {
+              // Update line by passing the cart line id
+              const cart = await updateCartLine(cartId, existingItem.id, existingItem.quantity + (product.quantity || 1));
+              setCartData(cart);
+            } else {
+              // Add line
+              const cart = await addToCart(cartId, product.id, product.quantity || 1);
+              setCartData(cart);
+            }
+          }
+          set({ isCartOpen: true });
+        } catch (e) {
+          console.error('Failed to add to cart:', e);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
 
-      updateQuantity: (id, isSubscription, newQuantity) =>
-        set((state) => ({
-          items: state.items.map((item) =>
-            item.id === id && item.isSubscription === isSubscription
-              ? { ...item, quantity: newQuantity }
-              : item
-          ),
-        })),
+      removeFromCart: async (id) => {
+        set({ isLoading: true });
+        const { cartId, setCartData } = get();
+        try {
+          if (cartId) {
+            const cart = await removeCartLine(cartId, [id]);
+            setCartData(cart);
+          }
+        } catch (e) {
+          console.error('Failed to remove from cart:', e);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
+      updateQuantity: async (id, isSubscription, newQuantity) => {
+        set({ isLoading: true });
+        const { cartId, setCartData } = get();
+        try {
+          if (cartId) {
+            if (newQuantity <= 0) {
+              const cart = await removeCartLine(cartId, [id]);
+              setCartData(cart);
+            } else {
+              const cart = await updateCartLine(cartId, id, newQuantity);
+              setCartData(cart);
+            }
+          }
+        } catch (e) {
+          console.error('Failed to update quantity:', e);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
 
       toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
       
       closeCart: () => set({ isCartOpen: false }),
 
-      clearCart: () => set({ items: [] }),
+      clearCart: () => set({ items: [], cartId: null, checkoutUrl: null }),
     }),
     {
-      name: 'biomen-cart-storage',
+      name: 'biomen-shopify-cart',
+      partialize: (state) => ({ cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
     }
   )
 );

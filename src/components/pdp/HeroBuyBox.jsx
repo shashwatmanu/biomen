@@ -88,8 +88,7 @@ const HeroBuyBox = () => {
   ]);
 
   const [isSubscription, setIsSubscription] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('subscription') === 'true';
+    return false; // Subscriptions disabled for now per instructions
   });
 
   const [isLoadingPrices, setIsLoadingPrices] = useState(true);
@@ -102,29 +101,39 @@ const HeroBuyBox = () => {
   });
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('subscription') === 'true') {
-      setIsSubscription(true);
-      const matched = bundles.find(b => b.id === 'tcore-3-bottles');
-      if (matched) setSelectedBundle(matched);
-    }
+    // Disabled subscription query param check
   }, []);
 
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        const res = await fetch(`${API_URL}/products`);
-        if (res.ok) {
-          const liveProducts = await res.json();
+        // Import dynamically to avoid top-level import issues if needed, but top level import is better.
+        // I will add the import at the top of the file.
+        const { getProductByHandle } = await import('../../utils/shopifyClient.js');
+        const shopifyProduct = await getProductByHandle('t-core');
+        
+        if (shopifyProduct && shopifyProduct.variants) {
+          const variants = shopifyProduct.variants.edges;
+          
           setBundles(prevBundles => 
             prevBundles.map(bundle => {
-              const liveData = liveProducts.find(p => p.id === bundle.id);
+              let variantIdToMatch;
+              if (bundle.id === 'tcore-1-bottle') variantIdToMatch = 'gid://shopify/ProductVariant/47444059881647';
+              else if (bundle.id === 'tcore-2-bottles') variantIdToMatch = 'gid://shopify/ProductVariant/47444059914415';
+              else if (bundle.id === 'tcore-3-bottles') variantIdToMatch = 'gid://shopify/ProductVariant/47444059947183';
+              
+              const liveData = variants.find(v => v.node.id === variantIdToMatch);
+              
               if (liveData) {
+                const priceStr = liveData.node.price.amount;
+                const priceNum = parseFloat(priceStr);
                 return {
                   ...bundle,
-                  price: liveData.price,
-                  mrp: liveData.mrp,
-                  subPrice: Math.round(liveData.price * 0.85) // 15% discount for subscription
+                  shopifyVariantId: variantIdToMatch,
+                  price: priceNum,
+                  // Keep MRP from UI since Shopify doesn't have compare-at price in this query result
+                  // subPrice is for subscriptions, disable it for now or just calculate
+                  subPrice: priceNum
                 };
               }
               return bundle;
@@ -132,7 +141,7 @@ const HeroBuyBox = () => {
           );
         }
       } catch (err) {
-        console.error('Error fetching live prices:', err);
+        console.error('Error fetching live prices from Shopify:', err);
       } finally {
         setIsLoadingPrices(false);
       }
@@ -500,11 +509,11 @@ const HeroBuyBox = () => {
             <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
               <button 
                 onClick={() => addToCart({
-                  id: selectedBundle.id,
+                  id: selectedBundle.shopifyVariantId || selectedBundle.id, // Use shopify ID
                   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                  price: (isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price,
+                  price: selectedBundle.price,
                   quantity: quantity,
-                  isSubscription: isSubscription && selectedBundle.id === 'tcore-3-bottles',
+                  isSubscription: false,
                   image: images[0].url
                 })}
                 className="btn-sweep w-full sm:w-auto bg-[#D85A1F] hover:bg-[#b94a17] text-white py-5 px-16 rounded-full font-black text-xl uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.25)] flex items-center justify-center gap-3 hover:scale-[1.02] duration-300 cursor-pointer"
@@ -637,11 +646,11 @@ const HeroBuyBox = () => {
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 ml-2">
           <button
             onClick={() => addToCart({
-              id: selectedBundle.id,
+              id: selectedBundle.shopifyVariantId || selectedBundle.id,
               title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-              price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+              price: selectedBundle.price,
               quantity: quantity,
-              isSubscription: isSubscription,
+              isSubscription: false,
               image: images[0].url
             })}
             className="btn-sweep bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-2.5 px-3 sm:py-3 sm:px-4 md:py-3.5 md:px-6 rounded-full font-black text-[9px] md:text-xs uppercase tracking-wide sm:tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
@@ -652,11 +661,11 @@ const HeroBuyBox = () => {
           <button
             onClick={() => {
               addToCart({
-                id: selectedBundle.id,
+                id: selectedBundle.shopifyVariantId || selectedBundle.id,
                 title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-                price: isSubscription ? selectedBundle.subPrice : selectedBundle.price,
+                price: selectedBundle.price,
                 quantity: quantity,
-                isSubscription: isSubscription,
+                isSubscription: false,
                 image: images[0].url
               });
               navigate('/checkout');

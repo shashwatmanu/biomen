@@ -179,6 +179,18 @@ const Checkout = () => {
       return;
     }
 
+    const { checkoutUrl } = useCartStore.getState();
+    if (checkoutUrl) {
+      setLoading(true);
+      setLoadingState('initiating');
+      window.location.href = checkoutUrl;
+      return;
+    } else {
+      setError('Checkout URL not found. Please try adding items to cart again.');
+      return;
+    }
+
+    /* === LEGACY BACKEND & RAZORPAY CODE BACKUP ===
     if (!window.Razorpay) {
       setError('Payment gateway is still loading. Please wait a moment and try again.');
       return;
@@ -294,6 +306,7 @@ const Checkout = () => {
       setLoading(false);
       setLoadingState('');
     }
+    === END LEGACY CODE === */
   };
 
   if (loading && (loadingState === 'initiating' || loadingState === 'verifying')) {
