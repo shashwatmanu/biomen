@@ -24,6 +24,7 @@ import { useRef, useEffect } from 'react';
 import Navbar from './components/home/Navbar';
 import PromoBar from './components/home/PromoBar';
 import CartDrawer from './components/shared/CartDrawer';
+import useCartStore from './store/useCartStore';
 import EntryPopup from './components/shared/EntryPopup';
 import BotanicalParticles from './components/shared/BotanicalParticles';
 
@@ -31,6 +32,12 @@ function App() {
   const container = useRef();
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel' || location.pathname === '/unsubscribe';
+
+  useEffect(() => {
+    if (!isAdminPage) {
+      useCartStore.getState().initCart();
+    }
+  }, [isAdminPage]);
 
   useEffect(() => {
     if (location.hash) {

@@ -5,7 +5,7 @@ import useCartStore from '../../store/useCartStore';
 
 const CartDrawer = () => {
   const navigate = useNavigate();
-  const { items, isCartOpen, toggleCart, updateQuantity, removeFromCart, closeCart } = useCartStore();
+  const { items, checkoutUrl, isCartOpen, toggleCart, updateQuantity, removeFromCart, closeCart } = useCartStore();
 
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -122,7 +122,9 @@ const CartDrawer = () => {
             <button 
               onClick={() => {
                 closeCart();
-                navigate('/checkout');
+                if (checkoutUrl) {
+                  window.location.href = checkoutUrl;
+                }
               }}
               className="btn-sweep w-full py-[20px] px-6 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(216,90,31,0.2)] cursor-pointer"
             >

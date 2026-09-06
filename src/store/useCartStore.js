@@ -129,7 +129,7 @@ const useCartStore = create(
     }),
     {
       name: 'biomen-shopify-cart',
-      partialize: (state) => ({ cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
+      partialize: (state) => ({ cartId: state.cartId, checkoutUrl: state.checkoutUrl, items: state.items }),
     }
   )
 );
