@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import useCartStore from '../../store/useCartStore';
 import { Star, ShieldCheck, Check } from 'lucide-react';
 import API_URL from '../../utils/api';
+import { getProductByHandle } from '../../utils/shopifyClient';
 
 const BundleSelector = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -40,8 +41,8 @@ const BundleSelector = () => {
       title: "Entry System",
       supply: "30 Day Supply", 
       mrp: 3000,
-      price: 1499,
-      subPrice: 1274, // 15% extra off
+      price: 1999,
+      subPrice: Math.round(1999 * 0.85), // 15% extra off
       best: false,
       desc: "For first-time customers beginning their T-CORE routine."
     },
@@ -51,8 +52,8 @@ const BundleSelector = () => {
       title: "Consistency System",
       supply: "60 Day Supply", 
       mrp: 6000,
-      price: 2799,
-      subPrice: 2379,
+      price: 3699,
+      subPrice: Math.round(3699 * 0.85),
       best: false,
       desc: "Built for men developing a real performance routine."
     },
@@ -62,8 +63,8 @@ const BundleSelector = () => {
       title: "Full Reset System",
       supply: "90 Day Supply", 
       mrp: 9000,
-      price: 3999,
-      subPrice: 3399,
+      price: 4999,
+      subPrice: Math.round(4999 * 0.85),
       best: true,
       desc: "Recommended for men who want to properly evaluate long-term energy, recovery, and vitality support."
     }
@@ -74,33 +75,50 @@ const BundleSelector = () => {
   });
 
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchPrices = async () => {
       try {
-        const res = await fetch(`${API_URL}/products`);
-        if (res.ok) {
-          const liveProducts = await res.json();
-          setBundles(prevBundles => 
-            prevBundles.map(bundle => {
-              const liveData = liveProducts.find(p => p.id === bundle.id);
-              if (liveData) {
-                return {
-                  ...bundle,
-                  price: liveData.price,
-                  mrp: liveData.mrp,
-                  subPrice: Math.round(liveData.price * 0.85) // 15% discount for subscription
-                };
-              }
-              return bundle;
-            })
-          );
+        const product = await getProductByHandle('t-core');
+        
+        if (product && product.variants && product.variants.edges) {
+          const variants = product.variants.edges.map(e => e.node);
+          
+          if (isMounted) {
+            setBundles(prevBundles => {
+              return prevBundles.map((bundle, index) => {
+                const variant = variants[index]; // Assuming Shopify variants are in order: 1 bottle, 2 bottles, 3 bottles
+                
+                if (variant) {
+                  const price = parseFloat(variant.price.amount);
+                  const mrp = variant.compareAtPrice ? parseFloat(variant.compareAtPrice.amount) : price;
+                  
+                  return {
+                    ...bundle,
+                    price: price,
+                    mrp: mrp,
+                    subPrice: Math.round(price * 0.85) // 15% discount for subscription
+                  };
+                }
+                return bundle;
+              });
+            });
+          }
         }
       } catch (err) {
-        console.error('Error fetching live prices:', err);
+        console.error('Error fetching live prices from Shopify. Falling back to default prices:', err);
       } finally {
-        setIsLoadingPrices(false);
+        if (isMounted) {
+          setIsLoadingPrices(false);
+        }
       }
     };
+    
     fetchPrices();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handlePurchase = (bundle, isSub) => {

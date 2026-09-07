@@ -20,6 +20,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Refunds = lazy(() => import('./pages/Refunds'));
 const Shipping = lazy(() => import('./pages/Shipping'));
 const Disclaimer = lazy(() => import('./pages/Disclaimer'));
+const Quiz = lazy(() => import('./pages/Quiz'));
 import { useRef, useEffect } from 'react';
 import Navbar from './components/home/Navbar';
 import PromoBar from './components/home/PromoBar';
@@ -31,7 +32,7 @@ import BotanicalParticles from './components/shared/BotanicalParticles';
 function App() {
   const container = useRef();
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel' || location.pathname === '/unsubscribe';
+  const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel' || location.pathname === '/unsubscribe' || location.pathname === '/quiz';
 
   useEffect(() => {
     if (!isAdminPage) {
@@ -187,6 +188,7 @@ function App() {
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/temp-reel" element={<ReelMaker />} />
             <Route path="/unsubscribe" element={<Unsubscribe />} />
+            <Route path="/quiz" element={<Quiz />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/refunds" element={<Refunds />} />
