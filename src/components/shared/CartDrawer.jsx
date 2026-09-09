@@ -123,6 +123,9 @@ const CartDrawer = () => {
               onClick={() => {
                 closeCart();
                 if (checkoutUrl) {
+                  if (typeof window !== 'undefined' && window.fbq) {
+                    window.fbq('track', 'InitiateCheckout');
+                  }
                   window.location.href = checkoutUrl;
                 }
               }}

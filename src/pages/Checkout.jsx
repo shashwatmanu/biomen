@@ -183,6 +183,9 @@ const Checkout = () => {
     if (checkoutUrl) {
       setLoading(true);
       setLoadingState('initiating');
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'InitiateCheckout');
+      }
       window.location.href = checkoutUrl;
       return;
     } else {

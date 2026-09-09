@@ -154,6 +154,11 @@ function App() {
       newLink.href = fullUrl;
       document.head.appendChild(newLink);
     }
+
+    // Track Meta Pixel PageView on route change
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'PageView');
+    }
   }, [location.pathname]);
 
   return (

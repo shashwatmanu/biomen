@@ -79,6 +79,9 @@ const useCartStore = create(
             }
           }
           set({ isCartOpen: true });
+          if (typeof window !== 'undefined' && window.fbq) {
+            window.fbq('track', 'AddToCart');
+          }
         } catch (e) {
           console.error('Failed to add to cart:', e);
         } finally {
