@@ -241,8 +241,8 @@ const HeroBuyBox = () => {
             {/* Left: Product Image Gallery (Takes up 5 cols) */}
             <div className="contents lg:flex lg:flex-col lg:col-span-5 gap-6">
               
-              {/* Product Photos Wrapper (Order 4 on mobile) */}
-              <div className="order-4 lg:order-none w-full flex flex-col gap-6">
+              {/* Product Photos Wrapper (Order 1 on mobile) */}
+              <div className="order-1 lg:order-none w-full flex flex-col gap-6">
               {/* Main Showcase Card with aspect-square and full-bleed image display */}
               <div 
                 className="aspect-square bg-gradient-to-b from-white/5 to-transparent rounded-[3rem] overflow-hidden relative flex flex-col items-center justify-center border border-white/10 shadow-2xl p-0 group bg-[#06110C]/40 select-none w-full max-w-[480px] mx-auto"
@@ -348,8 +348,8 @@ const HeroBuyBox = () => {
           <div className="contents lg:flex lg:flex-col lg:col-span-7 lg:justify-center lg:space-y-6 text-left">
             
 
-            {/* Heading and Text Wrapper (Order 1 on mobile) */}
-            <div className="order-1 lg:order-none w-full flex flex-col space-y-4 lg:space-y-6 pt-4 lg:pt-0">
+            {/* Heading and Text Wrapper (Order 2 on mobile) */}
+            <div className="order-2 lg:order-none w-full flex flex-col space-y-4 lg:space-y-6 pt-4 lg:pt-0">
               <div className="flex items-center gap-3">
               <div className="flex text-[#D85A1F]">
                 {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
@@ -391,8 +391,8 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* Premium Selector Deck (Product Card - Order 2 on mobile) */}
-            <div className="order-2 lg:order-none pt-2 lg:pt-4 lg:border-t lg:border-white/10 space-y-4 w-full">
+            {/* Premium Selector Deck (Product Card - Order 3 on mobile) */}
+            <div className="order-3 lg:order-none pt-2 lg:pt-4 lg:border-t lg:border-white/10 space-y-4 w-full">
               <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#BFA46A]">
                 SELECT YOUR SYSTEM PROTOCOL
               </h3>
@@ -539,8 +539,8 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* CTA & Trust Elements Wrapper (Order 3 on mobile) */}
-            <div className="order-3 lg:order-none w-full flex flex-col space-y-6 pt-2 lg:pt-0">
+            {/* CTA Elements Wrapper (Order 4 on mobile) */}
+            <div className="order-4 lg:order-none w-full flex flex-col space-y-6 pt-2 lg:pt-0">
               {/* Repositioned CTA checkout Button and Stats */}
               <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
               <button 
