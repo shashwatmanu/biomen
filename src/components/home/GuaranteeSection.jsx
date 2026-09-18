@@ -28,18 +28,18 @@ const GuaranteeSection = () => {
               If after completing the 90-day system you do not feel satisfied with your T-CORE routine, contact us. We’ll help make it right.
             </p>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] font-black uppercase tracking-widest text-[#F4F6F2] pt-4">
-              <div className="bg-[#052E22]/30 border border-[#0FA36B]/20 py-3.5 px-2 rounded-xl">
-                Energy Support
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
+                <img src="/guarantee/energy_support_icon.jpg" alt="Energy Support" className="w-full h-full object-cover" />
               </div>
-              <div className="bg-[#052E22]/30 border border-[#0FA36B]/20 py-3.5 px-2 rounded-xl">
-                Recovery Support
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
+                <img src="/guarantee/recovery_support_icon.jpg" alt="Recovery Support" className="w-full h-full object-cover" />
               </div>
-              <div className="bg-[#052E22]/30 border border-[#0FA36B]/20 py-3.5 px-2 rounded-xl">
-                Resilience Support
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
+                <img src="/guarantee/resilience_support_icon.jpg" alt="Resilience Support" className="w-full h-full object-cover" />
               </div>
-              <div className="bg-[#052E22]/30 border border-[#0FA36B]/20 py-3.5 px-2 rounded-xl">
-                Daily Vitality
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
+                <img src="/guarantee/daily_vitality_icon.jpg" alt="Daily Vitality" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

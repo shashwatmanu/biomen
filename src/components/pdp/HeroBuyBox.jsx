@@ -6,6 +6,10 @@ import { Star, ShieldCheck, Truck, RefreshCcw, ArrowRight, Check, Sparkles, Gift
 import useCartStore from '../../store/useCartStore';
 import gsap from 'gsap';
 import API_URL from '../../utils/api';
+import { Canvas } from '@react-three/fiber';
+import { Environment } from '@react-three/drei';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { ScienceProductModel } from '../science/ScienceProductModel';
 
 const HeroBuyBox = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -57,13 +61,13 @@ const HeroBuyBox = () => {
   const [bundles, setBundles] = useState([
     { 
       id: 'tcore-1-bottle',
-      name: "1 Bottle | 30 Days", 
-      title: "Entry System",
+      name: "T-CORE", 
+      title: "",
       mrp: 3000,
       price: 1499,
       subPrice: 1274,
       best: false,
-      desc: "For first-time customers starting their routine"
+      desc: "The 30-Day Supply Starter Kit"
     },
     { 
       id: 'tcore-2-bottles',
@@ -225,17 +229,20 @@ const HeroBuyBox = () => {
     <>
       <section 
         id="buybox"
-        className={`pt-[110px] md:pt-[120px] pb-32 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[100dvh] flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
+        className={`pt-[110px] md:pt-[120px] pb-12 px-6 md:px-20 bg-[#030705] relative overflow-hidden flex items-center ${isStickyVisible ? 'z-[60]' : 'z-10'}`}
       >
         {/* Background glow effects */}
         <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#0FA36B]/5 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             
             {/* Left: Product Image Gallery (Takes up 5 cols) */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
+            <div className="contents lg:flex lg:flex-col lg:col-span-5 gap-6">
+              
+              {/* Product Photos Wrapper (Order 4 on mobile) */}
+              <div className="order-4 lg:order-none w-full flex flex-col gap-6">
               {/* Main Showcase Card with aspect-square and full-bleed image display */}
               <div 
                 className="aspect-square bg-gradient-to-b from-white/5 to-transparent rounded-[3rem] overflow-hidden relative flex flex-col items-center justify-center border border-white/10 shadow-2xl p-0 group bg-[#06110C]/40 select-none w-full max-w-[480px] mx-auto"
@@ -306,8 +313,10 @@ const HeroBuyBox = () => {
             </div>
 
 
-            {/* Compact Nutrition Facts Panel */}
-            <div className="w-full bg-[#06110C]/40 border border-white/5 p-5 rounded-[2rem] font-mono text-[10px] sm:text-xs text-gray-400 space-y-2 mt-2">
+              </div>
+            
+              {/* Compact Nutrition Facts Panel (Hidden on Mobile) */}
+              <div className="hidden lg:block w-full bg-[#06110C]/40 border border-white/5 p-5 rounded-[2rem] font-mono text-[10px] sm:text-xs text-gray-400 space-y-2 mt-2">
               <div className="border-b border-white/10 pb-1.5 flex justify-between font-sans text-xs font-black uppercase tracking-wider text-white">
                 <span>Active Stack (2 Caps Serving)</span>
                 <span className="text-[#16C784]">1,600mg</span>
@@ -332,12 +341,16 @@ const HeroBuyBox = () => {
                 <span>Black Pepper Extract</span>
                 <span className="font-bold text-[#16C784]">10 mg</span>
               </div>
+              </div>
             </div>
-          </div>
 
           {/* Right: Product Purchase buybox details (Takes up 7 cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 text-left">
-            <div className="flex items-center gap-3">
+          <div className="contents lg:flex lg:flex-col lg:col-span-7 lg:justify-center lg:space-y-6 text-left">
+            
+
+            {/* Heading and Text Wrapper (Order 1 on mobile) */}
+            <div className="order-1 lg:order-none w-full flex flex-col space-y-4 lg:space-y-6 pt-4 lg:pt-0">
+              <div className="flex items-center gap-3">
               <div className="flex text-[#D85A1F]">
                 {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
               </div>
@@ -346,17 +359,18 @@ const HeroBuyBox = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
-              T-CORE Premium Masculine <br/>
+            <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase leading-none">
+              Premium Masculine <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">Vitality Support</span>
             </h1>
             
             <p className="text-base text-[#A8B3AA] leading-relaxed font-medium">
               T-CORE is a premium clinical-grade herbal stack built to support daily vitality, testosterone baseline rhythm, recovery, and daily performance through consistency. Five purposeful herbal extracts, zero fillers.
-            </p>
+              </p>
+            </div>
 
-            {/* Subscription / One-time Toggle Selector */}
-            <div className="flex justify-start py-2">
+            {/* Subscription / One-time Toggle Selector Hidden */}
+            <div className="hidden">
               <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
                 <button 
                   onClick={() => setIsSubscription(false)}
@@ -377,15 +391,15 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* Premium Selector Deck (options come first) */}
-            <div className="pt-4 border-t border-white/10 space-y-4">
+            {/* Premium Selector Deck (Product Card - Order 2 on mobile) */}
+            <div className="order-2 lg:order-none pt-2 lg:pt-4 lg:border-t lg:border-white/10 space-y-4 w-full">
               <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#BFA46A]">
                 SELECT YOUR SYSTEM PROTOCOL
               </h3>
               
-              <div className={`grid grid-cols-1 ${isSubscription ? 'md:grid-cols-1 max-w-sm' : 'md:grid-cols-3'} gap-4`}>
+              <div className="grid grid-cols-1 max-w-sm gap-4">
                 {bundles
-                  .filter(bundle => !isSubscription || bundle.id === 'tcore-3-bottles')
+                  .filter(bundle => bundle.id === 'tcore-1-bottle')
                   .map((bundle, index) => {
                     const isSelected = selectedBundle.id === bundle.id;
                     const displayPrice = (isSubscription && bundle.id === 'tcore-3-bottles') ? bundle.subPrice : bundle.price;
@@ -428,6 +442,8 @@ const HeroBuyBox = () => {
                               }}
                             />
                           )}
+                          
+
 
                           {/* Inner card content wrapper */}
                           <div className={`w-full h-full rounded-[14px] p-5 flex flex-col justify-between text-left relative z-10 transition-colors duration-500 overflow-hidden flex-1 ${
@@ -440,11 +456,29 @@ const HeroBuyBox = () => {
                                 background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.08), transparent 80%)`
                               }}
                             />
+                            
+                            {/* 3D Model Background Integration - Moved inside inner card */}
+                            <div className="absolute inset-0 z-0 opacity-100 pointer-events-none group-hover/spotlight:opacity-100 transition-opacity duration-700">
+                              <Canvas camera={{ position: [0, 0, 7], fov: 40 }} dpr={[1, 2]} gl={{ antialias: false, alpha: true }}>
+                                <React.Suspense fallback={null}>
+                                  <ambientLight intensity={1.5} />
+                                  <directionalLight position={[10, 10, 10]} intensity={2.0} />
+                                  <directionalLight position={[-10, 10, -10]} intensity={1.0} />
+                                  <Environment preset="city" />
+                                  <ScienceProductModel scale={[1, 1, 1]} position={[2.5, -0.8, 0]} />
+                                  <EffectComposer disableNormalPass>
+                                    <Bloom luminanceThreshold={0.5} mipmapBlur intensity={1.5} />
+                                  </EffectComposer>
+                                </React.Suspense>
+                              </Canvas>
+                            </div>
 
                             <div className="relative z-10">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
-                                {bundle.name}
-                              </div>
+                              {bundle.name && (
+                                <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
+                                  {bundle.name}
+                                </div>
+                              )}
                               <div className="text-base font-black text-white uppercase mt-1">
                                 {bundle.title}
                               </div>
@@ -505,8 +539,10 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* Repositioned CTA checkout Button and Stats */}
-            <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
+            {/* CTA & Trust Elements Wrapper (Order 3 on mobile) */}
+            <div className="order-3 lg:order-none w-full flex flex-col space-y-6 pt-2 lg:pt-0">
+              {/* Repositioned CTA checkout Button and Stats */}
+              <div className="py-2 flex flex-col sm:flex-row items-center gap-4">
               <button 
                 onClick={() => addToCart({
                   id: selectedBundle.shopifyVariantId || selectedBundle.id, // Use shopify ID
@@ -529,8 +565,10 @@ const HeroBuyBox = () => {
               </div>
             </div>
 
-            {/* Clean Editorial Bullet Checkmarks (follow after CTA button) */}
-            <ul className="space-y-3 pt-2 text-sm text-[#F4F6F2] font-semibold">
+            {/* Trust and Gifts Wrapper (Order 5 on mobile) */}
+            <div className="order-5 lg:order-none w-full flex flex-col space-y-6 pt-4 lg:pt-0">
+              {/* Clean Editorial Bullet Checkmarks (follow after CTA button) */}
+              <ul className="space-y-3 text-sm text-[#F4F6F2] font-semibold">
               <li className="flex items-center gap-3">
                 <span className="w-5 h-5 rounded-full bg-[#052E22] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
                   <Check size={12} strokeWidth={3} />
@@ -591,7 +629,9 @@ const HeroBuyBox = () => {
                 </div>
               </div>
             </div>
-
+            
+            </div>
+            </div>
           </div>
         </div>
       </div>

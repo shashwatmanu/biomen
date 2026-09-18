@@ -112,14 +112,14 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         <div 
           ref={stampRef} 
           className="absolute top-[0px] right-[-45px] pointer-events-none z-20 border-[6px] border-double border-[#16C784] text-[#16C784] font-black uppercase flex flex-col items-center justify-center text-center leading-none rounded-full aspect-square w-[100px] h-[100px]"
-          style={{ textShadow: "0 0 15px rgba(22,199,132,0.6)", boxShadow: "0 0 20px rgba(22,199,132,0.4) inset, 0 0 20px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
+          style={{ opacity: 0, textShadow: "0 0 15px rgba(22,199,132,0.6)", boxShadow: "0 0 20px rgba(22,199,132,0.4) inset, 0 0 20px rgba(22,199,132,0.4)", backdropFilter: "blur(2px)" }}
         >
           <span className="text-3xl leading-none -mb-1">{percent}%</span>
           <span className="text-[11px] tracking-widest font-bold">OFF</span>
         </div>
 
         <div className="flex flex-col items-center justify-center mb-2">
-          <div ref={mrpRef} className="relative text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-0.5">
+          <div ref={mrpRef} className="relative text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-0.5" style={{ opacity: 0 }}>
             MRP ₹{totalMrp.toLocaleString('en-IN')}
             <div ref={lineRef} className="absolute top-1/2 left-0 w-full h-[1px] bg-red-500/70" />
           </div>
@@ -131,7 +131,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         </div>
         
         <div className="mb-3 overflow-hidden h-[24px] flex items-center">
-          <div ref={badgeRef} className="text-[#16C784] text-[8px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block origin-center whitespace-nowrap">
+          <div ref={badgeRef} className="text-[#16C784] text-[8px] font-black uppercase tracking-widest bg-[#052E22]/60 px-2 py-0.5 rounded-full border border-[#0FA36B]/20 inline-block origin-center whitespace-nowrap" style={{ opacity: 0 }}>
             Save {percent}% (₹{savings.toLocaleString('en-IN')} Off)
           </div>
         </div>
@@ -146,14 +146,14 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
       <div 
         ref={stampRef} 
         className="absolute top-[-25px] right-[-110px] pointer-events-none z-20 border-[6px] border-double border-[#16C784] text-[#16C784] font-black uppercase flex flex-col items-center justify-center text-center leading-none rounded-full aspect-square w-[80px] h-[80px]"
-        style={{ textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 12px rgba(22,199,132,0.4) inset, 0 0 12px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
+        style={{ opacity: 0, textShadow: "0 0 10px rgba(22,199,132,0.6)", boxShadow: "0 0 12px rgba(22,199,132,0.4) inset, 0 0 12px rgba(22,199,132,0.4)", backdropFilter: "blur(1px)" }}
       >
         <span className="text-2xl leading-none -mb-1">{percent}%</span>
         <span className="text-[10px] tracking-widest font-bold">OFF</span>
       </div>
 
       <div className="flex items-baseline gap-1.5">
-        <div ref={mrpRef} className="relative text-xs text-gray-400">
+        <div ref={mrpRef} className="relative text-xs text-gray-400" style={{ opacity: 0 }}>
           ₹{totalMrp.toLocaleString('en-IN')}
           <div ref={lineRef} className="absolute top-1/2 left-0 w-full h-[1.5px] bg-red-500/70" />
         </div>
@@ -162,7 +162,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
         </span>
       </div>
       <div className="overflow-hidden h-[20px] mt-0.5 flex items-center">
-        <span ref={badgeRef} className="text-[8px] text-[#16C784] font-black uppercase tracking-wider origin-left whitespace-nowrap">
+        <span ref={badgeRef} className="text-[8px] text-[#16C784] font-black uppercase tracking-wider origin-left whitespace-nowrap" style={{ opacity: 0 }}>
           SAVE ₹{savings.toLocaleString('en-IN')} (-{percent}% OFF)
         </span>
       </div>

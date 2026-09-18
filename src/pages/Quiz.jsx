@@ -14,7 +14,7 @@ const Quiz = () => {
   }, []);
 
   return (
-    <div className="bg-[#030705] min-h-screen relative overflow-hidden flex flex-col lg:flex-row">
+    <div className="bg-[#030705] h-[100dvh] relative overflow-hidden flex flex-col lg:flex-row">
       <BotanicalParticles />
       
       {/* Left Panel: Quiz Engine */}
@@ -44,12 +44,16 @@ const Quiz = () => {
       </div>
 
       {/* Right Panel: Branding & Imagery */}
-      <div className="lg:w-1/2 xl:w-5/12 relative min-h-[30vh] lg:min-h-screen flex flex-col justify-end p-8 sm:p-12 z-10 overflow-hidden order-1 lg:order-2">
-        {/* Immersive Background Image without heavy darkening */}
-        <div 
-          className="absolute inset-0 bg-cover bg-[85%_center] bg-no-repeat opacity-90 transition-transform duration-[10s] hover:scale-105"
-          style={{ backgroundImage: 'url(/hero_mossy_ingredients.jpg)' }}
-        ></div>
+      <div className="lg:w-1/2 xl:w-5/12 relative min-h-[30vh] lg:h-full flex flex-col justify-end p-8 sm:p-12 z-10 overflow-hidden order-1 lg:order-2">
+        {/* Rotating Logo Backdrop */}
+        <div className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-[800px] h-[800px] pointer-events-none flex items-center justify-center opacity-30 mix-blend-screen">
+          <img
+            src="/logo/logo_white_symbol.webp"
+            alt="Rotating Logo Backdrop"
+            className="w-full h-full object-contain origin-center animate-[spin_60s_linear_infinite]"
+            style={{ filter: 'drop-shadow(0 0 40px rgba(22, 199, 132, 0.8)) hue-rotate(100deg) brightness(1.2)' }}
+          />
+        </div>
         
         {/* Refined gradient mask for smooth blending into the dark quiz panel (now fading from left instead of right) */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#030705] via-[#030705]/40 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-black/20 lg:to-[#030705]"></div>

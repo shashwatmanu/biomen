@@ -27,22 +27,15 @@ const PDP = () => {
     <div className="bg-black text-white font-manrope">
       {/* PromoBar and Navbar are handled in App.jsx */}
       <HeroBuyBox />
-      <ValueAddStack />
-      <AnchorNav />
-      <TimelineSection />
       <IngredientSection />
-      <TrustBadges />
-      <TransformationGallery />
-      <LongTestimonials />
-      <VideoCarousel />
-      <ComparisonTable />
-      <WeeklyExpectations />
-      <AdvisoryBoard />
       <GuaranteeSection />
-      <FAQSection />
-      <OfferRecap />
+      <TransformationGallery />
+      <VideoCarousel />
+      <LongTestimonials />
+      <ComparisonTable />
       <FullReviewsWidget />
       <EmailCapture />
+      <FAQSection />
       <Footer />
     </div>
   );
