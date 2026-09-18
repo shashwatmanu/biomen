@@ -145,7 +145,7 @@ const EntryPopup = () => {
                 </h2>
                 
                 <div className="inline-block bg-[#D85A1F]/10 border border-[#D85A1F]/30 text-[#D85A1F] px-4 py-1.5 rounded-lg text-sm md:text-base font-black uppercase tracking-wider">
-                  🎉 50% + 10% STACKED OFF
+                  🎉 33% + 10% STACKED OFF
                 </div>
               </div>
 
