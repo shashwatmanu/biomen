@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Gift, ShieldCheck, Mail, ArrowRight, Sparkles } from 'lucide-react';
 import API_URL from '../../utils/api';
 
+import useCartStore from '../../store/useCartStore';
+
 const EntryPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -51,6 +53,7 @@ const EntryPopup = () => {
     e.preventDefault();
     try {
       localStorage.setItem('launch_discount_applied', 'true');
+      useCartStore.getState().applyDiscount('WELCOME500');
       await fetch(`${API_URL}/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

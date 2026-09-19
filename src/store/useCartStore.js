@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { createCart, addToCart, updateCartLine, removeCartLine, getCart } from '../utils/shopifyClient.js';
+import { createCart, addToCart, updateCartLine, removeCartLine, getCart, applyDiscountCode } from '../utils/shopifyClient.js';
 
 const mapShopifyLinesToItems = (lines) => {
   if (!lines || !lines.edges) return [];
@@ -36,6 +36,7 @@ const useCartStore = create(
         set({
           cartId: cart.id,
           checkoutUrl: cart.checkoutUrl,
+          subtotal: cart.cost?.subtotalAmount?.amount ? parseFloat(cart.cost.subtotalAmount.amount) : 0,
           items: mapShopifyLinesToItems(cart.lines),
         });
       },
@@ -56,6 +57,23 @@ const useCartStore = create(
         }
       },
 
+      applyDiscount: async (discountCode) => {
+        const { cartId, setCartData } = get();
+        if (cartId && discountCode) {
+          try {
+            set({ isLoading: true });
+            const cart = await applyDiscountCode(cartId, discountCode);
+            if (cart) {
+              setCartData(cart);
+            }
+          } catch (e) {
+            console.error('Failed to apply discount:', e);
+          } finally {
+            set({ isLoading: false });
+          }
+        }
+      },
+
       addToCart: async (product) => {
         set({ isLoading: true });
         const { cartId, setCartData, items } = get();
@@ -64,9 +82,11 @@ const useCartStore = create(
         const existingItem = items.find(item => item.variantId === product.id);
 
         try {
+          let updatedCartId = cartId;
           if (!cartId) {
             const cart = await createCart(product.id, product.quantity || 1);
             setCartData(cart);
+            updatedCartId = cart.id;
           } else {
             if (existingItem) {
               // Update line by passing the cart line id
@@ -78,6 +98,13 @@ const useCartStore = create(
               setCartData(cart);
             }
           }
+          
+          // Auto-apply discount if they previously opted in
+          if (updatedCartId && localStorage.getItem('launch_discount_applied') === 'true') {
+            const discountedCart = await applyDiscountCode(updatedCartId, 'WELCOME500');
+            if (discountedCart) setCartData(discountedCart);
+          }
+
           set({ isCartOpen: true });
           if (typeof window !== 'undefined' && window.fbq) {
             window.fbq('track', 'AddToCart');

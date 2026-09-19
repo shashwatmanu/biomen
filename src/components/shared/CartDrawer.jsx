@@ -5,9 +5,10 @@ import useCartStore from '../../store/useCartStore';
 
 const CartDrawer = () => {
   const navigate = useNavigate();
-  const { items, checkoutUrl, isCartOpen, toggleCart, updateQuantity, removeFromCart, closeCart } = useCartStore();
+  const { items, subtotal: storeSubtotal, checkoutUrl, isCartOpen, toggleCart, updateQuantity, removeFromCart, closeCart } = useCartStore();
 
-  const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const originalSubtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const actualSubtotal = storeSubtotal || originalSubtotal;
 
   return (
     <>
@@ -103,18 +104,18 @@ const CartDrawer = () => {
             <div className="space-y-2 mb-6">
               <div className="flex items-center justify-between">
                 <span className="text-[#A8B3AA] font-bold uppercase tracking-wider text-xs">Subtotal</span>
-                <span className="text-base font-black text-[#F4F6F2]">₹{subtotal.toLocaleString()}</span>
+                <span className="text-base font-black text-[#F4F6F2]">₹{originalSubtotal.toLocaleString()}</span>
               </div>
-              {localStorage.getItem('launch_discount_applied') === 'true' && (
+              {actualSubtotal < originalSubtotal && (
                 <div className="flex items-center justify-between text-[#16C784]">
-                  <span className="font-bold uppercase tracking-wider text-xs">Launch Discount (FOUNDER10)</span>
-                  <span className="font-black">₹{Math.round(subtotal * 0.10).toLocaleString()} Off</span>
+                  <span className="font-bold uppercase tracking-wider text-xs">Discount Applied</span>
+                  <span className="font-black">- ₹{(originalSubtotal - actualSubtotal).toLocaleString()}</span>
                 </div>
               )}
               <div className="flex items-center justify-between pt-2 border-t border-white/10">
                 <span className="text-[#A8B3AA] font-black uppercase tracking-wider text-sm">Total Due</span>
                 <span className="text-2xl font-black text-[#F4F6F2]">
-                  ₹{Math.max(0, localStorage.getItem('launch_discount_applied') === 'true' ? Math.round(subtotal * 0.90) : subtotal).toLocaleString()}
+                  ₹{actualSubtotal.toLocaleString()}
                 </span>
               </div>
             </div>

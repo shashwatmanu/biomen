@@ -66,6 +66,12 @@ export const getCart = async (cartId) => {
       cart(id: $cartId) {
         id
         checkoutUrl
+        cost {
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
         lines(first: 10) {
           edges {
             node {
@@ -107,6 +113,12 @@ export const createCart = async (variantId, quantity) => {
         cart {
           id
           checkoutUrl
+          cost {
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
           lines(first: 10) {
             edges {
               node {
@@ -160,6 +172,12 @@ export const addToCart = async (cartId, variantId, quantity) => {
         cart {
           id
           checkoutUrl
+          cost {
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
           lines(first: 10) {
             edges {
               node {
@@ -211,6 +229,12 @@ export const updateCartLine = async (cartId, lineId, quantity) => {
         cart {
           id
           checkoutUrl
+          cost {
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
           lines(first: 10) {
             edges {
               node {
@@ -262,6 +286,12 @@ export const removeCartLine = async (cartId, lineIds) => {
         cart {
           id
           checkoutUrl
+          cost {
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
           lines(first: 10) {
             edges {
               node {
@@ -298,4 +328,55 @@ export const removeCartLine = async (cartId, lineIds) => {
   `;
   const data = await shopifyFetch(query, { cartId, lineIds });
   return data?.cartLinesRemove?.cart;
+};
+
+export const applyDiscountCode = async (cartId, discountCode) => {
+  const query = `
+    mutation cartDiscountCodesUpdate($cartId: ID!, $discountCodes: [String!]) {
+      cartDiscountCodesUpdate(cartId: $cartId, discountCodes: $discountCodes) {
+        cart {
+          id
+          checkoutUrl
+          cost {
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
+          lines(first: 10) {
+            edges {
+              node {
+                id
+                quantity
+                merchandise {
+                  ... on ProductVariant {
+                    id
+                    product {
+                      title
+                      handle
+                    }
+                    title
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+  const data = await shopifyFetch(query, { cartId, discountCodes: [discountCode] });
+  return data?.cartDiscountCodesUpdate?.cart;
 };
