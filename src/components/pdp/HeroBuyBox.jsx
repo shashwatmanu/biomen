@@ -131,11 +131,14 @@ const HeroBuyBox = () => {
               if (liveData) {
                 const priceStr = liveData.node.price.amount;
                 const priceNum = parseFloat(priceStr);
+                const compareAtPriceStr = liveData.node.compareAtPrice?.amount;
+                const compareAtPriceNum = compareAtPriceStr ? parseFloat(compareAtPriceStr) : priceNum;
+
                 return {
                   ...bundle,
                   shopifyVariantId: variantIdToMatch,
                   price: priceNum,
-                  // Keep MRP from UI since Shopify doesn't have compare-at price in this query result
+                  mrp: compareAtPriceNum,
                   // subPrice is for subscriptions, disable it for now or just calculate
                   subPrice: priceNum
                 };

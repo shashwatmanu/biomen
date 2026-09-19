@@ -45,6 +45,10 @@ export const getProductByHandle = async (handle) => {
                 amount
                 currencyCode
               }
+              compareAtPrice {
+                amount
+                currencyCode
+              }
               availableForSale
             }
           }
@@ -76,6 +80,10 @@ export const getCart = async (cartId) => {
                   }
                   title
                   price {
+                    amount
+                    currencyCode
+                  }
+                  compareAtPrice {
                     amount
                     currencyCode
                   }
@@ -113,6 +121,10 @@ export const createCart = async (variantId, quantity) => {
                     }
                     title
                     price {
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice {
                       amount
                       currencyCode
                     }
@@ -165,6 +177,10 @@ export const addToCart = async (cartId, variantId, quantity) => {
                       amount
                       currencyCode
                     }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
                   }
                 }
               }
@@ -212,6 +228,10 @@ export const updateCartLine = async (cartId, lineId, quantity) => {
                       amount
                       currencyCode
                     }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
                   }
                 }
               }
@@ -256,6 +276,10 @@ export const removeCartLine = async (cartId, lineIds) => {
                     }
                     title
                     price {
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice {
                       amount
                       currencyCode
                     }
