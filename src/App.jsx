@@ -28,6 +28,7 @@ import CartDrawer from './components/shared/CartDrawer';
 import useCartStore from './store/useCartStore';
 import EntryPopup from './components/shared/EntryPopup';
 import BotanicalParticles from './components/shared/BotanicalParticles';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const container = useRef();
@@ -205,6 +206,7 @@ function App() {
 
       {!isAdminPage && <CartDrawer />}
       {!isAdminPage && <EntryPopup />}
+      <Analytics />
     </div>
   );
 }
