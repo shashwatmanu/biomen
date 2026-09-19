@@ -21,6 +21,9 @@ import Footer from '../components/shared/Footer';
 const PDP = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (window.fbq) {
+      window.fbq('track', 'ViewContent');
+    }
   }, []);
 
   return (
