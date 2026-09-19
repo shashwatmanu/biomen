@@ -121,7 +121,7 @@ const EntryPopup = () => {
               <div className="relative group/code py-1">
                 <div className="absolute -inset-1.5 bg-gradient-to-r from-[#16C784]/30 to-[#D85A1F]/30 rounded-xl blur-lg opacity-75 group-hover/code:opacity-100 transition duration-1000 group-hover/code:duration-200"></div>
                 <div className="relative bg-[#052E22] text-[#16C784] px-6 py-3.5 rounded-xl border border-[#16C784]/40 font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-2xl">
-                  FOUNDER10
+                  WELCOME500
                 </div>
               </div>
 
@@ -148,12 +148,12 @@ const EntryPopup = () => {
                 </h2>
                 
                 <div className="inline-block bg-[#D85A1F]/10 border border-[#D85A1F]/30 text-[#D85A1F] px-4 py-1.5 rounded-lg text-sm md:text-base font-black uppercase tracking-wider">
-                  🎉 33% + 10% STACKED OFF
+                  🎉 33% + ₹500 STACKED OFF
                 </div>
               </div>
 
               <p className="text-xs md:text-sm text-[#A8B3AA] leading-relaxed max-w-sm mx-auto font-medium">
-                Join the launching cohort today and claim an <strong>extra 10% off</strong> T-CORE. Fully transparent formula, zero fillers.
+                Join the launching cohort today and claim an <strong>extra ₹500 off</strong> T-CORE. Fully transparent formula, zero fillers.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-3.5 w-full">
