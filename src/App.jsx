@@ -54,6 +54,11 @@ function App() {
     } else {
       window.scrollTo(0, 0);
     }
+    
+    // Trigger Meta Pixel PageView on route change
+    if (window.fbq) {
+      window.fbq('track', 'PageView');
+    }
   }, [location.pathname, location.hash]);
 
   // Dismiss the inline hero-skeleton once React has mounted
