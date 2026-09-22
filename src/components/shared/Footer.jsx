@@ -30,7 +30,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#030705] text-[#F4F6F2] py-24 px-6 md:px-20 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-[#030705] text-[#F4F6F2] pt-16 md:pt-24 pb-24 px-6 md:px-20 border-t border-white/5 relative overflow-hidden">
       
       {/* Massive warm amber/copper physical spotlight on the left, matching their footer style */}
       <div className="absolute -left-[10%] -bottom-[20%] w-[550px] h-[550px] bg-[#D85A1F]/22 rounded-full blur-[120px] pointer-events-none z-0" />

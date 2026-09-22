@@ -32,9 +32,9 @@ const PDP = () => {
       <HeroBuyBox />
       <IngredientSection />
       <GuaranteeSection />
-      <TransformationGallery />
-      <VideoCarousel />
-      <LongTestimonials />
+      {/* <TransformationGallery /> */}
+      {/* <VideoCarousel /> */}
+      {/* <LongTestimonials /> */}
       <ComparisonTable />
       <FullReviewsWidget />
       <EmailCapture />

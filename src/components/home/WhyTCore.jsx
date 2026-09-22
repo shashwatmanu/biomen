@@ -21,7 +21,7 @@ const WhyTCore = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#030705] border-y border-white/5 relative overflow-hidden" id="why-tcore">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-[#030705] border-y border-white/5 relative overflow-hidden" id="why-tcore">
       {/* Visual background glows */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#052E22]/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-10 right-10 w-96 h-96 bg-[#0FA36B]/10 rounded-full blur-[120px] pointer-events-none" />

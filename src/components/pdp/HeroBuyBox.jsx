@@ -45,16 +45,13 @@ const HeroBuyBox = () => {
 
  const sliderRef = useRef(null);
 
- const images = [
- { id: 'prod-1', url: '/Product/1.webp', label: 'T-CORE Front View' },
- { id: 'prod-2', url: '/Product/2.webp', label: 'T-CORE Side View' },
- { id: 'prod-3', url: '/Product/3.webp', label: 'T-CORE Supplement Facts' },
- { id: 'prod-4', url: '/Product/4.webp', label: 'T-CORE Texture Detail' },
- { id: 'prod-5', url: '/Product/5.webp', label: 'T-CORE Ingredients Close-up' },
- { id: 'prod-6', url: '/Product/6.webp', label: 'T-CORE System Routine' },
- { id: 'prod-7', url: '/Product/7.webp', label: 'T-CORE Lifestyle Shot' },
- { id: 'prod-8', url: '/Product/8.webp', label: 'T-CORE Packaging Box' },
- ];
+  const images = [
+    { id: 'prod-1', url: '/Product/1.jpeg', label: 'T-CORE Front View' },
+    { id: 'prod-2', url: '/Product/2.jpeg', label: 'T-CORE Side View' },
+    { id: 'prod-3', url: '/Product/3.jpeg', label: 'T-CORE Supplement Facts' },
+    { id: 'prod-4', url: '/Product/4.jpeg', label: 'T-CORE Texture Detail' },
+    { id: 'prod-5', url: '/Product/5.jpeg', label: 'T-CORE Ingredients Close-up' },
+  ];
 
  const [bundles, setBundles] = useState([
  { 
@@ -252,7 +249,7 @@ const HeroBuyBox = () => {
   {/* Botanical green front-projected spotlight overlay (lights up the raster jar WebP on hover) */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(22,199,132,0.18)_0%,transparent_65%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-30 mix-blend-screen" />
   {/* Indian Veg Logo (Standard) */}
-  <div className="absolute top-4 left-4 md:top-6 md:left-6 w-5 h-5 border-[1.5px] border-[#0FA36B] flex items-center justify-center bg-white rounded-[2px] z-30 shadow-lg" title="100% Vegetarian">
+  <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-5 h-5 border-[1.5px] border-[#0FA36B] flex items-center justify-center bg-white rounded-[2px] z-30 shadow-lg" title="100% Vegetarian">
    <div className="w-2.5 h-2.5 rounded-full bg-[#0FA36B]"></div>
   </div>
 
@@ -366,14 +363,22 @@ const HeroBuyBox = () => {
   
 
   {/* Stars & Badge */}
-  <div className="pb-1 lg:pb-0 w-full pt-1 lg:pt-0 ">
+  <div className="flex flex-col w-full space-y-1">
+  {/* T-CORE Subtext */}
+  <div className="text-lg md:text-xl font-black tracking-widest flex items-center gap-2 uppercase">
+    <span className="text-[#16C784]">T-CORE</span>
+    <span className="text-gray-500 font-bold text-sm md:text-base">BY</span>
+    <img src="/logo/logo_white_symbol.png" alt="Biomen Labs Logo" className="w-6 h-6 md:w-7 md:h-7 object-contain animate-[spin_6s_linear_infinite]" />
+    <span className="text-white">BIOMEN LABS</span>
+  </div>
+  {/* Stars & Social Proof */}
   <div className="flex items-center gap-3">
   <div className="flex text-[#D85A1F]">
   {[...Array(5)].map((_, i) => <Star key={i} size={16} fill={i < 4 ? "currentColor" : "none"} className={i < 4 ? "" : "text-[#D85A1F]/30"} />)}
   </div>
-  <span className="text-[10px] font-black uppercase tracking-widest text-[#16C784] bg-[#052E22] px-3 py-1 rounded-full border border-[#0FA36B]/20">
+  {/* <span className="text-[10px] font-black uppercase tracking-widest text-[#16C784] bg-[#052E22] px-3 py-1 rounded-full border border-[#0FA36B]/20">
   FOUNDER BATCH RELEASE NOW LIVE
-  </span>
+  </span> */}
   </div>
   </div>
 
@@ -644,7 +649,7 @@ const HeroBuyBox = () => {
   </div>
 
   {/* YOUR FREE GIFTS Strip */}
-  <div className="bg-[#052E22]/30 border border-[#0FA36B]/20 p-6 rounded-3xl space-y-4">
+  <div className="hidden bg-[#052E22]/30 border border-[#0FA36B]/20 p-6 rounded-3xl space-y-4">
   <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#BFA46A] flex items-center gap-2">
   <Gift size={16} /> YOUR FREE GIFTS (INCLUDED TODAY)
   </h3>
@@ -741,7 +746,6 @@ const HeroBuyBox = () => {
   isSubscription: false,
   image: images[0].url
   });
-  navigate('/checkout');
   }}
   className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white py-2.5 px-4 sm:py-3 sm:px-5 md:py-3.5 md:px-8 rounded-full font-black text-[9px] md:text-xs uppercase tracking-wide sm:tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
   >

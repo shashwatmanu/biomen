@@ -36,7 +36,7 @@ const TrustBadges = () => {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-20 bg-biomen-dark border-y border-white/5 relative overflow-hidden" 
+      className="pt-0 pb-24 px-6 md:px-20 bg-biomen-dark border-y border-white/5 relative overflow-hidden" 
       id="trust-architecture"
     >
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-biomen-accent/5 rounded-full blur-[100px] pointer-events-none" />

@@ -3,7 +3,7 @@ import { Activity } from 'lucide-react';
 
 const MechanismSection = () => {
   return (
-    <section className="py-24 px-6 md:px-20 bg-black/20" id="mechanism">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-black/20" id="mechanism">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2">
           <div className="aspect-square rounded-full border-4 border-emerald-500/20 flex items-center justify-center p-8 relative">

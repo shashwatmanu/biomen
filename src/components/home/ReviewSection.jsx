@@ -131,7 +131,7 @@ const ReviewSection = () => {
     : reviews.filter(r => r.category === activeCategory);
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-black border-t border-white/5" id="testimonials">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-black border-t border-white/5" id="testimonials">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Block with exact intro copy */}
@@ -170,9 +170,9 @@ const ReviewSection = () => {
             </div>
             <button 
               onClick={() => setShowForm(!showForm)}
-              className="btn-sweep bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
+              className="hidden btn-sweep bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
             >
-              {showForm ? 'Cancel Submission' : 'Write a Review'}
+              {showForm ? 'Cancel Submission' : ''}
             </button>
           </div>
         </div>

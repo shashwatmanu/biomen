@@ -11,7 +11,7 @@ const PackagingSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden border-t border-white/5" id="packaging">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden border-t border-white/5" id="packaging">
       {/* Visual background glows */}
       <div className="absolute top-1/2 right-0 w-80 h-80 bg-[#052E22]/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#0FA36B]/10 rounded-full blur-[120px] pointer-events-none" />

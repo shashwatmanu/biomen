@@ -42,7 +42,7 @@ const WeeklyExpectations = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-biomen-green" id="what-to-expect">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-biomen-green" id="what-to-expect">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl">

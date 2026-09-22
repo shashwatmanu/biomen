@@ -141,7 +141,7 @@ const ReviewsPage = () => {
             Join thousands of men who have optimized their vitality. Share your results with the community.
           </p>
           <Link to="/" className="inline-block bg-orange-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-orange-500 transition-all shadow-[0_0_30px_rgba(234,88,12,0.3)]">
-            Write a Review
+            
           </Link>
         </div>
       </div>

@@ -75,7 +75,7 @@ const useCartStore = create(
       },
 
       addToCart: async (product) => {
-        set({ isLoading: true });
+        set({ isLoading: true, isCartOpen: true });
         const { cartId, setCartData, items } = get();
         
         // Find if this variant is already in cart

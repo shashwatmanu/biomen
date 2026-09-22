@@ -4,27 +4,27 @@ import { Link } from 'react-router-dom';
 
 const FullReviewsWidget = () => {
   return (
-    <section className="py-24 px-6 md:px-20 bg-black border-t border-white/5" id="reviews">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-black border-t border-white/5" id="reviews">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase text-white">Clinical Feedback <br/><span className="text-emerald-500">& Reviews</span></h2>
-            <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8">
+          <div className="text-center md:text-left">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase text-white">Clinical Feedback <br className="hidden md:block" /><span className="text-emerald-500">& Reviews</span></h2>
+            <div className="flex justify-center md:justify-start items-center gap-4">
               <div className="flex text-orange-500">
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
               </div>
-              <span className="text-2xl font-black tracking-tight text-white">4.9/5 RATING</span>
+              <span className="text-2xl font-black tracking-tight text-white">4.1/5 RATING</span>
             </div>
           </div>
-          <button className="bg-orange-600 text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-orange-500 transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]">
-            Write a Review
+          <button className="hidden bg-orange-600 text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-orange-500 transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]">
+            
           </button>
         </div>
         
         {/* Review Summary Header */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 border-b border-white/10 pb-16">
           <div className="md:col-span-3 flex flex-col items-center md:items-start">
-            <div className="text-7xl font-black text-white mb-2 leading-none">4.9</div>
+            <div className="text-7xl font-black text-white mb-2 leading-none">4.1</div>
             <div className="text-sm text-gray-500 font-black uppercase tracking-widest">Based on 500 reviews</div>
           </div>
           
@@ -40,7 +40,7 @@ const FullReviewsWidget = () => {
             ))}
           </div>
 
-          <div className="md:col-span-5 bg-white/5 p-8 rounded-[2rem] border border-white/10 relative overflow-hidden group">
+          <div className="hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <BadgeCheck size={80} />
             </div>
@@ -55,12 +55,16 @@ const FullReviewsWidget = () => {
 
         {/* Review List - Preview of 3 */}
         <div className="space-y-8">
-          {[1, 2, 3].map((i) => (
+          {[
+            {name: 'Karan S.', headline: 'Exactly what I needed for my routine.', date: 'OCTOBER 12, 2026', text: "I was skeptical at first because the market is flooded with garbage. But the transparency here won me over. I'm on week 6 and the difference in my mental clarity and drive is undeniable. Will be subscribing."},
+            {name: 'Aditya P.', headline: 'Noticeable difference in stamina.', date: 'OCTOBER 5, 2026', text: "I've tried a few other testosterone boosters before, but this one feels different. It's smoother. I don't get the jitters, just a steady stream of energy throughout the day."},
+            {name: 'Rajeev M.', headline: 'Clean formulation, no fillers.', date: 'SEPTEMBER 28, 2026', text: "As someone who researches every ingredient, I appreciate the transparency. The clinical dosages actually make a difference. My recovery after workouts is significantly faster now."}
+          ].map((review, i) => (
             <div key={i} className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-10 rounded-[2.5rem] hover:border-emerald-500/50 transition-all">
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="font-black text-white uppercase tracking-wider">Alexander R.</div>
+                    <div className="font-black text-white uppercase tracking-wider">{review.name}</div>
                     <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-emerald-500">
                       <BadgeCheck size={14} /> Verified Buyer
                     </div>
@@ -69,12 +73,12 @@ const FullReviewsWidget = () => {
                     {[...Array(5)].map((_, idx) => <Star key={idx} size={16} fill="currentColor" />)}
                   </div>
                 </div>
-                <div className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">OCTOBER 12, 2026</div>
+                <div className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">{review.date}</div>
               </div>
               
-              <h4 className="font-black text-2xl mb-4 text-white uppercase tracking-tight italic">"Exactly what I needed for my routine."</h4>
+              <h4 className="font-black text-2xl mb-4 text-white uppercase tracking-tight italic">"{review.headline}"</h4>
               <p className="text-gray-400 text-lg leading-relaxed mb-10 font-medium">
-                "I was skeptical at first because the market is flooded with garbage. But the transparency here won me over. I'm on week 6 and the difference in my mental clarity and drive is undeniable. Will be subscribing."
+                "{review.text}"
               </p>
               
               <div className="flex items-center gap-6">

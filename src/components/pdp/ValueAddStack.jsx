@@ -8,7 +8,7 @@ const ValueAddStack = () => {
   ];
 
   return (
-    <section className="py-12 px-6 md:px-20 bg-biomen-green border-y border-white/5">
+    <section className="pt-0 pb-12 px-6 md:px-20 bg-biomen-green border-y border-white/5">
       <div className="max-w-5xl mx-auto">
         <h3 className="text-center text-sm font-black uppercase tracking-[0.2em] text-biomen-accent mb-8">Included With The Launch Kit</h3>
         

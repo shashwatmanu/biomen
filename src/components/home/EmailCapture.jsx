@@ -34,7 +34,7 @@ const EmailCapture = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#060c09] border-t border-white/5 relative overflow-hidden" id="newsletter">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-[#060c09] border-t border-white/5 relative overflow-hidden" id="newsletter">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/15 via-transparent to-transparent pointer-events-none" />
       
       <div className="max-w-4xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

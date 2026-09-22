@@ -3,7 +3,7 @@ import { ShieldCheck } from 'lucide-react';
 
 const GuaranteeSection = () => {
   return (
-    <section className="py-10 lg:py-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden text-center" id="guarantee">
+    <section className="pt-0 pb-10 lg:pt-0 pb-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden text-center" id="guarantee">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10 bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-[3rem] p-10 md:p-16 shadow-2xl flex flex-col items-center">
@@ -29,17 +29,37 @@ const GuaranteeSection = () => {
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
-                <img src="/guarantee/energy_support_icon.jpg" alt="Energy Support" className="w-full h-full object-cover" />
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105 flex flex-col bg-black/40">
+                <div className="aspect-square">
+                  <img src="/guarantee/Energy.png" alt="Energy Support" className="w-full h-full object-cover" />
+                </div>
+                <div className="py-2.5 px-2 flex-grow flex items-center justify-center border-t border-[#0FA36B]/20">
+                  <span className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-[#16C784]">Energy Support</span>
+                </div>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
-                <img src="/guarantee/recovery_support_icon.jpg" alt="Recovery Support" className="w-full h-full object-cover" />
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105 flex flex-col bg-black/40">
+                <div className="aspect-square">
+                  <img src="/guarantee/recovery.png" alt="Recovery Support" className="w-full h-full object-cover" />
+                </div>
+                <div className="py-2.5 px-2 flex-grow flex items-center justify-center border-t border-[#0FA36B]/20">
+                  <span className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-[#16C784]">Recovery Support</span>
+                </div>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
-                <img src="/guarantee/resilience_support_icon.jpg" alt="Resilience Support" className="w-full h-full object-cover" />
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105 flex flex-col bg-black/40">
+                <div className="aspect-square">
+                  <img src="/guarantee/resilience.png" alt="Resilience Support" className="w-full h-full object-cover" />
+                </div>
+                <div className="py-2.5 px-2 flex-grow flex items-center justify-center border-t border-[#0FA36B]/20">
+                  <span className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-[#16C784]">Resilience Support</span>
+                </div>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] aspect-square border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105">
-                <img src="/guarantee/daily_vitality_icon.jpg" alt="Daily Vitality" className="w-full h-full object-cover" />
+              <div className="rounded-xl overflow-hidden shadow-[0_0_15px_rgba(22,199,132,0.3)] border border-[#0FA36B]/20 transition-transform duration-300 hover:scale-105 flex flex-col bg-black/40">
+                <div className="aspect-square">
+                  <img src="/guarantee/dailyvitality.png" alt="Daily Vitality" className="w-full h-full object-cover" />
+                </div>
+                <div className="py-2.5 px-2 flex-grow flex items-center justify-center border-t border-[#0FA36B]/20">
+                  <span className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-[#16C784]">Daily Vitality</span>
+                </div>
               </div>
             </div>
           </div>

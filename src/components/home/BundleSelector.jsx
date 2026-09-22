@@ -126,7 +126,7 @@ const BundleSelector = () => {
   };
 
   return (
-    <section className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="pricing">
+    <section className="relative pt-0 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="pricing">
       {/* Background spotlights (ambient glows, not digital gradients) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-biomen-green/10 rounded-full blur-[140px] pointer-events-none" />
 

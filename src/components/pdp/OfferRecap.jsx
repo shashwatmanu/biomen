@@ -3,7 +3,7 @@ import { ArrowRight, Check } from 'lucide-react';
 
 const OfferRecap = () => {
   return (
-    <section className="py-24 px-6 md:px-20 bg-black/40 border-y border-white/5">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-black/40 border-y border-white/5">
       <div className="max-w-3xl mx-auto bg-biomen-green border border-biomen-accent/30 rounded-[2.5rem] p-8 md:p-12 shadow-[0_0_50px_rgba(194,240,194,0.05)]">
         <h2 className="text-3xl font-extrabold mb-8 text-center tracking-tight">The Launch Kit Summary</h2>
         

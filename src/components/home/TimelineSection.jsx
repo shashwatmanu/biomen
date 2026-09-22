@@ -145,7 +145,7 @@ const TimelineSection = ({ title }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
+      className="relative pt-0 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
       id="timeline"
     >
       <style>{`

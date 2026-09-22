@@ -2,7 +2,7 @@ import React from 'react';
 
 const FounderStory = () => {
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden" id="about">
+    <section className="pt-0 pb-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden" id="about">
       {/* Background glow */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-[#052E22]/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#0FA36B]/5 rounded-full blur-[120px] pointer-events-none" />
