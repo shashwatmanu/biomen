@@ -3,7 +3,7 @@ import { ShieldCheck } from 'lucide-react';
 
 const GuaranteeSection = () => {
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden text-center" id="guarantee">
+    <section className="py-10 lg:py-24 px-6 md:px-20 bg-[#030705] border-t border-white/5 relative overflow-hidden text-center" id="guarantee">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#052E22]/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10 bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-[3rem] p-10 md:p-16 shadow-2xl flex flex-col items-center">

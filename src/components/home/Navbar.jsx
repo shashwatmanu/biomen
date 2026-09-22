@@ -82,7 +82,7 @@ const Navbar = () => {
                 className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
               />
             </div>
-            <span>BIOMEN <span className="text-biomen-accent transition-colors duration-300 group-hover:text-biomen-mint">LABS</span></span>
+            <span>BIOMEN <span className="text-[#16C784] transition-colors duration-300 group-hover:text-biomen-mint">LABS</span></span>
           </Link>
         </div>
 
@@ -90,7 +90,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white z-10">
           <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
           <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
-          <Link to="/consultation" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
+          <Link to="/consultation" className="hidden lg:block hover:text-[#b94a17] text-[#D85A1F] transition-colors font-black">Dr. Advisory</Link>
           
           <div className="flex items-center gap-2 xs:gap-3 sm:gap-6 ml-auto">
             <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none" aria-label="View user profile or contact support"><User size={16} /></Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
             >
               <ShoppingCart size={16} />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-biomen-accent text-black text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
+                <span className="absolute -top-1.5 -right-1.5 bg-[#D85A1F] text-white text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
                   {cartCount}
                 </span>
               )}
@@ -143,7 +143,7 @@ const Navbar = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span>BIOMEN <span className="text-biomen-accent">LABS</span></span>
+                <span>BIOMEN <span className="text-[#16C784]">LABS</span></span>
               </Link>
             </div>
             
@@ -158,7 +158,7 @@ const Navbar = () => {
             >
               <ShoppingCart size={16} />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-biomen-accent text-black text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
+                <span className="absolute -top-1.5 -right-1.5 bg-[#D85A1F] text-white text-[11px] w-5 h-5 flex items-center justify-center rounded-full font-black shadow-md shadow-black/40">
                   {cartCount}
                 </span>
               )}

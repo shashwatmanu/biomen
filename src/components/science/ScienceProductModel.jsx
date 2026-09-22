@@ -129,7 +129,14 @@ export const ScienceProductModel = (props) => {
     const t = state.clock.getElapsedTime();
     if (groupRef.current) {
       // 1. Slow, premium floating height sway (weightless feel) + entrance offset
-      groupRef.current.position.y = Math.sin(t * 1.0) * 0.08 + entryOffsetY.current;
+      const basePathX = props.position ? props.position[0] : 0;
+      const basePathY = props.position ? props.position[1] : 0;
+      const basePathZ = props.position ? props.position[2] : 0;
+      groupRef.current.position.set(
+        basePathX,
+        Math.sin(t * 1.0) * 0.08 + entryOffsetY.current + basePathY,
+        basePathZ
+      );
 
       // 2. Entrance scale calculation
       const baseScale = props.scale ? props.scale[0] : 0.85;
@@ -151,12 +158,15 @@ export const ScienceProductModel = (props) => {
       }
 
       // Add gentle sway on top when not actively dragging
+      const baseRotY = props.rotation ? props.rotation[1] : 0;
       const swayY = isDragging.current ? 0 : Math.sin(t * 0.4) * 0.15;
-      groupRef.current.rotation.y = rotationY.current + swayY;
+      groupRef.current.rotation.y = rotationY.current + swayY + baseRotY;
 
       // 3. Subtle floating pitch (X) and roll (Z) to mimic fluid suspension
-      groupRef.current.rotation.x = Math.sin(t * 0.7) * 0.04 + 0.03;
-      groupRef.current.rotation.z = Math.cos(t * 0.7) * 0.02;
+      const baseRotX = props.rotation ? props.rotation[0] : 0;
+      const baseRotZ = props.rotation ? props.rotation[2] : 0;
+      groupRef.current.rotation.x = Math.sin(t * 0.7) * 0.04 + 0.03 + baseRotX;
+      groupRef.current.rotation.z = Math.cos(t * 0.7) * 0.02 + baseRotZ;
     }
   });
 

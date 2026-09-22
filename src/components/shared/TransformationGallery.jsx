@@ -57,7 +57,7 @@ const TransformationGallery = () => {
   };
 
   return (
-    <section className="py-20 lg:py-24 px-4 sm:px-6 md:px-20 bg-biomen-green" id="transformations">
+    <section className="py-10 lg:py-24 px-4 sm:px-6 md:px-20 bg-biomen-green" id="transformations">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl text-left">
