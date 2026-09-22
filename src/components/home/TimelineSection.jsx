@@ -10,7 +10,7 @@ const TimelineSection = ({ title }) => {
   const timelineData = {
     7: {
       label: "IGNITION",
-      icon: <Flame className="text-[#EF4444]" size={28} />,
+      icon: <Flame className="text-red-500" size={28} />,
       color: "#EF4444",
       bgColor: "rgba(239, 68, 68, 0.1)",
       borderColor: "rgba(239, 68, 68, 0.3)",
@@ -23,7 +23,7 @@ const TimelineSection = ({ title }) => {
     },
     30: {
       label: "SPARK",
-      icon: <Zap className="text-[#FFC01E]" size={28} />,
+      icon: <Zap className="text-yellow-400" size={28} />,
       color: "#FFC01E",
       bgColor: "rgba(255, 192, 30, 0.1)",
       borderColor: "rgba(255, 192, 30, 0.3)",
@@ -36,7 +36,7 @@ const TimelineSection = ({ title }) => {
     },
     90: {
       label: "LIFTOFF",
-      icon: <Rocket className="text-[#16C784]" size={28} />,
+      icon: <Rocket className="text-biomen-accent" size={28} />,
       color: "#16C784",
       bgColor: "rgba(22, 199, 132, 0.1)",
       borderColor: "rgba(22, 199, 132, 0.3)",
@@ -145,7 +145,7 @@ const TimelineSection = ({ title }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col gap-6 lg:gap-8" 
+      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col gap-6 lg:gap-8" 
       id="timeline"
     >
       <style>{`
@@ -193,7 +193,7 @@ const TimelineSection = ({ title }) => {
         <div className="w-full max-w-2xl mx-auto mb-3 lg:mb-1">
           <div className="relative flex justify-between items-center w-full">
             {/* Symmetrical timeline connecting line: Nested precisely inside absolute wrapper offset by 24px (node radius) to prevent bleeding outside the nodes */}
-            <div className="absolute top-1/2 left-[24px] right-[24px] h-[2px] bg-white/10 -translate-y-1/2 z-0" />
+            <div className="absolute top-1/2 left-[24px] right-[24px] h-[2px] bg-biomen-text-primary/10 -translate-y-1/2 z-0" />
             <div className="absolute top-1/2 left-[24px] right-[24px] h-[2px] -translate-y-1/2 z-0">
               <div 
                 className={`h-full transition-all duration-500 ${
@@ -220,8 +220,8 @@ const TimelineSection = ({ title }) => {
                   <div 
                     className={`w-12 h-12 rounded-full border-2 flex items-center justify-center font-black transition-all duration-300 shadow-xl ${
                       isActive 
-                        ? "bg-black border-white scale-110 text-white shadow-black/80" 
-                        : "bg-black/85 border-white/20 text-[#A8B3AA] hover:border-white/50 group-hover:scale-105"
+                        ? "bg-biomen-bg-primary border-white scale-110 text-biomen-text-primary shadow-black/80" 
+                        : "bg-biomen-bg-primary/85 border-biomen-text-primary/20 text-biomen-text-secondary hover:border-biomen-text-primary/50 group-hover:scale-105"
                     }`}
                     style={{ 
                       borderColor: isActive ? dayData.color : "",
@@ -232,7 +232,7 @@ const TimelineSection = ({ title }) => {
                   </div>
                   <span 
                     className={`text-[9px] font-black uppercase tracking-widest mt-2 transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-[#A8B3AA]"
+                      isActive ? "text-biomen-text-primary" : "text-biomen-text-secondary"
                     }`}
                     style={{ color: isActive ? dayData.color : "" }}
                   >
@@ -283,7 +283,7 @@ const TimelineSection = ({ title }) => {
                   }}
                 />
 
-                <div className="relative w-full h-full rounded-[1.9rem] bg-black/90 py-5 px-6 flex flex-col justify-between z-10 overflow-hidden">
+                <div className="relative w-full h-full rounded-[1.9rem] bg-biomen-bg-primary/90 py-5 px-6 flex flex-col justify-between z-10 overflow-hidden">
                   
                   {/* --- CUSTOM CARD ANIMATIONS (INSIDE CARD) --- */}
                   {isActive && day === 7 && (
@@ -326,23 +326,23 @@ const TimelineSection = ({ title }) => {
                   {/* ------------------------------------------- */}
 
                   <div className="space-y-3 relative z-20">
-                    <div className="flex justify-between items-center pb-2.5 border-b border-white/10">
+                    <div className="flex justify-between items-center pb-2.5 border-b border-biomen-text-primary/10">
                       <span 
                         className="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md"
                         style={{ backgroundColor: card.bgColor, color: card.color }}
                       >
                         STAGE 0{idx + 1} &bull; DAY {day}
                       </span>
-                      <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-white">
+                      <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.15em] text-biomen-text-primary">
                         {card.icon} {card.label}
                       </span>
                     </div>
                     
                     <ul className="space-y-2 text-left pl-1">
                       {card.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-[#A8B3AA] font-semibold leading-relaxed">
+                        <li key={i} className="flex items-start gap-2.5 text-xs lg:text-[13px] text-biomen-text-secondary font-semibold leading-relaxed">
                           <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: card.color }} />
-                          <span className="text-gray-300">{bullet}</span>
+                          <span className="text-biomen-text-primary">{bullet}</span>
                         </li>
                       ))}
                     </ul>
@@ -374,13 +374,13 @@ const TimelineSection = ({ title }) => {
             }}
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#052E22]/10 rounded-[1.4rem] lg:rounded-[1.9rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-biomen-surface/10 rounded-[1.4rem] lg:rounded-[1.9rem] p-6 lg:p-8 relative overflow-hidden backdrop-blur-md z-10">
             {/* Left: Headline & Description */}
             <div className="lg:col-span-8 space-y-3.5 text-left relative z-20">
-              <h2 className="text-2xl lg:text-[2.2rem] font-normal font-serif tracking-tight leading-none text-white uppercase">
+              <h2 className="text-2xl lg:text-[2.2rem] font-normal font-serif tracking-tight leading-none text-biomen-text-primary uppercase">
                 Optimize Masculine <br/> Baseline in 90 Days
               </h2>
-              <p className="text-xs md:text-sm lg:text-[14px] text-[#A8B3AA] leading-relaxed font-semibold max-w-2xl">
+              <p className="text-xs md:text-sm lg:text-[14px] text-biomen-text-secondary leading-relaxed font-semibold max-w-2xl">
                 Try T-CORE completely risk-free for 90 days. If you do not experience a substantial upgrade in energy, daily baseline focus, and post-workout recovery, we will refund you in full. No questions asked.
               </p>
               
@@ -388,7 +388,7 @@ const TimelineSection = ({ title }) => {
               <div className="pt-1.5 flex justify-center sm:justify-start">
                 <a 
                   href="/products/t-core" 
-                  className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                  className="btn-sweep bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary px-12 py-[22px] rounded-full font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
                 >
                   UNLOCK YOUR SYSTEM TODAY <ArrowRight size={14} />
                 </a>
@@ -397,15 +397,15 @@ const TimelineSection = ({ title }) => {
 
             {/* Right: Massive Guarantee Circular Sticker-Like Badge (Zero Rotation) */}
             <div className="lg:col-span-4 flex items-center justify-center relative z-20 mt-4 lg:mt-0">
-              <div className="relative w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center rounded-full bg-gradient-to-br from-[#052e22] to-[#020504] border-[6px] border-[#D85A1F] shadow-[10px_10px_35px_rgba(0,0,0,0.85)] p-5 transition-transform duration-300 hover:scale-105 select-none rotate-0">
+              <div className="relative w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center rounded-full bg-gradient-to-br from-[#052e22] to-[#020504] border-[6px] border-biomen-copper shadow-[10px_10px_35px_rgba(0,0,0,0.85)] p-5 transition-transform duration-300 hover:scale-105 select-none rotate-0">
                 {/* Inner dashed accent circle */}
-                <div className="absolute inset-2.5 rounded-full border border-dashed border-[#D85A1F]/30 pointer-events-none" />
+                <div className="absolute inset-2.5 rounded-full border border-dashed border-biomen-copper/30 pointer-events-none" />
                 
                 <div className="text-center flex flex-col items-center justify-center space-y-1.5">
-                  <Award size={40} className="text-[#D85A1F] animate-pulse mb-1 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-                  <span className="text-[12px] lg:text-[15px] font-black text-white uppercase tracking-wider block leading-none">100% VITALITY</span>
-                  <span className="text-[10px] lg:text-[12px] font-black text-[#16C784] uppercase tracking-widest block bg-[#16C784]/15 px-3 py-1 rounded border border-[#16C784]/25 mt-0.5">GUARANTEE</span>
-                  <span className="text-[8px] lg:text-[9.5px] text-[#A8B3AA] font-black uppercase tracking-wider block mt-0.5">90 Days Support</span>
+                  <Award size={40} className="text-biomen-copper animate-pulse mb-1 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                  <span className="text-[12px] lg:text-[15px] font-black text-biomen-text-primary uppercase tracking-wider block leading-none">100% VITALITY</span>
+                  <span className="text-[10px] lg:text-[12px] font-black text-biomen-accent uppercase tracking-widest block bg-biomen-accent/15 px-3 py-1 rounded border border-biomen-accent/25 mt-0.5">GUARANTEE</span>
+                  <span className="text-[8px] lg:text-[9.5px] text-biomen-text-secondary font-black uppercase tracking-wider block mt-0.5">90 Days Support</span>
                 </div>
               </div>
             </div>

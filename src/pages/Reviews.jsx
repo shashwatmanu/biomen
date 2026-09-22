@@ -73,12 +73,12 @@ const ReviewsPage = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20">
+    <div className="bg-biomen-bg-primary min-h-screen text-biomen-text-primary pt-[176px] md:pt-[144px] pb-24 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
-            <Link to="/" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8 font-bold uppercase tracking-widest text-xs">
+            <Link to="/" className="flex items-center gap-2 text-biomen-text-secondary hover:text-biomen-text-primary transition-colors mb-8 font-bold uppercase tracking-widest text-xs">
               <ArrowLeft size={16} /> Back to Home
             </Link>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6">
@@ -90,7 +90,7 @@ const ReviewsPage = () => {
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
               </div>
               <span className="text-2xl font-black tracking-tight">4.9/5 RATING</span>
-              <span className="text-gray-500 font-bold uppercase tracking-widest text-sm border-l border-white/20 pl-4">500 Reviews</span>
+              <span className="text-biomen-text-secondary font-bold uppercase tracking-widest text-sm border-l border-biomen-text-primary/20 pl-4">500 Reviews</span>
             </div>
           </div>
         </div>
@@ -99,11 +99,11 @@ const ReviewsPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {isLoading ? (
             [...Array(6)].map((_, i) => (
-              <div key={i} className="h-64 bg-white/5 rounded-[2.5rem] animate-pulse border border-white/5" />
+              <div key={i} className="h-64 bg-biomen-text-primary/5 rounded-[2.5rem] animate-pulse border border-biomen-text-primary/5" />
             ))
           ) : (
             reviews.map((review) => (
-              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-10 rounded-[2.5rem] border border-white/10 hover:border-emerald-500/50 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-10 rounded-[2.5rem] border border-biomen-text-primary/10 hover:border-emerald-500/50 transition-all group flex flex-col justify-between h-full min-h-[300px]">
                 <div>
                   <div className="flex justify-between items-start mb-6">
                     <div className="flex text-orange-500">
@@ -113,16 +113,16 @@ const ReviewsPage = () => {
                       {review.category || "Overall Vitality"}
                     </span>
                   </div>
-                  <p className="text-white text-lg leading-relaxed mb-8 font-medium italic opacity-90">
+                  <p className="text-biomen-text-primary text-lg leading-relaxed mb-8 font-medium italic opacity-90">
                     &ldquo;{review.comment}&rdquo;
                   </p>
                 </div>
-                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                <div className="flex items-center gap-3 pt-4 border-t border-biomen-text-primary/5">
                   <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-500 font-black">
                     {review.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-white uppercase text-sm tracking-wider">{review.name}</div>
+                    <div className="font-bold text-biomen-text-primary uppercase text-sm tracking-wider">{review.name}</div>
                     <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 mt-0.5">
                       <BadgeCheck size={12} /> Verified Buyer
                     </div>
@@ -134,13 +134,13 @@ const ReviewsPage = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-20 text-center bg-gradient-to-r from-emerald-900/20 via-black to-emerald-900/20 p-16 rounded-[3rem] border border-white/5">
+        <div className="mt-20 text-center bg-gradient-to-r from-emerald-900/20 via-black to-emerald-900/20 p-16 rounded-[3rem] border border-biomen-text-primary/5">
           <MessageSquare size={48} className="mx-auto mb-6 text-emerald-500" />
           <h2 className="text-3xl font-black uppercase mb-4">Have you tried the Protocol?</h2>
-          <p className="text-gray-400 mb-8 max-w-md mx-auto font-medium">
+          <p className="text-biomen-text-secondary mb-8 max-w-md mx-auto font-medium">
             Join thousands of men who have optimized their vitality. Share your results with the community.
           </p>
-          <Link to="/" className="inline-block bg-orange-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-orange-500 transition-all shadow-[0_0_30px_rgba(234,88,12,0.3)]">
+          <Link to="/" className="inline-block bg-orange-600 text-biomen-text-primary px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-orange-500 transition-all shadow-[0_0_30px_rgba(234,88,12,0.3)]">
             Write a Review
           </Link>
         </div>

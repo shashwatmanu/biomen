@@ -68,13 +68,13 @@ const EntryPopup = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+    <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 bg-biomen-bg-primary/85 backdrop-blur-md">
       {/* 3D Tilting & Spotlight-Reactive Card Container */}
       <div 
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative p-[1.5px] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden transition-all duration-500 bg-white/10 hover:bg-[#16C784]/20 max-w-md md:max-w-lg w-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] group/spotlight"
+        className="relative p-[1.5px] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden transition-all duration-500 bg-biomen-text-primary/10 hover:bg-biomen-accent/20 max-w-md md:max-w-lg w-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] group/spotlight"
         style={{
           transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
           transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -92,13 +92,13 @@ const EntryPopup = () => {
         <div className="relative w-full rounded-[2.4rem] md:rounded-[3.4rem] bg-gradient-to-br from-[#06110C] to-black/95 p-6 xs:p-8 md:p-12 text-center flex flex-col items-center overflow-hidden z-10">
           
           {/* Background Ambient Glows */}
-          <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#0FA36B]/15 rounded-full blur-[80px] pointer-events-none z-0" />
-          <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-[#D85A1F]/10 rounded-full blur-[80px] pointer-events-none z-0" />
+          <div className="absolute -top-24 -left-24 w-48 h-48 bg-biomen-emerald/15 rounded-full blur-[80px] pointer-events-none z-0" />
+          <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-biomen-copper/10 rounded-full blur-[80px] pointer-events-none z-0" />
 
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-5 right-5 p-2 text-gray-400 hover:text-white transition-all rounded-full hover:bg-white/10 hover:scale-105 z-50 cursor-pointer"
+            className="absolute top-5 right-5 p-2 text-biomen-text-secondary hover:text-biomen-text-primary transition-all rounded-full hover:bg-biomen-text-primary/10 hover:scale-105 z-50 cursor-pointer"
             aria-label="Close modal"
           >
             <X size={20} />
@@ -106,28 +106,28 @@ const EntryPopup = () => {
 
           {submitted ? (
             <div className="space-y-6 md:space-y-8 py-4 md:py-6 relative z-10 w-full">
-              <div className="bg-[#052E22]/60 p-4 rounded-full border border-[#0FA36B]/30 text-[#16C784] w-fit mx-auto shadow-xl">
+              <div className="bg-biomen-surface/60 p-4 rounded-full border border-[#0FA36B]/30 text-biomen-accent w-fit mx-auto shadow-xl">
                 <Gift size={36} className="animate-bounce" />
               </div>
               <div className="space-y-3">
-                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-wider leading-tight">
+                <h3 className="text-2xl md:text-3xl font-black text-biomen-text-primary uppercase tracking-wider leading-tight">
                   PRIVILEGE UNLOCKED!
                 </h3>
-                <p className="text-xs md:text-sm text-[#A8B3AA] max-w-sm mx-auto leading-relaxed font-semibold">
+                <p className="text-xs md:text-sm text-biomen-text-secondary max-w-sm mx-auto leading-relaxed font-semibold">
                   We've applied the founder discount to your session. Use code below at checkout:
                 </p>
               </div>
 
               <div className="relative group/code py-1">
                 <div className="absolute -inset-1.5 bg-gradient-to-r from-[#16C784]/30 to-[#D85A1F]/30 rounded-xl blur-lg opacity-75 group-hover/code:opacity-100 transition duration-1000 group-hover/code:duration-200"></div>
-                <div className="relative bg-[#052E22] text-[#16C784] px-6 py-3.5 rounded-xl border border-[#16C784]/40 font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-2xl">
+                <div className="relative bg-biomen-surface text-biomen-accent px-6 py-3.5 rounded-xl border border-biomen-accent/40 font-mono text-lg md:text-xl font-black uppercase tracking-widest shadow-2xl">
                   WELCOME500
                 </div>
               </div>
 
               <button
                 onClick={handleClose}
-                className="btn-sweep w-full py-4 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all shadow-[0_0_20px_rgba(216,90,31,0.25)] cursor-pointer"
+                className="btn-sweep w-full py-4 bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary font-black text-xs uppercase tracking-widest rounded-full transition-all shadow-[0_0_20px_rgba(216,90,31,0.25)] cursor-pointer"
               >
                 Continue to Site
               </button>
@@ -136,56 +136,56 @@ const EntryPopup = () => {
             <div className="space-y-6 md:space-y-7 my-1 relative z-10 w-full">
               
               {/* Badge Header */}
-              <div className="inline-flex items-center gap-2 bg-[#052E22]/80 border border-[#16C784]/30 text-[#16C784] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
-                <Sparkles size={11} className="text-[#16C784] animate-pulse" />
+              <div className="inline-flex items-center gap-2 bg-biomen-surface/80 border border-biomen-accent/30 text-biomen-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
+                <Sparkles size={11} className="text-biomen-accent animate-pulse" />
                 LIMITED FOUNDER ACCESS
               </div>
 
               <div className="space-y-3">
-                <h2 className="text-2xl xs:text-3xl md:text-4xl font-black text-[#F4F6F2] uppercase tracking-tight leading-none">
+                <h2 className="text-2xl xs:text-3xl md:text-4xl font-black text-biomen-text-primary uppercase tracking-tight leading-none">
                   Claim Early Batch <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-semibold">Privilege Discount</span>
                 </h2>
                 
-                <div className="inline-block bg-[#D85A1F]/10 border border-[#D85A1F]/30 text-[#D85A1F] px-4 py-1.5 rounded-lg text-sm md:text-base font-black uppercase tracking-wider">
+                <div className="inline-block bg-biomen-copper/10 border border-biomen-copper/30 text-biomen-copper px-4 py-1.5 rounded-lg text-sm md:text-base font-black uppercase tracking-wider">
                   🎉 33% + ₹500 STACKED OFF
                 </div>
               </div>
 
-              <p className="text-xs md:text-sm text-[#A8B3AA] leading-relaxed max-w-sm mx-auto font-medium">
+              <p className="text-xs md:text-sm text-biomen-text-secondary leading-relaxed max-w-sm mx-auto font-medium">
                 Join the launching cohort today and claim an <strong>extra ₹500 off</strong> T-CORE. Fully transparent formula, zero fillers.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-3.5 w-full">
                 <div className="relative group/input">
-                  <Mail size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within/input:text-[#16C784] transition-colors" />
+                  <Mail size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-biomen-text-secondary group-focus-within/input:text-biomen-accent transition-colors" />
                   <input
                     type="email"
                     required
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#030705] border border-white/10 focus:border-[#16C784]/50 rounded-xl pl-12 pr-4 py-3.5 md:py-4.5 text-xs md:text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#16C784]/20 transition-all font-semibold"
+                    className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 focus:border-biomen-accent/50 rounded-xl pl-12 pr-4 py-3.5 md:py-4.5 text-xs md:text-sm text-biomen-text-primary focus:outline-none focus:ring-1 focus:ring-[#16C784]/20 transition-all font-semibold"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-sweep w-full py-3.5 md:py-4.5 bg-[#D85A1F] hover:bg-[#b94a17] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all shadow-[0_0_20px_rgba(216,90,31,0.25)] flex items-center justify-center gap-2 cursor-pointer"
+                  className="btn-sweep w-full py-3.5 md:py-4.5 bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary font-black text-xs uppercase tracking-widest rounded-full transition-all shadow-[0_0_20px_rgba(216,90,31,0.25)] flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Claim Exclusive Discount <ArrowRight size={14} />
                 </button>
               </form>
 
               {/* Security Trust Badge */}
-              <div className="flex justify-center items-center gap-2 text-[9px] md:text-[10px] text-gray-500 font-bold uppercase tracking-wider pt-1">
-                <ShieldCheck size={12} className="text-[#16C784]" />
+              <div className="flex justify-center items-center gap-2 text-[9px] md:text-[10px] text-biomen-text-secondary font-bold uppercase tracking-wider pt-1">
+                <ShieldCheck size={12} className="text-biomen-accent" />
                 <span>Zero Spam &bull; One-Click Unsubscribe</span>
               </div>
 
               <button
                 onClick={handleClose}
-                className="text-[9px] md:text-[10px] font-black uppercase text-gray-500 hover:text-white tracking-widest underline underline-offset-4 transition-colors block mx-auto pt-2 cursor-pointer"
+                className="text-[9px] md:text-[10px] font-black uppercase text-biomen-text-secondary hover:text-biomen-text-primary tracking-widest underline underline-offset-4 transition-colors block mx-auto pt-2 cursor-pointer"
               >
                 No thanks, I prefer paying full price
               </button>

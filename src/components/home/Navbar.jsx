@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { ShoppingCart, User, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
+import ThemeToggle from '../shared/ThemeToggle';
 
 const Navbar = () => {
   const items = useCartStore((state) => state.items);
@@ -45,17 +46,17 @@ const Navbar = () => {
     }`}>
       <nav className={`w-full z-50 flex justify-between items-center transition-all duration-500 ease-in-out pointer-events-auto relative border ${
         isScrolled
-          ? 'max-w-4xl bg-black/60 backdrop-blur-md border-white/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#16C784]/20'
+          ? 'max-w-4xl bg-biomen-bg-primary/60 backdrop-blur-md border-biomen-text-primary/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-biomen-accent/20'
           : isHomePage
             ? 'max-w-7xl mx-auto bg-transparent py-4 px-4 md:px-6 border-transparent'
-            : 'max-w-full bg-[#030705]/95 backdrop-blur-md border-transparent border-b-white/5 py-4 px-6 md:px-12'
+            : 'max-w-full bg-biomen-bg-primary/95 backdrop-blur-md border-transparent border-b-white/5 py-4 px-6 md:px-12'
       }`}>
         
         {/* Left Side: Hamburger Menu Button (visible on mobile/tablet) */}
         <div className="flex lg:hidden items-center z-[250]">
           <button 
             onClick={() => setIsMenuOpen(true)} 
-            className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-1.5 xs:p-2 bg-white/5 rounded-full border border-white/10 animate-fade-in"
+            className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-1.5 xs:p-2 bg-biomen-text-primary/5 rounded-full border border-biomen-text-primary/10 animate-fade-in"
             aria-label="Open navigation menu"
           >
             <Menu size={16} />
@@ -75,7 +76,7 @@ const Navbar = () => {
             }}
             className="flex items-center gap-1.5 md:gap-3 font-black tracking-tighter text-biomen-white text-lg xs:text-xl sm:text-2xl md:text-3xl uppercase group"
           >
-            <div className="relative w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 sm:p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300">
+            <div className="relative w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 overflow-hidden bg-biomen-text-primary/5 border border-biomen-text-primary/10 rounded-full flex items-center justify-center p-1 sm:p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300">
               <img 
                 src="/logo/logo_white_symbol.webp" 
                 alt="BIOMEN Labs Logo" 
@@ -88,16 +89,17 @@ const Navbar = () => {
 
         {/* Right Side Icons & Links */}
         <div className="flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white z-10">
-          <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
+          <Link to="/products/t-core" className="hidden lg:block text-biomen-accent hover:text-biomen-copper transition-colors font-black">Shop T-CORE</Link>
           <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
           <Link to="/consultation" className="hidden lg:block hover:text-biomen-accent text-biomen-gold transition-colors font-black">Dr. Advisory</Link>
           
           <div className="flex items-center gap-2 xs:gap-3 sm:gap-6 ml-auto">
-            <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none" aria-label="View user profile or contact support"><User size={16} /></Link>
+            <ThemeToggle />
+            <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-biomen-text-primary/5 lg:bg-transparent rounded-full border border-biomen-text-primary/10 lg:border-none" aria-label="View user profile or contact support"><User size={16} /></Link>
             
             <button 
               onClick={toggleCart} 
-              className="hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none"
+              className="hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-1.5 xs:p-2 bg-biomen-text-primary/5 lg:bg-transparent rounded-full border border-biomen-text-primary/10 lg:border-none"
               aria-label="View shopping cart"
             >
               <ShoppingCart size={16} />
@@ -114,16 +116,16 @@ const Navbar = () => {
       {/* Slide-out Mobile Navigation Drawer (Portalled globally to escape stacking contexts / backdrop filters) */}
       {typeof document !== 'undefined' && createPortal(
         <div 
-          className={`fixed inset-0 z-[999] bg-[#030705] transition-all duration-500 ease-in-out lg:hidden px-6 flex flex-col ${
+          className={`fixed inset-0 z-[999] bg-biomen-bg-primary transition-all duration-500 ease-in-out lg:hidden px-6 flex flex-col ${
             isMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0' : 'opacity-0 pointer-events-none -translate-x-full'
           }`}
         >
           {/* Symmetrical Top Opaque Header inside Drawer for instant close & navigation actions */}
-          <div className="w-full py-4 flex justify-between items-center bg-[#030705] border-b border-white/5 relative z-10 shrink-0">
+          <div className="w-full py-4 flex justify-between items-center bg-biomen-bg-primary border-b border-biomen-text-primary/5 relative z-10 shrink-0">
             {/* Close Button mapped to exit instantly */}
             <button 
               onClick={() => setIsMenuOpen(false)} 
-              className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-2 bg-white/5 rounded-full border border-white/10"
+              className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-2 bg-biomen-text-primary/5 rounded-full border border-biomen-text-primary/10"
               aria-label="Close navigation menu"
             >
               <X size={18} />
@@ -136,7 +138,7 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center gap-1.5 font-black tracking-tighter text-biomen-white text-lg uppercase"
               >
-                <div className="relative w-7 h-7 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40">
+                <div className="relative w-7 h-7 overflow-hidden bg-biomen-text-primary/5 border border-biomen-text-primary/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40">
                   <img 
                     src="/logo/logo_white_symbol.webp" 
                     alt="BIOMEN Labs Logo" 
@@ -153,7 +155,7 @@ const Navbar = () => {
                 setIsMenuOpen(false);
                 toggleCart();
               }}
-              className="text-biomen-white hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-2 bg-white/5 rounded-full border border-white/10"
+              className="text-biomen-white hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-2 bg-biomen-text-primary/5 rounded-full border border-biomen-text-primary/10"
               aria-label="View shopping cart"
             >
               <ShoppingCart size={16} />
@@ -168,20 +170,20 @@ const Navbar = () => {
           {/* Drawer Body Scroll Content */}
           <div className="flex-1 flex flex-col justify-between h-[80%] max-w-lg mx-auto pt-10 pb-8 overflow-y-auto w-full">
             <div className="flex flex-col gap-6 text-left shrink-0">
-              <span className="text-[9px] font-black tracking-[0.25em] text-[#16C784] border-b border-white/10 pb-2 mb-1 uppercase">
+              <span className="text-[9px] font-black tracking-[0.25em] text-biomen-accent border-b border-biomen-text-primary/10 pb-2 mb-1 uppercase">
                 MAIN NAVIGATION PROTOCOLS
               </span>
               <Link 
                 to="/products/t-core" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-text-primary hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Shop T-CORE
               </Link>
               <Link 
                 to="/science" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-text-primary hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Science & Research
               </Link>
@@ -195,21 +197,21 @@ const Navbar = () => {
               <Link 
                 to="/about" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-text-primary hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Our Story
               </Link>
               <Link 
                 to="/faq" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-text-primary hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Help Desk / FAQs
               </Link>
               <Link 
                 to="/contact" 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-black uppercase text-white hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
+                className="text-2xl font-black uppercase text-biomen-text-primary hover:text-biomen-accent tracking-widest font-sans py-1 transition-colors"
               >
                 Contact Support
               </Link>
@@ -220,11 +222,11 @@ const Navbar = () => {
               <Link
                 to="/products/t-core"
                 onClick={() => setIsMenuOpen(false)}
-                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white py-[20px] rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
+                className="btn-sweep bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary py-[20px] rounded-full font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(216,90,31,0.3)] flex items-center justify-center gap-2"
               >
                 Unlock Your System Now
               </Link>
-              <p className="text-center text-[9px] text-[#A8B3AA] font-black uppercase tracking-wider">
+              <p className="text-center text-[9px] text-biomen-text-secondary font-black uppercase tracking-wider">
                 90-DAY CONFIDENCE MONEY-BACK GUARANTEE
               </p>
             </div>

@@ -13,7 +13,7 @@ const Science = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white font-manrope">
+    <div className="bg-biomen-bg-primary text-biomen-text-primary font-manrope">
       {/* 1. The Science Behind T-CORE */}
       <ScienceHero />
       

@@ -538,8 +538,8 @@ const ReelMaker = () => {
       {/* 3D Render Canvas */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Suspense fallback={
-          <div className="flex flex-col items-center justify-center h-full w-full bg-black text-[#16C784]">
-            <div className="w-12 h-12 rounded-full border-4 border-[#16C784]/20 border-t-[#16C784] animate-spin mb-4"></div>
+          <div className="flex flex-col items-center justify-center h-full w-full bg-biomen-bg-primary text-biomen-accent">
+            <div className="w-12 h-12 rounded-full border-4 border-biomen-accent/20 border-t-[#16C784] animate-spin mb-4"></div>
             <span className="font-mono text-sm tracking-widest uppercase">Initializing Cinematic Studio...</span>
           </div>
         }>
@@ -634,8 +634,8 @@ const ReelMaker = () => {
       {/* Floating Instruction overlay (shows when UI is hidden) */}
       {!uiVisible && (
         <div className="absolute top-6 left-6 z-50 pointer-events-none select-none animate-pulse">
-          <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 text-xs font-mono text-white/60">
-            Press <span className="text-[#16C784] font-bold font-sans">H</span> to show studio controls
+          <div className="bg-biomen-bg-primary/60 backdrop-blur-md px-4 py-2 rounded-lg border border-biomen-text-primary/10 text-xs font-mono text-biomen-text-primary/60">
+            Press <span className="text-biomen-accent font-bold font-sans">H</span> to show studio controls
           </div>
         </div>
       )}
@@ -643,7 +643,7 @@ const ReelMaker = () => {
       {/* Floating Toggle Button (Always visible as a fallback to bring back controls) */}
       <button 
         onClick={() => setUiVisible(!uiVisible)} 
-        className="absolute top-6 right-6 z-50 p-3 rounded-full bg-black/80 hover:bg-black border border-white/10 text-[#16C784] transition-all duration-300 hover:scale-105 shadow-lg"
+        className="absolute top-6 right-6 z-50 p-3 rounded-full bg-biomen-bg-primary/80 hover:bg-biomen-bg-primary border border-biomen-text-primary/10 text-biomen-accent transition-all duration-300 hover:scale-105 shadow-lg"
         title="Toggle UI Controls (Key: H)"
       >
         {uiVisible ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
@@ -654,18 +654,18 @@ const ReelMaker = () => {
         <div className="absolute top-6 left-6 bottom-6 w-[340px] z-40 flex flex-col gap-4 overflow-y-auto pr-2 pointer-events-auto select-none no-scrollbar">
           
           {/* Title Header */}
-          <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-[#16C784]/25 shadow-2xl">
-            <div className="flex items-center gap-2 text-[#16C784] mb-1">
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-5 rounded-2xl border border-biomen-accent/25 shadow-2xl">
+            <div className="flex items-center gap-2 text-biomen-accent mb-1">
               <Film size={20} className="animate-pulse" />
               <span className="text-xs font-black tracking-[0.25em] uppercase">Biomen Labs Studio</span>
             </div>
-            <h1 className="text-xl font-normal font-serif text-[#F4F6F2]">3D REEL GENERATOR</h1>
-            <p className="text-[11px] text-white/50 font-medium mt-1">Record your screen to create cinematic package transitions.</p>
+            <h1 className="text-xl font-normal font-serif text-biomen-text-primary">3D REEL GENERATOR</h1>
+            <p className="text-[11px] text-biomen-text-primary/50 font-medium mt-1">Record your screen to create cinematic package transitions.</p>
             
             {/* RESET BUTTON */}
             <button 
               onClick={handleReset}
-              className="mt-3.5 w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition-all tracking-wider uppercase shadow-[0_0_15px_rgba(220,38,38,0.2)]"
+              className="mt-3.5 w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-biomen-text-primary font-bold py-2 px-3 rounded-lg text-xs transition-all tracking-wider uppercase shadow-[0_0_15px_rgba(220,38,38,0.2)]"
             >
               <RotateCcw size={14} />
               Reset Camera &amp; Settings
@@ -673,22 +673,22 @@ const ReelMaker = () => {
           </div>
 
           {/* Model Selection & States */}
-          <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center gap-2 border-b border-white/5 pb-2">
-              <Layers size={15} className="text-[#16C784]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-white">Model &amp; Packaging</span>
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-5 rounded-2xl border border-biomen-text-primary/10 shadow-2xl flex flex-col gap-4">
+            <div className="flex items-center gap-2 border-b border-biomen-text-primary/5 pb-2">
+              <Layers size={15} className="text-biomen-accent" />
+              <span className="text-xs font-bold uppercase tracking-wider text-biomen-text-primary">Model &amp; Packaging</span>
             </div>
 
             {/* Model Selector */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Select Active Model</label>
+              <label className="text-[10px] uppercase tracking-widest text-biomen-text-primary/50 font-bold">Select Active Model</label>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => setModelType('science')}
                   className={`py-2 px-3 rounded-lg text-xs font-bold transition-all duration-300 ${
                     modelType === 'science' 
-                      ? 'bg-[#16C784] text-black shadow-[0_0_15px_rgba(22,199,132,0.3)]' 
-                      : 'bg-white/5 hover:bg-white/10 text-white border border-white/5'
+                      ? 'bg-biomen-accent text-black shadow-[0_0_15px_rgba(22,199,132,0.3)]' 
+                      : 'bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary border border-biomen-text-primary/5'
                   }`}
                 >
                   Closed Canister
@@ -700,8 +700,8 @@ const ReelMaker = () => {
                   }}
                   className={`py-2 px-3 rounded-lg text-xs font-bold transition-all duration-300 ${
                     modelType === 'explodable' 
-                      ? 'bg-[#16C784] text-black shadow-[0_0_15px_rgba(22,199,132,0.3)]' 
-                      : 'bg-white/5 hover:bg-white/10 text-white border border-white/5'
+                      ? 'bg-biomen-accent text-black shadow-[0_0_15px_rgba(22,199,132,0.3)]' 
+                      : 'bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary border border-biomen-text-primary/5'
                   }`}
                 >
                   Explodable Jar
@@ -712,12 +712,12 @@ const ReelMaker = () => {
             {/* Transition Controls (Only visible if Explodable selected) */}
             {modelType === 'explodable' && (
               <div className="flex flex-col gap-2 mt-1 animate-fadeIn">
-                <label className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Transitions / States</label>
+                <label className="text-[10px] uppercase tracking-widest text-biomen-text-primary/50 font-bold">Transitions / States</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setAnimationState('closed')}
                     className={`py-1.5 px-2 rounded text-[11px] font-semibold transition-all ${
-                      animationState === 'closed' ? 'bg-white text-black font-bold' : 'bg-white/5 text-white/80 border border-white/5 hover:bg-white/10'
+                      animationState === 'closed' ? 'bg-white text-black font-bold' : 'bg-biomen-text-primary/5 text-biomen-text-primary/80 border border-biomen-text-primary/5 hover:bg-biomen-text-primary/10'
                     }`}
                   >
                     1. Reset Canister
@@ -725,7 +725,7 @@ const ReelMaker = () => {
                   <button
                     onClick={() => setAnimationState('split')}
                     className={`py-1.5 px-2 rounded text-[11px] font-semibold transition-all ${
-                      animationState === 'split' ? 'bg-white text-black font-bold' : 'bg-white/5 text-white/80 border border-white/5 hover:bg-white/10'
+                      animationState === 'split' ? 'bg-white text-black font-bold' : 'bg-biomen-text-primary/5 text-biomen-text-primary/80 border border-biomen-text-primary/5 hover:bg-biomen-text-primary/10'
                     }`}
                   >
                     2. Split &amp; Reveal Jar
@@ -733,7 +733,7 @@ const ReelMaker = () => {
                   <button
                     onClick={() => setAnimationState('pillOut')}
                     className={`py-1.5 px-2 rounded text-[11px] font-semibold transition-all ${
-                      animationState === 'pillOut' ? 'bg-white text-black font-bold' : 'bg-white/5 text-white/80 border border-white/5 hover:bg-white/10'
+                      animationState === 'pillOut' ? 'bg-white text-black font-bold' : 'bg-biomen-text-primary/5 text-biomen-text-primary/80 border border-biomen-text-primary/5 hover:bg-biomen-text-primary/10'
                     }`}
                   >
                     3. Pill Pop-out
@@ -741,7 +741,7 @@ const ReelMaker = () => {
                   <button
                     onClick={() => setAnimationState('pillOpen')}
                     className={`py-1.5 px-2 rounded text-[11px] font-semibold transition-all ${
-                      animationState === 'pillOpen' ? 'bg-white text-black font-bold' : 'bg-white/5 text-white/80 border border-white/5 hover:bg-white/10'
+                      animationState === 'pillOpen' ? 'bg-white text-black font-bold' : 'bg-biomen-text-primary/5 text-biomen-text-primary/80 border border-biomen-text-primary/5 hover:bg-biomen-text-primary/10'
                     }`}
                   >
                     4. Split Hero Pill
@@ -752,10 +752,10 @@ const ReelMaker = () => {
           </div>
 
           {/* Environmental Background controls */}
-          <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center gap-2 border-b border-white/5 pb-2">
-              <Shield size={15} className="text-[#16C784]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-white">Backdrop &amp; Floor</span>
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-5 rounded-2xl border border-biomen-text-primary/10 shadow-2xl flex flex-col gap-4">
+            <div className="flex items-center gap-2 border-b border-biomen-text-primary/5 pb-2">
+              <Shield size={15} className="text-biomen-accent" />
+              <span className="text-xs font-bold uppercase tracking-wider text-biomen-text-primary">Backdrop &amp; Floor</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
@@ -763,8 +763,8 @@ const ReelMaker = () => {
                 onClick={() => setBgType('darkStudio')}
                 className={`py-2 px-2.5 rounded-lg text-xs font-bold transition-all border ${
                   bgType === 'darkStudio' 
-                    ? 'border-[#16C784] text-[#16C784] bg-[#16C784]/10' 
-                    : 'border-white/5 bg-white/5 hover:bg-white/10 text-white/80'
+                    ? 'border-biomen-accent text-biomen-accent bg-biomen-accent/10' 
+                    : 'border-biomen-text-primary/5 bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary/80'
                 }`}
               >
                 Dark Studio
@@ -774,7 +774,7 @@ const ReelMaker = () => {
                 className={`py-2 px-2.5 rounded-lg text-xs font-bold transition-all border ${
                   bgType === 'greenScreen' 
                     ? 'border-green-500 text-green-500 bg-green-500/10' 
-                    : 'border-white/5 bg-white/5 hover:bg-white/10 text-white/80'
+                    : 'border-biomen-text-primary/5 bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary/80'
                 }`}
               >
                 Green Chroma
@@ -783,8 +783,8 @@ const ReelMaker = () => {
                 onClick={() => setBgType('black')}
                 className={`py-2 px-2.5 rounded-lg text-xs font-bold transition-all border ${
                   bgType === 'black' 
-                    ? 'border-white text-white bg-white/10' 
-                    : 'border-white/5 bg-white/5 hover:bg-white/10 text-white/80'
+                    ? 'border-white text-biomen-text-primary bg-biomen-text-primary/10' 
+                    : 'border-biomen-text-primary/5 bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary/80'
                 }`}
               >
                 Pure Black
@@ -794,7 +794,7 @@ const ReelMaker = () => {
                 className={`py-2 px-2.5 rounded-lg text-xs font-bold transition-all border ${
                   bgType === 'neonCyber' 
                     ? 'border-purple-400 text-purple-400 bg-purple-400/10' 
-                    : 'border-white/5 bg-white/5 hover:bg-white/10 text-white/80'
+                    : 'border-biomen-text-primary/5 bg-biomen-text-primary/5 hover:bg-biomen-text-primary/10 text-biomen-text-primary/80'
                 }`}
               >
                 Cyber Glow
@@ -802,15 +802,15 @@ const ReelMaker = () => {
             </div>
 
             {/* FLOOR SHADOW TOGGLE */}
-            <div className="flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="flex items-center justify-between border-t border-biomen-text-primary/5 pt-3">
               <div className="flex flex-col">
-                <span className="text-xs text-white/80 font-semibold">Bottom Shadow Floor</span>
-                <span className="text-[9px] text-white/40">Disable this to prevent jar clipping.</span>
+                <span className="text-xs text-biomen-text-primary/80 font-semibold">Bottom Shadow Floor</span>
+                <span className="text-[9px] text-biomen-text-primary/40">Disable this to prevent jar clipping.</span>
               </div>
               <button
                 onClick={() => setEnableFloorShadows(!enableFloorShadows)}
                 className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
-                  enableFloorShadows ? 'bg-[#16C784] text-black shadow-[0_0_10px_rgba(22,199,132,0.2)]' : 'bg-white/10 text-white/60'
+                  enableFloorShadows ? 'bg-biomen-accent text-black shadow-[0_0_10px_rgba(22,199,132,0.2)]' : 'bg-biomen-text-primary/10 text-biomen-text-primary/60'
                 }`}
               >
                 {enableFloorShadows ? 'ENABLED' : 'DISABLED'}
@@ -825,11 +825,11 @@ const ReelMaker = () => {
           </div>
 
           {/* Quick instructions */}
-          <div className="bg-black/80 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-2xl">
-            <div className="flex items-start gap-2.5 text-xs text-white/60">
-              <HelpCircle size={16} className="text-[#16C784] shrink-0 mt-0.5" />
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-4 rounded-2xl border border-biomen-text-primary/10 shadow-2xl">
+            <div className="flex items-start gap-2.5 text-xs text-biomen-text-primary/60">
+              <HelpCircle size={16} className="text-biomen-accent shrink-0 mt-0.5" />
               <div className="flex flex-col gap-1">
-                <span className="font-bold text-white">Camera Control Tips</span>
+                <span className="font-bold text-biomen-text-primary">Camera Control Tips</span>
                 <span className="text-[11px] leading-relaxed">
                   • Left-click + drag to rotate camera.<br />
                   • Right-click + drag to pan view.<br />
@@ -846,19 +846,19 @@ const ReelMaker = () => {
         <div className="absolute top-6 right-16 bottom-6 w-[340px] z-40 flex flex-col gap-4 overflow-y-auto pr-2 pointer-events-auto select-none no-scrollbar">
           
           {/* Motion / Physics controls */}
-          <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center gap-2 border-b border-white/5 pb-2">
-              <Sliders size={15} className="text-[#16C784]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-white">Physics &amp; Motion</span>
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-5 rounded-2xl border border-biomen-text-primary/10 shadow-2xl flex flex-col gap-4">
+            <div className="flex items-center gap-2 border-b border-biomen-text-primary/5 pb-2">
+              <Sliders size={15} className="text-biomen-accent" />
+              <span className="text-xs font-bold uppercase tracking-wider text-biomen-text-primary">Physics &amp; Motion</span>
             </div>
 
             {/* Rotation toggler */}
             <div className="flex items-center justify-between">
-              <span className="text-xs text-white/80 font-semibold">Continuous Spin Y</span>
+              <span className="text-xs text-biomen-text-primary/80 font-semibold">Continuous Spin Y</span>
               <button
                 onClick={() => setIsSpinning(!isSpinning)}
                 className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
-                  isSpinning ? 'bg-[#16C784] text-black' : 'bg-white/10 text-white/60'
+                  isSpinning ? 'bg-biomen-accent text-black' : 'bg-biomen-text-primary/10 text-biomen-text-primary/60'
                 }`}
               >
                 {isSpinning ? 'ACTIVE' : 'MUTED'}
@@ -868,7 +868,7 @@ const ReelMaker = () => {
             {/* Rotation speed slider */}
             {isSpinning && (
               <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
+                <div className="flex justify-between text-[10px] uppercase font-bold text-biomen-text-primary/50">
                   <span>Spin Speed</span>
                   <span>{rotationSpeed.toFixed(1)}x</span>
                 </div>
@@ -885,15 +885,15 @@ const ReelMaker = () => {
             )}
 
             {/* Floating toggler */}
-            <div className="flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="flex items-center justify-between border-t border-biomen-text-primary/5 pt-3">
               <div className="flex flex-col">
-                <span className="text-xs text-white/80 font-semibold">Hover Float (Up &amp; Down)</span>
-                <span className="text-[9px] text-white/40">Moves container up/down slowly</span>
+                <span className="text-xs text-biomen-text-primary/80 font-semibold">Hover Float (Up &amp; Down)</span>
+                <span className="text-[9px] text-biomen-text-primary/40">Moves container up/down slowly</span>
               </div>
               <button
                 onClick={() => setIsFloating(!isFloating)}
                 className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
-                  isFloating ? 'bg-[#16C784] text-black' : 'bg-white/10 text-white/60'
+                  isFloating ? 'bg-biomen-accent text-black' : 'bg-biomen-text-primary/10 text-biomen-text-primary/60'
                 }`}
               >
                 {isFloating ? 'ACTIVE' : 'MUTED'}
@@ -901,15 +901,15 @@ const ReelMaker = () => {
             </div>
 
             {/* Drift / Sway toggler */}
-            <div className="flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="flex items-center justify-between border-t border-biomen-text-primary/5 pt-3">
               <div className="flex flex-col">
-                <span className="text-xs text-white/80 font-semibold">Drift Sway (Rotate X/Z)</span>
-                <span className="text-[9px] text-white/40">Cinematic weightless sways</span>
+                <span className="text-xs text-biomen-text-primary/80 font-semibold">Drift Sway (Rotate X/Z)</span>
+                <span className="text-[9px] text-biomen-text-primary/40">Cinematic weightless sways</span>
               </div>
               <button
                 onClick={() => setIsDrifting(!isDrifting)}
                 className={`py-1 px-3.5 rounded-full text-xs font-bold transition-all ${
-                  isDrifting ? 'bg-[#16C784] text-black' : 'bg-white/10 text-white/60'
+                  isDrifting ? 'bg-biomen-accent text-black' : 'bg-biomen-text-primary/10 text-biomen-text-primary/60'
                 }`}
               >
                 {isDrifting ? 'ACTIVE' : 'MUTED'}
@@ -918,15 +918,15 @@ const ReelMaker = () => {
           </div>
 
           {/* Lighting Controls */}
-          <div className="bg-black/80 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center gap-2 border-b border-white/5 pb-2">
-              <Sun size={15} className="text-[#16C784]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-white">Cinematic Lighting</span>
+          <div className="bg-biomen-bg-primary/80 backdrop-blur-md p-5 rounded-2xl border border-biomen-text-primary/10 shadow-2xl flex flex-col gap-4">
+            <div className="flex items-center gap-2 border-b border-biomen-text-primary/5 pb-2">
+              <Sun size={15} className="text-biomen-accent" />
+              <span className="text-xs font-bold uppercase tracking-wider text-biomen-text-primary">Cinematic Lighting</span>
             </div>
 
             {/* Ambient light intensity */}
             <div className="flex flex-col gap-1.5">
-              <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
+              <div className="flex justify-between text-[10px] uppercase font-bold text-biomen-text-primary/50">
                 <span>Ambient Intensity</span>
                 <span>{ambientIntensity.toFixed(2)}</span>
               </div>
@@ -942,8 +942,8 @@ const ReelMaker = () => {
             </div>
 
             {/* Key light intensity */}
-            <div className="flex flex-col gap-1.5 border-t border-white/5 pt-3">
-              <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
+            <div className="flex flex-col gap-1.5 border-t border-biomen-text-primary/5 pt-3">
+              <div className="flex justify-between text-[10px] uppercase font-bold text-biomen-text-primary/50">
                 <span>Key Light (Front)</span>
                 <span>{keyIntensity.toFixed(2)}</span>
               </div>
@@ -959,8 +959,8 @@ const ReelMaker = () => {
             </div>
 
             {/* Rim light intensity */}
-            <div className="flex flex-col gap-1.5 border-t border-white/5 pt-3">
-              <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
+            <div className="flex flex-col gap-1.5 border-t border-biomen-text-primary/5 pt-3">
+              <div className="flex justify-between text-[10px] uppercase font-bold text-biomen-text-primary/50">
                 <span>Rim Light (Back Edge)</span>
                 <span>{backIntensity.toFixed(2)}</span>
               </div>
@@ -976,8 +976,8 @@ const ReelMaker = () => {
             </div>
 
             {/* Spotlight intensity */}
-            <div className="flex flex-col gap-1.5 border-t border-white/5 pt-3">
-              <div className="flex justify-between text-[10px] uppercase font-bold text-white/50">
+            <div className="flex flex-col gap-1.5 border-t border-biomen-text-primary/5 pt-3">
+              <div className="flex justify-between text-[10px] uppercase font-bold text-biomen-text-primary/50">
                 <span>Spot Light</span>
                 <span>{spotIntensity.toFixed(2)}</span>
               </div>
@@ -993,23 +993,23 @@ const ReelMaker = () => {
             </div>
 
             {/* Custom Light Colors */}
-            <div className="grid grid-cols-2 gap-2 border-t border-white/5 pt-3">
+            <div className="grid grid-cols-2 gap-2 border-t border-biomen-text-primary/5 pt-3">
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] uppercase tracking-widest text-white/50 font-bold">Key Color</label>
+                <label className="text-[9px] uppercase tracking-widest text-biomen-text-primary/50 font-bold">Key Color</label>
                 <input
                   type="color"
                   value={lightColor}
                   onChange={(e) => setLightColor(e.target.value)}
-                  className="w-full h-8 rounded cursor-pointer bg-white/5 border border-white/10"
+                  className="w-full h-8 rounded cursor-pointer bg-biomen-text-primary/5 border border-biomen-text-primary/10"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] uppercase tracking-widest text-white/50 font-bold">Rim Color</label>
+                <label className="text-[9px] uppercase tracking-widest text-biomen-text-primary/50 font-bold">Rim Color</label>
                 <input
                   type="color"
                   value={rimColor}
                   onChange={(e) => setRimColor(e.target.value)}
-                  className="w-full h-8 rounded cursor-pointer bg-white/5 border border-white/10"
+                  className="w-full h-8 rounded cursor-pointer bg-biomen-text-primary/5 border border-biomen-text-primary/10"
                 />
               </div>
             </div>

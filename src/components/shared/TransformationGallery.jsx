@@ -61,11 +61,11 @@ const TransformationGallery = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl text-left">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-1.5 block">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-1.5 block">
               90-DAY PROTOCOL RESULT
             </span>
-            <h2 className="text-3xl md:text-5xl font-normal font-serif tracking-tight text-white mb-2 uppercase">The Shift is Real</h2>
-            <p className="text-gray-300 text-sm lg:text-base font-semibold">See the difference 90 days of consistent biological support can make.</p>
+            <h2 className="text-3xl md:text-5xl font-normal font-serif tracking-tight text-biomen-text-primary mb-2 uppercase">The Shift is Real</h2>
+            <p className="text-biomen-text-primary text-sm lg:text-base font-semibold">See the difference 90 days of consistent biological support can make.</p>
           </div>
           <Link to="/reviews" className="shrink-0 text-biomen-accent font-black uppercase tracking-widest hover:underline underline-offset-4 flex items-center gap-2 text-xs">
             See all stories <ArrowRight size={14} />
@@ -78,7 +78,7 @@ const TransformationGallery = () => {
               key={i} 
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative p-[1.5px] rounded-[2rem] overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl group/gallery-spotlight cursor-pointer"
+              className="relative p-[1.5px] rounded-[2rem] overflow-hidden transition-all duration-500 bg-biomen-text-primary/5 shadow-2xl group/gallery-spotlight cursor-pointer"
               style={{
                 transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
                 transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -94,7 +94,7 @@ const TransformationGallery = () => {
               
               {/* Inner card container */}
               <div className="relative w-full h-full rounded-[1.9rem] bg-gradient-to-br from-[#06110C] to-black/90 overflow-hidden z-10 flex flex-col justify-between">
-                <div className="aspect-square bg-black/45 relative overflow-hidden flex items-center justify-center">
+                <div className="aspect-square bg-biomen-bg-primary/45 relative overflow-hidden flex items-center justify-center">
                   <img 
                     src={shift.image} 
                     alt={shift.user}
@@ -103,22 +103,22 @@ const TransformationGallery = () => {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.75)_80%)]" />
                   
                   {/* Metric Overlay Shift badge */}
-                  <div className="absolute top-4 left-4 bg-black/85 border border-[#16C784]/30 px-3 py-1 rounded-xl backdrop-blur-md shadow-md z-20">
-                    <span className="text-[9px] font-black tracking-widest text-[#16C784] uppercase">{shift.label}</span>
+                  <div className="absolute top-4 left-4 bg-biomen-bg-primary/85 border border-biomen-accent/30 px-3 py-1 rounded-xl backdrop-blur-md shadow-md z-20">
+                    <span className="text-[9px] font-black tracking-widest text-biomen-accent uppercase">{shift.label}</span>
                   </div>
 
                   <div className="absolute bottom-4 left-6 right-6 z-20 flex justify-between items-end">
                     <div>
-                      <div className="text-white font-black text-base uppercase tracking-wider">{shift.user}</div>
-                      <div className="text-[#A8B3AA] text-[9px] font-black uppercase tracking-widest mt-0.5">Active Routine</div>
+                      <div className="text-biomen-text-primary font-black text-base uppercase tracking-wider">{shift.user}</div>
+                      <div className="text-biomen-text-secondary text-[9px] font-black uppercase tracking-widest mt-0.5">Active Routine</div>
                     </div>
                   </div>
                 </div>
-                <div className="p-6 bg-black/30">
-                  <p className="text-xs sm:text-[13px] text-gray-400 italic mb-4 leading-relaxed font-medium min-h-[80px]">
+                <div className="p-6 bg-biomen-bg-primary/30">
+                  <p className="text-xs sm:text-[13px] text-biomen-text-secondary italic mb-4 leading-relaxed font-medium min-h-[80px]">
                     "{shift.quote}"
                   </p>
-                  <div className="text-[9.5px] font-black uppercase tracking-wider text-biomen-copper bg-[#D85A1F]/10 border border-[#D85A1F]/20 px-2.5 py-1 rounded-md inline-block">
+                  <div className="text-[9.5px] font-black uppercase tracking-wider text-biomen-copper bg-biomen-copper/10 border border-biomen-copper/20 px-2.5 py-1 rounded-md inline-block">
                     Focus: {shift.focus}
                   </div>
                 </div>

@@ -43,12 +43,12 @@ const QuizEngine = () => {
         <div className="flex items-center justify-between mb-4">
           <button 
             onClick={handleBack} 
-            className={`text-gray-400 hover:text-white transition-colors flex items-center gap-2 ${currentStep === 0 ? 'invisible' : 'visible'}`}
+            className={`text-biomen-text-secondary hover:text-biomen-text-primary transition-colors flex items-center gap-2 ${currentStep === 0 ? 'invisible' : 'visible'}`}
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm font-medium">Back</span>
           </button>
-          <span className="text-sm font-bold tracking-widest text-[#BFA46A]">
+          <span className="text-sm font-bold tracking-widest text-biomen-gold">
             STEP {currentStep + 1} OF {quizQuestions.length}
           </span>
         </div>
@@ -72,7 +72,7 @@ const QuizEngine = () => {
           transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
           className="w-full max-w-xl p-8 sm:p-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10 text-[#F4F6F2] leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10 text-biomen-text-primary leading-tight">
             {currentQuestion.question}
           </h2>
 
@@ -85,13 +85,13 @@ const QuizEngine = () => {
                   onClick={() => handleOptionSelect(option)}
                   className={`w-full text-left p-5 sm:p-6 rounded-2xl transition-all duration-300 font-bold text-[15px] sm:text-lg flex items-center justify-between group ${
                     isSelected 
-                      ? 'bg-gradient-to-r from-[#16C784]/20 to-transparent border border-[#16C784] shadow-[0_0_30px_rgba(22,199,132,0.15)] text-white' 
-                      : 'bg-[#111] border border-white/5 text-gray-400 hover:bg-[#1a1a1a] hover:border-white/20 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#16C784]/20 to-transparent border border-biomen-accent shadow-[0_0_30px_rgba(22,199,132,0.15)] text-biomen-text-primary' 
+                      : 'bg-[#111] border border-biomen-text-primary/5 text-biomen-text-secondary hover:bg-biomen-bg-secondary hover:border-biomen-text-primary/20 hover:text-biomen-text-primary'
                   }`}
                 >
                   <span>{option}</span>
                   <div className={`w-6 h-6 rounded-full border-[3px] flex items-center justify-center transition-colors ${
-                    isSelected ? 'border-[#16C784] bg-[#16C784]' : 'border-gray-600 group-hover:border-white'
+                    isSelected ? 'border-biomen-accent bg-biomen-accent' : 'border-gray-600 group-hover:border-white'
                   }`}>
                     {isSelected && <div className="w-2 h-2 bg-white rounded-full" />}
                   </div>

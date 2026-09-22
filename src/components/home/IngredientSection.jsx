@@ -228,25 +228,25 @@ const IngredientSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative pt-6 pb-6 lg:pt-8 lg:pb-8 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between"
+      className="relative pt-6 pb-6 lg:pt-8 lg:pb-8 px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col justify-between"
       id="formula"
     >
       {/* Background spotlights (ambient glows, not digital gradients) */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#16C784]/5 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-biomen-accent/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
 
         {/* Header Block */}
         <div className="text-center mb-6 lg:mb-2 max-w-3xl mx-auto ingredient-fade-up">
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-0.5 block">
             Transparent Dosing
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.5rem] font-normal font-serif tracking-tight text-white mb-1 reveal-parent-scroll">
+          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.5rem] font-normal font-serif tracking-tight text-biomen-text-primary mb-1 reveal-parent-scroll">
             <span className="block overflow-hidden relative">
               <span className="reveal-line-scroll block">The Formula, Fully Transparent</span>
             </span>
           </h2>
-          <p className="text-[#A8B3AA] font-medium text-sm lg:text-base leading-relaxed">
+          <p className="text-biomen-text-secondary font-medium text-sm lg:text-base leading-relaxed">
             Five purposeful herbal extracts. Clear daily dosages. Tap or hover an ingredient to explore its biological profile.
           </p>
         </div>
@@ -263,7 +263,7 @@ const IngredientSection = () => {
 
               {/* Botanical Aura Pulse Background behind the central panel */}
               <div 
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full bg-[#16C784]/35 blur-3xl pointer-events-none transition-all duration-700 ease-out z-5
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full bg-biomen-accent/35 blur-3xl pointer-events-none transition-all duration-700 ease-out z-5
                   ${isHovered ? 'scale-110 opacity-100' : 'scale-100 opacity-70 animate-pulse-slow-centered'}`}
               />
 
@@ -273,13 +273,13 @@ const IngredientSection = () => {
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/10 flex flex-col justify-center items-center bg-black shadow-2xl relative z-10 backdrop-blur-md overflow-hidden cursor-grab active:cursor-grabbing"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-biomen-text-primary/10 flex flex-col justify-center items-center bg-biomen-bg-primary shadow-2xl relative z-10 backdrop-blur-md overflow-hidden cursor-grab active:cursor-grabbing"
               >
                 {/* Dynamic Chemical Synergy Wave Ripples (Pulsing Concentric Rings) */}
                 <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden rounded-full">
-                  <div className="absolute inset-0 border border-[#16C784]/25 rounded-full animate-energy-ring" />
-                  <div className="absolute inset-0 border border-[#16C784]/15 rounded-full animate-energy-ring [animation-delay:1.2s]" />
-                  <div className="absolute inset-0 border border-[#16C784]/8 rounded-full animate-energy-ring [animation-delay:2.4s]" />
+                  <div className="absolute inset-0 border border-biomen-accent/25 rounded-full animate-energy-ring" />
+                  <div className="absolute inset-0 border border-biomen-accent/15 rounded-full animate-energy-ring [animation-delay:1.2s]" />
+                  <div className="absolute inset-0 border border-biomen-accent/8 rounded-full animate-energy-ring [animation-delay:2.4s]" />
                 </div>
 
                 {/* Active ingredient background photo with smooth hardware-accelerated cross-fade */}
@@ -305,7 +305,7 @@ const IngredientSection = () => {
                 {/* Manual navigation Chevron buttons */}
                 <button
                   onClick={(e) => { e.stopPropagation(); prevIngredient(); }}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16C784] hover:bg-black/90 hover:border-[#16C784]/40 hover:scale-105 active:scale-95 transition-all duration-200 z-30 outline-none cursor-pointer"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-biomen-bg-primary/60 border border-biomen-text-primary/10 flex items-center justify-center text-biomen-text-primary/50 hover:text-biomen-accent hover:bg-biomen-bg-primary/90 hover:border-biomen-accent/40 hover:scale-105 active:scale-95 transition-all duration-200 z-30 outline-none cursor-pointer"
                   aria-label="Previous ingredient"
                 >
                   <ChevronLeft size={16} />
@@ -313,7 +313,7 @@ const IngredientSection = () => {
 
                 <button
                   onClick={(e) => { e.stopPropagation(); nextIngredient(); }}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#16C784] hover:bg-black/90 hover:border-[#16C784]/40 hover:scale-105 active:scale-95 transition-all duration-200 z-30 outline-none cursor-pointer"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-biomen-bg-primary/60 border border-biomen-text-primary/10 flex items-center justify-center text-biomen-text-primary/50 hover:text-biomen-accent hover:bg-biomen-bg-primary/90 hover:border-biomen-accent/40 hover:scale-105 active:scale-95 transition-all duration-200 z-30 outline-none cursor-pointer"
                   aria-label="Next ingredient"
                 >
                   <ChevronRight size={16} />
@@ -322,13 +322,13 @@ const IngredientSection = () => {
                 {/* Central carousel slide content (Enhanced mobile font sizing) */}
                 <div className="w-[190px] h-[190px] flex flex-col items-center justify-center text-center relative z-20 select-none">
                   <div className="central-panel-content flex flex-col items-center justify-center space-y-2">
-                    <h3 className="text-[17px] lg:text-sm font-black text-white leading-tight uppercase tracking-wider filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                    <h3 className="text-[17px] lg:text-sm font-black text-biomen-text-primary leading-tight uppercase tracking-wider filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                       {activeIng.name}
                     </h3>
-                    <span className="text-[11px] lg:text-[9px] font-black uppercase tracking-widest text-[#D85A1F] bg-[#D85A1F]/20 border border-[#D85A1F]/30 px-2.5 py-0.5 rounded-full filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                    <span className="text-[11px] lg:text-[9px] font-black uppercase tracking-widest text-biomen-copper bg-biomen-copper/20 border border-biomen-copper/30 px-2.5 py-0.5 rounded-full filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                       {activeIng.dose} Dose
                     </span>
-                    <p className="text-[12.5px] lg:text-[10px] text-[#A8B3AA] leading-relaxed font-semibold max-w-[170px] mt-0.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                    <p className="text-[12.5px] lg:text-[10px] text-biomen-text-secondary leading-relaxed font-semibold max-w-[170px] mt-0.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                       {activeIng.purpose}
                     </p>
                   </div>
@@ -340,7 +340,7 @@ const IngredientSection = () => {
                     <button
                       key={i}
                       onClick={(e) => { e.stopPropagation(); selectIngredient(i); }}
-                      className={`h-1 rounded-full transition-all duration-300 outline-none cursor-pointer ${activeIndex === i ? 'w-4.5 bg-[#16C784]' : 'w-1 bg-white/20 hover:bg-white/40'}`}
+                      className={`h-1 rounded-full transition-all duration-300 outline-none cursor-pointer ${activeIndex === i ? 'w-4.5 bg-biomen-accent' : 'w-1 bg-biomen-text-primary/20 hover:bg-biomen-text-primary/40'}`}
                       aria-label={`Go to slide ${i + 1}`}
                     />
                   ))}
@@ -391,10 +391,10 @@ const IngredientSection = () => {
                       }}
                       aria-label={`Select ${item.name} ingredient details`}
                     >
-                      <div className={`w-20 h-20 rounded-full border-2 bg-black flex items-center justify-center transition-all duration-300 ${isNodeActive ? 'border-[#16C784] scale-110 shadow-[0_0_25px_rgba(22,199,132,0.4)]' : 'border-white/10 hover:border-white/40 hover:scale-105'} overflow-hidden`}>
+                      <div className={`w-20 h-20 rounded-full border-2 bg-biomen-bg-primary flex items-center justify-center transition-all duration-300 ${isNodeActive ? 'border-biomen-accent scale-110 shadow-[0_0_25px_rgba(22,199,132,0.4)]' : 'border-biomen-text-primary/10 hover:border-white/40 hover:scale-105'} overflow-hidden`}>
                         <img src={item.image} alt={item.name} className="w-full h-full object-cover animate-pulse-slow" />
                       </div>
-                      <span className="absolute top-[88px] left-1/2 -translate-x-1/2 text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase bg-black/70 border border-white/5 px-2.5 py-0.5 rounded shadow whitespace-nowrap opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="absolute top-[88px] left-1/2 -translate-x-1/2 text-[9px] font-black tracking-widest text-biomen-text-secondary uppercase bg-biomen-bg-primary/70 border border-biomen-text-primary/5 px-2.5 py-0.5 rounded shadow whitespace-nowrap opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                         {item.label}
                       </span>
                     </button>
@@ -410,7 +410,7 @@ const IngredientSection = () => {
 
         {/* Elegant compact serving info row */}
         <div className="max-w-4xl mx-auto text-center mb-4 lg:mb-2.5 ingredient-fade-up">
-          <div className="text-[#16C784] font-black uppercase tracking-[0.2em] text-xs lg:text-sm">
+          <div className="text-biomen-accent font-black uppercase tracking-[0.2em] text-xs lg:text-sm">
             1,600mg Active Ingredients Per Serving &bull; 2 Vegetarian Capsules Daily &bull; 60 Capsules (30-Day Supply)
           </div>
         </div>
@@ -419,20 +419,20 @@ const IngredientSection = () => {
         <div className="text-center mb-4 lg:mb-1.5 ingredient-fade-up">
           <a
             href="/science"
-            className="inline-flex items-center gap-3 bg-[#D85A1F] hover:bg-[#b94a17] text-white px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] hover:scale-[1.03] duration-300 btn-sweep"
+            className="inline-flex items-center gap-3 bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary px-11 py-5 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] hover:scale-[1.03] duration-300 btn-sweep"
           >
             Explore T-CORE Science
           </a>
         </div>
 
         {/* Footer Trust Strip */}
-        <div className="mt-2 border-t border-white/5 pt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase ingredient-fade-up">
-          <div className="flex items-center gap-1"><MapPin size={10} className="text-[#16C784]" /> Made in a cGMP Facility</div>
-          <div className="flex items-center gap-1"><Leaf size={10} className="text-[#16C784]" /> Non-GMO</div>
-          <div className="flex items-center gap-1"><Beaker size={10} className="text-[#16C784]" /> Third Party Tested</div>
-          <div className="flex items-center gap-1"><ShieldCheck size={10} className="text-[#16C784]" /> Hormone-Free</div>
-          <div className="flex items-center gap-1"><MapPin size={10} className="text-[#16C784]" /> Made in India</div>
-          <div className="flex items-center gap-1"><Leaf size={10} className="text-[#16C784]" /> Vegetarian Capsules</div>
+        <div className="mt-2 border-t border-biomen-text-primary/5 pt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[9px] font-black tracking-widest text-biomen-text-secondary uppercase ingredient-fade-up">
+          <div className="flex items-center gap-1"><MapPin size={10} className="text-biomen-accent" /> Made in a cGMP Facility</div>
+          <div className="flex items-center gap-1"><Leaf size={10} className="text-biomen-accent" /> Non-GMO</div>
+          <div className="flex items-center gap-1"><Beaker size={10} className="text-biomen-accent" /> Third Party Tested</div>
+          <div className="flex items-center gap-1"><ShieldCheck size={10} className="text-biomen-accent" /> Hormone-Free</div>
+          <div className="flex items-center gap-1"><MapPin size={10} className="text-biomen-accent" /> Made in India</div>
+          <div className="flex items-center gap-1"><Leaf size={10} className="text-biomen-accent" /> Vegetarian Capsules</div>
         </div>
 
       </div>

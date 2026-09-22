@@ -13,7 +13,7 @@ const Footer = lazy(() => import('../components/shared/Footer'));
 
 const Home = () => {
   return (
-    <div className="bg-black text-white font-manrope relative">
+    <div className="bg-biomen-bg-primary text-biomen-text-primary font-manrope relative">
       {/* Vertical Navigation sidebar scroll indicator */}
       <ScrollProgressIndicator />
 
@@ -21,7 +21,7 @@ const Home = () => {
       <HeroSection />
       
       {/* Suspense wrapper for all deferred below-the-fold sections */}
-      <Suspense fallback={<div className="min-h-[200px] bg-black" />}>
+      <Suspense fallback={<div className="min-h-[200px] bg-biomen-bg-primary" />}>
         {/* 2. Transparent Formula */}
         <IngredientSection />
         

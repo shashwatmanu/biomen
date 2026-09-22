@@ -34,7 +34,7 @@ const EmailCapture = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-[#060c09] border-t border-white/5 relative overflow-hidden" id="newsletter">
+    <section className="py-24 px-6 md:px-20 bg-biomen-bg-secondary border-t border-biomen-text-primary/5 relative overflow-hidden" id="newsletter">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-950/15 via-transparent to-transparent pointer-events-none" />
       
       <div className="max-w-4xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -44,10 +44,10 @@ const EmailCapture = () => {
           <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block">
             The Journal
           </span>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-biomen-text-primary">
             Join the BIOMEN Journal
           </h2>
-          <div className="space-y-4 text-gray-300 font-medium text-base md:text-lg leading-relaxed">
+          <div className="space-y-4 text-biomen-text-primary font-medium text-base md:text-lg leading-relaxed">
             <p>
               Receive useful insights on:
             </p>
@@ -58,21 +58,21 @@ const EmailCapture = () => {
               <li>🛡️ Masculine Wellness</li>
               <li>🗓️ Disciplined Daily Living</li>
             </ul>
-            <p className="text-white text-sm">
+            <p className="text-biomen-text-primary text-sm">
               plus early access to future BIOMEN releases.
             </p>
           </div>
         </div>
 
         {/* Right Column: Capture Box */}
-        <div className="lg:col-span-5 bg-white/5 border border-white/10 p-8 rounded-[2.5rem] shadow-2xl relative">
+        <div className="lg:col-span-5 bg-biomen-text-primary/5 border border-biomen-text-primary/10 p-8 rounded-[2.5rem] shadow-2xl relative">
           {status === 'success' ? (
             <div className="text-center py-6 animate-in fade-in zoom-in duration-500">
               <div className="bg-emerald-500/10 p-4 rounded-full border border-emerald-500/20 text-emerald-400 inline-block mb-4">
                 <CheckCircle2 size={32} />
               </div>
-              <h3 className="text-xl font-black uppercase tracking-wider text-white mb-2">You&rsquo;re In</h3>
-              <p className="text-xs text-gray-400 max-w-xs mx-auto leading-relaxed">
+              <h3 className="text-xl font-black uppercase tracking-wider text-biomen-text-primary mb-2">You&rsquo;re In</h3>
+              <p className="text-xs text-biomen-text-secondary max-w-xs mx-auto leading-relaxed">
                 Welcome. Your daily baseline starts here.
               </p>
             </div>
@@ -80,7 +80,7 @@ const EmailCapture = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/10 flex items-center gap-3 mb-4">
                 <Inbox className="text-emerald-400 shrink-0" size={18} />
-                <span className="text-[10px] text-gray-400 font-black uppercase tracking-wider leading-relaxed">
+                <span className="text-[10px] text-biomen-text-secondary font-black uppercase tracking-wider leading-relaxed">
                   Join 12,000+ men optimizing daily consistency.
                 </span>
               </div>
@@ -89,7 +89,7 @@ const EmailCapture = () => {
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="w-full bg-black border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-emerald-500 transition-all font-medium text-sm placeholder:text-gray-600"
+                  className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 rounded-full px-6 py-4 text-biomen-text-primary focus:outline-none focus:border-emerald-500 transition-all font-medium text-sm placeholder:text-gray-600"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -111,7 +111,7 @@ const EmailCapture = () => {
                 </p>
               )}
 
-              <p className="text-[10px] text-gray-500 font-black text-center uppercase tracking-[0.2em] mt-4">
+              <p className="text-[10px] text-biomen-text-secondary font-black text-center uppercase tracking-[0.2em] mt-4">
                 🔒 No spam. No noise. Just updates worth opening.
               </p>
             </form>

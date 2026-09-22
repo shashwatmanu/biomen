@@ -6,11 +6,11 @@ const VideoCarousel = () => {
   const tabs = ['Benefits', 'Ingredients', 'Value', 'Effects'];
 
   return (
-    <section className="pt-8 pb-24 px-6 md:px-20 bg-black/40">
+    <section className="pt-8 pb-24 px-6 md:px-20 bg-biomen-bg-primary/40">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">What Men Are Saying</h2>
-          <p className="text-gray-400 text-lg">Real results from consistent T-CORE users.</p>
+          <p className="text-biomen-text-secondary text-lg">Real results from consistent T-CORE users.</p>
         </div>
 
         {/* Category Tabs */}
@@ -22,7 +22,7 @@ const VideoCarousel = () => {
               className={`px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
                 activeTab === tab 
                   ? 'bg-biomen-accent text-biomen-green' 
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5'
+                  : 'bg-biomen-text-primary/5 text-biomen-text-secondary hover:bg-biomen-text-primary/10 hover:text-biomen-text-primary border border-biomen-text-primary/5'
               }`}
             >
               {tab}
@@ -33,8 +33,8 @@ const VideoCarousel = () => {
         {/* Video Slider Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="glass-panel rounded-3xl overflow-hidden border border-white/5 relative group cursor-pointer aspect-[9/16] md:aspect-auto md:h-[500px]">
-              <div className="absolute inset-0 bg-white/5 flex items-center justify-center">
+            <div key={i} className="glass-panel rounded-3xl overflow-hidden border border-biomen-text-primary/5 relative group cursor-pointer aspect-[9/16] md:aspect-auto md:h-[500px]">
+              <div className="absolute inset-0 bg-biomen-text-primary/5 flex items-center justify-center">
                 <span className="text-gray-600 font-mono text-xs uppercase tracking-widest">
                   [Video Thumbnail: {activeTab}]
                 </span>
@@ -48,10 +48,10 @@ const VideoCarousel = () => {
               </div>
               
               <div className="absolute bottom-6 left-6 right-6 z-20">
-                <div className="text-white font-bold text-lg mb-2">"{activeTab} review headline goes here."</div>
+                <div className="text-biomen-text-primary font-bold text-lg mb-2">"{activeTab} review headline goes here."</div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-biomen-accent"></div>
-                  <div className="text-sm text-gray-400 font-medium">Verified User</div>
+                  <div className="text-sm text-biomen-text-secondary font-medium">Verified User</div>
                 </div>
               </div>
             </div>

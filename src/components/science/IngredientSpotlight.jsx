@@ -161,23 +161,23 @@ const IngredientSpotlight = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-14 lg:pt-[120px] pb-12 lg:pb-16 px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5" 
+      className="relative pt-14 lg:pt-[120px] pb-12 lg:pb-16 px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5" 
       id="spotlight"
     >
       {/* Background spotlights (ambient glows, not digital gradients) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#16C784]/5 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-biomen-accent/5 rounded-full blur-[140px] pointer-events-none z-0" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16 max-w-3xl mx-auto">
-          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#16C784] mb-1.5 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-biomen-accent mb-1.5 block">
             FORMULATION SPOTLIGHT
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-text-primary">
             The Science of <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">The Stack</span>
           </h2>
-          <p className="text-[#A8B3AA] text-sm lg:text-base font-semibold max-w-2xl mx-auto pt-2 leading-relaxed">
+          <p className="text-biomen-text-secondary text-sm lg:text-base font-semibold max-w-2xl mx-auto pt-2 leading-relaxed">
             Click or swipe to explore biological functions and clinical dosages.
           </p>
         </div>
@@ -195,19 +195,19 @@ const IngredientSpotlight = () => {
                   onClick={() => selectIngredient(ing.id)}
                   className={`group flex items-center justify-between p-5 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
                     isActive 
-                      ? 'bg-[#052E22]/30 border-[#16C784] shadow-[0_0_30px_rgba(22,199,132,0.15)] scale-102 text-white' 
-                      : 'bg-black/40 border-white/5 text-gray-400 hover:bg-white/10 hover:border-white/10'
+                      ? 'bg-biomen-surface/30 border-biomen-accent shadow-[0_0_30px_rgba(22,199,132,0.15)] scale-102 text-biomen-text-primary' 
+                      : 'bg-biomen-bg-primary/40 border-biomen-text-primary/5 text-biomen-text-secondary hover:bg-biomen-text-primary/10 hover:border-biomen-text-primary/10'
                   }`}
                 >
                   <div className="flex items-center gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm uppercase transition-colors ${
-                      isActive ? 'bg-[#16C784]/20 text-[#16C784]' : 'bg-black/50 text-[#A8B3AA]'
+                      isActive ? 'bg-biomen-accent/20 text-biomen-accent' : 'bg-biomen-bg-primary/50 text-biomen-text-secondary'
                     }`}>
                       0{ing.id}
                     </div>
                     <div>
-                      <div className="font-black uppercase tracking-wider text-xs lg:text-sm text-white group-hover:text-[#16C784] transition-colors">{ing.name}</div>
-                      <div className="text-[10px] font-black uppercase tracking-widest text-[#D85A1F] mt-0.5">
+                      <div className="font-black uppercase tracking-wider text-xs lg:text-sm text-biomen-text-primary group-hover:text-biomen-accent transition-colors">{ing.name}</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-biomen-copper mt-0.5">
                         {ing.dose} CLINICAL DOSE
                       </div>
                     </div>
@@ -218,7 +218,7 @@ const IngredientSpotlight = () => {
           </div>
 
           {/* Right Column: Spotlight Detailed Specifications with Background Bleed (lg:w-2/3) - Exactly same size (h-[520px]) */}
-          <div className="lg:w-2/3 w-full bg-black/40 border border-white/5 p-8 lg:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col justify-between h-[520px]">
+          <div className="lg:w-2/3 w-full bg-biomen-bg-primary/40 border border-biomen-text-primary/5 p-8 lg:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col justify-between h-[520px]">
             {/* Bleed Background Image (z-0) */}
             <div className="absolute inset-0 z-0 overflow-hidden rounded-[2rem] spotlight-card-animate">
               <img 
@@ -230,36 +230,36 @@ const IngredientSpotlight = () => {
             </div>
 
             {/* Massive watermark number on top of image, behind text (z-10) */}
-            <div className="absolute -left-4 -top-8 text-[18rem] lg:text-[22rem] font-black text-white/[0.09] pointer-events-none leading-none select-none z-10 spotlight-card-animate">
+            <div className="absolute -left-4 -top-8 text-[18rem] lg:text-[22rem] font-black text-biomen-text-primary/[0.09] pointer-events-none leading-none select-none z-10 spotlight-card-animate">
               0{activeIngredient.id}
             </div>
 
             {/* Content Container (z-20) */}
             <div className="relative z-20 w-full text-left flex flex-col justify-between h-full spotlight-card-animate">
               <div className="space-y-4">
-                <div className="inline-block bg-[#052E22]/60 border border-[#0FA36B]/30 text-[#16C784] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.15em]">
+                <div className="inline-block bg-biomen-surface/60 border border-[#0FA36B]/30 text-biomen-accent px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.15em]">
                   {activeIngredient.role}
                 </div>
                 
-                <h3 className="text-4xl font-normal font-serif text-white uppercase tracking-tight">
+                <h3 className="text-4xl font-normal font-serif text-biomen-text-primary uppercase tracking-tight">
                   {activeIngredient.name}
                 </h3>
                 
-                <div className="text-2xl font-black text-[#D85A1F] uppercase tracking-tighter">
+                <div className="text-2xl font-black text-biomen-copper uppercase tracking-tighter">
                   {activeIngredient.dose} CLINICAL DOSE
                 </div>
                 
-                <p className="text-[#A8B3AA] text-sm lg:text-[15px] leading-relaxed font-semibold max-w-xl">
+                <p className="text-biomen-text-secondary text-sm lg:text-[15px] leading-relaxed font-semibold max-w-xl">
                   {activeIngredient.summary}
                 </p>
               </div>
               
               {/* Key Clinical Benefits at the bottom */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4 border-t border-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4 border-t border-biomen-text-primary/5">
                 {activeIngredient.benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-start gap-2.5 bg-black/60 p-3 rounded-xl border border-white/5">
-                    <span className="text-[#16C784] shrink-0 mt-0.5"><Check size={14} strokeWidth={3} /></span>
-                    <span className="text-[11px] font-black text-white uppercase tracking-wider leading-snug">{benefit}</span>
+                  <div key={i} className="flex items-start gap-2.5 bg-biomen-bg-primary/60 p-3 rounded-xl border border-biomen-text-primary/5">
+                    <span className="text-biomen-accent shrink-0 mt-0.5"><Check size={14} strokeWidth={3} /></span>
+                    <span className="text-[11px] font-black text-biomen-text-primary uppercase tracking-wider leading-snug">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -282,7 +282,7 @@ const IngredientSpotlight = () => {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="w-full bg-black/40 border border-white/5 p-6 xs:p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col justify-between h-[520px] transition-all duration-500 cursor-grab active:cursor-grabbing"
+            className="w-full bg-biomen-bg-primary/40 border border-biomen-text-primary/5 p-6 xs:p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col justify-between h-[520px] transition-all duration-500 cursor-grab active:cursor-grabbing"
           >
             {/* Bleed Background Image (z-0) */}
             <div className="absolute inset-0 z-0 overflow-hidden rounded-[2.5rem] spotlight-card-animate">
@@ -295,26 +295,26 @@ const IngredientSpotlight = () => {
             </div>
 
             {/* Watermark on top of image, behind text (z-10) */}
-            <div className="absolute -left-4 -top-6 text-[15rem] font-black text-white/[0.08] pointer-events-none leading-none select-none z-10 spotlight-card-animate">
+            <div className="absolute -left-4 -top-6 text-[15rem] font-black text-biomen-text-primary/[0.08] pointer-events-none leading-none select-none z-10 spotlight-card-animate">
               0{activeIngredient.id}
             </div>
 
             {/* Content Container (z-20) */}
             <div className="relative z-20 w-full flex-1 flex flex-col justify-between h-full spotlight-card-animate">
               <div className="text-center space-y-3.5">
-                <div className="inline-block bg-[#052E22]/60 border border-[#0FA36B]/30 text-[#16C784] px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.15em] mt-1">
+                <div className="inline-block bg-biomen-surface/60 border border-[#0FA36B]/30 text-biomen-accent px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.15em] mt-1">
                   {activeIngredient.role}
                 </div>
                 
-                <h3 className="text-3xl font-normal font-serif text-white uppercase tracking-tight">
+                <h3 className="text-3xl font-normal font-serif text-biomen-text-primary uppercase tracking-tight">
                   {activeIngredient.name}
                 </h3>
                 
-                <div className="text-base font-black text-[#D85A1F] uppercase tracking-wider">
+                <div className="text-base font-black text-biomen-copper uppercase tracking-wider">
                   {activeIngredient.dose} CLINICAL DOSE
                 </div>
                 
-                <p className="text-[#A8B3AA] text-[13.5px] leading-relaxed font-semibold max-w-md mx-auto">
+                <p className="text-biomen-text-secondary text-[13.5px] leading-relaxed font-semibold max-w-md mx-auto">
                   {activeIngredient.summary}
                 </p>
               </div>
@@ -322,9 +322,9 @@ const IngredientSpotlight = () => {
               {/* Key Clinical Benefits */}
               <div className="space-y-2 pt-4 text-left w-full max-w-md mx-auto">
                 {activeIngredient.benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-start gap-2.5 bg-black/60 p-3 rounded-xl border border-white/5">
-                    <span className="text-[#16C784] shrink-0 mt-0.5"><Check size={13} strokeWidth={3} /></span>
-                    <span className="text-[11px] font-black text-white uppercase tracking-wider">{benefit}</span>
+                  <div key={i} className="flex items-start gap-2.5 bg-biomen-bg-primary/60 p-3 rounded-xl border border-biomen-text-primary/5">
+                    <span className="text-biomen-accent shrink-0 mt-0.5"><Check size={13} strokeWidth={3} /></span>
+                    <span className="text-[11px] font-black text-biomen-text-primary uppercase tracking-wider">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -334,7 +334,7 @@ const IngredientSpotlight = () => {
           {/* Left Arrow absolute overlay */}
           <button
             onClick={prevIngredient}
-            className="absolute left-2.5 xs:left-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 border border-[#16C784]/25 flex items-center justify-center text-white/80 hover:text-[#16C784] hover:border-[#16C784] active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            className="absolute left-2.5 xs:left-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-biomen-bg-primary/75 border border-biomen-accent/25 flex items-center justify-center text-biomen-text-primary/80 hover:text-biomen-accent hover:border-biomen-accent active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
             aria-label="Previous ingredient"
           >
             <ChevronLeft size={22} />
@@ -343,7 +343,7 @@ const IngredientSpotlight = () => {
           {/* Right Arrow absolute overlay */}
           <button
             onClick={nextIngredient}
-            className="absolute right-2.5 xs:right-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 border border-[#16C784]/25 flex items-center justify-center text-white/80 hover:text-[#16C784] hover:border-[#16C784] active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            className="absolute right-2.5 xs:right-4 top-[260px] -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-biomen-bg-primary/75 border border-biomen-accent/25 flex items-center justify-center text-biomen-text-primary/80 hover:text-biomen-accent hover:border-biomen-accent active:scale-90 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
             aria-label="Next ingredient"
           >
             <ChevronRight size={22} />
@@ -355,7 +355,7 @@ const IngredientSpotlight = () => {
               <button
                 key={ing.id}
                 onClick={() => selectIngredient(ing.id)}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeId === ing.id ? 'w-6 bg-[#16C784]' : 'w-1.5 bg-white/20'}`}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeId === ing.id ? 'w-6 bg-biomen-accent' : 'w-1.5 bg-biomen-text-primary/20'}`}
                 aria-label={`Go to slide ${ing.id}`}
               />
             ))}

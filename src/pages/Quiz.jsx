@@ -14,11 +14,11 @@ const Quiz = () => {
   }, []);
 
   return (
-    <div className="bg-[#030705] h-[100dvh] relative overflow-hidden flex flex-col lg:flex-row">
+    <div className="bg-biomen-bg-primary h-[100dvh] relative overflow-hidden flex flex-col lg:flex-row">
       <BotanicalParticles />
       
       {/* Left Panel: Quiz Engine */}
-      <div className="lg:w-1/2 xl:w-7/12 relative flex-grow flex flex-col justify-center p-4 sm:p-10 z-20 bg-[#030705] order-2 lg:order-1">
+      <div className="lg:w-1/2 xl:w-7/12 relative flex-grow flex flex-col justify-center p-4 sm:p-10 z-20 bg-biomen-bg-primary order-2 lg:order-1">
         {/* Header inside the Quiz Panel */}
         <header className="absolute top-0 left-0 w-full p-6 sm:p-10 flex items-center justify-between z-30 pointer-events-auto">
           <Link to="/" className="flex items-center gap-3 group">
@@ -27,16 +27,16 @@ const Quiz = () => {
               alt="BIOMEN LABS Logo" 
               className="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity drop-shadow-lg"
             />
-            <span className="font-extrabold tracking-[0.25em] text-lg sm:text-xl text-white opacity-90 group-hover:opacity-100 transition-opacity">BIOMEN</span>
+            <span className="font-extrabold tracking-[0.25em] text-lg sm:text-xl text-biomen-text-primary opacity-90 group-hover:opacity-100 transition-opacity">BIOMEN</span>
           </Link>
-          <div className="hidden sm:inline-block px-4 py-1 border border-[#16C784]/20 rounded-full bg-[#16C784]/5 text-xs font-bold tracking-[0.2em] text-[#16C784] uppercase">
+          <div className="hidden sm:inline-block px-4 py-1 border border-biomen-accent/20 rounded-full bg-biomen-accent/5 text-xs font-bold tracking-[0.2em] text-biomen-accent uppercase">
             Assessment
           </div>
         </header>
 
         {/* Glowing Orbs for the quiz side */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[500px] bg-[#16C784]/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
-        <div className="absolute bottom-0 right-0 w-1/2 h-[300px] bg-[#BFA46A]/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[500px] bg-biomen-accent/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+        <div className="absolute bottom-0 right-0 w-1/2 h-[300px] bg-biomen-gold/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen"></div>
 
         <div className="relative z-10 w-full max-w-xl mx-auto mt-16 sm:mt-0">
           <QuizEngine />
@@ -60,7 +60,7 @@ const Quiz = () => {
         
         {/* Hero Copy (Awwwards Style Typography) */}
         <div className="relative z-30 drop-shadow-2xl mb-4 sm:mb-8 text-right lg:text-right w-full">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-white mb-4 sm:mb-6 leading-[0.9]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter text-biomen-text-primary mb-4 sm:mb-6 leading-[0.9]">
             Find Your <br/>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#A8B3AA] via-white to-[#BFA46A]">
               Optimal

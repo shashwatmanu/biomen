@@ -8,19 +8,19 @@ const SolutionGrid = () => {
 
   const mechanisms = [
     { 
-      icon: <Zap className="text-[#D85A1F] shrink-0" size={24} />, 
+      icon: <Zap className="text-biomen-copper shrink-0" size={24} />, 
       title: "SKYROCKET ENERGY & STAMINA", 
       desc: "Supports masculine drive, physical capacity, and high-intensity performance stamina.",
       poweredBy: "TONGKAT ALI + FENUGREEK"
     },
     { 
-      icon: <Activity className="text-[#D85A1F] shrink-0" size={24} />, 
+      icon: <Activity className="text-biomen-copper shrink-0" size={24} />, 
       title: "SUPPORT MALE VITALITY", 
       desc: "Encourages recovery, stress resilience, and keeps your daily baseline baseline optimized.",
       poweredBy: "SHILAJIT + ASHWAGANDHA"
     },
     { 
-      icon: <Compass className="text-[#D85A1F] shrink-0" size={24} />, 
+      icon: <Compass className="text-biomen-copper shrink-0" size={24} />, 
       title: "AMPLIFY ABSORPTION & EFFICIENCY", 
       desc: "Enhances nutrient absorption and maximizes ingredient biological bioavailability.",
       poweredBy: "BLACK PEPPER EXTRACT"
@@ -62,7 +62,7 @@ const SolutionGrid = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
+      className="relative py-20 lg:py-24 px-4 sm:px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col justify-between" 
       id="solution"
     >
       {/* Hand Holding Canister Full-Bleed Bleeding Background - Set correct green capsules jar asset! */}
@@ -83,17 +83,17 @@ const SolutionGrid = () => {
       </div>
 
       {/* Intense physical orange spotlight glow behind the hand-held bottle */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#D85A1F]/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-biomen-copper/10 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute left-10 bottom-10 w-[300px] h-[300px] bg-biomen-green/10 rounded-full blur-[100px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
         {/* Centered Section Header for both mobile & desktop */}
         <div className="text-center max-w-3xl mx-auto mb-12 solution-fade-up">
-          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#16C784] mb-2 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-biomen-accent mb-2 block">
             THE SYSTEM? T-CORE
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-white uppercase">
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-text-primary uppercase">
             THE SOLUTION? <span className="italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">T-CORE</span>
           </h2>
         </div>
@@ -107,16 +107,16 @@ const SolutionGrid = () => {
             </p>
 
             {/* Completely Clean, Borderless List wrapped inside a premium, ultra-soft glass card on mobile to let the bright background show through beautifully */}
-            <div className="flex flex-col gap-5 pt-2 bg-black/30 lg:bg-transparent backdrop-blur-[3px] lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl border border-white/5 lg:border-none shadow-xl lg:shadow-none">
+            <div className="flex flex-col gap-5 pt-2 bg-biomen-bg-primary/30 lg:bg-transparent backdrop-blur-[3px] lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl border border-biomen-text-primary/5 lg:border-none shadow-xl lg:shadow-none">
               {mechanisms.map((item, i) => (
                 <div key={i} className="flex items-start gap-4 group">
-                  <div className="shrink-0 bg-[#D85A1F]/10 p-2 rounded-lg border border-[#D85A1F]/20 text-[#D85A1F] mt-1 transition-transform group-hover:scale-105">
+                  <div className="shrink-0 bg-biomen-copper/10 p-2 rounded-lg border border-biomen-copper/20 text-biomen-copper mt-1 transition-transform group-hover:scale-105">
                     {item.icon}
                   </div>
                   <div className="space-y-1">
-                    <h3 className="text-base font-black tracking-wider text-white flex flex-wrap items-center gap-x-3">
+                    <h3 className="text-base font-black tracking-wider text-biomen-text-primary flex flex-wrap items-center gap-x-3">
                       {item.title}
-                      <span className="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[9px] font-black tracking-wider text-biomen-accent uppercase font-sans">
+                      <span className="bg-biomen-text-primary/5 border border-biomen-text-primary/10 px-2 py-0.5 rounded text-[9px] font-black tracking-wider text-biomen-accent uppercase font-sans">
                         {item.poweredBy}
                       </span>
                     </h3>
@@ -140,7 +140,7 @@ const SolutionGrid = () => {
             <div className="w-full max-w-[300px] mt-6 lg:-mt-64 relative z-20 flex justify-center lg:inline-flex pointer-events-auto">
               <a 
                 href="/products/t-core"
-                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 relative"
+                className="btn-sweep bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary w-full py-[22px] px-12 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 relative"
               >
                 START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
               </a>
@@ -154,7 +154,7 @@ const SolutionGrid = () => {
         <div className="block lg:hidden w-full pt-8 solution-fade-up px-2">
           <a 
             href="/products/t-core"
-            className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white w-full py-[22px] px-8 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 relative z-20"
+            className="btn-sweep bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary w-full py-[22px] px-8 rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 relative z-20"
           >
             START YOUR 90-DAY SYSTEM <ArrowRight size={16} />
           </a>

@@ -36,7 +36,7 @@ const TrustBadges = () => {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-20 bg-biomen-dark border-y border-white/5 relative overflow-hidden" 
+      className="py-24 px-6 md:px-20 bg-biomen-dark border-y border-biomen-text-primary/5 relative overflow-hidden" 
       id="trust-architecture"
     >
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-biomen-accent/5 rounded-full blur-[100px] pointer-events-none" />
@@ -56,7 +56,7 @@ const TrustBadges = () => {
               </h2>
               
               {/* Distrust Point Box */}
-              <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-[2rem] space-y-4">
+              <div className="bg-biomen-text-primary/5 border border-biomen-text-primary/10 p-6 md:p-8 rounded-[2rem] space-y-4">
                 <p className="text-biomen-copper font-black uppercase tracking-widest text-xs flex items-center gap-2">
                   <AlertCircle size={15} /> WHY MOST MEN DON’T TRUST SUPPLEMENTS
                 </p>
@@ -91,17 +91,17 @@ const TrustBadges = () => {
           </div>
 
           {/* Right Side: What makes T-Core different (8 Pillars) */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-[#052E22]/30 to-transparent border border-white/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-between trust-fade-up relative">
+          <div className="lg:col-span-5 bg-gradient-to-b from-[#052E22]/30 to-transparent border border-biomen-text-primary/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-between trust-fade-up relative">
             <div className="absolute top-0 right-0 w-32 h-32 bg-biomen-accent/5 rounded-full blur-2xl pointer-events-none" />
             
             <div>
-              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent mb-8 pb-4 border-b border-white/10 flex items-center gap-2">
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent mb-8 pb-4 border-b border-biomen-text-primary/10 flex items-center gap-2">
                 <ShieldCheck className="text-biomen-accent" size={16} /> What makes T-Core different
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {pillars.map((pillar, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 bg-black/40 rounded-xl border border-white/5 hover:border-biomen-accent/40 hover:bg-[#052E22]/30 hover:shadow-[0_0_15px_rgba(22,199,132,0.12)] hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                  <div key={i} className="flex items-center gap-3 p-3 bg-biomen-bg-primary/40 rounded-xl border border-biomen-text-primary/5 hover:border-biomen-accent/40 hover:bg-biomen-surface/30 hover:shadow-[0_0_15px_rgba(22,199,132,0.12)] hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                     <CheckCircle2 size={16} className="text-biomen-accent shrink-0" />
                     <span className="text-[11px] md:text-xs font-black uppercase tracking-wider text-biomen-white leading-tight">{pillar}</span>
                   </div>

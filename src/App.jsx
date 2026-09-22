@@ -168,7 +168,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-[#030705] min-h-[100dvh] relative overflow-x-hidden">
+    <div className="bg-biomen-bg-primary min-h-[100dvh] relative overflow-x-hidden">
       {!isAdminPage && <BotanicalParticles />}
       <div className="film-grain" />
       {!isAdminPage && (

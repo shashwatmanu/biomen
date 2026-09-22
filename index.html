@@ -9,6 +9,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="xW2HuLdwMEHlwuIzsJzNA8S8CK5pr_tePSUWZZXJMtw" />
   
+  <!-- Theme Initialization Script to prevent FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('biomen-theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)

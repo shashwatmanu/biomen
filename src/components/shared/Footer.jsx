@@ -30,79 +30,79 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#030705] text-[#F4F6F2] py-24 px-6 md:px-20 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-biomen-bg-primary text-biomen-text-primary py-24 px-6 md:px-20 border-t border-biomen-text-primary/5 relative overflow-hidden">
       
       {/* Massive warm amber/copper physical spotlight on the left, matching their footer style */}
-      <div className="absolute -left-[10%] -bottom-[20%] w-[550px] h-[550px] bg-[#D85A1F]/22 rounded-full blur-[120px] pointer-events-none z-0" />
-      <div className="absolute left-[15%] -bottom-[10%] w-[350px] h-[350px] bg-[#16C784]/8 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute -left-[10%] -bottom-[20%] w-[550px] h-[550px] bg-biomen-copper/22 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute left-[15%] -bottom-[10%] w-[350px] h-[350px] bg-biomen-accent/8 rounded-full blur-[100px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto relative z-10 space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
           
           {/* Left Column: Bold D2C Branding & Large Newsletter Input (lg:col-span-6) */}
           <div className="lg:col-span-6 space-y-8 text-left">
-            <Link to="/" className="flex items-center gap-3 font-black tracking-tighter text-white text-3xl uppercase group">
-              <div className="relative w-9 h-9 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40 group-hover:bg-[#16C784]/20 group-hover:border-[#7FE7B3]/30 transition-all duration-300">
+            <Link to="/" className="flex items-center gap-3 font-black tracking-tighter text-biomen-text-primary text-3xl uppercase group">
+              <div className="relative w-9 h-9 overflow-hidden bg-biomen-text-primary/5 border border-biomen-text-primary/10 rounded-full flex items-center justify-center p-1 shadow-md shadow-black/40 group-hover:bg-biomen-accent/20 group-hover:border-[#7FE7B3]/30 transition-all duration-300">
                 <img 
                   src="/logo/logo_white_symbol.webp" 
                   alt="BIOMEN Labs Logo" 
                   className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
                 />
               </div>
-              <span>BIOMEN <span className="text-[#D85A1F] font-black">LABS</span></span>
+              <span>BIOMEN <span className="text-biomen-copper font-black">LABS</span></span>
             </Link>
             
-            <p className="text-xl font-bold uppercase tracking-[0.15em] text-[#A8B3AA] leading-relaxed max-w-md font-mono">
+            <p className="text-xl font-bold uppercase tracking-[0.15em] text-biomen-text-secondary leading-relaxed max-w-md font-mono">
               ONE GIANT RESET FOR MALE PERFORMANCE.™
             </p>
 
             {/* Newsletter Input Box styled exactly like Mars Men */}
             <div className="max-w-md space-y-4">
               {status === 'success' ? (
-                <div className="flex items-center gap-2 text-[#16C784] font-black text-sm uppercase tracking-wider bg-[#052E22]/30 py-3 px-6 border border-[#16C784]/20 rounded-full animate-in fade-in zoom-in duration-300">
+                <div className="flex items-center gap-2 text-biomen-accent font-black text-sm uppercase tracking-wider bg-biomen-surface/30 py-3 px-6 border border-biomen-accent/20 rounded-full animate-in fade-in zoom-in duration-300">
                   <CheckCircle2 size={16} /> YOU ARE SUBSCRIBED TO THE JOURNAL!
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="relative w-full border-b border-white/20 focus-within:border-biomen-copper transition-colors py-2 flex items-center">
+                <form onSubmit={handleSubscribe} className="relative w-full border-b border-biomen-text-primary/20 focus-within:border-biomen-copper transition-colors py-2 flex items-center">
                   <input 
                     type="email" 
                     placeholder="YOUR EMAIL" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent text-white font-mono font-black uppercase text-sm tracking-widest placeholder:text-gray-700 focus:outline-none py-2 pr-12"
+                    className="w-full bg-transparent text-biomen-text-primary font-mono font-black uppercase text-sm tracking-widest placeholder:text-gray-700 focus:outline-none py-2 pr-12"
                     required
                     disabled={status === 'loading'}
                   />
                   <button 
                     type="submit" 
                     disabled={status === 'loading'}
-                    className="absolute right-0 hover:text-biomen-copper text-white transition-colors duration-300 cursor-pointer outline-none p-2"
+                    className="absolute right-0 hover:text-biomen-copper text-biomen-text-primary transition-colors duration-300 cursor-pointer outline-none p-2"
                     aria-label="Subscribe to newsletter"
                   >
                     <Send size={16} />
                   </button>
                 </form>
               )}
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+              <p className="text-[10px] text-biomen-text-secondary font-bold uppercase tracking-wider">
                 By signing up you consent to receiving Biomen Labs emails.
               </p>
             </div>
 
             {/* Social Square Links */}
             <div className="flex gap-4">
-              <a href="#" aria-label="Official Website" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Official Website" className="w-10 h-10 border border-biomen-text-primary/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Globe size={16} />
               </a>
-              <a href="#" aria-label="Share Website" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Share Website" className="w-10 h-10 border border-biomen-text-primary/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Share2 size={16} />
               </a>
-              <a href="#" aria-label="Send Support Email" className="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
+              <a href="#" aria-label="Send Support Email" className="w-10 h-10 border border-biomen-text-primary/10 rounded-lg flex items-center justify-center hover:border-biomen-copper hover:text-biomen-copper transition-all bg-white/[0.02]">
                 <Mail size={16} />
               </a>
             </div>
 
             {/* PMID Science trust identifier */}
-            <div className="text-gray-400 font-mono font-bold tracking-widest text-xs pt-4">
+            <div className="text-biomen-text-secondary font-mono font-bold tracking-widest text-xs pt-4">
               † PMID: 32151259
             </div>
 
@@ -111,38 +111,38 @@ const Footer = () => {
           {/* Right Columns: Four beautiful columns (col-span-6) */}
           <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
             <div className="space-y-4">
-              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Shop</h3>
-              <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
-                <li><Link to="/products/t-core" className="hover:text-white transition-colors">Shop T-CORE</Link></li>
-                <li><Link to="/#formula" className="hover:text-white transition-colors">Ingredients</Link></li>
-                <li><Link to="/#pricing" className="hover:text-white transition-colors">Try Once</Link></li>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-biomen-text-primary">Shop</h3>
+              <ul className="space-y-3 font-mono font-bold text-xs text-biomen-text-secondary uppercase tracking-wider">
+                <li><Link to="/products/t-core" className="hover:text-biomen-text-primary transition-colors">Shop T-CORE</Link></li>
+                <li><Link to="/#formula" className="hover:text-biomen-text-primary transition-colors">Ingredients</Link></li>
+                <li><Link to="/#pricing" className="hover:text-biomen-text-primary transition-colors">Try Once</Link></li>
               </ul>
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">About</h3>
-              <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
-                <li><Link to="/about" className="hover:text-white transition-colors">Biography</Link></li>
-                <li><Link to="/science" className="hover:text-white transition-colors">Science</Link></li>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-biomen-text-primary">About</h3>
+              <ul className="space-y-3 font-mono font-bold text-xs text-biomen-text-secondary uppercase tracking-wider">
+                <li><Link to="/about" className="hover:text-biomen-text-primary transition-colors">Biography</Link></li>
+                <li><Link to="/science" className="hover:text-biomen-text-primary transition-colors">Science</Link></li>
               </ul>
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Support</h3>
-              <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-                <li><Link to="/faq" className="hover:text-white transition-colors">Help Desk</Link></li>
-                <li><Link to="/refunds" className="hover:text-white transition-colors">Refunds Policy</Link></li>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-biomen-text-primary">Support</h3>
+              <ul className="space-y-3 font-mono font-bold text-xs text-biomen-text-secondary uppercase tracking-wider">
+                <li><Link to="/contact" className="hover:text-biomen-text-primary transition-colors">Contact Us</Link></li>
+                <li><Link to="/faq" className="hover:text-biomen-text-primary transition-colors">Help Desk</Link></li>
+                <li><Link to="/refunds" className="hover:text-biomen-text-primary transition-colors">Refunds Policy</Link></li>
               </ul>
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-white">Legal</h3>
-              <ul className="space-y-3 font-mono font-bold text-xs text-[#A8B3AA] uppercase tracking-wider">
-                <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Use</Link></li>
-                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping Policy</Link></li>
-                <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer Policy</Link></li>
+              <h3 className="font-mono font-black uppercase tracking-[0.2em] text-xs text-biomen-text-primary">Legal</h3>
+              <ul className="space-y-3 font-mono font-bold text-xs text-biomen-text-secondary uppercase tracking-wider">
+                <li><Link to="/terms" className="hover:text-biomen-text-primary transition-colors">Terms of Use</Link></li>
+                <li><Link to="/privacy" className="hover:text-biomen-text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/shipping" className="hover:text-biomen-text-primary transition-colors">Shipping Policy</Link></li>
+                <li><Link to="/disclaimer" className="hover:text-biomen-text-primary transition-colors">Disclaimer Policy</Link></li>
               </ul>
             </div>
           </div>
@@ -150,13 +150,13 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Medical FDA Disclaimer */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+        <div className="pt-8 border-t border-biomen-text-primary/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-biomen-text-secondary">
           
           <div className="text-left font-mono">
             © {new Date().getFullYear()} BIOMEN LABS, INC. ALL RIGHTS RESERVED.
           </div>
 
-          <div className="text-left md:text-right max-w-2xl font-mono text-[9px] leading-relaxed text-gray-400">
+          <div className="text-left md:text-right max-w-2xl font-mono text-[9px] leading-relaxed text-biomen-text-secondary">
             * These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Proudly Made in India.
           </div>
         </div>

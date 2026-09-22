@@ -53,7 +53,7 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
     <div 
       onMouseMove={handleMouseMove}
       className={`relative p-[1px] rounded-2xl overflow-hidden transition-all duration-300 group/faq-spotlight ${
-        isOpen ? 'bg-[#16C784] shadow-lg shadow-black/40' : 'bg-white/10'
+        isOpen ? 'bg-biomen-accent shadow-lg shadow-black/40' : 'bg-biomen-text-primary/10'
       }`}
     >
       {/* Spotlight border glow layer */}
@@ -68,7 +68,7 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
 
       {/* Inner Card container */}
       <div className={`w-full h-full rounded-[15px] overflow-hidden transition-all duration-300 relative z-10 ${
-        isOpen ? 'bg-[#0a100d]' : 'bg-gradient-to-br from-[#06110C]/80 to-black/90 group-hover/faq-spotlight:from-[#091B13] group-hover/faq-spotlight:to-black/95'
+        isOpen ? 'bg-biomen-bg-secondary' : 'bg-gradient-to-br from-[#06110C]/80 to-black/90 group-hover/faq-spotlight:from-[#091B13] group-hover/faq-spotlight:to-black/95'
       }`}>
         {/* Background inner glow */}
         {!isOpen && (
@@ -85,12 +85,12 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
           onClick={onToggle}
         >
           <span className={`font-black text-base md:text-lg transition-colors pr-4 uppercase tracking-wide ${
-            isOpen ? 'text-[#16C784]' : 'text-white group-hover:text-[#16C784]'
+            isOpen ? 'text-biomen-accent' : 'text-biomen-text-primary group-hover:text-biomen-accent'
           }`}>
             {index + 1}. {faq.q}
           </span>
           <span className={`shrink-0 p-2 rounded-full border transition-colors ${
-            isOpen ? 'bg-[#16C784]/10 border-[#16C784] text-[#16C784]' : 'bg-white/5 border-white/10 text-gray-400 group-hover:text-[#16C784] group-hover:bg-[#16C784]/10 group-hover:border-[#16C784]/30'
+            isOpen ? 'bg-biomen-accent/10 border-biomen-accent text-biomen-accent' : 'bg-biomen-text-primary/5 border-biomen-text-primary/10 text-biomen-text-secondary group-hover:text-biomen-accent group-hover:bg-biomen-accent/10 group-hover:border-biomen-accent/30'
           }`}>
             {isOpen ? <Minus size={14} /> : <Plus size={14} />}
           </span>
@@ -98,10 +98,10 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
         
         <div 
           className={`transition-all duration-300 overflow-hidden relative z-10 ${
-            isOpen ? 'max-h-48 border-t border-[#16C784]/10' : 'max-h-0'
+            isOpen ? 'max-h-48 border-t border-biomen-accent/10' : 'max-h-0'
           }`}
         >
-          <div className="p-6 lg:p-7 text-[#A8B3AA] text-sm lg:text-[15px] leading-relaxed font-semibold">
+          <div className="p-6 lg:p-7 text-biomen-text-secondary text-sm lg:text-[15px] leading-relaxed font-semibold">
             {faq.a}
           </div>
         </div>
@@ -133,7 +133,7 @@ const FAQSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="faq">
+    <section ref={containerRef} className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col justify-between" id="faq">
       <div className="max-w-6xl mx-auto w-full relative z-10 flex-1 flex flex-col justify-between">
         
         {/* Header */}
@@ -141,12 +141,12 @@ const FAQSection = () => {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-0.5 block">
             Help Desk
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-white mb-0.5 reveal-parent-scroll">
+          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-biomen-text-primary mb-0.5 reveal-parent-scroll">
             <span className="block overflow-hidden relative">
               <span className="reveal-line-scroll block">Frequently Asked Questions</span>
             </span>
           </h2>
-          <p className="text-gray-400 text-xs lg:text-sm font-semibold">
+          <p className="text-biomen-text-secondary text-xs lg:text-sm font-semibold">
             Everything you need to know before starting T-Core.
           </p>
         </div>
