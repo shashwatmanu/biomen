@@ -34,7 +34,7 @@ const StandardCard = ({ std }) => {
     <div 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative p-[1.5px] rounded-[2rem] overflow-hidden transition-all duration-500 bg-biomen-text-primary/5 shadow-2xl group/spotlight h-full"
+      className="relative p-[1.5px] rounded-[2rem] overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl group/spotlight h-full"
       style={{
         transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
         transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -59,13 +59,13 @@ const StandardCard = ({ std }) => {
         />
 
         <div className="relative z-10 space-y-4">
-          <div className="bg-biomen-surface p-3 rounded-2xl w-fit text-biomen-accent border border-[#0FA36B]/20 transition-transform duration-500 group-hover/spotlight:scale-105">
+          <div className="bg-[#052E22] p-3 rounded-2xl w-fit text-[#16C784] border border-[#0FA36B]/20 transition-transform duration-500 group-hover/spotlight:scale-105">
             {std.icon}
           </div>
-          <h3 className="text-xl font-black text-biomen-text-primary uppercase tracking-wider">
+          <h3 className="text-xl font-black text-[#F4F6F2] uppercase tracking-wider">
             {std.title}
           </h3>
-          <p className="text-sm text-biomen-text-secondary leading-relaxed font-medium">
+          <p className="text-sm text-[#A8B3AA] leading-relaxed font-medium">
             {std.desc}
           </p>
         </div>
@@ -85,10 +85,10 @@ const StandardCard = ({ std }) => {
 
   return (
     <div className="space-y-1.5 w-full text-left">
-      <label className="text-[10px] font-black uppercase tracking-wider text-biomen-text-secondary block pl-1">{label}</label>
+      <label className="text-[10px] font-black uppercase tracking-wider text-gray-400 block pl-1">{label}</label>
       <div 
         onMouseMove={handleMouseMove}
-        className="relative p-[1px] rounded-xl overflow-hidden bg-biomen-text-primary/10 transition-all duration-300 group/input-spotlight focus-within:bg-biomen-accent"
+        className="relative p-[1px] rounded-xl overflow-hidden bg-white/10 transition-all duration-300 group/input-spotlight focus-within:bg-[#16C784]"
       >
         {/* Spotlight border glow layer */}
         <div 
@@ -97,7 +97,7 @@ const StandardCard = ({ std }) => {
             background: `radial-gradient(130px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.45), transparent 85%)`
           }}
         />
-        <div className="w-full h-full rounded-[11px] overflow-hidden relative z-10 bg-biomen-bg-primary focus-within:bg-[#06110c] transition-colors duration-300">
+        <div className="w-full h-full rounded-[11px] overflow-hidden relative z-10 bg-[#030705] focus-within:bg-[#06110c] transition-colors duration-300">
           {children}
         </div>
       </div>
@@ -193,18 +193,18 @@ const Doctor = () => {
   ];
 
   return (
-    <div ref={containerRef} className="bg-biomen-bg-primary text-biomen-text-primary font-manrope pt-[176px] md:pt-[144px] min-h-screen">
+    <div ref={containerRef} className="bg-[#030705] text-[#F4F6F2] font-manrope pt-[176px] md:pt-[144px] min-h-screen">
       {/* Background visual elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-biomen-surface/20 rounded-full blur-[150px] pointer-events-none z-0" />
-      <div className="absolute top-[40%] left-0 w-[400px] h-[400px] bg-biomen-emerald/5 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#052E22]/20 rounded-full blur-[150px] pointer-events-none z-0" />
+      <div className="absolute top-[40%] left-0 w-[400px] h-[400px] bg-[#0FA36B]/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-20 relative z-10">
         {/* Page Hero */}
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent bg-biomen-surface px-4 py-1.5 rounded-full border border-[#0FA36B]/20 inline-block mb-4">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-[#16C784] bg-[#052E22] px-4 py-1.5 rounded-full border border-[#0FA36B]/20 inline-block mb-4">
             CLINICAL HERITAGE & AYURVEDA
           </span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-biomen-text-primary leading-tight mb-6 reveal-parent-scroll">
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white leading-tight mb-6 reveal-parent-scroll">
             <span className="block overflow-hidden relative">
               <span className="reveal-line-scroll block">Clinical Ayurvedic</span>
             </span>
@@ -212,7 +212,7 @@ const Doctor = () => {
               <span className="reveal-line-scroll block text-[#0FA36B]">Performance Wisdom</span>
             </span>
           </h1>
-          <p className="text-biomen-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#A8B3AA] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             BIOMEN combines classical Ayurvedic rasayana principles with validated modern extraction science, overseen by leading medical experts.
           </p>
         </div>
@@ -221,7 +221,7 @@ const Doctor = () => {
         <div 
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative p-[1.5px] rounded-[3.05rem] overflow-hidden transition-all duration-500 bg-biomen-text-primary/5 shadow-2xl group/spotlight mb-24"
+          className="relative p-[1.5px] rounded-[3.05rem] overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl group/spotlight mb-24"
           style={{
             transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
             transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -263,29 +263,29 @@ const Doctor = () => {
                 {advisors.map((adv, idx) => (
                   <div key={idx} className="space-y-6">
                     <div>
-                      <span className="text-xs font-black uppercase tracking-wider text-biomen-gold">
+                      <span className="text-xs font-black uppercase tracking-wider text-[#BFA46A]">
                         Advisory Director
                       </span>
-                      <h2 className="text-3xl md:text-4xl font-black text-biomen-text-primary uppercase mt-1">
+                      <h2 className="text-3xl md:text-4xl font-black text-white uppercase mt-1">
                         {adv.name}
                       </h2>
-                      <p className="text-sm font-bold text-biomen-accent uppercase tracking-wider mt-1">
+                      <p className="text-sm font-bold text-[#16C784] uppercase tracking-wider mt-1">
                         {adv.role} | {adv.experience}
                       </p>
                     </div>
 
-                    <p className="text-biomen-text-secondary text-base leading-relaxed font-medium border-l-2 border-[#0FA36B] pl-4">
+                    <p className="text-[#A8B3AA] text-base leading-relaxed font-medium border-l-2 border-[#0FA36B] pl-4">
                       {adv.bio}
                     </p>
 
-                    <div className="space-y-3 pt-4 border-t border-biomen-text-primary/5">
-                      <h4 className="text-xs font-black uppercase tracking-widest text-biomen-text-primary">
+                    <div className="space-y-3 pt-4 border-t border-white/5">
+                      <h4 className="text-xs font-black uppercase tracking-widest text-[#F4F6F2]">
                         Expert Credentials & Background
                       </h4>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-biomen-text-secondary font-semibold">
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#A8B3AA] font-semibold">
                         {adv.credentials.map((cred, cIdx) => (
                           <li key={cIdx} className="flex items-start gap-2">
-                            <Check size={14} className="text-biomen-accent shrink-0 mt-0.5" />
+                            <Check size={14} className="text-[#16C784] shrink-0 mt-0.5" />
                             <span>{cred}</span>
                           </li>
                         ))}
@@ -301,10 +301,10 @@ const Doctor = () => {
         {/* Quality Standards Grid */}
         <div className="mb-24">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-biomen-accent">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#16C784]">
               FORMULATION PROTOCOLS
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-biomen-text-primary uppercase mt-2">
+            <h2 className="text-3xl md:text-4xl font-black text-white uppercase mt-2">
               Our Clinical Standards
             </h2>
           </div>
@@ -317,50 +317,50 @@ const Doctor = () => {
         </div>
 
         {/* Interactive Consultation Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-biomen-bg-secondary border border-[#0FA36B]/20 rounded-[3rem] p-8 md:p-16 shadow-2xl items-stretch mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-[#06110C] border border-[#0FA36B]/20 rounded-[3rem] p-8 md:p-16 shadow-2xl items-stretch mb-24">
           
           {/* Form Side Info */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             <div>
-              <span className="text-xs font-black uppercase tracking-wider text-biomen-accent bg-biomen-surface px-3 py-1 rounded-full border border-[#0FA36B]/20">
+              <span className="text-xs font-black uppercase tracking-wider text-[#16C784] bg-[#052E22] px-3 py-1 rounded-full border border-[#0FA36B]/20">
                 PERSONALIZED PROTOCOL
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-biomen-text-primary uppercase mt-4 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-4xl font-black text-white uppercase mt-4 tracking-tight leading-[1.1]">
                 Ask Our Advisory Team
               </h2>
-              <p className="text-sm text-biomen-text-secondary mt-4 leading-relaxed font-medium">
+              <p className="text-sm text-[#A8B3AA] mt-4 leading-relaxed font-medium">
                 Want to align T-CORE with your existing diet, Ayurvedic body type, or exercise regime? Fill out the consultation request below. Dr. Keshav Dev's assistant team will reply within 48 business hours with a tailored consistency schedule.
               </p>
             </div>
 
-            <div className="space-y-3 border-t border-biomen-text-primary/5 pt-6 text-xs text-biomen-text-secondary font-semibold">
+            <div className="space-y-3 border-t border-white/5 pt-6 text-xs text-[#A8B3AA] font-semibold">
               <div className="flex items-center gap-2">
-                <ShieldCheck size={16} className="text-biomen-accent" />
+                <ShieldCheck size={16} className="text-[#16C784]" />
                 <span>100% Confidential Professional Communication</span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar size={16} className="text-biomen-accent" />
+                <Calendar size={16} className="text-[#16C784]" />
                 <span>Customised 90-Day Guidebook Included</span>
               </div>
             </div>
           </div>
 
           {/* Form Container */}
-          <div className="lg:col-span-7 bg-biomen-bg-primary/40 border border-biomen-text-primary/5 rounded-3xl p-6 md:p-10 flex flex-col justify-center">
+          <div className="lg:col-span-7 bg-black/40 border border-white/5 rounded-3xl p-6 md:p-10 flex flex-col justify-center">
             {formSubmitted ? (
               <div className="text-center py-10 space-y-4">
-                <div className="bg-biomen-surface p-4 rounded-full border border-[#0FA36B]/20 text-biomen-accent w-fit mx-auto shadow-xl">
+                <div className="bg-[#052E22] p-4 rounded-full border border-[#0FA36B]/20 text-[#16C784] w-fit mx-auto shadow-xl">
                   <ShieldCheck size={40} />
                 </div>
-                <h3 className="text-2xl font-black text-biomen-text-primary uppercase">
+                <h3 className="text-2xl font-black text-white uppercase">
                   Consultation Request Received
                 </h3>
-                <p className="text-sm text-biomen-text-secondary max-w-md mx-auto">
+                <p className="text-sm text-[#A8B3AA] max-w-md mx-auto">
                   Thank you. Your details have been submitted securely to our clinical research team. Please check your inbox at <strong>{formData.email}</strong> within 48 hours for your bespoke T-CORE guidance document.
                 </p>
                 <button 
                   onClick={() => setFormSubmitted(false)}
-                  className="text-xs font-black uppercase text-biomen-gold tracking-wider hover:text-biomen-text-primary underline underline-offset-4"
+                  className="text-xs font-black uppercase text-[#BFA46A] tracking-wider hover:text-white underline underline-offset-4"
                 >
                   Submit Another Consultation Inquiry
                 </button>
@@ -375,7 +375,7 @@ const Doctor = () => {
                       placeholder="e.g. Rahul Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-transparent px-4 py-3 text-sm text-biomen-text-primary focus:outline-none"
+                      className="w-full bg-transparent px-4 py-3 text-sm text-white focus:outline-none"
                     />
                   </FormField>
                   <FormField label="Email Address">
@@ -385,7 +385,7 @@ const Doctor = () => {
                       placeholder="e.g. rahul@domain.com"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-transparent px-4 py-3 text-sm text-biomen-text-primary focus:outline-none"
+                      className="w-full bg-transparent px-4 py-3 text-sm text-white focus:outline-none"
                     />
                   </FormField>
                 </div>
@@ -397,19 +397,19 @@ const Doctor = () => {
                       placeholder="e.g. +91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      className="w-full bg-transparent px-4 py-3 text-sm text-biomen-text-primary focus:outline-none"
+                      className="w-full bg-transparent px-4 py-3 text-sm text-white focus:outline-none"
                     />
                   </FormField>
                   <FormField label="Primary Wellness Goal">
                     <select 
                       value={formData.primaryConcern}
                       onChange={(e) => setFormData({...formData, primaryConcern: e.target.value})}
-                      className="w-full bg-transparent px-4 py-3 text-sm text-biomen-text-secondary focus:outline-none cursor-pointer"
+                      className="w-full bg-transparent px-4 py-3 text-sm text-[#A8B3AA] focus:outline-none cursor-pointer"
                     >
-                      <option value="Energy & Fatigue" className="bg-biomen-bg-primary">Energy & Stamina</option>
-                      <option value="Stress & Resilience" className="bg-biomen-bg-primary">Stress Resilience</option>
-                      <option value="Workout Recovery" className="bg-biomen-bg-primary">Workout Recovery</option>
-                      <option value="Hormonal Baseline Support" className="bg-biomen-bg-primary">Daily Consistency</option>
+                      <option value="Energy & Fatigue" className="bg-[#030705]">Energy & Stamina</option>
+                      <option value="Stress & Resilience" className="bg-[#030705]">Stress Resilience</option>
+                      <option value="Workout Recovery" className="bg-[#030705]">Workout Recovery</option>
+                      <option value="Hormonal Baseline Support" className="bg-[#030705]">Daily Consistency</option>
                     </select>
                   </FormField>
                 </div>
@@ -420,13 +420,13 @@ const Doctor = () => {
                     placeholder="Provide details about your daily schedule, workout habits, or specific hormonal questions..."
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="w-full bg-transparent p-4 text-sm text-biomen-text-primary focus:outline-none resize-none"
+                    className="w-full bg-transparent p-4 text-sm text-white focus:outline-none resize-none"
                   />
                 </FormField>
 
                 <button 
                   type="submit"
-                  className="btn-sweep w-full py-4 bg-biomen-copper text-biomen-text-primary font-black uppercase tracking-widest text-xs rounded-full hover:bg-biomen-copper-dark transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-2"
+                  className="btn-sweep w-full py-4 bg-[#D85A1F] text-[#F4F6F2] font-black uppercase tracking-widest text-xs rounded-full hover:bg-[#b94a17] transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-2"
                 >
                   Send Consultation Request <ArrowRight size={14} />
                 </button>

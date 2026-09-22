@@ -197,7 +197,7 @@ const ProblemSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col justify-between" 
+      className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" 
       id="depletion"
     >
       {/* Editorial seamless background image with high physical contrast */}
@@ -254,7 +254,7 @@ const ProblemSection = () => {
             <div className="pt-2">
               <a 
                 href="/products/t-core" 
-                className="btn-sweep bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
+                className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center lg:inline-flex gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto"
               >
                 UNLOCK YOUR SYSTEM <TrendingDown className="rotate-[270deg]" size={16} />
               </a>
@@ -265,7 +265,7 @@ const ProblemSection = () => {
           <div 
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:col-span-6 w-full relative p-[1.5px] rounded-3xl overflow-hidden transition-all duration-500 bg-biomen-text-primary/5 shadow-2xl backdrop-blur-md infographic-fade-up max-w-[480px] lg:max-w-full mx-auto order-1 lg:order-2 group/chart"
+            className="lg:col-span-6 w-full relative p-[1.5px] rounded-3xl overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl backdrop-blur-md infographic-fade-up max-w-[480px] lg:max-w-full mx-auto order-1 lg:order-2 group/chart"
             style={{
               transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
               transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -280,7 +280,7 @@ const ProblemSection = () => {
             />
 
             {/* Inner card container */}
-            <div className="w-full h-full rounded-[23px] bg-biomen-bg-primary/80 p-4 sm:p-6 lg:p-5 flex flex-col justify-center items-center relative z-10 overflow-hidden">
+            <div className="w-full h-full rounded-[23px] bg-black/80 p-4 sm:p-6 lg:p-5 flex flex-col justify-center items-center relative z-10 overflow-hidden">
               {/* Background inner glow */}
               <div 
                 className="absolute inset-0 opacity-0 group-hover/chart:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
@@ -290,20 +290,20 @@ const ProblemSection = () => {
               />
               
               {/* Soft inner physical glow */}
-              <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-biomen-copper/5 rounded-full blur-[80px] pointer-events-none z-0" />
+              <div className="absolute -top-1/4 -right-1/4 w-40 h-40 bg-[#D85A1F]/5 rounded-full blur-[80px] pointer-events-none z-0" />
 
             <div className="w-full flex justify-between items-center mb-4">
               <div>
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-text-secondary mb-0.5">BIOMEN ANALYTICS</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#A8B3AA] mb-0.5">BIOMEN ANALYTICS</h3>
                 <h4 className="text-base font-black uppercase tracking-wider text-biomen-white">VITALITY PROFILE BY AGE</h4>
               </div>
-              <span className="text-[9px] font-black text-biomen-copper bg-biomen-copper/10 border border-biomen-copper/20 px-3 py-1 rounded-full uppercase tracking-wider">
+              <span className="text-[9px] font-black text-biomen-copper bg-[#D85A1F]/10 border border-biomen-copper/20 px-3 py-1 rounded-full uppercase tracking-wider">
                 1980 vs Present
               </span>
             </div>
 
             {/* Custom SVG Line Chart */}
-            <div className="relative w-full aspect-[4/3] bg-biomen-bg-primary/75 border border-biomen-text-primary/5 rounded-2xl p-4 shadow-inner flex flex-col justify-between">
+            <div className="relative w-full aspect-[4/3] bg-black/75 border border-white/5 rounded-2xl p-4 shadow-inner flex flex-col justify-between">
               
               <svg className="w-full h-full" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
                 
@@ -407,19 +407,19 @@ const ProblemSection = () => {
               </svg>
 
               {/* Glowing canister badge inside the chart */}
-              <div className="absolute right-8 top-16 bg-biomen-surface border border-biomen-accent/30 rounded-xl p-2 hidden md:flex items-center gap-2 shadow-2xl backdrop-blur-md max-w-[130px] animate-bounce-slow">
+              <div className="absolute right-8 top-16 bg-[#052E22] border border-[#16C784]/30 rounded-xl p-2 hidden md:flex items-center gap-2 shadow-2xl backdrop-blur-md max-w-[130px] animate-bounce-slow">
                 <img src="/logo/logo_white_symbol.webp" alt="T-CORE badge" className="w-4 h-4 object-contain" />
                 <div>
-                  <div className="text-[7.5px] font-black text-biomen-accent uppercase tracking-wider">T-CORE ACTIVE</div>
-                  <div className="text-[6.5px] text-biomen-text-secondary font-black uppercase tracking-widest">Sustained Baseline</div>
+                  <div className="text-[7.5px] font-black text-[#16C784] uppercase tracking-wider">T-CORE ACTIVE</div>
+                  <div className="text-[6.5px] text-[#A8B3AA] font-black uppercase tracking-widest">Sustained Baseline</div>
                 </div>
               </div>
 
             </div>
 
             {/* Micro Explainer below chart */}
-            <div className="w-full mt-4 bg-biomen-surface/30 border border-biomen-accent/20 p-3 rounded-xl text-center">
-              <p className="text-[11px] text-biomen-mint font-black uppercase tracking-wider leading-relaxed">
+            <div className="w-full mt-4 bg-[#052E22]/30 border border-[#16C784]/20 p-3 rounded-xl text-center">
+              <p className="text-[11px] text-[#7FE7B3] font-black uppercase tracking-wider leading-relaxed">
                 🎯 Over 90 Days, T-CORE helps support steady natural output rather than a steep drop.
               </p>
             </div>

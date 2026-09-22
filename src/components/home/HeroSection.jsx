@@ -146,7 +146,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-section relative w-full min-h-[100dvh] lg:min-h-[580px] xl:min-h-[640px] flex flex-col justify-between px-4 sm:px-6 md:px-20 overflow-hidden bg-biomen-bg-primary pt-[95px] lg:pt-[135px] pb-4 lg:pb-6" id="hero">
+    <section className="hero-section relative w-full min-h-[100dvh] lg:min-h-[580px] xl:min-h-[640px] flex flex-col justify-between px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] pt-[95px] lg:pt-[135px] pb-4 lg:pb-6" id="hero">
 
       {/* Full-Bleed Background Image with Premium Seamless Parallax Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -190,13 +190,13 @@ const HeroSection = () => {
           ref={badgeRef}
           onMouseMove={handleBadgeMouseMove}
           onMouseLeave={handleBadgeMouseLeave}
-          className="relative w-32 h-32 rounded-full border border-dashed border-biomen-accent/40 bg-biomen-bg-primary/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center shadow-2xl cursor-pointer"
+          className="relative w-32 h-32 rounded-full border border-dashed border-[#16C784]/40 bg-[#030705]/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center shadow-2xl cursor-pointer"
           style={{ transformStyle: 'preserve-3d' }}
         >
-          <div className="text-biomen-accent font-black text-[9px] uppercase tracking-widest mb-0.5" style={{ transform: 'translateZ(12px)' }}>100% PURE</div>
-          <div className="text-biomen-text-primary font-serif italic text-sm font-medium" style={{ transform: 'translateZ(18px)' }}>Ayurvedic</div>
-          <div className="text-biomen-text-secondary font-black text-[8px] uppercase tracking-wider mt-0.5" style={{ transform: 'translateZ(12px)' }}>&bull; transparent &bull;</div>
-          <div className="absolute -top-1 -right-1 bg-biomen-copper-dark text-biomen-text-primary text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider" style={{ transform: 'translateZ(24px)' }}>
+          <div className="text-[#16C784] font-black text-[9px] uppercase tracking-widest mb-0.5" style={{ transform: 'translateZ(12px)' }}>100% PURE</div>
+          <div className="text-white font-serif italic text-sm font-medium" style={{ transform: 'translateZ(18px)' }}>Ayurvedic</div>
+          <div className="text-[#A8B3AA] font-black text-[8px] uppercase tracking-wider mt-0.5" style={{ transform: 'translateZ(12px)' }}>&bull; transparent &bull;</div>
+          <div className="absolute -top-1 -right-1 bg-[#B84714] text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full shadow-md uppercase tracking-wider" style={{ transform: 'translateZ(24px)' }}>
             GLASS JAR
           </div>
         </div>
@@ -208,16 +208,16 @@ const HeroSection = () => {
         <div className="space-y-3 pt-1 shrink-0">
           {/* Ratings & Reviews */}
           <div className="flex flex-col items-center gap-1 hero-fade-in">
-            <div className="flex text-biomen-copper">
+            <div className="flex text-[#D85A1F]">
               {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
             </div>
-            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-biomen-text-secondary">
+            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
               4.9/5 RATING &bull; OVER 500 VERIFIED EXPERIENCES
             </span>
           </div>
 
           {/* Headline - Sexier, uppercase editorial style, slightly more compact */}
-          <h1 className="text-[1.55rem] xs:text-[1.75rem] sm:text-[2.1rem] font-normal font-serif tracking-tight leading-[1.1] text-biomen-text-primary uppercase max-w-xl mx-auto">
+          <h1 className="text-[1.55rem] xs:text-[1.75rem] sm:text-[2.1rem] font-normal font-serif tracking-tight leading-[1.1] text-white uppercase max-w-xl mx-auto">
             <span className="block overflow-hidden pb-1">
               <span className="reveal-line inline-block">Daily Vitality</span>
             </span>
@@ -233,7 +233,7 @@ const HeroSection = () => {
         {/* Bottom Block: CTA Button and Guarantee pushed all the way down with gorgeous margins */}
         <div className="space-y-3.5 pb-1 shrink-0">
           {/* Minimal punchy description restored and jar pushed higher so it doesn't overlap */}
-          <p className="text-xs xs:text-sm text-biomen-text-secondary font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] hero-fade-in">
+          <p className="text-xs xs:text-sm text-[#A8B3AA] font-semibold leading-relaxed max-w-[290px] xs:max-w-xs mx-auto filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] hero-fade-in">
             5 clinical-grade Ayurvedic extracts for daily energy, drive, and recovery.
           </p>
 
@@ -241,15 +241,15 @@ const HeroSection = () => {
           <div className="px-2 hero-fade-in">
             <Link
               to="/products/t-core"
-              className="bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full btn-sweep"
+              className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-8 py-[20px] rounded-full font-black text-xs xs:text-sm uppercase tracking-widest transition-all shadow-[0_0_35px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.02] duration-300 w-full btn-sweep"
             >
               UNLOCK YOUR SYSTEM <ArrowRight size={15} />
             </Link>
           </div>
 
           {/* Micro-trust Line */}
-          <div className="flex items-center justify-center gap-2 text-[10.5px] sm:text-xs text-biomen-text-secondary font-black uppercase tracking-wider pt-1 hero-fade-in">
-            <Shield size={13} className="text-biomen-accent shrink-0" />
+          <div className="flex items-center justify-center gap-2 text-[10.5px] sm:text-xs text-[#A8B3AA] font-black uppercase tracking-wider pt-1 hero-fade-in">
+            <Shield size={13} className="text-[#16C784] shrink-0" />
             <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
           </div>
         </div>
@@ -264,10 +264,10 @@ const HeroSection = () => {
 
             {/* Verified Rating Badge */}
             <div className="flex items-center gap-2 hero-fade-in">
-              <div className="flex text-biomen-copper">
+              <div className="flex text-[#D85A1F]">
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
               </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-biomen-text-secondary">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#A8B3AA]">
                 4.9/5 RATING &bull; OVER 500 VERIFIED EXPERIENCES
               </span>
             </div>
@@ -286,20 +286,20 @@ const HeroSection = () => {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg lg:text-xl text-biomen-text-secondary font-medium leading-relaxed max-w-xl hero-fade-in">
+            <p className="text-lg lg:text-xl text-[#A8B3AA] font-medium leading-relaxed max-w-xl hero-fade-in">
               T-CORE is a premium, clinical-grade daily vitality system built to support energy, drive, and post-workout recovery. Packaged in a collectible glass jar.
             </p>
 
             {/* Luxury Support Strip */}
-            <div className="flex flex-wrap gap-2 pt-1 text-[9px] font-black uppercase tracking-widest text-biomen-mint/90 hero-fade-in">
-              <span className="flex items-center gap-1 bg-biomen-bg-primary/65 border border-biomen-text-primary/10 px-3.5 py-2 rounded-lg backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-biomen-accent"></span> Transparent Dosing
+            <div className="flex flex-wrap gap-2 pt-1 text-[9px] font-black uppercase tracking-widest text-[#7FE7B3]/90 hero-fade-in">
+              <span className="flex items-center gap-1 bg-black/65 border border-white/10 px-3.5 py-2 rounded-lg backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16C784]"></span> Transparent Dosing
               </span>
-              <span className="flex items-center gap-1 bg-biomen-bg-primary/65 border border-biomen-text-primary/10 px-3.5 py-2 rounded-lg backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-biomen-accent"></span> Vegetarian Capsules
+              <span className="flex items-center gap-1 bg-black/65 border border-white/10 px-3.5 py-2 rounded-lg backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16C784]"></span> Vegetarian Capsules
               </span>
-              <span className="flex items-center gap-1 bg-biomen-surface/75 border border-[#0FA36B]/25 px-3.5 py-2 rounded-lg text-biomen-text-primary backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-biomen-gold"></span> Made in India
+              <span className="flex items-center gap-1 bg-[#052E22]/75 border border-[#0FA36B]/25 px-3.5 py-2 rounded-lg text-white backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#BFA46A]"></span> Made in India
               </span>
             </div>
 
@@ -307,21 +307,21 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-2 hero-fade-in">
               <Link
                 to="/products/t-core"
-                className="bg-biomen-copper hover:bg-biomen-copper-dark text-biomen-text-primary px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto btn-sweep"
+                className="bg-[#D85A1F] hover:bg-[#b94a17] text-white px-12 py-[22px] rounded-full font-black text-sm uppercase tracking-widest transition-all shadow-[0_0_40px_rgba(216,90,31,0.45)] flex items-center justify-center gap-2 hover:scale-[1.03] duration-300 w-full sm:w-auto btn-sweep"
               >
                 UNLOCK YOUR SYSTEM <ArrowRight size={16} />
               </Link>
               <Link
                 to="/science"
-                className="border-2 border-biomen-text-primary/20 text-biomen-text-primary px-12 py-[22px] rounded-full font-black hover:bg-biomen-text-primary/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto btn-sweep"
+                className="border-2 border-white/20 text-white px-12 py-[22px] rounded-full font-black hover:bg-white/5 hover:border-white/40 hover:scale-[1.03] transition-all backdrop-blur-md flex items-center justify-center text-sm duration-300 w-full sm:w-auto btn-sweep"
               >
                 Explore T-CORE Science
               </Link>
             </div>
 
             {/* Risk-Free Micro-trust Line */}
-            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-biomen-text-secondary font-black uppercase tracking-wider pt-2.5 pb-4 hero-fade-in">
-              <Shield size={14} className="text-biomen-accent shrink-0" />
+            <div className="flex items-center gap-2.5 text-xs xl:text-[13px] text-[#A8B3AA] font-black uppercase tracking-wider pt-2.5 pb-4 hero-fade-in">
+              <Shield size={14} className="text-[#16C784] shrink-0" />
               <span>TRY IT FOR 90 DAYS. HIGHER VITALITY OR YOUR MONEY BACK.</span>
             </div>
           </div>
@@ -330,9 +330,9 @@ const HeroSection = () => {
       </div>
 
       {/* Featured In Logos Trust Strip (Infinite Marquee) */}
-      <div className="max-w-7xl mx-auto w-full relative z-20 border-t border-biomen-text-primary/5 pt-4 mt-auto flex items-center overflow-hidden text-[10px] font-black tracking-widest text-biomen-text-secondary">
-        <div className="flex items-center gap-4 shrink-0 bg-biomen-bg-primary pr-6 relative z-30">
-          <span className="text-biomen-text-secondary/85 font-black uppercase tracking-[0.2em] whitespace-nowrap">FEATURED IN</span>
+      <div className="max-w-7xl mx-auto w-full relative z-20 border-t border-white/5 pt-4 mt-auto flex items-center overflow-hidden text-[10px] font-black tracking-widest text-[#A8B3AA]">
+        <div className="flex items-center gap-4 shrink-0 bg-[#030705] pr-6 relative z-30">
+          <span className="text-[#A8B3AA]/85 font-black uppercase tracking-[0.2em] whitespace-nowrap">FEATURED IN</span>
         </div>
         
         <div className="relative w-full overflow-hidden flex items-center">

@@ -9,20 +9,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
-  
-  /* Light Theme Variables */
-  --color-bg-primary: #F9FAF8;
-  --color-bg-secondary: #EAF0EC;
-  --color-text-primary: #030705;
-  --color-text-secondary: #4A5550;
-  --color-accent: #16C784;
-  --color-emerald: #0FA36B;
-  --color-mint: #2E8B57; /* Darkened mint for light mode readability */
-  --color-surface: #ffffff;
-  --color-copper: #D85A1F;
-  --color-copper-dark: #b94a17;
-  --color-gold: #BFA46A;
+  color-scheme: dark;
+  color: #F4F6F2;
+  background-color: #030705;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,37 +19,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark {
-  color-scheme: dark;
-  
-  /* Dark Theme Variables (Original Vibe) */
-  --color-bg-primary: #030705;
-  --color-bg-secondary: #06110C;
-  --color-text-primary: #F4F6F2;
-  --color-text-secondary: #A8B3AA;
-  --color-accent: #16C784;
-  --color-emerald: #0FA36B;
-  --color-mint: #7FE7B3;
-  --color-surface: #052E22;
-  --color-copper: #D85A1F;
-  --color-copper-dark: #b94a17;
-  --color-gold: #BFA46A;
-}
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100dvh;
   overflow-x: hidden;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #030705;
+  color: #F4F6F2;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Manrope', sans-serif;
   letter-spacing: -0.02em;
-  color: var(--color-text-primary);
+  color: #F4F6F2;
 }
 
 /* Glassmorphism utility configured for deep botanical green */

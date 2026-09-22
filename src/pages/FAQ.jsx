@@ -45,7 +45,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="bg-biomen-bg-primary min-h-screen text-biomen-text-primary pt-[176px] md:pt-[144px]">
+    <div className="bg-black min-h-screen text-white pt-[176px] md:pt-[144px]">
       <div className="max-w-4xl mx-auto px-6 md:px-20">
         <div className="text-center mb-24">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block mb-4">
@@ -54,7 +54,7 @@ const FAQ = () => {
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8">
             Protocol <br/> <span className="text-emerald-500">FAQ</span>
           </h1>
-          <p className="text-xl text-biomen-text-secondary font-medium leading-relaxed">
+          <p className="text-xl text-gray-400 font-medium leading-relaxed">
             Everything you need to know before starting T-Core.
           </p>
         </div>
@@ -65,27 +65,27 @@ const FAQ = () => {
             return (
               <div 
                 key={i} 
-                className={`bg-biomen-text-primary/5 border rounded-[1.5rem] transition-all overflow-hidden ${
-                  isOpen ? 'border-emerald-500 bg-biomen-bg-secondary shadow-[0_0_30px_rgba(16,185,129,0.1)]' : 'border-biomen-text-primary/10 hover:border-biomen-text-primary/20'
+                className={`bg-white/5 border rounded-[1.5rem] transition-all overflow-hidden ${
+                  isOpen ? 'border-emerald-500 bg-[#0a100d] shadow-[0_0_30px_rgba(16,185,129,0.1)]' : 'border-white/10 hover:border-white/20'
                 }`}
               >
                 <button 
                   onClick={() => toggleFAQ(i)}
                   className="w-full p-6 flex justify-between items-center text-left"
                 >
-                  <span className="font-bold text-lg text-biomen-text-primary">
+                  <span className="font-bold text-lg text-white">
                     {i + 1}. {faq.q}
                   </span>
-                  <span className="shrink-0 bg-biomen-text-primary/5 p-2 rounded-full border border-biomen-text-primary/10 text-emerald-400">
+                  <span className="shrink-0 bg-white/5 p-2 rounded-full border border-white/10 text-emerald-400">
                     {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                   </span>
                 </button>
                 <div 
                   className={`transition-all duration-300 overflow-hidden ${
-                    isOpen ? 'max-h-40 border-t border-biomen-text-primary/5' : 'max-h-0'
+                    isOpen ? 'max-h-40 border-t border-white/5' : 'max-h-0'
                   }`}
                 >
-                  <div className="p-6 text-biomen-text-primary text-sm md:text-base font-medium leading-relaxed bg-biomen-bg-primary/20">
+                  <div className="p-6 text-gray-300 text-sm md:text-base font-medium leading-relaxed bg-black/20">
                     {faq.a}
                   </div>
                 </div>

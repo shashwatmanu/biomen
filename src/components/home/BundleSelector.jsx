@@ -126,7 +126,7 @@ const BundleSelector = () => {
   };
 
   return (
-    <section className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-biomen-bg-primary border-t border-biomen-text-primary/5 flex flex-col justify-between" id="pricing">
+    <section className="relative pt-12 pb-0 lg:pt-16 lg:pb-0 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#030705] border-t border-white/5 flex flex-col justify-between" id="pricing">
       {/* Background spotlights (ambient glows, not digital gradients) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-biomen-green/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -134,23 +134,23 @@ const BundleSelector = () => {
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-6 lg:mb-2.5">
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-0.5 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5 block">
             PRICING PROTOCOLS
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-biomen-text-primary mb-1">
+          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-[#F4F6F2] mb-1">
             Choose Your System
           </h2>
-          <p className="text-biomen-text-secondary text-xs lg:text-sm font-semibold">
-            T-CORE works best when taken consistently. Evaluate a system over <span className="text-biomen-accent font-bold">30</span>, <span className="text-biomen-accent font-bold">60</span>, and ideally <span className="text-biomen-accent font-bold">90 days</span>.
+          <p className="text-[#A8B3AA] text-xs lg:text-sm font-semibold">
+            T-CORE works best when taken consistently. Evaluate a system over <span className="text-[#16C784] font-bold">30</span>, <span className="text-[#16C784] font-bold">60</span>, and ideally <span className="text-[#16C784] font-bold">90 days</span>.
           </p>
         </div>
 
         {/* Subscription / One-time Toggle Selector */}
         <div className="flex justify-center mb-6 lg:mb-3">
-          <div className="bg-biomen-bg-secondary border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
+          <div className="bg-[#06110C] border border-[#0FA36B]/20 p-1 rounded-full flex gap-1 shadow-2xl relative">
             <button 
               onClick={() => setIsSubscription(false)}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-biomen-accent text-[#030705] shadow-lg' : 'text-biomen-text-primary hover:text-biomen-text-primary'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${!isSubscription ? 'bg-[#16C784] text-[#030705] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">One-Time Purchase</span>
               <span className="inline xs:hidden">One-Time</span>
@@ -160,11 +160,11 @@ const BundleSelector = () => {
                 setIsSubscription(true);
                 setSelectedId('tcore-3-bottles');
               }}
-              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-biomen-copper text-[#030705] shadow-lg' : 'text-biomen-text-primary hover:text-biomen-text-primary'}`}
+              className={`px-3 sm:px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${isSubscription ? 'bg-[#ff7030] text-[#030705] shadow-lg' : 'text-[#E4E6E2] hover:text-white'}`}
             >
               <span className="hidden xs:inline">Auto-Pay Subscription</span>
               <span className="inline xs:hidden">Subscribe & Save</span>
-              <span className="bg-biomen-bg-primary/30 text-[8px] text-biomen-mint px-1.5 py-0.5 rounded border border-biomen-text-primary/5 font-black uppercase shrink-0">-15%</span>
+              <span className="bg-black/30 text-[8px] text-[#7FE7B3] px-1.5 py-0.5 rounded border border-white/5 font-black uppercase shrink-0">-15%</span>
             </button>
           </div>
         </div>
@@ -181,7 +181,7 @@ const BundleSelector = () => {
               return (
                 <div key={index} className="relative h-full flex flex-col">
                   {bundle.best && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-biomen-accent text-[#030705] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#16C784] text-[#030705] px-4 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider shadow-lg flex items-center gap-1 z-30 whitespace-nowrap">
                       <Star size={10} fill="currentColor" /> Recommended Protocol
                     </span>
                   )}
@@ -197,8 +197,8 @@ const BundleSelector = () => {
                     onMouseLeave={handleMouseLeave}
                     className={`relative p-[1.5px] rounded-[1.5rem] overflow-hidden transition-all duration-500 cursor-pointer flex-1 flex flex-col ${
                       isSelected 
-                        ? 'bg-biomen-emerald ring-2 ring-[#0FA36B]/25 scale-[1.02] z-10 shadow-2xl shadow-[#0FA36B]/15' 
-                        : 'bg-biomen-text-primary/10 hover:scale-[1.01]'
+                        ? 'bg-[#0FA36B] ring-2 ring-[#0FA36B]/25 scale-[1.02] z-10 shadow-2xl shadow-[#0FA36B]/15' 
+                        : 'bg-white/10 hover:scale-[1.01]'
                     } group/spotlight`}
                     style={{
                       transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
@@ -217,7 +217,7 @@ const BundleSelector = () => {
 
                     {/* Inner card content wrapper */}
                     <div className={`w-full h-full rounded-[1.43rem] p-5 lg:p-4 flex flex-col justify-between text-center relative z-10 transition-colors duration-500 overflow-hidden flex-1 ${
-                      isSelected ? 'bg-gradient-to-br from-[#052E22]/90 to-[#030705]/95' : 'bg-biomen-bg-primary/95'
+                      isSelected ? 'bg-gradient-to-br from-[#052E22]/90 to-[#030705]/95' : 'bg-[#030705]/95'
                     }`}>
                       {/* Background inner glow */}
                       <div 
@@ -228,11 +228,11 @@ const BundleSelector = () => {
                       />
 
                       <div className="relative z-10">
-                        <div className="text-[9px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-0.5">
+                        <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-0.5">
                           {bundle.name}
                         </div>
-                        <h3 className="text-xl lg:text-lg font-black text-biomen-text-primary uppercase mb-0.5">{bundle.title}</h3>
-                        <p className="text-biomen-text-primary text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
+                        <h3 className="text-xl lg:text-lg font-black text-[#F4F6F2] uppercase mb-0.5">{bundle.title}</h3>
+                        <p className="text-gray-300 text-[11px] font-semibold leading-relaxed mb-3 min-h-[32px] lg:min-h-[22px]">
                           {bundle.desc}
                         </p>
                       </div>
@@ -240,9 +240,9 @@ const BundleSelector = () => {
                       <div className="relative z-10 min-h-[70px]">
                         {isLoadingPrices ? (
                           <div className="flex flex-col items-center justify-center mb-5 animate-pulse space-y-2 mt-4">
-                            <div className="h-3 w-16 bg-biomen-text-primary/20 rounded"></div>
+                            <div className="h-3 w-16 bg-white/20 rounded"></div>
                             <div className="h-6 w-24 bg-white/30 rounded"></div>
-                            <div className="h-4 w-32 bg-biomen-text-primary/20 rounded mt-1"></div>
+                            <div className="h-4 w-32 bg-white/20 rounded mt-1"></div>
                           </div>
                         ) : (
                           <AnimatedPricing 
@@ -263,8 +263,8 @@ const BundleSelector = () => {
                           }}
                           className={`btn-sweep block w-full py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-300 hover:scale-[1.03] ${
                             isSelected 
-                              ? 'bg-biomen-copper text-biomen-text-primary hover:bg-biomen-copper-dark shadow-xl shadow-[#D85A1F]/20' 
-                              : 'bg-biomen-text-primary/10 text-biomen-text-primary hover:bg-biomen-text-primary/20'
+                              ? 'bg-[#D85A1F] text-[#F4F6F2] hover:bg-[#b94a17] shadow-xl shadow-[#D85A1F]/20' 
+                              : 'bg-white/10 text-[#F4F6F2] hover:bg-white/20'
                           }`}
                         >
                           Select Protocol
@@ -278,27 +278,27 @@ const BundleSelector = () => {
         </div>
 
         {/* Subscription Microcopy & Explainer (Highly compact, solid bg) */}
-        <div className="max-w-3xl mx-auto bg-biomen-bg-secondary/60 border border-[#0FA36B]/20 p-4 lg:p-3 rounded-[1.5rem] text-center w-full">
+        <div className="max-w-3xl mx-auto bg-[#06110C]/60 border border-[#0FA36B]/20 p-4 lg:p-3 rounded-[1.5rem] text-center w-full">
           <div className="flex items-center justify-center gap-1.5 mb-1.5">
-            <ShieldCheck size={16} className="text-biomen-accent" />
-            <h3 className="text-xs font-black text-biomen-text-primary uppercase tracking-wider">
+            <ShieldCheck size={16} className="text-[#16C784]" />
+            <h3 className="text-xs font-black text-[#F4F6F2] uppercase tracking-wider">
               Explore Our Auto-Pay Subscription Model
             </h3>
           </div>
           
-          <p className="text-[11px] text-biomen-text-primary leading-relaxed mb-3 font-semibold">
+          <p className="text-[11px] text-gray-300 leading-relaxed mb-3 font-semibold">
             Keep your momentum active. Set up recurring auto-pay with one-click cancellation. Subscriptions unlock an <strong>extra 15% discount</strong> and qualifying express shipping forever.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-2 justify-center text-[9px] font-black uppercase tracking-wider text-biomen-text-primary">
-            <span className="flex items-center justify-center gap-1 bg-biomen-bg-primary/40 px-3 py-1 rounded-lg border border-biomen-text-primary/5">
-              <Check size={10} className="text-biomen-accent" /> Extra 15% Off
+          <div className="flex flex-col sm:flex-row gap-2 justify-center text-[9px] font-black uppercase tracking-wider text-[#F4F6F2]">
+            <span className="flex items-center justify-center gap-1 bg-black/40 px-3 py-1 rounded-lg border border-white/5">
+              <Check size={10} className="text-[#16C784]" /> Extra 15% Off
             </span>
-            <span className="flex items-center justify-center gap-1 bg-biomen-bg-primary/40 px-3 py-1 rounded-lg border border-biomen-text-primary/5">
-              <Check size={10} className="text-biomen-accent" /> Cancel Anytime
+            <span className="flex items-center justify-center gap-1 bg-black/40 px-3 py-1 rounded-lg border border-white/5">
+              <Check size={10} className="text-[#16C784]" /> Cancel Anytime
             </span>
-            <span className="flex items-center justify-center gap-1 bg-biomen-bg-primary/40 px-3 py-1 rounded-lg border border-biomen-text-primary/5">
-              <Check size={10} className="text-biomen-accent" /> Free Express Shipping
+            <span className="flex items-center justify-center gap-1 bg-black/40 px-3 py-1 rounded-lg border border-white/5">
+              <Check size={10} className="text-[#16C784]" /> Free Express Shipping
             </span>
           </div>
         </div>

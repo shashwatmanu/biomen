@@ -131,7 +131,7 @@ const ReviewSection = () => {
     : reviews.filter(r => r.category === activeCategory);
 
   return (
-    <section className="py-24 px-6 md:px-20 bg-biomen-bg-primary border-t border-biomen-text-primary/5" id="testimonials">
+    <section className="py-24 px-6 md:px-20 bg-black border-t border-white/5" id="testimonials">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Block with exact intro copy */}
@@ -140,15 +140,15 @@ const ReviewSection = () => {
             <span className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20 inline-block">
               User Testimonials
             </span>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight uppercase text-biomen-text-primary">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tight uppercase text-white">
               Real Feedback. <br />
               <span className="text-emerald-400">Real Consistency.</span>
             </h2>
-            <div className="space-y-4 text-biomen-text-primary font-medium text-base md:text-lg leading-relaxed pt-2">
-              <p className="font-bold text-biomen-text-primary">
+            <div className="space-y-4 text-gray-300 font-medium text-base md:text-lg leading-relaxed pt-2">
+              <p className="font-bold text-white">
                 What men usually notice first is not something dramatic. It is:
               </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-biomen-text-secondary font-semibold uppercase tracking-wider pl-4 border-l-2 border-emerald-500/40">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-400 font-semibold uppercase tracking-wider pl-4 border-l-2 border-emerald-500/40">
                 <li>✨ Cleaner mornings</li>
                 <li>✨ Steadier energy</li>
                 <li>✨ Stronger recovery</li>
@@ -158,19 +158,19 @@ const ReviewSection = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-5 lg:text-right flex flex-col sm:flex-row lg:flex-col items-center lg:items-end justify-center gap-6 bg-biomen-text-primary/5 border border-biomen-text-primary/10 p-8 rounded-3xl">
+          <div className="lg:col-span-5 lg:text-right flex flex-col sm:flex-row lg:flex-col items-center lg:items-end justify-center gap-6 bg-white/5 border border-white/10 p-8 rounded-3xl">
             <div className="text-center lg:text-right">
               <div className="flex text-orange-500 justify-center lg:justify-end mb-2">
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
               </div>
-              <span className="font-black text-2xl text-biomen-text-primary block">4.9 / 5.0 Rating</span>
-              <span className="text-xs text-biomen-text-secondary font-bold uppercase tracking-widest block mt-1">
+              <span className="font-black text-2xl text-white block">4.9 / 5.0 Rating</span>
+              <span className="text-xs text-gray-400 font-bold uppercase tracking-widest block mt-1">
                 Verified feedback from men using T-Core as part of a real daily routine.
               </span>
             </div>
             <button 
               onClick={() => setShowForm(!showForm)}
-              className="btn-sweep bg-orange-600 hover:bg-orange-500 text-biomen-text-primary px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
+              className="btn-sweep bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(234,88,12,0.2)]"
             >
               {showForm ? 'Cancel Submission' : 'Write a Review'}
             </button>
@@ -183,7 +183,7 @@ const ReviewSection = () => {
             <button
               key={i}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 ${activeCategory === cat ? 'bg-emerald-500 text-black shadow-lg scale-105' : 'bg-biomen-text-primary/5 border border-biomen-text-primary/10 text-biomen-text-secondary hover:text-biomen-text-primary hover:border-biomen-text-primary/20'}`}
+              className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 ${activeCategory === cat ? 'bg-emerald-500 text-black shadow-lg scale-105' : 'bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-white/20'}`}
             >
               {cat}
             </button>
@@ -192,27 +192,27 @@ const ReviewSection = () => {
 
         {/* Success Banner */}
         {submitSuccess && (
-          <div className="mb-12 bg-biomen-surface/30 border border-[#0FA36B]/20 p-6 rounded-[2rem] text-center text-xs font-black uppercase tracking-widest text-biomen-accent animate-in fade-in duration-500">
+          <div className="mb-12 bg-[#052E22]/30 border border-[#0FA36B]/20 p-6 rounded-[2rem] text-center text-xs font-black uppercase tracking-widest text-[#16C784] animate-in fade-in duration-500">
             🎉 Thank you! Your experience has been recorded and is pending administrator validation before publishing.
           </div>
         )}
 
         {/* Review Form */}
         {showForm && (
-          <div className="mb-16 bg-biomen-text-primary/5 p-8 rounded-[2rem] border border-biomen-text-primary/10 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-6 text-biomen-text-primary uppercase">Share Your Experience</h3>
+          <div className="mb-16 bg-white/5 p-8 rounded-[2rem] border border-white/10 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-6 text-white uppercase">Share Your Experience</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input 
                   type="text" 
                   placeholder="Your Name"
-                  className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 rounded-xl p-4 text-biomen-text-primary focus:border-emerald-500 outline-none transition-colors"
+                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none transition-colors"
                   value={newReview.name}
                   onChange={(e) => setNewReview({...newReview, name: e.target.value})}
                   required
                 />
                 <select 
-                  className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 rounded-xl p-4 text-biomen-text-primary focus:border-emerald-500 outline-none transition-colors font-bold uppercase tracking-wider text-xs"
+                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none transition-colors font-bold uppercase tracking-wider text-xs"
                   value={newReview.category}
                   onChange={(e) => setNewReview({...newReview, category: e.target.value})}
                 >
@@ -220,7 +220,7 @@ const ReviewSection = () => {
                 </select>
               </div>
               <select 
-                className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 rounded-xl p-4 text-biomen-text-primary focus:border-emerald-500 outline-none transition-colors"
+                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none transition-colors"
                 value={newReview.rating}
                 onChange={(e) => setNewReview({...newReview, rating: Number(e.target.value)})}
               >
@@ -228,7 +228,7 @@ const ReviewSection = () => {
               </select>
               <textarea 
                 placeholder="What clean energy or recovery changes have you noticed?"
-                className="w-full bg-biomen-bg-primary border border-biomen-text-primary/10 rounded-xl p-4 text-biomen-text-primary focus:border-emerald-500 outline-none transition-colors h-32"
+                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:border-emerald-500 outline-none transition-colors h-32"
                 value={newReview.comment}
                 onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
                 required
@@ -243,12 +243,12 @@ const ReviewSection = () => {
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredReviews.length === 0 ? (
-            <div className="col-span-full py-16 text-center text-biomen-text-secondary uppercase tracking-widest font-bold">
+            <div className="col-span-full py-16 text-center text-gray-500 uppercase tracking-widest font-bold">
               No experiences recorded in this category yet.
             </div>
           ) : (
             filteredReviews.map((review) => (
-              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-8 rounded-[2rem] border border-biomen-text-primary/10 hover:border-emerald-500/50 transition-all group flex flex-col justify-between h-full">
+              <div key={review._id} className="bg-gradient-to-b from-white/5 to-transparent p-8 rounded-[2rem] border border-white/10 hover:border-emerald-500/50 transition-all group flex flex-col justify-between h-full">
                 <div>
                   <div className="flex justify-between items-start mb-6">
                     <div className="flex text-orange-500">
@@ -258,16 +258,16 @@ const ReviewSection = () => {
                       {review.category || "Overall Vitality"}
                     </span>
                   </div>
-                  <p className="text-biomen-text-primary text-base leading-relaxed mb-8 font-medium italic">
+                  <p className="text-white text-base leading-relaxed mb-8 font-medium italic">
                     &ldquo;{review.comment}&rdquo;
                   </p>
                 </div>
-                <div className="flex items-center gap-3 pt-4 border-t border-biomen-text-primary/5">
+                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
                   <div className="w-10 h-10 bg-emerald-500/15 rounded-full flex items-center justify-center text-emerald-400 font-black text-sm border border-emerald-500/20">
                     {review.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-biomen-text-primary uppercase text-xs tracking-wider">{review.name}</div>
+                    <div className="font-bold text-white uppercase text-xs tracking-wider">{review.name}</div>
                     <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-[0.2em] text-emerald-400 mt-0.5">
                       <BadgeCheck size={10} /> Verified User
                     </div>
@@ -282,7 +282,7 @@ const ReviewSection = () => {
         <div className="mt-16 text-center">
           <Link 
             to="/reviews" 
-            className="inline-flex items-center gap-2 text-biomen-text-secondary hover:text-biomen-text-primary font-black uppercase tracking-[0.2em] text-xs transition-all hover:gap-4"
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-white font-black uppercase tracking-[0.2em] text-xs transition-all hover:gap-4"
           >
             Load More Reviews <ArrowRight size={14} className="text-orange-500" />
           </Link>

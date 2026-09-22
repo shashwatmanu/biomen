@@ -35,21 +35,21 @@ const AdvisoryBoard = () => {
   ];
 
   return (
-    <section className="py-12 lg:py-24 px-4 sm:px-6 md:px-20 bg-biomen-bg-primary/20 border-y border-biomen-text-primary/5" id="advisory">
+    <section className="py-12 lg:py-24 px-4 sm:px-6 md:px-20 bg-black/20 border-y border-white/5" id="advisory">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-biomen-accent mb-1.5 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#16C784] mb-1.5 block">
             CLINICAL TRUST
           </span>
-          <h2 className="text-3xl md:text-5xl font-normal font-serif tracking-tight text-biomen-text-primary mb-2 uppercase">The Medical Advisory Board</h2>
-          <p className="text-biomen-text-secondary text-sm lg:text-base font-semibold">Guided by experts in physiology, pharmacology, and men's health to ensure efficacy and safety.</p>
+          <h2 className="text-3xl md:text-5xl font-normal font-serif tracking-tight text-white mb-2 uppercase">The Medical Advisory Board</h2>
+          <p className="text-gray-400 text-sm lg:text-base font-semibold">Guided by experts in physiology, pharmacology, and men's health to ensure efficacy and safety.</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div 
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative p-[1.5px] rounded-[3.05rem] overflow-hidden transition-all duration-500 bg-biomen-text-primary/5 shadow-2xl group/spotlight"
+            className="relative p-[1.5px] rounded-[3.05rem] overflow-hidden transition-all duration-500 bg-white/5 shadow-2xl group/spotlight"
             style={{
               transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
               transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -87,33 +87,33 @@ const AdvisoryBoard = () => {
             {/* Right side: Doctor Details */}
             <div className="w-full md:w-3/5 flex flex-col justify-between py-2 text-left">
               <div>
-                <span className="text-xs font-black uppercase tracking-widest text-biomen-gold bg-biomen-gold/10 px-3.5 py-1 rounded-full border border-[#BFA46A]/20 inline-block mb-3">
+                <span className="text-xs font-black uppercase tracking-widest text-[#BFA46A] bg-[#BFA46A]/10 px-3.5 py-1 rounded-full border border-[#BFA46A]/20 inline-block mb-3">
                   Advisory Director
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-biomen-text-primary uppercase tracking-wider leading-tight">
+                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-wider leading-tight">
                   {advisors[0].name}
                 </h3>
-                <div className="text-biomen-accent text-xs font-black uppercase tracking-widest mt-1">
+                <div className="text-[#16C784] text-xs font-black uppercase tracking-widest mt-1">
                   {advisors[0].title}
                 </div>
               </div>
 
-              <div className="text-[11px] font-mono text-biomen-copper font-black uppercase tracking-wider my-4 py-3 border-y border-biomen-text-primary/5">
+              <div className="text-[11px] font-mono text-[#D85A1F] font-black uppercase tracking-wider my-4 py-3 border-y border-white/5">
                 {advisors[0].credentials}
               </div>
 
-              <p className="text-biomen-text-secondary leading-relaxed text-sm md:text-[15px] font-medium pl-4 border-l-2 border-biomen-accent">
+              <p className="text-gray-400 leading-relaxed text-sm md:text-[15px] font-medium pl-4 border-l-2 border-[#16C784]">
                 {advisors[0].bio}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="bg-biomen-bg-primary/50 border border-biomen-text-primary/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-biomen-text-primary">
+                <span className="bg-black/50 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-gray-300">
                   BAMS Certified
                 </span>
-                <span className="bg-biomen-bg-primary/50 border border-biomen-text-primary/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-biomen-text-primary">
+                <span className="bg-black/50 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-gray-300">
                   MD Ayurveda
                 </span>
-                <span className="bg-biomen-bg-primary/50 border border-biomen-text-primary/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-biomen-text-primary">
+                <span className="bg-black/50 border border-white/5 text-[9px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full text-gray-300">
                   25+ Years Experience
                 </span>
               </div>

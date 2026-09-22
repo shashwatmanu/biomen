@@ -22,14 +22,14 @@ const QuizResults = ({ answers }) => {
           className="flex flex-col items-center"
         >
           <div className="relative w-24 h-24 mb-8">
-            <div className="absolute inset-0 rounded-full border-4 border-biomen-accent/20"></div>
+            <div className="absolute inset-0 rounded-full border-4 border-[#16C784]/20"></div>
             <div className="absolute inset-0 rounded-full border-4 border-t-[#16C784] animate-spin"></div>
-            <div className="absolute inset-0 animate-pulse-slow-centered rounded-full bg-biomen-accent/10 blur-xl"></div>
+            <div className="absolute inset-0 animate-pulse-slow-centered rounded-full bg-[#16C784]/10 blur-xl"></div>
           </div>
           <h2 className="text-2xl font-bold text-center tracking-wide mb-2 animate-pulse">
             Analyzing Your Profile
           </h2>
-          <p className="text-biomen-text-secondary text-sm text-center">
+          <p className="text-[#A8B3AA] text-sm text-center">
             Building your custom clinical stack protocol...
           </p>
         </motion.div>
@@ -50,30 +50,30 @@ const QuizResults = ({ answers }) => {
       >
         <div className="glass-panel rounded-3xl p-8 sm:p-12 text-center border border-[#BFA46A]/20 relative overflow-hidden">
           {/* Subtle glow effect behind */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-biomen-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#BFA46A]/5 blur-[100px] rounded-full pointer-events-none"></div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 tracking-tight liquid-reveal-accent">
             Your Protocol is Ready
           </h2>
           
-          <p className="text-lg text-biomen-text-primary mb-8 max-w-lg mx-auto">
-            Based on your responses—especially your concern with <strong className="text-biomen-text-primary">"{topConcern}"</strong>—we’ve determined that the T-CORE 30-Day Clinical System is the optimal fit for your physiology.
+          <p className="text-lg text-gray-300 mb-8 max-w-lg mx-auto">
+            Based on your responses—especially your concern with <strong className="text-white">"{topConcern}"</strong>—we’ve determined that the T-CORE 30-Day Clinical System is the optimal fit for your physiology.
           </p>
 
-          <div className="bg-biomen-bg-primary/50 border border-biomen-text-primary/5 rounded-2xl p-6 mb-10 text-left space-y-4">
-            <h3 className="text-xl font-bold text-biomen-text-primary mb-4 border-b border-biomen-text-primary/10 pb-3">What You Can Expect:</h3>
+          <div className="bg-black/50 border border-white/5 rounded-2xl p-6 mb-10 text-left space-y-4">
+            <h3 className="text-xl font-bold text-white mb-4 border-b border-white/10 pb-3">What You Can Expect:</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <span className="text-biomen-accent mt-1">✔</span>
-                <span className="text-biomen-text-primary">Restoration of baseline energy rhythms within 14 days.</span>
+                <span className="text-[#16C784] mt-1">✔</span>
+                <span className="text-gray-300">Restoration of baseline energy rhythms within 14 days.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-biomen-accent mt-1">✔</span>
-                <span className="text-biomen-text-primary">Improved physical recovery and muscle maintenance support.</span>
+                <span className="text-[#16C784] mt-1">✔</span>
+                <span className="text-gray-300">Improved physical recovery and muscle maintenance support.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-biomen-accent mt-1">✔</span>
-                <span className="text-biomen-text-primary">Decreased afternoon brain fog and better stress resilience.</span>
+                <span className="text-[#16C784] mt-1">✔</span>
+                <span className="text-gray-300">Decreased afternoon brain fog and better stress resilience.</span>
               </li>
             </ul>
           </div>
@@ -85,7 +85,7 @@ const QuizResults = ({ answers }) => {
             GET T-CORE NOW
           </Link>
           
-          <p className="mt-6 text-sm text-biomen-text-secondary">
+          <p className="mt-6 text-sm text-[#A8B3AA]">
             Backed by our 90-Day Clinical Guarantee.
           </p>
         </div>

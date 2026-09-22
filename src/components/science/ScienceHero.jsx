@@ -89,7 +89,7 @@ const MetricCard = ({ value, label }) => {
     <div 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative p-[1.5px] rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer bg-biomen-text-primary/5 group/spotlight flex flex-col h-full"
+      className="relative p-[1.5px] rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer bg-white/5 group/spotlight flex flex-col h-full"
       style={{
         transform: 'perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))',
         transition: 'transform 0.2s ease-out, background 0.3s ease'
@@ -104,7 +104,7 @@ const MetricCard = ({ value, label }) => {
       />
       
       {/* Inner Card content wrapper */}
-      <div className="w-full h-full rounded-[14px] p-5 bg-biomen-bg-primary/95 flex flex-col justify-between text-left relative z-10 transition-colors duration-500 overflow-hidden flex-1 min-h-[110px]">
+      <div className="w-full h-full rounded-[14px] p-5 bg-[#030705]/95 flex flex-col justify-between text-left relative z-10 transition-colors duration-500 overflow-hidden flex-1 min-h-[110px]">
         {/* Background inner glow */}
         <div 
           className="absolute inset-0 opacity-0 group-hover/spotlight:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
@@ -112,9 +112,9 @@ const MetricCard = ({ value, label }) => {
             background: `radial-gradient(250px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(22, 199, 132, 0.07), transparent 80%)`
           }}
         />
-        <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-biomen-accent/30 group-hover/spotlight:bg-biomen-accent transition-all duration-300 z-10" />
-        <span className="text-3.5xl md:text-4xl font-normal font-serif text-biomen-accent group-hover/spotlight:text-biomen-text-primary transition-colors relative z-10">{value}</span>
-        <span className="text-[9px] font-black uppercase tracking-[0.15em] text-biomen-text-secondary mt-2 block leading-snug relative z-10">
+        <div className="absolute top-3.5 right-3.5 w-1.5 h-1.5 rounded-full bg-[#16C784]/30 group-hover/spotlight:bg-[#16C784] transition-all duration-300 z-10" />
+        <span className="text-3.5xl md:text-4xl font-normal font-serif text-[#16C784] group-hover/spotlight:text-white transition-colors relative z-10">{value}</span>
+        <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#A8B3AA] mt-2 block leading-snug relative z-10">
           {label}
         </span>
       </div>
@@ -165,10 +165,10 @@ const ScienceHero = () => {
   }, { scope: textContainerRef });
 
   return (
-    <section className="pt-[140px] lg:pt-[170px] pb-12 lg:pb-24 px-6 md:px-20 bg-biomen-bg-primary relative overflow-hidden min-h-[92vh] flex items-start">
+    <section className="pt-[140px] lg:pt-[170px] pb-12 lg:pb-24 px-6 md:px-20 bg-[#030705] relative overflow-hidden min-h-[92vh] flex items-start">
       {/* Background radial and gradient glows for a botanical feel */}
-      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-biomen-surface/30 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-biomen-emerald/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-[#052E22]/30 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#0FA36B]/15 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Subtle digital coordinates background grid pattern */}
       <div
@@ -184,11 +184,11 @@ const ScienceHero = () => {
 
           {/* Mobile Headline (Only visible on mobile/tablet screens - order-1) */}
           <div className="block lg:hidden space-y-4 text-left w-full order-1">
-            <div className="inline-flex items-center gap-2.5 bg-biomen-surface/60 border border-biomen-accent/35 text-biomen-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
-              <Sparkles size={12} className="text-biomen-accent animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
+              <Sparkles size={12} className="text-[#16C784] animate-pulse" />
               FORMULATION &amp; MECHANISM
             </div>
-            <h1 className="text-4xl md:text-5xl font-normal font-serif tracking-tight leading-[1.05] text-biomen-text-primary uppercase">
+            <h1 className="text-4xl md:text-5xl font-normal font-serif tracking-tight leading-[1.05] text-[#F4F6F2] uppercase">
               The Science Behind <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-semibold">T-CORE</span>
             </h1>
@@ -209,7 +209,7 @@ const ScienceHero = () => {
                       className="w-12 h-12 object-contain animate-spin brightness-[0.9] drop-shadow-[0_0_12px_rgba(22,199,132,0.3)]"
                       style={{ animationDuration: '3s' }}
                     />
-                    <span className="text-[9px] font-black tracking-widest text-biomen-text-secondary uppercase mt-4">
+                    <span className="text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase mt-4">
                       LOADING 3D ENVIRONMENT
                     </span>
                   </div>
@@ -268,27 +268,27 @@ const ScienceHero = () => {
           <div ref={textContainerRef} className="lg:col-span-7 xl:col-span-6 space-y-5 text-left order-3 lg:order-1 w-full">
             {/* Desktop Headline (Only visible on desktop view) */}
             <div className="hidden lg:block space-y-4">
-              <div className="inline-flex items-center gap-2.5 bg-biomen-surface/60 border border-biomen-accent/35 text-biomen-accent px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
-                <Sparkles size={12} className="text-biomen-accent animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 bg-[#052E22]/60 border border-[#16C784]/35 text-[#16C784] px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(22,199,132,0.12)]">
+                <Sparkles size={12} className="text-[#16C784] animate-pulse" />
                 FORMULATION &amp; MECHANISM
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-[4.4rem] font-normal font-serif tracking-tight leading-[1.05] text-biomen-text-primary uppercase">
+              <h1 className="text-5xl md:text-6xl lg:text-[4.4rem] font-normal font-serif tracking-tight leading-[1.05] text-[#F4F6F2] uppercase">
                 The Science Behind <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3] italic font-semibold">T-CORE</span>
               </h1>
             </div>
 
-            <div className="relative overflow-hidden p-6 rounded-2xl border border-biomen-accent/30 bg-gradient-to-r from-[#052E22]/50 to-[#0C4A36]/30 shadow-[0_0_25px_rgba(22,199,132,0.12)] max-w-xl group hover:border-biomen-accent/50 transition-all duration-500">
+            <div className="relative overflow-hidden p-6 rounded-2xl border border-[#16C784]/30 bg-gradient-to-r from-[#052E22]/50 to-[#0C4A36]/30 shadow-[0_0_25px_rgba(22,199,132,0.12)] max-w-xl group hover:border-[#16C784]/50 transition-all duration-500">
               {/* Pulsing glow background effect */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(22,199,132,0.06)_0%,transparent_70%)] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Metallic shine sweep overlay */}
               <div className="integrity-shine-sweep absolute inset-y-0 left-0 w-[150%] pointer-events-none z-10 bg-gradient-to-r from-transparent via-[#16C784]/20 to-transparent -translate-x-full -skew-x-12" />
 
-              <p className="text-[15px] sm:text-base md:text-[17px] text-biomen-text-secondary font-semibold leading-relaxed relative z-10">
-                <span className="text-biomen-accent font-black tracking-widest block mb-2 text-xs uppercase">Integrity Notice</span>
-                <span className="font-bold text-biomen-text-primary drop-shadow-[0_0_6px_rgba(22,199,132,0.35)]">T-CORE is not a magic solution.</span> It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
+              <p className="text-[15px] sm:text-base md:text-[17px] text-[#A8B3AA] font-semibold leading-relaxed relative z-10">
+                <span className="text-[#16C784] font-black tracking-widest block mb-2 text-xs uppercase">Integrity Notice</span>
+                <span className="font-bold text-white drop-shadow-[0_0_6px_rgba(22,199,132,0.35)]">T-CORE is not a magic solution.</span> It is a precise, clinically calibrated biological system designed to support natural testosterone production, regulate cortisol, and restore the foundation of male vitality.
               </p>
             </div>
 
@@ -296,30 +296,30 @@ const ScienceHero = () => {
             <MetricsGrid className="lg:hidden mt-6" />
 
             {/* Premium Highlights List */}
-            <div className="space-y-4.5 pt-5 border-t border-biomen-text-primary/10">
+            <div className="space-y-4.5 pt-5 border-t border-white/10">
               <div className="flex items-start gap-3.5">
-                <CheckCircle2 size={18} className="text-biomen-accent mt-0.5 shrink-0" />
-                <p className="text-sm text-biomen-text-secondary font-semibold leading-relaxed">
-                  <span className="text-biomen-text-primary">Synergistic Botanical Stack</span> engineered to optimize cortisol-to-testosterone balance.
+                <CheckCircle2 size={18} className="text-[#16C784] mt-0.5 shrink-0" />
+                <p className="text-sm text-[#A8B3AA] font-semibold leading-relaxed">
+                  <span className="text-[#F4F6F2]">Synergistic Botanical Stack</span> engineered to optimize cortisol-to-testosterone balance.
                 </p>
               </div>
               <div className="flex items-start gap-3.5">
-                <CheckCircle2 size={18} className="text-biomen-accent mt-0.5 shrink-0" />
-                <p className="text-sm text-biomen-text-secondary font-semibold leading-relaxed">
-                  <span className="text-biomen-text-primary">Clinically Calibrated Dosages</span> verified by double-blind, human clinical trials.
+                <CheckCircle2 size={18} className="text-[#16C784] mt-0.5 shrink-0" />
+                <p className="text-sm text-[#A8B3AA] font-semibold leading-relaxed">
+                  <span className="text-[#F4F6F2]">Clinically Calibrated Dosages</span> verified by double-blind, human clinical trials.
                 </p>
               </div>
               <div className="flex items-start gap-3.5">
-                <CheckCircle2 size={18} className="text-biomen-accent mt-0.5 shrink-0" />
-                <p className="text-sm text-biomen-text-secondary font-semibold leading-relaxed">
-                  <span className="text-biomen-text-primary">100% Label Integrity</span> &mdash; zero proprietary blends, so you know exactly what goes into your body.
+                <CheckCircle2 size={18} className="text-[#16C784] mt-0.5 shrink-0" />
+                <p className="text-sm text-[#A8B3AA] font-semibold leading-relaxed">
+                  <span className="text-[#F4F6F2]">100% Label Integrity</span> &mdash; zero proprietary blends, so you know exactly what goes into your body.
                 </p>
               </div>
             </div>
 
             {/* Micro-trust security strip */}
-            <div className="flex items-center gap-2 text-[9px] font-black tracking-widest text-biomen-text-secondary uppercase pt-2">
-              <ShieldCheck size={13} className="text-biomen-accent" />
+            <div className="flex items-center gap-2 text-[9px] font-black tracking-widest text-[#A8B3AA] uppercase pt-2">
+              <ShieldCheck size={13} className="text-[#16C784]" />
               <span>Tested for Purity &bull; ISO Certified Facilities &bull; Vegetarian Safe</span>
             </div>
 
@@ -329,7 +329,7 @@ const ScienceHero = () => {
                 onClick={() => {
                   document.getElementById('spotlight')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-biomen-accent hover:text-biomen-mint transition-colors group cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#16C784] hover:text-[#7FE7B3] transition-colors group cursor-pointer"
               >
                 DIVE INTO THE STACKS
                 <span className="transform group-hover:translate-y-0.5 transition-transform duration-300">↓</span>

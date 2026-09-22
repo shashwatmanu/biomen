@@ -18,16 +18,16 @@ const LongTestimonials = () => {
   ];
 
   return (
-    <section className="pt-24 pb-8 px-6 md:px-20 bg-biomen-bg-primary/40">
+    <section className="pt-24 pb-8 px-6 md:px-20 bg-black/40">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">Clinical Outcomes, Real Stories</h2>
-          <p className="text-biomen-text-secondary">Detailed feedback from men committed to the T-CORE protocol.</p>
+          <p className="text-gray-400">Detailed feedback from men committed to the T-CORE protocol.</p>
         </div>
 
         <div className="flex flex-col gap-12">
           {stories.map((story, i) => (
-            <div key={i} className="glass-panel p-8 md:p-12 rounded-[2rem] border border-biomen-text-primary/5 relative overflow-hidden">
+            <div key={i} className="glass-panel p-8 md:p-12 rounded-[2rem] border border-white/5 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-biomen-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
               
               <div className="flex flex-col md:flex-row gap-8 relative z-10">
@@ -35,14 +35,14 @@ const LongTestimonials = () => {
                   <div className="flex text-biomen-accent mb-4">
                     {[...Array(5)].map((_, idx) => <Star key={idx} size={16} fill="currentColor" />)}
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-biomen-text-primary">{story.headline}</h3>
-                  <div className="flex items-center gap-2 text-sm text-biomen-text-secondary font-bold uppercase tracking-wider mb-6">
+                  <h3 className="text-2xl font-bold mb-2 text-white">{story.headline}</h3>
+                  <div className="flex items-center gap-2 text-sm text-gray-500 font-bold uppercase tracking-wider mb-6">
                     {story.name} <BadgeCheck size={16} className="text-biomen-accent" />
                   </div>
                   
                   <div className="space-y-2">
                     {story.stats.map((stat, idx) => (
-                      <div key={idx} className="bg-biomen-text-primary/5 px-4 py-2 rounded-lg text-sm text-biomen-accent font-medium border border-biomen-text-primary/5">
+                      <div key={idx} className="bg-white/5 px-4 py-2 rounded-lg text-sm text-biomen-accent font-medium border border-white/5">
                         {stat}
                       </div>
                     ))}
@@ -50,7 +50,7 @@ const LongTestimonials = () => {
                 </div>
                 
                 <div className="md:w-2/3">
-                  <p className="text-biomen-text-primary text-lg leading-relaxed italic">"{story.story}"</p>
+                  <p className="text-gray-300 text-lg leading-relaxed italic">"{story.story}"</p>
                 </div>
               </div>
             </div>
