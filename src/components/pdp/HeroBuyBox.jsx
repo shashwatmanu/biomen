@@ -17,6 +17,31 @@ const HeroBuyBox = () => {
  const [activeIdx, setActiveIdx] = useState(0);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
 
+ const currentBottleCount = selectedBundle.id === 'tcore-3-bottles' ? 3 : selectedBundle.id === 'tcore-2-bottles' ? 2 : 1;
+ 
+ useEffect(() => {
+   const params = new URLSearchParams(window.location.search);
+   const system = params.get('system');
+   if (system && bundles.length > 0) {
+     const matched = bundles.find(b => b.id === system);
+     if (matched && matched.shopifyVariantId) {
+       // Only auto-add if it hasn't been added in this session to prevent reload loops
+       if (!sessionStorage.getItem('autoAdded_' + system)) {
+         sessionStorage.setItem('autoAdded_' + system, 'true');
+         addToCart({
+   id: cartMapping.variantToUse.shopifyVariantId || cartMapping.variantToUse.id,
+   title: `T-CORE ${cartMapping.variantToUse.title} (${cartMapping.variantToUse.name})`,
+   price: cartMapping.finalPrice / cartMapping.variantQty,
+   quantity: cartMapping.variantQty,
+   isSubscription: false,
+   image: images[0].url
+  });
+         // Clean URL
+         window.history.replaceState({}, document.title, window.location.pathname);
+       }
+     }
+   }
+ }, [bundles]);
 
 
  const handleMouseMove = (e) => {
@@ -86,12 +111,41 @@ const HeroBuyBox = () => {
 
  const [isLoadingPrices, setIsLoadingPrices] = useState(true);
 
+ const [quantity, setQuantity] = useState(1);
  const [selectedBundle, setSelectedBundle] = useState(() => {
  const params = new URLSearchParams(window.location.search);
  const system = params.get('system');
  const matched = bundles.find((b) => b.id === system);
  return matched || bundles[0]; // defaults to 1 Bottle (which is bundles[0])
  });
+
+  const getMappedCartItem = (bundle, qty) => {
+    const b1 = bundles.find(b => b.id === 'tcore-1-bottle');
+    const b2 = bundles.find(b => b.id === 'tcore-2-bottles');
+    const b3 = bundles.find(b => b.id === 'tcore-3-bottles');
+
+    let variantToUse = bundle;
+    let variantQty = qty;
+    let finalPrice = bundle.price * qty;
+    let finalMrp = bundle.mrp * qty;
+
+    if (bundle.id === 'tcore-1-bottle') {
+      if (qty === 2 && b2) {
+        variantToUse = b2;
+        variantQty = 1;
+        finalPrice = b2.price;
+        finalMrp = b2.mrp;
+      } else if (qty >= 3 && b3) {
+        variantToUse = b3;
+        variantQty = qty > 3 ? Math.floor(qty/3) : 1; // Simplify to 1 pack for qty=3
+        finalPrice = b3.price * variantQty;
+        finalMrp = b3.mrp * variantQty;
+      }
+    }
+    return { variantToUse, variantQty, finalPrice, finalMrp };
+  };
+
+  const cartMapping = getMappedCartItem(selectedBundle, quantity);
 
 
   
@@ -103,8 +157,6 @@ const HeroBuyBox = () => {
     { id: 'prod-5', url: '/Product/5.jpeg', label: 'T-CORE Ingredients Close-up' },
   ];
 
-  const currentBottleCount = selectedBundle.id === 'tcore-3-bottles' ? 3 : selectedBundle.id === 'tcore-2-bottles' ? 2 : 1;
- 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const system = params.get('system');
@@ -114,13 +166,13 @@ const HeroBuyBox = () => {
         if (!sessionStorage.getItem('autoAdded_' + system)) {
           sessionStorage.setItem('autoAdded_' + system, 'true');
           addToCart({
-            id: matched.shopifyVariantId,
-            title: `T-CORE ${matched.title} (${matched.name})`,
-            price: matched.price,
-            quantity: 1,
-            isSubscription: false,
-            image: images[0].url
-          });
+   id: cartMapping.variantToUse.shopifyVariantId || cartMapping.variantToUse.id,
+   title: `T-CORE ${cartMapping.variantToUse.title} (${cartMapping.variantToUse.name})`,
+   price: cartMapping.finalPrice / cartMapping.variantQty,
+   quantity: cartMapping.variantQty,
+   isSubscription: false,
+   image: images[0].url
+  });
           window.history.replaceState({}, document.title, window.location.pathname);
         }
       }
@@ -549,7 +601,7 @@ const HeroBuyBox = () => {
      </div>
     ) : (
      <AnimatedPricing 
-     mrp={bundle.mrp} 
+     mrp={isSelected ? cartMapping.finalMrp : bundle.mrp} 
      price={displayPrice} 
      quantity={1}
      layout="left"
@@ -601,10 +653,10 @@ const HeroBuyBox = () => {
   <button 
   id="hero-cta-btn"
   onClick={() => addToCart({
-   id: selectedBundle.shopifyVariantId || selectedBundle.id, // Use shopify ID
-   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-   price: selectedBundle.price,
-   quantity: 1,
+   id: cartMapping.variantToUse.shopifyVariantId || cartMapping.variantToUse.id,
+   title: `T-CORE ${cartMapping.variantToUse.title} (${cartMapping.variantToUse.name})`,
+   price: cartMapping.finalPrice / cartMapping.variantQty,
+   quantity: cartMapping.variantQty,
    isSubscription: false,
    image: images[0].url
   })}
@@ -616,7 +668,7 @@ const HeroBuyBox = () => {
   <div className="text-left w-full sm:w-auto hidden sm:block">
   <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
   <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">
-   {selectedBundle.title} &bull; Save ₹{((selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price))).toLocaleString('en-IN')}
+   {selectedBundle.title} {quantity > 1 && `(x${quantity})`} &bull; Save ₹{(cartMapping.finalMrp - cartMapping.finalPrice).toLocaleString('en-IN')}
   </div>
   </div>
   </div>
@@ -723,7 +775,7 @@ const HeroBuyBox = () => {
   {/* Desktop system text */}
   <div className="hidden md:block">
   <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-  <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title}</div>
+  <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
   </div>
   
   {/* Mobile system text (Compact & prominent) */}
@@ -742,10 +794,10 @@ const HeroBuyBox = () => {
   {/* Price tags */}
   <div className="flex items-baseline gap-1 leading-none shrink-0">
   <span className="text-[9px] sm:text-xs text-gray-500 line-through">
-  ₹{(selectedBundle.mrp).toLocaleString('en-IN')}
+  ₹{(cartMapping.finalMrp).toLocaleString('en-IN')}
   </span>
   <span className="text-[13px] sm:text-sm md:text-lg font-black text-[#16C784] md:text-white">
-  ₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
+  ₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}
   </span>
   </div>
  </div>
@@ -754,12 +806,12 @@ const HeroBuyBox = () => {
  <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 ml-2">
   <button
   onClick={() => addToCart({
-  id: selectedBundle.shopifyVariantId || selectedBundle.id,
-  title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-  price: selectedBundle.price,
-  quantity: 1,
-  isSubscription: false,
-  image: images[0].url
+   id: cartMapping.variantToUse.shopifyVariantId || cartMapping.variantToUse.id,
+   title: `T-CORE ${cartMapping.variantToUse.title} (${cartMapping.variantToUse.name})`,
+   price: cartMapping.finalPrice / cartMapping.variantQty,
+   quantity: cartMapping.variantQty,
+   isSubscription: false,
+   image: images[0].url
   })}
   className="btn-sweep bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 py-2.5 px-3 sm:py-3 sm:px-4 md:py-3.5 md:px-6 rounded-full font-black text-[9px] md:text-xs uppercase tracking-wide sm:tracking-widest transition-all cursor-pointer text-center whitespace-nowrap"
   >
@@ -769,12 +821,12 @@ const HeroBuyBox = () => {
   <button
   onClick={() => {
   addToCart({
-  id: selectedBundle.shopifyVariantId || selectedBundle.id,
-  title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
-  price: selectedBundle.price,
-  quantity: 1,
-  isSubscription: false,
-  image: images[0].url
+   id: cartMapping.variantToUse.shopifyVariantId || cartMapping.variantToUse.id,
+   title: `T-CORE ${cartMapping.variantToUse.title} (${cartMapping.variantToUse.name})`,
+   price: cartMapping.finalPrice / cartMapping.variantQty,
+   quantity: cartMapping.variantQty,
+   isSubscription: false,
+   image: images[0].url
   });
   }}
   className="btn-sweep bg-[#D85A1F] hover:bg-[#b94a17] text-white py-2.5 px-4 sm:py-3 sm:px-5 md:py-3.5 md:px-8 rounded-full font-black text-[9px] md:text-xs uppercase tracking-wide sm:tracking-widest transition-all shadow-[0_0_20px_rgba(216,90,31,0.2)] hover:scale-[1.02] cursor-pointer text-center whitespace-nowrap"
