@@ -15,8 +15,34 @@ const HeroBuyBox = () => {
  const addToCart = useCartStore((state) => state.addToCart);
  const navigate = useNavigate();
  const [activeIdx, setActiveIdx] = useState(0);
- const [quantity, setQuantity] = useState(1);
- const [isStickyVisible, setIsStickyVisible] = useState(false);
+  const [isStickyVisible, setIsStickyVisible] = useState(false);
+
+ const currentBottleCount = selectedBundle.id === 'tcore-3-bottles' ? 3 : selectedBundle.id === 'tcore-2-bottles' ? 2 : 1;
+ 
+ useEffect(() => {
+   const params = new URLSearchParams(window.location.search);
+   const system = params.get('system');
+   if (system && bundles.length > 0) {
+     const matched = bundles.find(b => b.id === system);
+     if (matched && matched.shopifyVariantId) {
+       // Only auto-add if it hasn't been added in this session to prevent reload loops
+       if (!sessionStorage.getItem('autoAdded_' + system)) {
+         sessionStorage.setItem('autoAdded_' + system, 'true');
+         addToCart({
+           id: matched.shopifyVariantId,
+           title: `T-CORE ${matched.title} (${matched.name})`,
+           price: matched.price,
+           quantity: 1,
+           isSubscription: false,
+           image: images[0].url
+         });
+         // Clean URL
+         window.history.replaceState({}, document.title, window.location.pathname);
+       }
+     }
+   }
+ }, [bundles]);
+
 
  const handleMouseMove = (e) => {
  const rect = e.currentTarget.getBoundingClientRect();
@@ -441,8 +467,7 @@ const HeroBuyBox = () => {
    <div
     onClick={() => {
     setSelectedBundle(bundle);
-    setQuantity(1); // Reset quantity on bundle change
-    if (bundle.id !== 'tcore-3-bottles') {
+        if (bundle.id !== 'tcore-3-bottles') {
     setIsSubscription(false);
     }
     }}
@@ -534,17 +559,19 @@ const HeroBuyBox = () => {
     <div className="flex items-center gap-2 bg-black/60 rounded-lg p-1 border border-white/10 shadow-inner" onClick={(e) => e.stopPropagation()}>
      <button
      onClick={() => {
-     if (quantity > 1) setQuantity(quantity - 1);
+     if (selectedBundle.id === 'tcore-3-bottles') setSelectedBundle(bundles.find(b => b.id === 'tcore-2-bottles') || bundles[1]);
+     else if (selectedBundle.id === 'tcore-2-bottles') setSelectedBundle(bundles.find(b => b.id === 'tcore-1-bottle') || bundles[0]);
      }}
      className="p-1 text-gray-400 hover:text-white transition-colors"
      >
      <Minus size={12} />
      </button>
-     <span className="text-[#F4F6F2] text-xs font-black w-4 text-center select-none">
-     {quantity}
-     </span>
+     <span className="text-[#F4F6F2] text-xs font-black w-4 text-center select-none">{currentBottleCount}</span>
      <button
-     onClick={() => setQuantity(quantity + 1)}
+     onClick={() => {
+     if (selectedBundle.id === 'tcore-1-bottle') setSelectedBundle(bundles.find(b => b.id === 'tcore-2-bottles') || bundles[1]);
+     else if (selectedBundle.id === 'tcore-2-bottles') setSelectedBundle(bundles.find(b => b.id === 'tcore-3-bottles') || bundles[2]);
+     }}
      className="p-1 text-gray-400 hover:text-white transition-colors"
      >
      <Plus size={12} />
@@ -574,7 +601,7 @@ const HeroBuyBox = () => {
    id: selectedBundle.shopifyVariantId || selectedBundle.id, // Use shopify ID
    title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
    price: selectedBundle.price,
-   quantity: quantity,
+   quantity: 1,
    isSubscription: false,
    image: images[0].url
   })}
@@ -727,7 +754,7 @@ const HeroBuyBox = () => {
   id: selectedBundle.shopifyVariantId || selectedBundle.id,
   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
   price: selectedBundle.price,
-  quantity: quantity,
+  quantity: 1,
   isSubscription: false,
   image: images[0].url
   })}
@@ -742,7 +769,7 @@ const HeroBuyBox = () => {
   id: selectedBundle.shopifyVariantId || selectedBundle.id,
   title: `T-CORE ${selectedBundle.title} (${selectedBundle.name})`,
   price: selectedBundle.price,
-  quantity: quantity,
+  quantity: 1,
   isSubscription: false,
   image: images[0].url
   });
