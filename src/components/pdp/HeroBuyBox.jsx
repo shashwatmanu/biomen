@@ -17,31 +17,6 @@ const HeroBuyBox = () => {
  const [activeIdx, setActiveIdx] = useState(0);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
 
- const currentBottleCount = selectedBundle.id === 'tcore-3-bottles' ? 3 : selectedBundle.id === 'tcore-2-bottles' ? 2 : 1;
- 
- useEffect(() => {
-   const params = new URLSearchParams(window.location.search);
-   const system = params.get('system');
-   if (system && bundles.length > 0) {
-     const matched = bundles.find(b => b.id === system);
-     if (matched && matched.shopifyVariantId) {
-       // Only auto-add if it hasn't been added in this session to prevent reload loops
-       if (!sessionStorage.getItem('autoAdded_' + system)) {
-         sessionStorage.setItem('autoAdded_' + system, 'true');
-         addToCart({
-           id: matched.shopifyVariantId,
-           title: `T-CORE ${matched.title} (${matched.name})`,
-           price: matched.price,
-           quantity: 1,
-           isSubscription: false,
-           image: images[0].url
-         });
-         // Clean URL
-         window.history.replaceState({}, document.title, window.location.pathname);
-       }
-     }
-   }
- }, [bundles]);
 
 
  const handleMouseMove = (e) => {
@@ -71,13 +46,6 @@ const HeroBuyBox = () => {
 
  const sliderRef = useRef(null);
 
-  const images = [
-    { id: 'prod-1', url: '/Product/1.jpeg', label: 'T-CORE Front View' },
-    { id: 'prod-2', url: '/Product/2.jpeg', label: 'T-CORE Side View' },
-    { id: 'prod-3', url: '/Product/3.jpeg', label: 'T-CORE Supplement Facts' },
-    { id: 'prod-4', url: '/Product/4.jpeg', label: 'T-CORE Texture Detail' },
-    { id: 'prod-5', url: '/Product/5.jpeg', label: 'T-CORE Ingredients Close-up' },
-  ];
 
  const [bundles, setBundles] = useState([
  { 
@@ -124,6 +92,41 @@ const HeroBuyBox = () => {
  const matched = bundles.find((b) => b.id === system);
  return matched || bundles[0]; // defaults to 1 Bottle (which is bundles[0])
  });
+
+
+  
+  const images = [
+    { id: 'prod-1', url: '/Product/1.jpeg', label: 'T-CORE Front View' },
+    { id: 'prod-2', url: '/Product/2.jpeg', label: 'T-CORE Side View' },
+    { id: 'prod-3', url: '/Product/3.jpeg', label: 'T-CORE Supplement Facts' },
+    { id: 'prod-4', url: '/Product/4.jpeg', label: 'T-CORE Texture Detail' },
+    { id: 'prod-5', url: '/Product/5.jpeg', label: 'T-CORE Ingredients Close-up' },
+  ];
+
+  const currentBottleCount = selectedBundle.id === 'tcore-3-bottles' ? 3 : selectedBundle.id === 'tcore-2-bottles' ? 2 : 1;
+ 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const system = params.get('system');
+    if (system && bundles.length > 0) {
+      const matched = bundles.find(b => b.id === system);
+      if (matched && matched.shopifyVariantId) {
+        if (!sessionStorage.getItem('autoAdded_' + system)) {
+          sessionStorage.setItem('autoAdded_' + system, 'true');
+          addToCart({
+            id: matched.shopifyVariantId,
+            title: `T-CORE ${matched.title} (${matched.name})`,
+            price: matched.price,
+            quantity: 1,
+            isSubscription: false,
+            image: images[0].url
+          });
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      }
+    }
+  }, [bundles]);
+
 
  useEffect(() => {
  // Disabled subscription query param check
@@ -548,7 +551,7 @@ const HeroBuyBox = () => {
      <AnimatedPricing 
      mrp={bundle.mrp} 
      price={displayPrice} 
-     quantity={isSelected ? quantity : 1}
+     quantity={1}
      layout="left"
      index={index}
      />
@@ -613,7 +616,7 @@ const HeroBuyBox = () => {
   <div className="text-left w-full sm:w-auto hidden sm:block">
   <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Currently Selected:</div>
   <div className="text-xs text-[#F4F6F2] font-black uppercase tracking-wider mt-0.5">
-   {selectedBundle.title} {quantity > 1 && `(x${quantity})`} &bull; Save ₹{((selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price)) * quantity).toLocaleString('en-IN')}
+   {selectedBundle.title} &bull; Save ₹{((selectedBundle.mrp - ((isSubscription && selectedBundle.id === 'tcore-3-bottles') ? selectedBundle.subPrice : selectedBundle.price))).toLocaleString('en-IN')}
   </div>
   </div>
   </div>
@@ -720,7 +723,7 @@ const HeroBuyBox = () => {
   {/* Desktop system text */}
   <div className="hidden md:block">
   <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
-  <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
+  <div className="text-xs font-black uppercase text-white tracking-wide">{selectedBundle.title}</div>
   </div>
   
   {/* Mobile system text (Compact & prominent) */}
@@ -739,10 +742,10 @@ const HeroBuyBox = () => {
   {/* Price tags */}
   <div className="flex items-baseline gap-1 leading-none shrink-0">
   <span className="text-[9px] sm:text-xs text-gray-500 line-through">
-  ₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}
+  ₹{(selectedBundle.mrp).toLocaleString('en-IN')}
   </span>
   <span className="text-[13px] sm:text-sm md:text-lg font-black text-[#16C784] md:text-white">
-  ₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}
+  ₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price)).toLocaleString('en-IN')}
   </span>
   </div>
  </div>
