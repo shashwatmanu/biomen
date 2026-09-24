@@ -35,7 +35,7 @@ const Home = () => {
         <TimelineSection title="How does it work?" />
         
         {/* 6. Pricing / Systems (Choose Your System) */}
-        <BundleSelector />
+        {/* <BundleSelector /> */}
         
         {/* 7. FAQ */}
         <FAQSection />

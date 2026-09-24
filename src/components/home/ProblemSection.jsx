@@ -240,13 +240,13 @@ const ProblemSection = () => {
           <div className="lg:col-span-6 space-y-5 text-left infographic-fade-up order-2 lg:order-1">
             <div className="space-y-4 text-sm lg:text-base text-biomen-muted font-medium leading-relaxed max-w-xl">
               <p>
-                <strong className="text-biomen-white font-bold">Biological baseline levels</strong> in men have been dropping steadily, declining by over 1% every single year since 1980. Low sleep, daily stress, toxic environments, and digital overload are slowly draining natural hormone output.
+                <strong className="text-biomen-white font-bold">The modern world is quietly stripping away your drive.</strong> Statistics show that male baseline vitality has been dropping annually for the last four decades—and the culprits are obvious: endless stress, poor sleep, and constant digital overload.
               </p>
               <p>
-                <strong className="text-biomen-white font-bold">The Impact:</strong> This drop doesn't cause immediate collapse. Instead, it manifests as a gradual drain—manifesting as flatter energy, sluggish gym recovery, persistent brain fog, and a feeling of operating below your true potential.
+                The worst part is that you barely notice it happening. It shows up as a subtle shift. You feel a little flatter. Gym recovery takes an extra day. The mental fog settles in by 2 PM. <strong className="text-biomen-white font-bold">You aren’t crashing; you’re just coasting.</strong>
               </p>
               <p>
-                <strong className="text-biomen-accent font-black">The Solution:</strong> T-CORE addresses this drop adaptogenically. By regulating cortisol, encouraging cellular baseline energy, and delivering active clinical extracts daily, T-CORE helps you support natural production and reclaim your edge.
+                <strong className="text-biomen-accent font-black">T-CORE</strong> tackles the root of the problem. By using proven botanical extracts to regulate stress hormones, it helps your body rebuild its natural energy reserves from the ground up—<strong className="text-biomen-white font-bold">so you can stop coasting and start pushing again.</strong>
               </p>
             </div>
             

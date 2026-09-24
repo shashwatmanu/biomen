@@ -9,21 +9,21 @@ const SolutionGrid = () => {
   const mechanisms = [
     { 
       icon: <Zap className="text-[#D85A1F] shrink-0" size={24} />, 
-      title: "SKYROCKET ENERGY & STAMINA", 
-      desc: "Supports masculine drive, physical capacity, and high-intensity performance stamina.",
-      poweredBy: "TONGKAT ALI + FENUGREEK"
+      title: "Unrelenting Stamina", 
+      desc: "Formulated to restore physical drive and support high-intensity performance.",
+      poweredBy: "Tongkat Ali + Fenugreek"
     },
     { 
       icon: <Activity className="text-[#D85A1F] shrink-0" size={24} />, 
-      title: "SUPPORT MALE VITALITY", 
-      desc: "Encourages recovery, stress resilience, and keeps your daily baseline baseline optimized.",
-      poweredBy: "SHILAJIT + ASHWAGANDHA"
+      title: "Faster Recovery", 
+      desc: "Adaptogenic support to help manage daily stress and accelerate muscle repair.",
+      poweredBy: "Shilajit + Ashwagandha"
     },
     { 
       icon: <Compass className="text-[#D85A1F] shrink-0" size={24} />, 
-      title: "AMPLIFY ABSORPTION & EFFICIENCY", 
-      desc: "Enhances nutrient absorption and maximizes ingredient biological bioavailability.",
-      poweredBy: "BLACK PEPPER EXTRACT"
+      title: "Total Absorption", 
+      desc: "Clinically shown to enhance nutrient uptake, ensuring zero waste and maximum impact.",
+      poweredBy: "Black Pepper Extract"
     }
   ];
 
@@ -103,7 +103,7 @@ const SolutionGrid = () => {
           {/* Left Column: Left-aligned Premium Editorial Copy (lg:col-span-7) */}
           <div className="lg:col-span-7 space-y-5 text-left solution-fade-up order-2 lg:order-1">
             <p className="text-biomen-muted text-sm lg:text-base leading-relaxed max-w-xl font-medium px-2 lg:px-0">
-              Maintaining a balanced vitality baseline is pivotal for contributing to an overall sense of well-being. Supporting our body's natural baseline function can help us men:
+              T-CORE is built to restore your body’s natural rhythm, using targeted extracts to deliver results you can actually feel.
             </p>
 
             {/* Completely Clean, Borderless List wrapped inside a premium, ultra-soft glass card on mobile to let the bright background show through beautifully */}
