@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isLightMode = location.pathname.includes('-light');
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -45,17 +46,17 @@ const Navbar = () => {
     }`}>
       <nav className={`w-full z-50 flex justify-between items-center transition-all duration-500 ease-in-out pointer-events-auto relative border ${
         isScrolled
-          ? 'max-w-4xl bg-black/60 backdrop-blur-md border-white/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#16C784]/20'
+          ? (isLightMode ? 'max-w-4xl bg-white/70 backdrop-blur-md border-black/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:border-[#16C784]/20' : 'max-w-4xl bg-black/60 backdrop-blur-md border-white/10 rounded-full px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:border-[#16C784]/20')
           : isHomePage
             ? 'max-w-7xl mx-auto bg-transparent py-4 px-4 md:px-6 border-transparent'
-            : 'max-w-full bg-[#030705]/95 backdrop-blur-md border-transparent border-b-white/5 py-4 px-6 md:px-12'
+            : (isLightMode ? 'max-w-full bg-[#FCFDFD]/95 backdrop-blur-md border-transparent border-b-black/5 py-4 px-6 md:px-12' : 'max-w-full bg-[#030705]/95 backdrop-blur-md border-transparent border-b-white/5 py-4 px-6 md:px-12')
       }`}>
         
         {/* Left Side: Hamburger Menu Button (visible on mobile/tablet) */}
         <div className="flex lg:hidden items-center z-[250]">
           <button 
             onClick={() => setIsMenuOpen(true)} 
-            className="text-biomen-white hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-1.5 xs:p-2 bg-white/5 rounded-full border border-white/10 animate-fade-in"
+            className={`${isLightMode ? 'text-gray-900' : 'text-biomen-white'} hover:text-biomen-accent transition-colors cursor-pointer focus:outline-none p-1.5 xs:p-2 ${isLightMode ? 'bg-black/5' : 'bg-white/5'} rounded-full border ${isLightMode ? 'border-black/10' : 'border-white/10'} animate-fade-in`}
             aria-label="Open navigation menu"
           >
             <Menu size={16} />
@@ -73,11 +74,11 @@ const Navbar = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="flex items-center gap-1.5 md:gap-3 font-black tracking-tighter text-biomen-white text-lg xs:text-xl sm:text-2xl md:text-3xl uppercase group"
+            className={`flex items-center gap-1.5 md:gap-3 font-black tracking-tighter ${isLightMode ? 'text-gray-900' : 'text-biomen-white'} text-lg xs:text-xl sm:text-2xl md:text-3xl uppercase group`}
           >
-            <div className="relative w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 overflow-hidden bg-white/5 border border-white/10 rounded-full flex items-center justify-center p-1 sm:p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300">
+            <div className={`relative w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 overflow-hidden ${isLightMode ? 'bg-black/5 border-black/10' : 'bg-white/5 border-white/10'} rounded-full flex items-center justify-center p-1 sm:p-1.5 shadow-md shadow-black/40 group-hover:bg-biomen-green/20 group-hover:border-biomen-accent/30 transition-all duration-300`}>
               <img 
-                src="/logo/logo_white_symbol.webp" 
+                src={isLightMode ? "/logo/logo_black_symbol.png" : "/logo/logo_white_symbol.webp"} 
                 alt="BIOMEN Labs Logo" 
                 className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
               />
@@ -87,17 +88,17 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Icons & Links */}
-        <div className="flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] text-biomen-white z-10">
+        <div className={`flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] ${isLightMode ? 'text-gray-900' : 'text-biomen-white'} z-10`}>
           <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
           <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
           <Link to="/consultation" className="hidden lg:block hover:text-[#b94a17] text-[#D85A1F] transition-colors font-black">Dr. Advisory</Link>
           
           <div className="flex items-center gap-2 xs:gap-3 sm:gap-6 ml-auto">
-            <Link to="/contact" className="hover:text-biomen-accent transition-colors p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none" aria-label="View user profile or contact support"><User size={16} /></Link>
+            <Link to="/contact" className={`hover:text-biomen-accent transition-colors p-1.5 xs:p-2 ${isLightMode ? 'bg-black/5 border-black/10' : 'bg-white/5 border-white/10'} lg:bg-transparent rounded-full border lg:border-none`} aria-label="View user profile or contact support"><User size={16} /></Link>
             
             <button 
               onClick={toggleCart} 
-              className="hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-1.5 xs:p-2 bg-white/5 lg:bg-transparent rounded-full border border-white/10 lg:border-none"
+              className={`hover:text-biomen-accent transition-colors relative cursor-pointer outline-none p-1.5 xs:p-2 ${isLightMode ? 'bg-black/5 border-black/10' : 'bg-white/5 border-white/10'} lg:bg-transparent rounded-full border lg:border-none`}
               aria-label="View shopping cart"
             >
               <ShoppingCart size={16} />

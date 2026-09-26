@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 }) => {
+const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0, theme = 'dark' }) => {
   const priceRef = useRef(null);
   const mrpRef = useRef(null);
   const lineRef = useRef(null);
@@ -81,9 +81,12 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
           priceRef.current.innerHTML = `₹${Math.round(counterObj.val).toLocaleString('en-IN')}`;
           
           const progress = tl.progress();
-          const r = Math.round(156 + (255 - 156) * progress);
-          const g = Math.round(163 + (255 - 163) * progress);
-          const b = Math.round(175 + (255 - 175) * progress);
+          const targetR = theme === 'light' ? 17 : 255;
+          const targetG = theme === 'light' ? 24 : 255;
+          const targetB = theme === 'light' ? 39 : 255;
+          const r = Math.round(156 + (targetR - 156) * progress);
+          const g = Math.round(163 + (targetG - 163) * progress);
+          const b = Math.round(175 + (targetB - 175) * progress);
           priceRef.current.style.color = `rgb(${r}, ${g}, ${b})`;
         }
       }
@@ -124,7 +127,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
             <div ref={lineRef} className="absolute top-1/2 left-0 w-full h-[1px] bg-red-500/70" />
           </div>
           <div className="flex items-baseline gap-1">
-            <div ref={priceRef} className="text-2.5xl lg:text-2xl font-black text-[#F4F6F2]">
+            <div ref={priceRef} className={`text-2.5xl lg:text-2xl font-black ${theme === 'light' ? 'text-gray-900' : 'text-[#F4F6F2]'}`}>
               ₹{totalMrp.toLocaleString('en-IN')}
             </div>
           </div>
@@ -157,7 +160,7 @@ const AnimatedPricing = ({ mrp, price, quantity = 1, layout = 'left', index = 0 
           ₹{totalMrp.toLocaleString('en-IN')}
           <div ref={lineRef} className="absolute top-1/2 left-0 w-full h-[1.5px] bg-red-500/70" />
         </div>
-        <span ref={priceRef} className="text-lg font-black text-white">
+        <span ref={priceRef} className={`text-lg font-black ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
           ₹{totalMrp.toLocaleString('en-IN')}
         </span>
       </div>

@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 // All other pages are lazy-loaded (code-split per-route)
 const PDP = lazy(() => import('./pages/PDP'));
+const LightPDP = lazy(() => import('./pages/LightPDP'));
 const Science = lazy(() => import('./pages/Science'));
 const Reviews = lazy(() => import('./pages/Reviews'));
 const About = lazy(() => import('./pages/About'));
@@ -188,6 +189,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products/t-core" element={<PDP />} />
+            <Route path="/products/t-core-light" element={<LightPDP />} />
             <Route path="/science" element={<Science />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/about" element={<About />} />
