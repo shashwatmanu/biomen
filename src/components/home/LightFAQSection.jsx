@@ -53,7 +53,7 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
     <div 
       onMouseMove={handleMouseMove}
       className={`relative p-[1px] rounded-2xl overflow-hidden transition-all duration-300 group/faq-spotlight ${
-        isOpen ? 'bg-[#16C784] shadow-lg shadow-black/40' : 'bg-black/10'
+        isOpen ? 'bg-[#16C784] shadow-lg shadow-black/40' : 'bg-black/5'
       }`}
     >
       {/* Spotlight border glow layer */}
@@ -68,7 +68,7 @@ const FAQCard = ({ faq, index, isOpen, onToggle }) => {
 
       {/* Inner Card container */}
       <div className={`w-full h-full rounded-[15px] overflow-hidden transition-all duration-300 relative z-10 ${
-        isOpen ? 'bg-[#0a100d]' : 'bg-gradient-to-br from-[#06110C]/80 to-[#FCFDFD]/90 group-hover/faq-spotlight:from-[#091B13] group-hover/faq-spotlight:to-[#FCFDFD]/95'
+        isOpen ? 'bg-white' : 'bg-white group-hover/faq-spotlight:from-[#FAFAFA] group-hover/faq-spotlight:to-white'
       }`}>
         {/* Background inner glow */}
         {!isOpen && (
@@ -138,7 +138,7 @@ const LightFAQSection = () => {
         
         {/* Header */}
         <div className="text-center mb-10 lg:mb-3">
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-0.5 block">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-700 mb-0.5 block">
             Help Desk
           </span>
           <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-normal font-serif tracking-tight text-gray-900 mb-0.5 reveal-parent-scroll">

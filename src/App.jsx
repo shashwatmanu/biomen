@@ -188,8 +188,8 @@ function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products/t-core" element={<PDP />} />
-            <Route path="/products/t-core-light" element={<LightPDP />} />
+            <Route path="/products/t-core" element={<LightPDP />} />
+            <Route path="/products/t-core-dark" element={<PDP />} />
             <Route path="/science" element={<Science />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/about" element={<About />} />

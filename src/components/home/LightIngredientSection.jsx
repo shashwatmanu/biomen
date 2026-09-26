@@ -322,13 +322,13 @@ const LightIngredientSection = () => {
                 {/* Central carousel slide content (Enhanced mobile font sizing) */}
                 <div className="w-[190px] h-[190px] flex flex-col items-center justify-center text-center relative z-20 select-none">
                   <div className="central-panel-content flex flex-col items-center justify-center space-y-2">
-                    <h3 className="text-[17px] lg:text-sm font-black text-gray-900 leading-tight uppercase tracking-wider filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                    <h3 className="text-[17px] lg:text-sm font-black text-white leading-tight uppercase tracking-wider filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                       {activeIng.name}
                     </h3>
                     <span className="text-[11px] lg:text-[9px] font-black uppercase tracking-widest text-[#D85A1F] bg-[#D85A1F]/20 border border-[#D85A1F]/30 px-2.5 py-0.5 rounded-full filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
                       {activeIng.dose} Dose
                     </span>
-                    <p className="text-[12.5px] lg:text-[10px] text-gray-600 leading-relaxed font-semibold max-w-[170px] mt-0.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                    <p className="text-[12.5px] lg:text-[10px] text-gray-100 leading-relaxed font-semibold max-w-[170px] mt-0.5 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                       {activeIng.purpose}
                     </p>
                   </div>

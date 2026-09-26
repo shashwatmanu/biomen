@@ -8,7 +8,7 @@ const LightFullReviewsWidget = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8">
           <div className="text-center md:text-left">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase text-gray-900">Clinical Feedback <br className="hidden md:block" /><span className="text-emerald-500">& Reviews</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase text-gray-900">Clinical Feedback <br className="hidden md:block" /><span className="text-emerald-700">& Reviews</span></h2>
             <div className="flex justify-center md:justify-start items-center gap-4">
               <div className="flex text-orange-500">
                 {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="currentColor" />)}
@@ -44,7 +44,7 @@ const LightFullReviewsWidget = () => {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <BadgeCheck size={80} />
             </div>
-            <h4 className="font-black mb-4 flex items-center gap-2 text-xs uppercase tracking-widest text-emerald-500">
+            <h4 className="font-black mb-4 flex items-center gap-2 text-xs uppercase tracking-widest text-emerald-700">
                AI Summary
             </h4>
             <p className="text-gray-500 leading-relaxed italic font-medium">
@@ -65,7 +65,7 @@ const LightFullReviewsWidget = () => {
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="font-black text-gray-900 uppercase tracking-wider">{review.name}</div>
-                    <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-emerald-500">
+                    <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-emerald-700">
                       <BadgeCheck size={14} /> Verified Buyer
                     </div>
                   </div>

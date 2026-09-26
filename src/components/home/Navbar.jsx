@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const isLightMode = location.pathname.includes('-light');
+  const isLightMode = location.pathname === '/products/t-core' || location.pathname.includes('-light');
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -83,13 +83,13 @@ const Navbar = () => {
                 className="w-full h-full object-contain group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out"
               />
             </div>
-            <span>BIOMEN <span className="text-[#16C784] transition-colors duration-300 group-hover:text-biomen-mint">LABS</span></span>
+            <span>BIOMEN <span className={`${isLightMode ? "text-[#0A7A4E]" : "text-[#16C784]"} transition-colors duration-300 group-hover:text-biomen-mint`}>LABS</span></span>
           </Link>
         </div>
 
         {/* Right Side Icons & Links */}
         <div className={`flex items-center gap-4 lg:gap-8 text-xs md:text-sm font-black uppercase tracking-[0.2em] ${isLightMode ? 'text-gray-900' : 'text-biomen-white'} z-10`}>
-          <Link to="/products/t-core" className="hidden lg:block text-[#16C784] hover:text-[#D85A1F] transition-colors font-black">Shop T-CORE</Link>
+          <Link to="/products/t-core" className={`hidden lg:block ${isLightMode ? "text-[#0A7A4E]" : "text-[#16C784]"} hover:text-[#D85A1F] transition-colors font-black`}>Shop T-CORE</Link>
           <Link to="/science" className="hidden lg:block hover:text-biomen-accent transition-colors">Science</Link>
           <Link to="/consultation" className="hidden lg:block hover:text-[#b94a17] text-[#D85A1F] transition-colors font-black">Dr. Advisory</Link>
           

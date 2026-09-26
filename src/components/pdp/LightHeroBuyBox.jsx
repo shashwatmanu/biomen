@@ -333,27 +333,27 @@ const LightHeroBuyBox = () => {
               <div className="hidden lg:block w-full bg-white border border-black/5 p-5 rounded-[2rem] font-mono text-[10px] sm:text-xs text-gray-500 space-y-2 mt-2">
                 <div className="border-b border-black/10 pb-1.5 flex justify-between font-sans text-xs font-black uppercase tracking-wider text-gray-900">
                   <span>Active Stack (2 Caps Serving)</span>
-                  <span className="text-[#16C784]">1,600mg</span>
+                  <span className="text-[#0A7A4E]">1,600mg</span>
                 </div>
                 <div className="flex justify-between py-0.5">
                   <span>Shilajit Extract</span>
-                  <span className="font-bold text-[#16C784]">500 mg</span>
+                  <span className="font-bold text-[#0A7A4E]">500 mg</span>
                 </div>
                 <div className="flex justify-between py-0.5">
                   <span>Tongkat Ali Extract</span>
-                  <span className="font-bold text-[#16C784]">300 mg</span>
+                  <span className="font-bold text-[#0A7A4E]">300 mg</span>
                 </div>
                 <div className="flex justify-between py-0.5">
                   <span>Ashwagandha Extract</span>
-                  <span className="font-bold text-[#16C784]">300 mg</span>
+                  <span className="font-bold text-[#0A7A4E]">300 mg</span>
                 </div>
                 <div className="flex justify-between py-0.5">
                   <span>Fenugreek Seed Extract</span>
-                  <span className="font-bold text-[#16C784]">490 mg</span>
+                  <span className="font-bold text-[#0A7A4E]">490 mg</span>
                 </div>
                 <div className="flex justify-between py-0.5">
                   <span>Black Pepper Extract</span>
-                  <span className="font-bold text-[#16C784]">10 mg</span>
+                  <span className="font-bold text-[#0A7A4E]">10 mg</span>
                 </div>
               </div>
             </div>
@@ -366,7 +366,7 @@ const LightHeroBuyBox = () => {
               <div className="flex flex-col w-full space-y-1">
                 {/* T-CORE Subtext */}
                 <div className="text-lg md:text-xl font-black tracking-widest flex items-center gap-2 uppercase">
-                  <span className="text-[#16C784]">T-CORE</span>
+                  <span className="text-[#0A7A4E]">T-CORE</span>
                   <span className="text-gray-500 font-bold text-sm md:text-base">BY</span>
                   <img src="/logo/logo_black_symbol.png" alt="Biomen Labs Logo" className="w-6 h-6 md:w-7 md:h-7 object-contain animate-[spin_6s_linear_infinite]" />
                   <span className="text-gray-900">BIOMEN LABS</span>
@@ -376,7 +376,7 @@ const LightHeroBuyBox = () => {
                   <div className="flex text-[#D85A1F]">
                     {[...Array(5)].map((_, i) => <Star key={i} size={16} fill={i < 4 ? "currentColor" : "none"} className={i < 4 ? "" : "text-[#D85A1F]/30"} />)}
                   </div>
-                  {/* <span className="text-[10px] font-black uppercase tracking-widest text-[#16C784] bg-[#E0F2EB] px-3 py-1 rounded-full border border-[#0FA36B]/20">
+                  {/* <span className="text-[10px] font-black uppercase tracking-widest text-[#0A7A4E] bg-[#E0F2EB] px-3 py-1 rounded-full border border-[#0FA36B]/20">
   FOUNDER BATCH RELEASE NOW LIVE
   </span> */}
                 </div>
@@ -386,7 +386,7 @@ const LightHeroBuyBox = () => {
               <div className="hidden lg:flex w-full flex-col space-y-4 pt-4 lg:pt-0">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 uppercase leading-none">
                   Premium Masculine <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">Vitality Support</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A7A4E] to-[#16C784]">Vitality Support</span>
                 </h1>
 
                 <p className="text-base text-gray-600 leading-relaxed font-medium">
@@ -499,7 +499,7 @@ const LightHeroBuyBox = () => {
 
                               <div className="relative z-10">
                                 {bundle.name && (
-                                  <div className="text-[10px] font-black uppercase tracking-widest text-[#16C784]">
+                                  <div className="text-[10px] font-black uppercase tracking-widest text-[#0A7A4E]">
                                     {bundle.name}
                                   </div>
                                 )}
@@ -594,7 +594,7 @@ const LightHeroBuyBox = () => {
                 <div className="flex lg:hidden w-full flex-col space-y-4 pt-2">
                   <h1 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 uppercase leading-none">
                     Premium Masculine <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#16C784] to-[#7FE7B3]">Vitality Support</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A7A4E] to-[#16C784]">Vitality Support</span>
                   </h1>
 
                   <p className="text-base text-gray-600 leading-relaxed font-medium">
@@ -607,25 +607,25 @@ const LightHeroBuyBox = () => {
                   {/* Clean Editorial Bullet Checkmarks (follow after CTA button) */}
                   <ul className="space-y-3 text-sm text-gray-800 font-semibold">
                     <li className="flex items-center gap-3">
-                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
+                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#0A7A4E]">
                         <Check size={12} strokeWidth={3} />
                       </span>
                       <span>5 Herbal Extracts at Full Clinical Doses (1,600mg Active Daily Stack)</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
+                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#0A7A4E]">
                         <Check size={12} strokeWidth={3} />
                       </span>
                       <span>Zero Fillers or "Proprietary Blends" (Fully Transparent Formula)</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
+                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#0A7A4E]">
                         <Check size={12} strokeWidth={3} />
                       </span>
                       <span>Made in India & cGMP Certified Facility Tested</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#16C784]">
+                      <span className="w-5 h-5 rounded-full bg-[#E0F2EB] border border-[#0FA36B]/30 flex items-center justify-center text-[#0A7A4E]">
                         <Check size={12} strokeWidth={3} />
                       </span>
                       <span>90-Day Confidence Money-Back Guarantee (Consistency Risk-Free)</span>
@@ -637,13 +637,13 @@ const LightHeroBuyBox = () => {
                   {/* Trust Badges under CTA button */}
                   <div className="grid grid-cols-3 gap-4 text-[10px] font-black uppercase tracking-widest text-gray-600 pt-4 border-t border-black/10">
                     <span className="flex items-center gap-1.5 justify-center text-center">
-                      <Truck size={14} className="text-[#16C784]" /> Ships in 24 Hours
+                      <Truck size={14} className="text-[#0A7A4E]" /> Ships in 24 Hours
                     </span>
                     <span className="flex items-center gap-1.5 justify-center text-center">
-                      <ShieldCheck size={14} className="text-[#16C784]" /> Try Risk-Free for 90 Days
+                      <ShieldCheck size={14} className="text-[#0A7A4E]" /> Try Risk-Free for 90 Days
                     </span>
                     <span className="flex items-center gap-1.5 justify-center text-center">
-                      <RefreshCcw size={14} className="text-[#16C784]" /> Free Shipping Aligned
+                      <RefreshCcw size={14} className="text-[#0A7A4E]" /> Free Shipping Aligned
                     </span>
                   </div>
 
@@ -655,12 +655,12 @@ const LightHeroBuyBox = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-wider text-center text-gray-800">
                       <div className="bg-white/60 border border-black/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                        <span className="text-[#16C784] mb-1">VITALITY E-BOOK</span>
+                        <span className="text-[#0A7A4E] mb-1">VITALITY E-BOOK</span>
                         <span>90-Day Protocol</span>
                         <span className="text-gray-500 text-[8px] mt-1">₹2,500 Value</span>
                       </div>
                       <div className="bg-white/60 border border-black/5 p-3 rounded-xl flex flex-col justify-between items-center min-h-[90px]">
-                        <span className="text-[#16C784] mb-1">IPHONE 17 PRO</span>
+                        <span className="text-[#0A7A4E] mb-1">IPHONE 17 PRO</span>
                         <span>Chance to Win</span>
                         <span className="text-gray-500 text-[8px] mt-1">Weekly Draw</span>
                       </div>
@@ -690,13 +690,13 @@ const LightHeroBuyBox = () => {
             <div className="flex flex-col justify-center min-w-0 flex-shrink">
               {/* Desktop system text */}
               <div className="hidden md:block">
-                <div className="text-[10px] text-[#16C784] font-black uppercase tracking-wider">{selectedBundle.name}</div>
+                <div className="text-[10px] text-[#0A7A4E] font-black uppercase tracking-wider">{selectedBundle.name}</div>
                 <div className="text-xs font-black uppercase text-gray-900 tracking-wide">{selectedBundle.title} {quantity > 1 && `(x${quantity})`}</div>
               </div>
 
               {/* Mobile system text (Compact & prominent) */}
               <div className="md:hidden flex flex-col min-w-0">
-                <span className="text-[9px] sm:text-[10px] text-[#16C784] font-black uppercase tracking-wider leading-tight truncate">
+                <span className="text-[9px] sm:text-[10px] text-[#0A7A4E] font-black uppercase tracking-wider leading-tight truncate">
                   {selectedBundle.title.split(' ')[0]}
                 </span>
                 <span className="text-[9px] sm:text-[10px] font-black uppercase text-gray-900 tracking-wider mt-0.5 leading-tight truncate">
@@ -712,7 +712,7 @@ const LightHeroBuyBox = () => {
               <span className="text-[9px] sm:text-xs text-gray-500 line-through">
                 ₹{(selectedBundle.mrp * quantity).toLocaleString('en-IN')}
               </span>
-              <span className="text-[13px] sm:text-sm md:text-lg font-black text-[#16C784] md:text-gray-900">
+              <span className="text-[13px] sm:text-sm md:text-lg font-black text-[#0A7A4E] md:text-gray-900">
                 ₹{((isSubscription ? selectedBundle.subPrice : selectedBundle.price) * quantity).toLocaleString('en-IN')}
               </span>
             </div>
