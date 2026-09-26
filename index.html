@@ -193,9 +193,17 @@
   </style>
   <div id="root">
     <div id="hero-skeleton">
-      <img src="/logo/logo_white_symbol.png" alt="BIOMEN LABS" />
+      <img id="skeleton-logo" src="/logo/logo_white_symbol.png" alt="BIOMEN LABS" />
     </div>
   </div>
+  <script>
+    (function() {
+      if (window.location.pathname === '/products/t-core' || window.location.pathname.includes('-light')) {
+        document.getElementById('hero-skeleton').style.background = '#FCFDFD';
+        document.getElementById('skeleton-logo').src = '/logo/logo_black_symbol.png';
+      }
+    })();
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

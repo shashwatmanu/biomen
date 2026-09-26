@@ -35,6 +35,7 @@ function App() {
   const container = useRef();
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/temp-reel' || location.pathname === '/unsubscribe' || location.pathname === '/quiz';
+  const isLightMode = location.pathname === '/products/t-core' || location.pathname.includes('-light');
 
   useEffect(() => {
     if (!isAdminPage) {
@@ -169,7 +170,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-[#030705] min-h-[100dvh] relative overflow-x-hidden">
+    <div className={`${isLightMode ? 'bg-[#FCFDFD]' : 'bg-[#030705]'} min-h-[100dvh] relative overflow-x-hidden`}>
       {!isAdminPage && <BotanicalParticles />}
       <div className="film-grain" />
       {!isAdminPage && (
